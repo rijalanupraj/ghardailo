@@ -223,4 +223,6 @@ Thumbs.db
 
 # profiling data
 
-
+# For IDE
+.vscode/
+.idea/
