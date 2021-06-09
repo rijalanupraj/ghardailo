@@ -10,6 +10,12 @@ from django.contrib.auth.models import (
 class UserManager(BaseUserManager):
     """Manager for User"""
 
+    def get_by_natural_key(self, username):
+        """
+        This takes username/email case insensitive while performing login operation
+        """
+        return self.get(**{self.model.USERNAME_FIELD + '__iexact': username})
+
     def create_user(self, username, email, password=None):
         """
         Creates and saves a User with the given email, username and password.
