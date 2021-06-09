@@ -48,6 +48,13 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
 
+    # User Type Choices
+    USER_TYPE_CHOICES = (
+        (0, 'none'),
+        (1, 'customer'),
+        (2, 'business'),
+    )
+
     email = models.EmailField(
         max_length=255,
         unique=True,
@@ -59,6 +66,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(
         auto_now_add=True, blank=True, null=True)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
 
     objects = UserManager()
     USERNAME_FIELD = 'username'
@@ -71,4 +79,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def active(self):
         return self.is_active
-
