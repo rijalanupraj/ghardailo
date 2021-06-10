@@ -21,15 +21,22 @@ class UserManager(BaseUserManager):
         Creates and saves a User with the given email, username and password.
         """
 
+        # Username and email validation while creating new user
         if username is None:
             raise ValueError('User must have a username')
         if email is None:
             raise ValueError('User must have a Email')
 
+        # Normalizing email my removing extra spaces
         email = self.normalize_email(email)
 
+        # Assigning username & Email to the variable user
         user = self.model(username=username, email=email)
+
+        # Setting Password with encryption
         user.set_password(password)
+
+        # Storing the user data to the databaase
         user.save(using=self._db)
 
         return user
@@ -41,12 +48,15 @@ class UserManager(BaseUserManager):
         if password is None:
             raise ValueError('Password should not be none')
 
+        # Creating user with the help above create_user function
         user = self.create_user(username, email, password)
 
+        # Assigning critical fields value as True for the superuser
         user.is_superuser = True
         user.is_admin = True
         user.is_staff = True
 
+        # Saving modified superuser to the database
         user.save(using=self._db)
         return user
 
@@ -54,20 +64,17 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
 
-    # User Type Choices
-    kNONE = 0
-    kCUSTOMER = 1
-    kBUSINESS = 2
-    USER_TYPE_CHOICES = (
-        (kNONE, 'none'),
-        (kCUSTOMER, 'customer'),
-        (kBUSINESS, 'business'),
-    )
-
+    # Adding Email Field
     email = models.EmailField(
         max_length=255,
         unique=True,
     )
+
+    # Adding is_business & is_customer field to identify business and customer
+    is_business = models.BooleanField(deafult=False)
+    is_customer = models.BooleanField(deafult=False)
+
+    # These filed are porvided as default by Django
     username = models.CharField(max_length=30, unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -75,11 +82,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(
         auto_now_add=True, blank=True, null=True)
-    user_type = models.PositiveSmallIntegerField(
-        choices=USER_TYPE_CHOICES, default=kNONE)
 
+
+    # Configuring UserManager to the User Model
     objects = UserManager()
     USERNAME_FIELD = 'username'
+    # Email is marked as required fields means it cannot be null
     REQUIRED_FIELDS = ["email"]
 
     def __str__(self):

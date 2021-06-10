@@ -5,12 +5,17 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.exceptions import MultipleObjectsReturned
 
+# Using the Custom User Model
 UserModel = get_user_model()
 
 
 class EmailBackend(ModelBackend):
+    """ This Class Allows user to login using either email or password """
     def authenticate(self, request, username=None, password=None, **kwargs):
+        """ Authentication function which runs during the login process """
+
         try:
+            # If the User with the usersame of email exist storing user in user variable
             user = UserModel.objects.get(
                 Q(username__iexact=username) | Q(email__iexact=username))
         except UserModel.DoesNotExist:
