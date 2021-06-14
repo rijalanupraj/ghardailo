@@ -23,6 +23,11 @@
         top:0;
         box-shadow: 0px 1px 5px #5f28f5;
     }
+    #Logo
+    {
+      height: 60px;
+      width: 60px;
+    }   
     #Header .navbar-brand
     {
         color: #5f28f5;
@@ -54,7 +59,7 @@
     }
     .navbar-toggler-icon {
       color: #5e2ced;
-      background-image: url("../images/navbar/navbar_toggler_icon.png");
+      background-image: url("Button.png");
     }
     .sgu, .lgi, .lgo
     {           
@@ -65,6 +70,7 @@
     {
       color: #00c99c; 
       background-color:#d4f6ee;
+      margin-left: 5px;
     }
     .sgu:hover
     {
@@ -75,6 +81,7 @@
     {   
       color: #5e2ced;
       background-color:#d8ccf8;
+      margin-left: 5px;
     }
     .lgi:hover
     {
@@ -85,6 +92,7 @@
     {
       color: #ed2c3c;
       background-color:#f8ccd0;
+      margin-left: 5px;
     }
     .lgo:hover
     {
@@ -95,9 +103,7 @@
     {
       height: 60px;
       width: 60px;
-      position: fixed;
-      top: 3px;
-      right: 392px;
+      position: relative;
     }    
     #Username
     {     
@@ -106,29 +112,51 @@
       color: #5e2ced;
       text-decoration: none;
     }
-    @media screen and (max-width: 1050px)
+    @media screen and (max-width: 1100px)
     {
       .sgu, .lgi, .lgo
       {
-          display: none;
-      }      
-      #Profile
-      {
-        right: 143px;
-      }   
+        display: none;
+      }  
     }
-    @media screen and (max-width: 800px)
+    @media screen and (max-width: 900px)
     {
       #Profile, #Username
       {
           display: none;
       }
     }
+    @media screen and (max-width: 575px)
+    {
+      #UDA
+      {
+        margin-top: 5px;
+        display:grid;
+        grid-template-columns: 80px;
+        grid-gap:10px 0;
+      }
+      .sgu, .lgi, .lgo, #Profile, #Username
+      {
+        display: block;
+        margin: 0;
+      }
+      #Profile
+      {
+        position: static;
+      }
+      #Username
+      {
+        width: 300px;
+      }
+    }
   </style>
 
   <div class="container-fluid" id="Header">
     <nav class="navbar navbar-expand-sm">
-      <h1><a class="navbar-brand mx-5 fw-bold" href="#">Ghar<span>Dailo</span></a></h1>
+      <h1>
+        <img class="img-fluid rounded-circle" src="Logo.png" id="Logo"/>
+        <a class="navbar-brand fw-bold" href="#">Ghar<span>Dailo</span></a>
+      </h1>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -136,7 +164,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item mx-sm-1">
-              <a class="nav-link selected header_nav_link" href="">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link selected" href="">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item mx-sm-1">
               <a class="nav-link" href="">Services</a>
@@ -148,14 +176,14 @@
               <a class="nav-link" href="">About Us</a>
             </li>                      
           </ul>
-          <div class="d-flex">
+          <div id="UDA">
             <!-- {% if user.is_authenticated %}                   -->
               <img class="img-fluid rounded-circle" id="Profile" src="Male.jpg"/>
-              <a class="fw-bold mx-3" href="" id="Username">Ram Bahadur</a>
-              <a class="btn mx-2 lgo" href="">Logout</a>
+              <a class="fw-bold" href="" id="Username">Gauri Shankar Sharma</a>
+              <a class="btn lgo" href="">Logout</a>
             <!-- {% else %} -->
-              <a href="" class="btn mx-2 sgu">Sign up</a>
-              <a href="" class="btn mx-2 lgi">Login</a>
+              <a href="" class="btn sgu">Sign up</a>
+              <a href="" class="btn lgi">Login</a>
             <!-- {% endif %} -->
           </div>
       </div>
