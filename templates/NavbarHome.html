@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
-        crossorigin="anonymous" 
-    >
+  <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
+      crossorigin="anonymous" 
+  >
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet">    
 </head>
 <body>
 
@@ -91,25 +91,35 @@
       color: white;
       background-color: #f52843;
     }
-    .ct
+    #Profile
     {
-      font-size: 25px;
-      color: green;
+      height: 60px;
+      width: 60px;
+      position: fixed;
+      top: 3px;
+      right: 392px;
+    }    
+    #Username
+    {     
+      font-family:cursive;
+      font-size: 18px;
+      color: #5e2ced;
+      text-decoration: none;
     }
-    .ct:hover
-    {
-        color: green;    
-        text-decoration: none;
-    }
-    .CircleCart
-    {
-        border-radius: 100%;
-        padding: 8px;
-        border: 2px solid green;
-    }
-    @media screen and (max-width: 750px)
+    @media screen and (max-width: 1050px)
     {
       .sgu, .lgi, .lgo
+      {
+          display: none;
+      }      
+      #Profile
+      {
+        right: 143px;
+      }   
+    }
+    @media screen and (max-width: 800px)
+    {
+      #Profile, #Username
       {
           display: none;
       }
@@ -139,9 +149,14 @@
             </li>                      
           </ul>
           <div class="d-flex">
-            <a href="" class="btn mx-2 sgu">Sign up</a>
-            <a href="" class="btn mx-2 lgi">Login</a>
-            <a class="btn mx-2 lgo" href="">Logout</a>
+            <!-- {% if user.is_authenticated %}                   -->
+              <img class="img-fluid rounded-circle" id="Profile" src="Male.jpg"/>
+              <a class="fw-bold mx-3" href="" id="Username">Ram Bahadur</a>
+              <a class="btn mx-2 lgo" href="">Logout</a>
+            <!-- {% else %} -->
+              <a href="" class="btn mx-2 sgu">Sign up</a>
+              <a href="" class="btn mx-2 lgi">Login</a>
+            <!-- {% endif %} -->
           </div>
       </div>
     </nav>
