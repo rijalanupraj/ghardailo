@@ -71,8 +71,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     # Adding is_business & is_customer field to identify business and customer
-    is_business = models.BooleanField(deafult=False)
-    is_customer = models.BooleanField(deafult=False)
+    is_business = models.BooleanField(default=False)
+    is_customer = models.BooleanField(default=False)
 
     # These filed are porvided as default by Django
     username = models.CharField(max_length=30, unique=True)
@@ -82,7 +82,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(
         auto_now_add=True, blank=True, null=True)
-
 
     # Configuring UserManager to the User Model
     objects = UserManager()
