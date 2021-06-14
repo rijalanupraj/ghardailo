@@ -6,3 +6,6 @@ class Services(models.Model):
     name = models.CharField(max_length=100, null=False)
     is_active = models.BooleanField(default=True)
     description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
