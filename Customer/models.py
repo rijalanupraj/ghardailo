@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 PROVINCE_CHOICES = (
     ('Province 1', 'Province 1'),
@@ -12,7 +14,7 @@ PROVINCE_CHOICES = (
 )
 
 class Customer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # many to one relation with user
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     locality = models.CharField(max_length=200)
     city = models.CharField(max_length=50)
