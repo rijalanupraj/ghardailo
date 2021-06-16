@@ -10,7 +10,7 @@ class Business(models.Model):
   cover_picture= models.ImageField()
   district= models.CharField(max_length=100)
   province=models.CharField(max_length=100)
-  is_business= models.BooleanField(default=false)
+  is_business= models.BooleanField(default=False)
   tole= models.CharField(max_length=100)
   description= models.TextField()
   phone= models.CharField(max_length=50)
