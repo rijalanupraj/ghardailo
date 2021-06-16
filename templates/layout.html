@@ -18,8 +18,8 @@
     </title>
 
     <!-- Including css -->
-    {% include 'base_css.html' %>
-
+    {% include 'base_css.html' %}
+    
     <!-- Content for Page Specific header -->
     {% block additional_head %}
 
@@ -30,10 +30,13 @@
 <body>
 
     <!-- For Navbar -->
-    <!-- {% include '' %} -->
+    <div>
+        {% include 'NavbarHome.html' %}
+    </div>
+   
 
     <!-- Main Content -->
-    <div class="main">
+    <div class="">
         {% block main_content %}
 
         {% endblock %}
