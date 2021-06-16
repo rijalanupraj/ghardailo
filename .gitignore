@@ -226,3 +226,7 @@ Thumbs.db
 # For IDE
 .vscode/
 .idea/
+
+# Added By Me
+# For Migration
+migrations/
