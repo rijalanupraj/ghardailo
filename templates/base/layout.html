@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- For Favicon  -->
+    <!-- <link rel="icon" type="image/png" href=""> -->
+
+    <!-- Title Tag -->
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+
+    <!-- Including css -->
+    {% include 'base_css.html' %>
+
+    <!-- Content for Page Specific header -->
+    {% block additional_head %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- For Navbar -->
+    <!-- {% include '' %} -->
+
+    <!-- Main Content -->
+    <div class="main">
+        {% block main_content %}
+
+        {% endblock %}
+    </div>
+
+    <!-- Including all javascript -->
+    {% include 'base_js.html' %}
+
+    <!-- Content for Page Specific Extra content like:javascript -->
+    {% block additional_body %}
+
+    {% endblock %}
+
+</body>
+
+</html>
