@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'gallery',
     'hiring',
     'worker',
-    'wcb'
+    'wcb',
+    'review',
 
 ]
 
