@@ -1,14 +1,12 @@
-body {
-    background-color: blue
-}
-
 .card {
     border: none;
+    margin-top: 6rem;
+
     background: #eee
 }
 
 .search {
-    width: 100%;
+    width: 50%;
     margin-bottom: auto;
     margin-top: 20px;
     height: 50px;
@@ -67,6 +65,8 @@ a:link {
     display: flex;
     flex-direction: column;
     min-width: 0;
+    height: 9rem;
+
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
@@ -78,13 +78,18 @@ a:link {
 }
 
 .card-inner:hover {
-    transform: scale(1.1)
+    transform: scale(1.1);
+    background-color: rgb(35, 88, 95);
+    color: white;
 }
 
 .mg-text span {
-    font-size: 12px
+
+    font-size: 22px;
 }
 
 .mg-text {
-    line-height: 14px
+
+    line-height: 30px;
+
 }
