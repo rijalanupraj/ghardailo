@@ -3,7 +3,7 @@ from business.models import *
 
 class Gallery(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
-    picture = models.FileField(upload_to='static/Image/Gallery')
+    picture = models.FileField(upload_to='img/gallery')
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
 

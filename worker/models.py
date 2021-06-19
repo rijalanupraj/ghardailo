@@ -4,8 +4,8 @@ from business.models import *
 
 class Worker(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)    
-    picture = models.FileField(upload_to='static/Image/Worker')
+    name = models.CharField(max_length=50)
+    picture = models.FileField(upload_to='img/worker')
     phone = models.CharField(max_length=10, validators=[validators.MinLengthValidator(10)])
     is_active = models.BooleanField()
 
