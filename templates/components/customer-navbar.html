@@ -1,0 +1,40 @@
+{% load static %}
+<div class="container-fluid" id="Header">
+  <nav class="navbar navbar-expand-sm">
+    <h1>
+      <img class="img-fluid rounded-circle" src="{% static 'img/navbar/logo.png' %}" id="Logo" />
+      <a class="navbar-brand fw-bold" href="#">Ghar<span>Dailo</span></a>
+    </h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item mx-sm-1">
+          <a class="nav-link selected" href="">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item mx-sm-1">
+          <a class="nav-link" href="">Services</a>
+        </li>
+        <li class="nav-item mx-sm-1">
+          <a class="nav-link" href="">Gallery</a>
+        </li>
+        <li class="nav-item mx-sm-1">
+          <a class="nav-link" href="">About Us</a>
+        </li>
+      </ul>
+      <div id="UDA">
+        <!-- {% if user.is_authenticated %}                   -->
+        <img class="img-fluid rounded-circle" id="Profile" src="{% static 'img/profile/male.jpg' %}" />
+        <a class="fw-bold" href="" id="Username">Ram Bahudar Shrestha</a>
+        <a class="btn lgo" href="">Logout</a>
+        <!-- {% else %} -->
+        <a href="" class="btn sgu">Sign up</a>
+        <a href="" class="btn lgi">Login</a>
+        <!-- {% endif %} -->
+      </div>
+    </div>
+  </nav>
+</div>
