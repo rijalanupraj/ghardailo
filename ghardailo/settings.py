@@ -31,6 +31,12 @@ INSTALLED_APPS = [
     'customer',
     'business',
     'service',
+    'gallery',
+    'hiring',
+    'worker',
+    'wcb',
+    'review',
+
 ]
 
 MIDDLEWARE = [

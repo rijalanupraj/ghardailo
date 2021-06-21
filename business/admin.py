@@ -1,6 +1,12 @@
 from django.contrib import admin
-from .models import Business
+from .models import *
 # Register your models here.
 
-admin.site.register(Business)
+class BusinessAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name', 'logo', 'cover_picture', 'district', 'province', 'is_business', 'tole', 'description', 'phone', 'email')
+admin.site.register(Business, BusinessAdmin)
+
+class Business_ServiceAdmin(admin.ModelAdmin):
+    list_display = ('business', 'service', 'description')
+admin.site.register(Business_Service, Business_ServiceAdmin)
 

@@ -3,17 +3,17 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-PROVINCE_CHOICES = (
-    ('Province 1', 'Province 1'),
-    ('Province 2', 'Province 2'),
-    ('Bagmati', 'Bagmati'),
-    ('Gandaki', 'Gandaki'),
-    ('Lumbini', 'Lumbini'),
-    ('Karnali', 'Karnali'),
-    ('Sudhurpachhim', 'Sudhurpachhim'),
-)
-
 class Customer(models.Model):
+    PROVINCE_CHOICES = (
+        ('Province 1', 'Province 1'),
+        ('Province 2', 'Province 2'),
+        ('Bagmati', 'Bagmati'),
+        ('Gandaki', 'Gandaki'),
+        ('Lumbini', 'Lumbini'),
+        ('Karnali', 'Karnali'),
+        ('Sudhurpachhim', 'Sudhurpachhim'),
+    )
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     province = models.CharField(choices=PROVINCE_CHOICES, max_length=50)
