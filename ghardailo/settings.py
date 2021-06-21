@@ -31,12 +31,12 @@ INSTALLED_APPS = [
     'customer',
     'business',
     'service',
+    'homepage',
     'gallery',
     'hiring',
     'worker',
     'wcb',
     'review',
-
 ]
 
 MIDDLEWARE = [
