@@ -13,13 +13,13 @@ PROVINCE_CHOICES = (
     ('Sudhurpachhim', 'Sudhurpachhim'),
 )
 
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     province = models.CharField(choices=PROVINCE_CHOICES, max_length=50)
     city = models.CharField(max_length=50)
     locality = models.CharField(max_length=200)
-    zipcode = models.IntegerField()
 
     def __str__(self):
-        return self.name +" | "+ self.user.username
+        return self.name + " | " + self.user.username
