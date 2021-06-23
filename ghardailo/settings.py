@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'worker',
     'wcb',
     'review',
+    'admindashboard',
 ]
 
 MIDDLEWARE = [
