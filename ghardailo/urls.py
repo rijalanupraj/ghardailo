@@ -4,11 +4,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('accounts.urls')),
-    path('', include('homepage.urls'))
-    # path('', include('Customer.urls'))
+    path('', include('homepage.urls')),
+    path('services/', include('service.urls'))
 ]
 
 # Static & Media Management Fiels For Debug Mode Only.
