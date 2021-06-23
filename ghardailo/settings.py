@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'wcb',
     'review',
     'admindashboard',
+    'notification'
 ]
 
 MIDDLEWARE = [
