@@ -33,6 +33,6 @@ class CustomerRegistrationForm(UserCreationForm):
         customer.phone = self.cleaned_data.get('phone')
         customer.province = self.cleaned_data.get('province')
         customer.city = self.cleaned_data.get('city')
-        customer.locality = self.cleaned_data.get('street_address')
+        customer.street_address = self.cleaned_data.get('street_address')
         customer.save()
         return user

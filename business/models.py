@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from service.models import *
 
 User = get_user_model()
 
@@ -28,3 +29,13 @@ class Business(models.Model):
 
     def __str__(self):
         return self.name + " | " + self.user.username
+
+
+class Business_Service(models.Model):
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    service = models.ForeignKey(Services, on_delete=models.CASCADE)
+    description = models.TextField(max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        name = str(self.business)+"-->"+str(self.service)
+        return name
