@@ -17,12 +17,20 @@ class BusinessRegistrationForm(UserCreationForm):
     phone = forms.CharField(required=True)
     province = forms.ChoiceField(choices=PROVINCE_CHOICES)
     district = forms.CharField(max_length=200, required=True)
+    city = forms.CharField(max_length=200, required=True)
     street_address = forms.CharField(max_length=200, required=True)
     description = forms.CharField(
         widget=forms.Textarea(attrs={"rows": 5, "cols": 20}))
 
     class Meta(UserCreationForm.Meta):
         model = User
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get("email")
+        user = User.objects.filter(email=email)
+        if user:
+            self.add_error('email', 'User with this Email already exists.')
 
     @ transaction.atomic
     def save(self):

@@ -1,6 +1,50 @@
-{% extends 'base/layout.html' %} {% block main_content %}
-<form method="post">
-  {% csrf_token %} {{form}}
-  <button type="submit">Register</button>
-</form>
+{% extends 'base/layout.html' %}
+{% load static %}
+{% load class_tag_filter %}
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'customer/css/customer-registration.css' %}">
+{% endblock %}
+{% block main_content %}
+<div class="registration-area">
+  <div class="register-form">
+    <form method="POST">
+      {% csrf_token %} {{ form.non_field_errors }}
+      <h4 class="mainheading">User Registration</h4>
+      <label for="id_name" class="login-labels">Name</label>
+      {{ form.name.errors }}
+      {{form.name|addclass:'form-control'|addplaceholder:'Your Full Name'}}
+
+      <label for="id_username" class="login-labels">Username</label>
+      {{ form.username.errors }}
+      {{form.username|addclass:'form-control'|addplaceholder:'Your Username'}}
+
+      <label for="id_email" class="login-labels">Email</label>
+
+      {{ form.email.errors }}
+      {{form.email|addclass:'form-control'|addplaceholder:'Your Email Address' }}
+
+      <label for="id_phone" class="login-labels">Phone</label>
+      {{ form.phone.errors }} {{ form.phone|addclass:'form-control'|addplaceholder:'Your Phone Number' }}
+
+      <label for="id_province" class="login-labels">Province</label>
+      {{ form.province.errors }} {{ form.province|addclass:'form-control'}}
+
+      <label for="id_city" class="login-labels">City</label>
+      {{ form.city.errors }} {{ form.city|addclass:'form-control'|addplaceholder:'Your City' }}
+
+      <label for="id_street_address" class="login-labels">Street Address</label>
+      {{ form.street_address.errors }} {{ form.street_address|addclass:'form-control'|addplaceholder:'Street Address' }}
+
+      <label for="id_password1" class="login-labels">Password</label>
+      {{ form.password1.errors }} {{ form.password1|addclass:'form-control'|addplaceholder:'Your Password' }}
+
+      <label for="id_password2" class="login-labels">Password Confirmation</label>
+      {{ form.password2.errors }} {{ form.password2|addclass:'form-control'|addplaceholder:'Your Password' }}
+      <br />
+      <button type="submit" class="btn btn-primary btn-lg signup-button">
+        Register
+      </button>
+    </form>
+  </div>
+</div>
 {% endblock %}

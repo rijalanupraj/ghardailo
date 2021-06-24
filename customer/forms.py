@@ -22,6 +22,13 @@ class CustomerRegistrationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
 
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get("email")
+        user = User.objects.filter(email=email)
+        if user:
+            self.add_error('email', 'User with this Email already exists.')
+
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)

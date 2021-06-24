@@ -8,6 +8,6 @@ from .views import(
 
 
 urlpatterns = [
-    path('register/', BusinessRegistartionCreateView.as_view(success_url="/"),
+    path('register/', BusinessRegistartionCreateView.as_view(),
          name='business-registration'),
 ]
