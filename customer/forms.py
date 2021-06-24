@@ -10,23 +10,14 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-PROVINCE_CHOICES = (
-    ('Province 1', 'Province 1'),
-    ('Province 2', 'Province 2'),
-    ('Bagmati', 'Bagmati'),
-    ('Gandaki', 'Gandaki'),
-    ('Lumbini', 'Lumbini'),
-    ('Karnali', 'Karnali'),
-    ('Sudhurpachhim', 'Sudhurpachhim'),
-)
-
 
 class CustomerRegistrationForm(UserCreationForm):
     name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
+    phone = forms.CharField(required=True)
     province = forms.ChoiceField(choices=PROVINCE_CHOICES)
     city = forms.CharField(max_length=200, required=True)
-    locality = forms.CharField(max_length=200, required=True)
+    street_address = forms.CharField(max_length=200, required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -39,8 +30,9 @@ class CustomerRegistrationForm(UserCreationForm):
         user.save()
         customer = Customer.objects.create(user=user)
         customer.name = self.cleaned_data.get('name')
+        customer.phone = self.cleaned_data.get('phone')
         customer.province = self.cleaned_data.get('province')
         customer.city = self.cleaned_data.get('city')
-        customer.locality = self.cleaned_data.get('locality')
+        customer.locality = self.cleaned_data.get('street_address')
         customer.save()
         return user
