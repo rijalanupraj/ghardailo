@@ -19,8 +19,6 @@ class BusinessRegistrationForm(UserCreationForm):
     district = forms.CharField(max_length=200, required=True)
     city = forms.CharField(max_length=200, required=True)
     street_address = forms.CharField(max_length=200, required=True)
-    description = forms.CharField(
-        widget=forms.Textarea(attrs={"rows": 5, "cols": 20}))
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -32,7 +30,7 @@ class BusinessRegistrationForm(UserCreationForm):
         if user:
             self.add_error('email', 'User with this Email already exists.')
 
-    @ transaction.atomic
+    @transaction.atomic
     def save(self):
         user = super().save(commit=False)
         user.is_business = True
@@ -45,6 +43,5 @@ class BusinessRegistrationForm(UserCreationForm):
         business.district = self.cleaned_data.get('district')
         business.city = self.cleaned_data.get('city')
         business.street_address = self.cleaned_data.get('street_address')
-        business.description = self.cleaned_data.get('description')
         business.save()
         return user

@@ -24,7 +24,7 @@ class Business(models.Model):
     province = models.CharField(max_length=100)
     is_solo = models.BooleanField(default=False)
     street_address = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     phone = models.CharField(max_length=50)
 
     def __str__(self):
