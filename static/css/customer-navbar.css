@@ -20,7 +20,7 @@
     font-size: 16px;
     padding-top: 1px;
     padding-bottom: 1px;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: cursive;
     border-radius: 10px;
     position: relative;
 }
@@ -37,7 +37,7 @@
 .sgu,
 .lgi,
 .lgo {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: cursive;
     border-radius: 10px;
 }
 .sgu {

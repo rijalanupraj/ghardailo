@@ -8,54 +8,53 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="offcanvas offcanvas-start sidebar_nav" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header">
-            <img class="img-fluid rounded-circle" src="{% static 'img/navbar/logo.png' %}" id="Logo" />
-            <h4 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Dashboard</h4>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <p>Try scrolling the rest of the page to see this option in action.</p>
-        </div>
-    </div>
-    <div class="row" id="Items">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary" style="max-width: 18rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <h5 class="card-title">Primary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
+    <div class="container-fluid pt-2" id="Items">
+        <div class="d-lg-flex flex-row justify-content-around">
+          <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+              <div class="card-header">Total Users</div>
+              <div class="card-body">
+                <h5 class="card-title text-center">{{user}}</h5>
+              </div>
+          </div>
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Services</div>
+            <div class="card-body">
+              <h5 class="card-title text-center">{{service}}</h5>
             </div>
-        </div>            
-        <div class="col-md-3">
-            <div class="card text-white bg-secondary" style="max-width: 18rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <h5 class="card-title">Secondary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success" style="max-width: 18rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success" style="max-width: 18rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                </div>
+          </div>
+          <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header">Businesses</div>
+            <div class="card-body">
+              <h5 class="card-title text-center">{{business}}</h5>
+              <h5 class="card-title text-center">Gallery: {{gallery}}</h5>
+              <h5 class="card-title text-center">Worker: {{worker}}</h5>
+            </div>
+          </div>
+          <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header">Customers</div>
+            <div class="card-body">
+              <h5 class="card-title text-center">{{customer}}</h5>
+              <h5 class="card-title text-center">Notification: {{notification}}</h5>
+            </div>
+          </div>
+          <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Hiring</div>
+            <div class="card-body">
+              <h5 class="card-title text-center">{{hiring}}</h5>
+            </div>
+          </div>
+          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">Reviews</div>
+            <div class="card-body">
+              <h5 class="card-title text-center">{{review}}</h5>
+            </div>
+          </div>
         </div>
     </div>
+{% endblock %}
+
+{% block additional_body %}
+    <script src="{% static 'js/dashboard.js' %}"></script>
 {% endblock %}
 
 

@@ -1,41 +1,30 @@
+/* navbar */
 #Header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    box-shadow: 0px 1px 5px #5f28f5;
-}
-#Logo {
-    height: 60px;
-    width: 60px;
+    z-index: 20;
+    background-image: linear-gradient(to right, #fa5369, #9069fd, #75f7a6);
 }
 #Header .navbar-brand {
-    color: #5f28f5;
+    color: #4300fc;
     font-size: 32px;
     font-family: Cursive;
 }
 #Header nav h1 a span {
-    color: #23a455;
+    color: #008f37;
 }
-#Header .nav-link {
+#offcanvas_opener {
+    padding:0;
+}
+#offcanvas_opener span {
     color: black;
-    font-size: 16px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    border-radius: 10px;
-    position: relative;
-}
-#Header .nav-link:hover {
-    color: #5e2ced;
-}
-#Header .selected {
-    color: #5e2ced;
-    background-color: #d8ccf8;
+    font-size: 32px;
 }
 .navbar-toggler-icon {
     background-image: url("/static/img/navbar/button.png");
 }
 .lgo {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-family: cursive;
     border-radius: 10px;
     color: #ed2c3c;
     background-color: #f8ccd0;
@@ -56,7 +45,7 @@
     color: #5e2ced;
     text-decoration: none;
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 600px) {
     .lgo,
     #Profile,
     #Username {
@@ -82,5 +71,37 @@
     }
     #Username {
         width: 300px;
+    }
+}
+
+/* offcanvas */
+main{
+    display: flex;
+    flex-direction: column;
+}
+#Logo {
+    height: 60px;
+    width: 60px;
+}
+.sidebar_nav {
+    width: 250px;
+    background-image: linear-gradient(#fa5369, #9069fd, #75f7a6);
+}
+.offcanvas-header a {  
+    text-decoration: none;
+}
+.offcanvas-header h4 {  
+    color: black; 
+    font-family: Cursive;
+}
+.offcanvas-body .navbar-nav .nav-link {
+    font-size: 25px;
+    font-weight: lighter;
+    font-family: cursive;
+    color: black;
+}
+@media screen and (max-width: 575px) {
+    .sidebar_nav {
+        width: 200px;
     }
 }

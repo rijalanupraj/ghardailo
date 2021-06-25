@@ -21,7 +21,7 @@
     {% include 'base/base_css.html' %}
 
     <!-- Content for Page Specific header -->
-    <link href="{% static 'css/admin_navbar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/admin_nav_offcanvas.css' %}" rel="stylesheet">
     {% block additional_head %}
 
     {% endblock %}
@@ -29,7 +29,10 @@
 </head>
 
 <body>
-    {% include 'components/admin_navbar.html' %}
+     <!--For navbar with offcanvas-->
+    {% include 'components/admin_nav_offcanvas.html' %}
+
+     <!-- Main Content -->
     <main>
         {% block main_content %}
 
