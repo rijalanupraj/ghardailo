@@ -14,22 +14,24 @@ from notification.models import *
 
 def dashboard(request):
     user = User.objects.all().count()
-    business = User.Business.objects.all().count()
-    gallery = Gallery.objects.all().count()
-    worker = Worker.objects.all().count()
-    customer = User.Customer.objects.all().count()
     service = Services.objects.all().count()
-    hiring = hiring.objects.all().count()
-    review = review.objects.all().count()
-    notification = notification.objects.all().count()
+    business = Business.objects.all().count()
+    gallery = Gallery.objects.all().count()
+    business_service = Business_Service.objects.all().count()
+    worker = Worker.objects.all().count()
+    customer = Customer.objects.all().count()
+    hiring = Hiring.objects.all().count()
+    review = Review.objects.all().count()
+    notification = Notification.objects.all().count()
 
     dictionary = {
         'user': user,
+        'service': service,
         'business': business,
         'gallery': gallery,
         'worker': worker,
+        'business_service': business_service,
         'customer': customer,
-        'service': service,
         'hiring': hiring,
         'review': review,
         'notification': notification

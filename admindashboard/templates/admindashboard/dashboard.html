@@ -1,0 +1,61 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+{% block additional_head %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}
+    <div class="offcanvas offcanvas-start sidebar_nav" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <img class="img-fluid rounded-circle" src="{% static 'img/navbar/logo.png' %}" id="Logo" />
+            <h4 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Dashboard</h4>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>Try scrolling the rest of the page to see this option in action.</p>
+        </div>
+    </div>
+    <div class="row" id="Items">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Primary card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>            
+        <div class="col-md-3">
+            <div class="card text-white bg-secondary" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Secondary card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}
+
+

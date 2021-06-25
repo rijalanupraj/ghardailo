@@ -1,0 +1,86 @@
+#Header {
+    position: fixed;
+    top: 0;
+    box-shadow: 0px 1px 5px #5f28f5;
+}
+#Logo {
+    height: 60px;
+    width: 60px;
+}
+#Header .navbar-brand {
+    color: #5f28f5;
+    font-size: 32px;
+    font-family: Cursive;
+}
+#Header nav h1 a span {
+    color: #23a455;
+}
+#Header .nav-link {
+    color: black;
+    font-size: 16px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    border-radius: 10px;
+    position: relative;
+}
+#Header .nav-link:hover {
+    color: #5e2ced;
+}
+#Header .selected {
+    color: #5e2ced;
+    background-color: #d8ccf8;
+}
+.navbar-toggler-icon {
+    background-image: url("/static/img/navbar/button.png");
+}
+.lgo {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    border-radius: 10px;
+    color: #ed2c3c;
+    background-color: #f8ccd0;
+    margin-left: 5px;
+}
+.lgo:hover {
+    color: white;
+    background-color: #f52843;
+}
+#Profile {
+    height: 60px;
+    width: 60px;
+    position: relative;
+}
+#Username {
+    font-family: cursive;
+    font-size: 18px;
+    color: #5e2ced;
+    text-decoration: none;
+}
+@media screen and (max-width: 650px) {
+    .lgo,
+    #Profile,
+    #Username {
+        display: none;
+        margin: 0;
+    }
+}
+@media screen and (max-width: 575px) {
+    #UDA {
+        margin-top: 5px;
+        display: grid;
+        grid-template-columns: 80px;
+        grid-gap: 10px 0;
+    }
+    .lgo,
+    #Profile,
+    #Username {
+        display: block;
+        margin: 0;
+    }
+    #Profile {
+        position: static;
+    }
+    #Username {
+        width: 300px;
+    }
+}

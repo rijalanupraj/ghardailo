@@ -18,10 +18,10 @@
     </title>
 
     <!-- Including css -->
-    <link href="{% static 'css/customer-navbar.css' %}" rel="stylesheet">
     {% include 'base/base_css.html' %}
 
     <!-- Content for Page Specific header -->
+    <link href="{% static 'css/admin_navbar.css' %}" rel="stylesheet">
     {% block additional_head %}
 
     {% endblock %}
@@ -29,11 +29,7 @@
 </head>
 
 <body>
-
-    <!-- For Navbar -->
-    {% include 'components/customer-navbar.html' %}
-
-    <!-- Main Content -->
+    {% include 'components/admin_navbar.html' %}
     <main>
         {% block main_content %}
 
