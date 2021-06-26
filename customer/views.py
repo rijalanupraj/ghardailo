@@ -1,17 +1,16 @@
-# from django.shortcuts import render
+# Extrenal Import
+from django.shortcuts import render
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
-# from .forms import CustomerRegistrationForm, CustomerProfileForm
-# from django.contrib import messages
+# Internal Import
+from django.contrib.auth import get_user_model
+from .forms import CustomerRegistrationForm
+User = get_user_model()
 
-# # Create your views here.
 
-# class CustomerRegistrationView(View):
-#     def get(self, request):
-#         form = CustomerRegistrationForm()
-#         return render(request, 'app/customerregistration.html',{'form':form})
-#     def post(self, request):
-#         form = CustomerRegistrationForm(request.POST)
-#         if form.is_valid():
-#             messages.success(request, 'Congratulations!! Registered Succcessfully')
-#             form.save()
-#         return render(request, 'app/customerregistration.html',{'form':form})
+class CustomerRegistartionCreateView(CreateView):
+    model = User
+    form_class = CustomerRegistrationForm
+    template_name = 'customer/customer-registration.html'
+    success_url = reverse_lazy('customer-home')

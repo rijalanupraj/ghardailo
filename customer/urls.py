@@ -1,7 +1,13 @@
-# from django.urls import path
-# from Customer import views
+# External Import
+from django.urls import path
+
+# Internal Import
+from .views import(
+    CustomerRegistartionCreateView
+)
 
 
-# urlpatterns = [
-#     path('registration/', views.CustomerRegistrationView.as_view(), name='customerregistration'),
-# ]
+urlpatterns = [
+    path('register/', CustomerRegistartionCreateView.as_view(),
+         name='customer-registration'),
+]
