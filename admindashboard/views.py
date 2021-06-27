@@ -37,3 +37,15 @@ def dashboard(request):
         'notification': notification
     }
     return render(request, 'admindashboard/dashboard.html', dictionary)
+
+def service(request):
+    return render(request, 'admindashboard/service.html')
+
+def business(request):
+    return render(request, 'admindashboard/business.html')
+    
+def customer(request):
+    return render(request, 'admindashboard/customer.html')
+
+def activities(request):
+    return render(request, 'admindashboard/activities.html')

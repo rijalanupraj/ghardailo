@@ -20,10 +20,10 @@
     border-radius: 50%;
 }
 .Bar .circle:hover .box {
-    transform: translate(8%, -113%) scale(1.08);
+    transform: translate(8%, -112%) scale(1.08);
 }
 .Bar .circle .box {
-    transform: translate(8%,-113%);
+    transform: translate(8%,-112%);
     background-color: white;
     height: 85%;
     width: 85%;
@@ -43,7 +43,7 @@
     -webkit-text-fill-color: transparent;
 }
 .ProgressBars .Bar .text {    
-    font-size: 55px;
+    font-size: 45px;
     font-weight: 400;
     font-family: cursive;
     background: linear-gradient(#fc1f3c, #652efc, #2dfa7c);
@@ -70,21 +70,9 @@
 @media screen and (max-width: 880px) {
     .ProgressBars {
         grid-template-columns: 150px 150px;
-    }    
-    .ProgressBars .Bar {
-        height: 150px;
-    }
-    .ProgressBars .Bar .circle{
-        height: 120px;
-        width: 120px;
-    }.Bar .circle .box span {
-        font-size:  35px;
-    }
-    .ProgressBars .Bar .text {    
-        font-size:  25px;
-    }
+    } 
 }
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 590px) {
     .ProgressBars {
         grid-template-columns: 150px;
     }    

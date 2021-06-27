@@ -1,69 +1,65 @@
-nav_height = document.getElementById("Header").offsetHeight
-document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height+'px' 
-
-//Toggling offcanvas opening button
-offcanvas_check = false
-function hideOp(){
-    document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
-    document.getElementById("offcanvas_opener").style.visibility = "hidden"
-    offcanvas_check = true
-}
-function showOp(){
-    document.getElementById("Items").style.paddingInlineStart = "8px"
-    document.getElementById("offcanvas_opener").style.visibility = "visible"
-    offcanvas_check = false
-}
-
-//Setting up offcanvas height according to navbar height
-var nav_check = true
-function setH(){
-    if (nav_check) {
-        nav_height1 = document.getElementById("Header").offsetHeight 
-        document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height1+'px' 
-        nav_check = false
-    }
-    else {
-        document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height+'px' 
-        nav_check = true
-    }
-}
-
-// Media Query for offcanvas and items
-function setH1(x) {
-    if (x.matches) { // If media query matches
-        nav_height1 = document.getElementById("Header").offsetHeight 
-        document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height1+'px' 
-        if(offcanvas_check) {            
-            document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
-        }
-        else {            
-            document.getElementById("Items").style.paddingInlineStart = "8px"
-        }
-    } else {
-        document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height+'px' 
-        if(offcanvas_check) {            
-            document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
-        }
-        else {            
-            document.getElementById("Items").style.paddingInlineStart = "8px"
-        }
-    }
-}
-var mediaQ = window.matchMedia("(max-width: 575px)")
-setH1(mediaQ) // Call listener function at run time
-mediaQ.addListener(setH1) // Attach listener function on state changes
-
 //ProgressBars
-let options = {
+ options = {
     startAngle: -1.5,
     size: 250,
-    value: 0.85,
-    fill: {color: "#5f28f5"}
+    fill: {gradient: ["#fc1f3c", "#652efc", "#2dfa7c"]}
 }
+
+function setC1(x) {
+    if (x.matches) { 
+        options = {
+            startAngle: -1.5,
+            size: 150,
+            fill: {gradient: ["#fc1f3c", "#652efc", "#2dfa7c"]}
+        }
+        $(".circle .bar").circleProgress(options).on('circle-animation-progress',
+        function(event, progress, stepValue) {
+            $(this).parent().find("span").text(String(stepValue.toFixed(2).substr(2)+ "%"))
+        });
+    } else {
+        options = {
+            startAngle: -1.5,
+            size: 250,
+            fill: {gradient: ["#fc1f3c", "#652efc", "#2dfa7c"]}
+        }
+        $(".circle .bar").circleProgress(options).on('circle-animation-progress',
+        function(event, progress, stepValue) {
+            $(this).parent().find("span").text(String(stepValue.toFixed(2).substr(2)+ "%"))
+        });
+    }
+}
+var mediaQ1 = window.matchMedia("(max-width: 1475px)")
+setC1(mediaQ1) 
+mediaQ1.addListener(setC1) /
+
 $(".circle .bar").circleProgress(options).on('circle-animation-progress',
 function(event, progress, stepValue) {
     $(this).parent().find("span").text(String(stepValue.toFixed(2).substr(2)+ "%"))
 });
 $(".S .bar").circleProgress({
     value: .90
+})
+$(".U .bar").circleProgress({
+    value: .99
+})
+$(".B .bar").circleProgress({
+    value: .55
+})
+$(".G .bar").circleProgress({
+    value: .75
+})
+$(".W .bar").circleProgress({
+    value: .35
+})
+$(".C .bar").circleProgress({
+    value: .85
+})
+$(".H .bar").circleProgress({
+    value: .80
+})
+$(".R .bar").circleProgress({
+    value: .70
+})
+$(".N .bar").circleProgress({
+    value: .88
 })
