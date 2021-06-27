@@ -15,3 +15,8 @@ class BusinessRegistartionCreateView(CreateView):
     form_class = BusinessRegistrationForm
     template_name = 'business/business-registration.html'
     success_url = reverse_lazy('customer-home')
+
+
+def BusinessProfile(request):
+    return render(request, 'business/business-profile.html')
+

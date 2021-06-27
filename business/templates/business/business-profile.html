@@ -1,0 +1,42 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'business/css/business-profile.css' %}">
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container">
+    <div class="col-md-8">
+        <div class="profile clearfix">                            
+            <div class="image">
+                <img src="#" class="img-cover bg-secondary">
+            </div>                            
+            <div class="user clearfix">
+                <div class="avatar">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-thumbnail img-profile">
+                </div>                                
+                <h2>Business Name</h2>                                
+                <div class="actions">
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm tip btn-responsive btn-info" title="" data-original-title="Contact"><span class="glyphicon glyphicon-plus glyphicon glyphicon-white"></span> Contact</button>
+                        <button class="btn btn-default btn-sm tip btn-responsive btn-success" title="" data-original-title="Send message"><span class="glyphicon glyphicon-envelope glyphicon glyphicon-white"></span> Send Message</button>
+                    </div>
+                </div>                                                                                                
+            </div>                          
+            <div class="info">
+                <p><span class="glyphicon glyphicon-globe"></span> <span class="title">Address:</span>  Searching........</p>                                    
+                <p><span class="glyphicon glyphicon-gift"></span> <span class="title">Review:</span>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </p>                                
+            </div>                              
+        </div>
+    </div>
+</div>
+
+{% endblock %}
