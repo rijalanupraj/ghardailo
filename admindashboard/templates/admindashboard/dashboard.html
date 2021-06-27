@@ -8,53 +8,79 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="container-fluid pt-2" id="Items">
-        <div class="d-lg-flex flex-row justify-content-around">
-          <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-              <div class="card-header">Total Users</div>
-              <div class="card-body">
-                <h5 class="card-title text-center">{{user}}</h5>
-              </div>
-          </div>
-          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-            <div class="card-header">Services</div>
-            <div class="card-body">
-              <h5 class="card-title text-center">{{service}}</h5>
-            </div>
-          </div>
-          <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-            <div class="card-header">Businesses</div>
-            <div class="card-body">
-              <h5 class="card-title text-center">{{business}}</h5>
-              <h5 class="card-title text-center">Gallery: {{gallery}}</h5>
-              <h5 class="card-title text-center">Worker: {{worker}}</h5>
-            </div>
-          </div>
-          <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
-            <div class="card-header">Customers</div>
-            <div class="card-body">
-              <h5 class="card-title text-center">{{customer}}</h5>
-              <h5 class="card-title text-center">Notification: {{notification}}</h5>
-            </div>
-          </div>
-          <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
-            <div class="card-header">Hiring</div>
-            <div class="card-body">
-              <h5 class="card-title text-center">{{hiring}}</h5>
-            </div>
-          </div>
-          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-            <div class="card-header">Reviews</div>
-            <div class="card-body">
-              <h5 class="card-title text-center">{{review}}</h5>
-            </div>
-          </div>
+  <div class="container-fluid pt-3" id="Items">
+    <div class="ProgressBars">
+      <div class="Bar S">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
         </div>
-    </div>
+        <div class="text">Services</div>
+      </div>  
+      <div class="Bar U">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Users</div>
+      </div>  
+      <div class="Bar B">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Business</div>
+      </div>   
+      <div class="Bar W">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Worker</div>
+      </div>    
+      <div class="Bar G">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Gallery</div>
+      </div>       
+      <div class="Bar C">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Customer</div>
+      </div>  
+      <div class="Bar H">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Hiring</div>
+      </div>  
+      <div class="Bar R">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Reviews</div>
+      </div> 
+      <div class="Bar N">
+        <div class="circle">
+          <div class="bar"></div>
+          <div class="box"><span></span></div>
+        </div>
+        <div class="text">Notifications</div>
+      </div>         
+    </div> 
+  </div>
 {% endblock %}
 
 {% block additional_body %}
-    <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js" integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="{% static 'js/dashboard.js' %}"></script>
 {% endblock %}
 
 

@@ -9,7 +9,7 @@ function hideOp(){
     offcanvas_check = true
 }
 function showOp(){
-    document.getElementById("Items").style.paddingInlineStart = "5px"
+    document.getElementById("Items").style.paddingInlineStart = "8px"
     document.getElementById("offcanvas_opener").style.visibility = "visible"
     offcanvas_check = false
 }
@@ -37,7 +37,7 @@ function setH1(x) {
             document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
         }
         else {            
-            document.getElementById("Items").style.paddingInlineStart = "5px"
+            document.getElementById("Items").style.paddingInlineStart = "8px"
         }
     } else {
         document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height+'px' 
@@ -45,10 +45,25 @@ function setH1(x) {
             document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
         }
         else {            
-            document.getElementById("Items").style.paddingInlineStart = "5px"
+            document.getElementById("Items").style.paddingInlineStart = "8px"
         }
     }
 }
 var mediaQ = window.matchMedia("(max-width: 575px)")
 setH1(mediaQ) // Call listener function at run time
 mediaQ.addListener(setH1) // Attach listener function on state changes
+
+//ProgressBars
+let options = {
+    startAngle: -1.5,
+    size: 250,
+    value: 0.85,
+    fill: {color: "#5f28f5"}
+}
+$(".circle .bar").circleProgress(options).on('circle-animation-progress',
+function(event, progress, stepValue) {
+    $(this).parent().find("span").text(String(stepValue.toFixed(2).substr(2)+ "%"))
+});
+$(".S .bar").circleProgress({
+    value: .90
+})

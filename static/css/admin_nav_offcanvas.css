@@ -3,7 +3,7 @@
     position: sticky;
     top: 0;
     z-index: 20;
-    background-image: linear-gradient(to right, #fa5369, #9069fd, #75f7a6);
+    background-image: linear-gradient(to right, #ff7a8b, #a786ff, #8fffba);
 }
 #Header .navbar-brand {
     color: #4300fc;
@@ -85,7 +85,7 @@ main{
 }
 .sidebar_nav {
     width: 250px;
-    background-image: linear-gradient(#fa5369, #9069fd, #75f7a6);
+    background-image: linear-gradient(#ff7a8b, #a786ff, #8fffba);
 }
 .offcanvas-header a {  
     text-decoration: none;
