@@ -129,3 +129,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.AllowAllUsersModelBackend',
     'accounts.backends.EmailBackend'
 )
+
+# LOGOUT & LOGIN REDIRECT
+LOGIN_URL = '/login'
+LOGOUT_URL = '/logout'
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = LOGIN_URL

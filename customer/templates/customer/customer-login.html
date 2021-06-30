@@ -1,0 +1,49 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+{% load class_tag_filter %}
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'customer/css/customer-registration.css' %}">
+{% endblock %}
+{% block main_content %}
+<div id="intro" class="bg-image shadow-2-strong">
+      <div class="mask d-flex align-items-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-8">
+              <form class="bg-white rounded shadow-5-strong p-5" method="POST">
+              {% csrf_token %}
+                <div class="form-outline mb-4">
+                  <label for="id_username">Email/Username</label>
+                {{form.username|addclass:'form-control'|addplaceholder:'Username or Email'}}
+                {{ form.username.errors }}
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <label for="id_password">Password</label>
+                {{form.password|addclass:'form-control'|addplaceholder:'Password'}}
+                {{ form.password.errors }}
+                </div>
+
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                     {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ error|escape }}
+                </div>
+                {% endfor %}
+                  <div class="col text-right">
+                    <!-- Simple link -->
+                    <a href="#!">Forgot password?</a>
+                  </div>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
