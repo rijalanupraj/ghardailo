@@ -11,6 +11,8 @@ from wcb.models import *
 from review.models import *
 from notification.models import *
 
+from .forms import *
+
 
 def dashboard(request):
     user = User.objects.all().count()
@@ -39,7 +41,9 @@ def dashboard(request):
     return render(request, 'admindashboard/dashboard.html', dictionary)
 
 def service(request):
-    return render(request, 'admindashboard/service.html')
+    service = Services.objects.all()
+    dictionary = {'service':service, 'form': ServicesForm}
+    return render(request, 'admindashboard/service.html', dictionary)
 
 def business(request):
     return render(request, 'admindashboard/business.html')

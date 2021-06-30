@@ -84,15 +84,8 @@ main{
     width: 60px;
 }
 .sidebar_nav {
-    width: 250px;
+    width: 200px;
     background-image: linear-gradient(#ff7a8b, #a786ff, #8fffba);
-}
-.offcanvas-header a {  
-    text-decoration: none;
-}
-.offcanvas-header h4 {  
-    color: black; 
-    font-family: Cursive;
 }
 .offcanvas-body .navbar-nav .nav-link {
     font-size: 25px;
@@ -102,6 +95,9 @@ main{
 }
 @media screen and (max-width: 575px) {
     .sidebar_nav {
-        width: 200px;
+        width: 160px;
+    }
+    .offcanvas-body .navbar-nav .nav-link {
+        font-size: 18px;
     }
 }
