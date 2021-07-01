@@ -93,6 +93,12 @@ main{
     font-family: cursive;
     color: black;
 }
+.offcanvas-body .navbar-nav .nav-link:hover {
+    transform: scale(1.11);
+}
+.selected span {
+    color:#00792e;
+}
 @media screen and (max-width: 575px) {
     .sidebar_nav {
         width: 160px;

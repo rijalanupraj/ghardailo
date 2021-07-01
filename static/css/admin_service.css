@@ -1,7 +1,13 @@
+.success_message, .error_message {
+    padding: 0;
+    height: 40px;
+    font-family: cursive;
+    font-size: 25px;
+}
 .card {
     font-family: cursive;
     width: 1000px;
-    border: 3px solid #652efc;
+    border: 2px solid #652efc;
 }
 .card-body h1 span {
     color: #4300fc;    
@@ -9,29 +15,72 @@
 .card-body h1 span span {
     color: #008f37;
 }
-.form {
+.operation_form {
     width: 800px;
 }
-label {
+.operation_form label {
     float: left;
     width: 130px;
     font-size: 19px;
     font-weight: bold;
 }
-input[type="text"], textarea {
+.operation_form input[type="text"], textarea {
     width: 670px;
     border: 2px solid black;
     border-radius: 8px;
 }
-input:focus, textarea:focus {
+.operation_form input:hover, textarea:hover {
     background-color: #b89cfa;
+}
+.operation_form input:focus, textarea:focus {
+    background-color: #b89cfa;
+}
+.operation_button {
+    font-size:18px;
+    color: #008f37;
+    background-color: #8fffba;
+    border-radius: 10px;
+}
+.operation_button:hover {
+    color: white;
+    background-color:#008f37;;
+}
+.search_form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.search_form label{   
+    font-family: cursive;
+    font-size: 19px;
+    font-weight: bold;
+}
+.search_form input{  
+    margin-right: 16px;
+}
+.search_form input, .search_form select{   
+    font-family: cursive;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+.search_form input:hover, .search_form select:hover {
+    background-color: #b89cfa;
+}
+.search_form input:focus, .search_form select:focus {
+    background-color: #b89cfa;
+}
+.search_btn button, .search_btn a {     
+    font-family: cursive;
+    color: #008f37;
+    background-color: #8fffba;
+    border-radius: 10px;
+}
+.search_btn button:hover, .search_btn a:hover { 
+    color: white;
+    background-color:#008f37;;
 }
 .table-responsive {
     font-family: cursive;    
-}
-table thead tr {
-    align-items: center;
-    justify-content: space-between;
 }
 .edit {
     font-size: 20px;
@@ -45,14 +94,14 @@ table thead tr {
     .card {
         width: 400px;
     }
-    .form {
+    .operation_form {
         width: 350px;
     }
-    label {
+    .operation_form label {
         font-size: 16px;
         width: 110px;
     }
-    input[type="text"], textarea {
+    .operation_form input[type="text"], textarea {
         width: 235px;
     }
 }
@@ -60,14 +109,24 @@ table thead tr {
     .card {
         width: 200px;
     }
-    .form {
+    .operation_form {
         width: 125px;
     }
-    label {
+    .operation_form label {
         font-size: 13px;
         width: 85px;
     }
-    input[type="text"], textarea {
+    .operation_form input[type="text"], textarea {
         width: 135px;
+    }
+}
+@media screen and (max-width: 720px) {
+    .search_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .search_form input{  
+        margin-right: 0;
     }
 }

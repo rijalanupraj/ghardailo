@@ -9,71 +9,85 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="container-fluid pt-3" id="Items">   
-        <div class="table-responsive">
-            <table class="table table-sm table-info table-striped table-hover">
-                <thead class="table-dark">
+    <div class="container-fluid pt-3 mb-3">
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+            {% endif %}
+        {% endfor %}       
+    </div>    
+    <div class="card m-auto mb-3">           
+        <div class="container-fluid"><img src="{% static 'Image/ServiceLogo.png' %}" class="card-img-top img-responsive" alt="ServiceLogo"/></div>
+        <div class="card-body">
+            <h1 class="card-title text-center mb-3">Add New Services inside <span>Ghar<span>Dailo</span></span></h1>
+            <form class="form m-auto operation_form", method="POST", enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Icon Text:</label>
+                    {{form.icon_text}}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Name:</label>
+                    {{form.name}}
+                </div> <div class="mb-3">
+                    <label class="form-label">Is Active:</label>
+                    {{form.is_active}}
+                </div class="mb-3">
+                    <label class="form-label">Descriptions:</label>
+                    {{form.description}}
+                </div>
+                <div class="text-center">
+                    <button class="btn mb-3 operation_button" type="submit">{{BTM}} Service</button>
+                </div>
+            </form>
+        </div>
+    </div>   
+    <form class="form mb-2" method="GET">
+        <div class="search_form mb-2">
+            <label class="form-label me-1">Name:</label>
+            {{service_filter.form.name}}
+
+            <label class="form-label me-1">Is Active:</label>                
+            {{service_filter.form.is_active}}                    
+        </div>
+        <div class="text-center search_btn">
+            <button class="btn me-3" type="submit">Search</button>
+            <a href="" class="btn" type="submit">Show All</a>
+        </div>
+        </div>
+    </form>  
+    <div class="table-responsive">
+        <table class="table table-sm table-info table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Icon Text</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Is Active</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in services %}
                     <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Icon Text</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Is Active</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Action</th>
+                        <th scope="row" class="Numbering"></th>
+                        <td>{{i.icon_text}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.is_active}}</td>
+                        <td>{{i.description}}</td>
+                        <td>
+                            <a href="/a/updateservice/{{i.id}}"><span class="fas fa-pen-alt me-3 mb-3 edit"></span></a>
+                            <a href="/a/deleteservice/{{i.id}}"  onclick="return confirm('Are you sure about removing this service?')"><span class="fas fa-trash remove"></span></a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for i in service %}
-                        <tr>
-                            <th scope="row" class="Numbering"></th>
-                            <td>{{i.icon_text}}</td>
-                            <td>{{i.name}}</td>
-                            <td>{{i.is_active}}</td>
-                            <td>{{i.description}}</td>
-                            <td>
-                                <a href=""><span class="fas fa-pen-alt me-3 edit"></span></a>
-                                <a href=""><span class="fas fa-trash remove"></span></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>       
-        <div class="card m-auto">           
-            <div class="container-fluid"><img src="{% static 'Image/ServiceLogo.png' %}" class="card-img-top img-responsive" alt="ServiceLogo"/></div>
-            <div class="card-body">
-                <h1 class="card-title text-center mb-3">Add New Services inside <span>Ghar<span>Dailo</span></span></h1>
-                {% for message in messages %}
-                    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                    <h4 class="success_message mb-3 text-center">{{message}}</h4>
-                    {% endif %}
-                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                    <h4 class="error_message mb-3 text-center">{{message}}</h4>
-                    {% endif %}
                 {% endfor %}
-                <form class="form m-auto", method="POST", enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Icon Text:</label>
-                        {{form.icon_text}}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Name:</label>
-                        {{form.name}}
-                    </div> <div class="mb-3">
-                        <label class="form-label">Is Active:</label>
-                        {{form.is_active}}
-                    </div class="mb-3">
-                        <label class="form-label">Descriptions:</label>
-                        {{form.description}}
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary mb-3" type="submit">Add Service</button>
-                    </div>
-                </form>
-            </div>
-        </div>      
-    </div>
+            </tbody>
+        </table>
+    </div>     
 {% endblock %}
 
 {% block additional_body %}

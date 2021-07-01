@@ -4,12 +4,12 @@ document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height+'px'
 //Toggling offcanvas opening button
 offcanvas_check = false
 function hideOp(){
-    document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
+    document.getElementsByTagName("main")[0].style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
     document.getElementById("offcanvas_opener").style.visibility = "hidden"
     offcanvas_check = true
 }
 function showOp(){
-    document.getElementById("Items").style.paddingInlineStart = "8px"
+    document.getElementsByTagName("main")[0].style.paddingInlineStart = "8px"
     document.getElementById("offcanvas_opener").style.visibility = "visible"
     offcanvas_check = false
 }
@@ -34,18 +34,18 @@ function setH1(x) {
         nav_height1 = document.getElementById("Header").offsetHeight 
         document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height1+'px' 
         if(offcanvas_check) {            
-            document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
+            document.getElementsByTagName("main")[0].style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
         }
         else {            
-            document.getElementById("Items").style.paddingInlineStart = "8px"
+            document.getElementsByTagName("main")[0].style.paddingInlineStart = "8px"
         }
     } else {
         document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height+'px' 
         if(offcanvas_check) {            
-            document.getElementById("Items").style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
+            document.getElementsByTagName("main")[0].style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"
         }
         else {            
-            document.getElementById("Items").style.paddingInlineStart = "8px"
+            document.getElementsByTagName("main")[0].style.paddingInlineStart = "8px"
         }
     }
 }
