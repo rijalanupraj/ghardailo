@@ -7,36 +7,180 @@
 
 {% block main_content %}
 
-<div class="container">
-    <div class="col-md-8">
-        <div class="profile clearfix">                            
-            <div class="image">
-                <img src="#" class="img-cover bg-secondary">
-            </div>                            
-            <div class="user clearfix">
-                <div class="avatar">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-thumbnail img-profile">
-                </div>                                
-                <h2>Business Name</h2>                                
-                <div class="actions">
-                    <div class="btn-group">
-                        <button class="btn btn-default btn-sm tip btn-responsive btn-info" title="" data-original-title="Contact"><span class="glyphicon glyphicon-plus glyphicon glyphicon-white"></span> Contact</button>
-                        <button class="btn btn-default btn-sm tip btn-responsive btn-success" title="" data-original-title="Send message"><span class="glyphicon glyphicon-envelope glyphicon glyphicon-white"></span> Send Message</button>
-                    </div>
-                </div>                                                                                                
-            </div>                          
-            <div class="info">
-                <p><span class="glyphicon glyphicon-globe"></span> <span class="title">Address:</span>  Searching........</p>                                    
-                <p><span class="glyphicon glyphicon-gift"></span> <span class="title">Review:</span>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                </p>                                
-            </div>                              
-        </div>
+<header>
+
+    <div class="user">
+        <img src="{% static 'business/images/plumber1.jpg' %}" alt="">
+        <h3 class="name">Company Name</h3>
+        <p class="post">Rating:<em class="str">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+        </em>
+        </p>
     </div>
+
+    <nav class="navbar1">
+        <ul>
+            <li><a href="#home">Intro</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="#service">service</a></li>
+            <li><a href="#employee">employee</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<div id="menu" class="fas fa-bars"></div>
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <h3>HI THERE !</h3>
+    <h1>THIS'S <span>Company Name</span></h1>
+    <p>Company Short Discription: Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio deserunt aspernatur fugiat minus enim ullam repudiandae sint sed magnam tenetur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, at.
+    </p>
+    <a href="#about"><button class="btn">about us <i class="fas fa-user"></i></button></a>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+<h1 class="heading"> <span>about</span> us </h1>
+
+<div class="row">
+
+    <div class="info">
+        <h3> <span> Company Name : </span> What's in Your Mind </h3>
+        <h3> <span> Established : </span> 2000BC </h3>
+        <h3> <span> Founder : </span> Lost </h3>
+        <h3> <span> Moto : </span> Bankrupt Customers </h3>
+        <h3> <span> language : </span> @!#@%!&#* </h3>
+    </div>
+
+    <div class="counter">
+
+        <div class="box">
+            <span>10+</span>
+            <h3>years of experience</h3>
+        </div>
+
+        <div class="box">
+            <span>1000+</span>
+            <h3>service provided</h3>
+        </div>
+
+        <div class="box">
+            <span>600+</span>
+            <h3>happy customers</h3>
+        </div>
+
+        <div class="box">
+            <span>12+</span>
+            <h3>awards won</h3>
+        </div>
+
+    </div>
+
 </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- service section starts  -->
+
+<section class="service" id="service">
+
+<h1 class="heading"> our <span>Sevice</span> </h1>
+
+<div class="box-container">
+
+</div>
+
+</section>
+
+<!-- service section ends -->
+
+<!-- employee section starts  -->
+
+<section class="employee" id="employee">
+
+<h1 class="heading"> our <span>employee</span> </h1>
+
+<div class="box-container">
+
+    <div class="box">
+        <img src="{% static 'business/images/anup.jpg' %}" alt="">
+    </div>
+    <div class="box">
+        <img src="{% static 'business/images/samir.jpg' %}" alt="">
+    </div>
+    <div class="box">
+        <img src="{% static 'business/images/ranjit1.jpg' %}" alt="">
+    </div>
+    <div class="box">
+        <img src="{% static 'business/images/gauriDon.jpg' %}" alt="">
+    </div>
+
+</div>
+
+</section>
+
+<!-- employee section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+<h1 class="heading"> <span>contact</span> us </h1>
+
+<div class="row">
+
+    <div class="content">
+
+        <h3 class="title">contact info</h3>
+
+        <div class="info">
+            <h3> <i class="fas fa-envelope"></i> companyName@gmail.com </h3>
+            <h3> <i class="fas fa-phone"></i> +977-1111111111 </h3>
+            <h3> <i class="fas fa-phone"></i> +101-11-2221 </h3>
+            <h3> <i class="fas fa-map-marker-alt"></i> Boudha, Kathmandu - 44600. </h3>
+        </div>
+
+    </div>
+
+    <form action="">
+
+        <input type="text" placeholder="name" class="box">
+        <input type="email" placeholder="email" class="box">
+        <input type="text" placeholder="Service Needed" class="box">
+        <textarea name="" id="" cols="30" rows="10" class="box message" placeholder="message"></textarea>
+        <button type="submit" class="btn"> send <i class="fas fa-paper-plane"></i> </button>
+
+    </form>
+
+</div>
+
+</section>
+
+<!-- contact section ends -->
+
+
+<!-- scroll top button  -->
+
+<a href="#home" class="top">
+    <img src="images/scroll-top-img.png" alt="">
+</a>
 
 {% endblock %}
