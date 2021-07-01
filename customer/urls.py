@@ -13,7 +13,8 @@ from .views import(
 urlpatterns = [
     path('register/', CustomerRegistartionCreateView.as_view(),
          name='customer-registration'),
-    path('login/', CustomerLoginView.as_view(redirect_authenticated_user=True), name='login'),
+    path('login/', CustomerLoginView.as_view(redirect_authenticated_user=True),
+         name='customer-login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
 
