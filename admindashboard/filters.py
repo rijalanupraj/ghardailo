@@ -14,7 +14,7 @@ from notification.models import *
 
 class ServicesFilter(django_filters.FilterSet):
     name = CharFilter(field_name='name', lookup_expr='icontains')
-    is_active = BooleanFilter(field_name='is_active', lookup_expr='icontains')
+    is_active = BooleanFilter(field_name='is_active', lookup_expr=None)
     class Meta:
         model = Services
         fields = ""
@@ -35,7 +35,7 @@ class GalleryFilter(django_filters.FilterSet):
 class WorkerFilter(django_filters.FilterSet):
     business = CharFilter(field_name='business', lookup_expr='exact', queryset=Business.objects.all())
     name = CharFilter(field_name='name', lookup_expr='icontains')
-    is_active = BooleanFilter(field_name='is_active', lookup_expr='icontains')
+    is_active = BooleanFilter(field_name='is_active', lookup_expr=None)
     class Meta:
         model = Worker
         fields = ""

@@ -1,18 +1,19 @@
 .success_message, .error_message {
     padding: 0;
-    height: 40px;
     font-family: cursive;
     font-size: 25px;
 }
 .card {
     font-family: cursive;
-    width: 1000px;
+    width: 1000px; 
+    background-color: #e7dfff;
     border: 2px solid #652efc;
+    border-radius: 30px;
 }
-.card-body h1 span {
+.card h1 span {
     color: #4300fc;    
 }
-.card-body h1 span span {
+.card h1 span span {
     color: #008f37;
 }
 .operation_form {
@@ -44,6 +45,15 @@
 .operation_button:hover {
     color: white;
     background-color:#008f37;;
+}
+.search {
+    width: 500px;
+    background-color: #e7dfff;
+    border-radius: 30px;
+}
+.search h1 {
+    color: #652efc;
+    font-family: cursive;
 }
 .search_form {
     display: flex;
@@ -80,7 +90,10 @@
     background-color:#008f37;;
 }
 .table-responsive {
-    font-family: cursive;    
+    font-family: cursive;   
+    max-height: 685px; 
+    margin-right: 50px;
+    margin-left: 50px;
 }
 .edit {
     font-size: 20px;
@@ -93,6 +106,9 @@
 @media screen and (max-width: 1240px) {
     .card {
         width: 400px;
+    }
+    .card h1 {
+        font-size: 20px;
     }
     .operation_form {
         width: 350px;
@@ -109,6 +125,9 @@
     .card {
         width: 200px;
     }
+    .card h1 {
+        font-size: 15px;
+    }
     .operation_form {
         width: 125px;
     }
@@ -119,14 +138,33 @@
     .operation_form input[type="text"], textarea {
         width: 135px;
     }
+    .operation_button {
+        font-size: 15px;
+    }
 }
 @media screen and (max-width: 720px) {
+    .search {
+        width: 200px;
+    }    
+    .search h1 {
+        font-size: 20px;
+    }
     .search_form {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }    
+    .search_form label{  
+        font-size: 13px;
+        margin-top: 5px;
     }
     .search_form input{  
         margin-right: 0;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .table-responsive {
+        margin-right: 5px;
+        margin-left: 5px;
     }
 }
