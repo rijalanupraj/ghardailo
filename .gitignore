@@ -230,3 +230,4 @@ Thumbs.db
 # Added By Me
 # For Migration
 migrations/
+.env

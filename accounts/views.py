@@ -1,17 +1,93 @@
 # External Import
 from django.shortcuts import render, redirect, HttpResponse
-from django.utils.http import urlsafe_base64_decode
-from django.utils.encoding import force_bytes
-
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.contrib.auth import views as auth_views
+from django.db import transaction
 from django.contrib.auth import login
 from django.contrib import messages
+
+# For Email Verification
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.sites.shortcuts import get_current_site
 
 
 # Internal Import
 from .token_generator import account_activation_token
-
+from . import forms
+from . import utils
 from django.contrib.auth import get_user_model
+from customer.models import Customer
+from business.models import Business
 User = get_user_model()
+
+
+class CustomerRegistartionCreateView(CreateView):
+    model = User
+    form_class = forms.CustomerRegistrationForm
+    template_name = 'customer/customer-registration.html'
+    success_url = reverse_lazy('customer-home')
+
+    @transaction.atomic
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_customer = True
+        user.is_active = False
+        user.email = form.cleaned_data.get('email')
+        user.save()
+        customer = Customer.objects.create(user=user)
+        customer.name = form.cleaned_data.get('name')
+        customer.phone = form.cleaned_data.get('phone')
+        customer.province = form.cleaned_data.get('province')
+        customer.city = form.cleaned_data.get('city')
+        customer.street_address = form.cleaned_data.get('street_address')
+        customer.save()
+
+        current_site = get_current_site(self.request)
+        utils.send_email_verification(current_site, user)
+        messages.success(
+            self.request, f'We have sent you an email, please confirm your email address to complete registration')
+        return redirect('customer-login')
+
+
+class BusinessRegistartionCreateView(CreateView):
+    model = User
+    form_class = forms.BusinessRegistrationForm
+    template_name = 'business/business-registration.html'
+    success_url = reverse_lazy('customer-home')
+
+    @transaction.atomic
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.is_business = True
+        user.email = form.cleaned_data.get('email')
+        user.save()
+        business = Business.objects.create(user=user)
+        business.name = form.cleaned_data.get('name')
+        business.phone = form.cleaned_data.get('phone')
+        business.province = form.cleaned_data.get('province')
+        business.district = form.cleaned_data.get('district')
+        business.city = form.cleaned_data.get('city')
+        business.street_address = form.cleaned_data.get('street_address')
+        business.is_solo = form.cleaned_data.get('is_solo')
+        business.save()
+        current_site = get_current_site(self.request)
+        utils.send_email_verification(current_site, user)
+        messages.success(
+            self.request, f'We have sent you an email, please confirm your email address to complete registration')
+        return redirect('business-login')
+
+
+class CustomerLoginView(auth_views.LoginView):
+    form_class = forms.CustomerLoginForm
+    template_name = 'customer/customer-login.html'
+
+
+class BusinessLoginView(auth_views.LoginView):
+    form_class = forms.BusinessLoginForm
+    template_name = 'business/business-login.html'
 
 
 def activate_account(request, uidb64, token, backend='accounts.backends.EmailBackend'):
