@@ -1,6 +1,6 @@
 # External Improt
 from customer.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.db import transaction
 from django import forms
 
@@ -47,3 +47,13 @@ class BusinessRegistrationForm(UserCreationForm):
         business.is_solo = self.cleaned_data.get('is_solo')
         business.save()
         return user
+
+
+class BusinessLoginForm(AuthenticationForm):
+
+    class Meta:
+        model = User
+
+    def confirm_login_allowed(self, user):
+        if not user.is_active:
+            print("User is not active")

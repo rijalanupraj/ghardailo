@@ -50,7 +50,7 @@ class CustomerRegistrationForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
 
     class Meta:
-        model = Customer
+        model = User
 
     def confirm_login_allowed(self, user):
         if not user.is_active:
