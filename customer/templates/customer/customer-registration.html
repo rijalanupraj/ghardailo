@@ -22,15 +22,15 @@
             <p class="login-card-description">Register To Ghar Dailo</p>
             <form method="POST">
               {% csrf_token %}
-              <div class="mb-3">
+              <div>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="id_name" class="sr-only">Full Name</label>
-                    {{form.name|addclass:'form-control'|addplaceholder:'Your Full Name'}}
+                    {{form.name|addclass:'form-control'|addplaceholder:'Full Name'}}
                   </div>
                   <div class="col-md-6">
-                    <label for="id_username" class="sr-only">Full Name</label>
-                    {{form.username|addclass:'form-control'|addplaceholder:'Your Username'}}
+                    <label for="id_username" class="sr-only">Username</label>
+                    {{form.username|addclass:'form-control'|addplaceholder:'Username'}}
                   </div>
                   {{ form.name.errors }}
                   {{ form.username.errors }}
@@ -38,7 +38,7 @@
               </div>
 
 
-              <div class="mb-3">
+              <div>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="id_email" class="sr-only">Email</label>
@@ -52,7 +52,7 @@
                   {{ form.phone.errors }}
                 </div>
               </div>
-              <div class="mb-3">
+              <div>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="id_province" class="sr-only">Province</label>
@@ -67,7 +67,7 @@
                 </div>
               </div>
 
-              <div class="mb-3">
+              <div>
                 <div class="row">
                   <div class="col-md-12">
                     <label for="id_street_address" class="sr-only">Street Address</label>
@@ -76,7 +76,7 @@
                   </div>
                 </div>
               </div>
-              <div class="mb-3">
+              <div>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="id_password1" class="sr-only">Password</label>
