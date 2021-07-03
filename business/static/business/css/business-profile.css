@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600&display=swap');
 
-:root{
-    --green:green;
-}
+/* :root{
+    --green:rgb(23, 104, 151);
+} */
 
 *{
     font-family: 'Nunito', sans-serif;
@@ -15,7 +15,7 @@
 }
 
 *::selection{
-    background:var(--green);
+    /* background:var(--green); */
     color:#333;
 }
 
@@ -33,13 +33,13 @@ html::-webkit-scrollbar-track{
 }
 
 html::-webkit-scrollbar-thumb{
-    background:var(--green);
+    background:grey;
 }
 
 body{
-    background-image: linear-gradient(rgba(255, 254, 254, 0.952), rgb(24, 21, 21),black);
+    /* background-image: linear-gradient(rgba(255, 254, 254, 0.952), rgb(253, 252, 252),black); */
     overflow-x: hidden;
-    padding-left: 35rem;
+    padding-left: 30rem;
 }
 
 section{
@@ -63,7 +63,7 @@ section{
 }
 
 .btn:hover{
-    background:var(--green);
+    background:#8461e4;
 }
 
 .heading{
@@ -71,12 +71,13 @@ section{
     margin:0 6rem;
     font-size: 4rem;
     padding:1rem;
-    border-bottom: .1rem solid #fff4;
-    color:#fff;
+    border-bottom: 0.16rem solid #8461e4;
+    /* box-shadow: 0px 1px 5px #5f28f5; */
+    color:black;
 }
 
 .heading span{
-    color:var(--green);
+    font-weight: bolder;
 }
 
 header{
@@ -84,8 +85,9 @@ header{
     top:0; left:0;
     z-index: 1000;
     height:100%;
-    width:35rem;
-    background:grey;
+    width:30rem;
+    box-shadow: 0px 1px 5px #5f28f5;
+    background:white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,22 +101,22 @@ header .user img{
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1rem;
-    border:.7rem solid var(--green);
+    /* border:.3rem solid #8461e4 ; */
 }
 
 header .user .name{
     font-size: 3.5rem;
-    color:#fff;
+    color:black;
 }
 
 header .user .post{
   font-size: 2rem;
-  color:white;
+  color:black;
 }
 
 header .user .post .str{
     font-size: 2rem;
-    color:yellow;
+    color:orange;
 }
 
 header .navbar1{
@@ -139,14 +141,14 @@ header .navbar1 ul li a{
 }
 
 header .navbar1 ul li a:hover{
-    background:var(--green);
+    background:#8461e4;
 }
 
 #menu{
     position: fixed;
     top:2rem; right:2rem;
     background:#333;
-    color:#fff;
+    color:black;
     cursor: pointer;
     font-size: 2.5rem;
     padding:1rem 1.5rem;
@@ -172,7 +174,7 @@ header .navbar1 ul li a:hover{
 }
 
 .home h1 span{
-    color:var(--green);
+    font-weight: bold;
 }
 
 .home p{
@@ -198,9 +200,9 @@ header .navbar1 ul li a:hover{
 
 .about .row .info h3{
     font-size: 2rem;
-    color:var(--green);
+    font-weight: bold;
     padding:1rem 0;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 .about .row .info h3 span{
@@ -217,7 +219,7 @@ header .navbar1 ul li a:hover{
 
 .about .row .counter .box{
     width:20rem;
-    background:#222;
+    background:#8461e4;
     text-align: center;
     padding: 2rem;
     margin:2rem;
@@ -225,12 +227,12 @@ header .navbar1 ul li a:hover{
 
 .about .row .counter .box span{
     font-size: 4rem;
-    color:var(--green);
+    color:white;
 }
 
 .about .row .counter .box h3{
     font-size: 2rem;
-    color:#fff;
+    color:black;
 }
 
 .employee .box-container{
@@ -284,7 +286,7 @@ header .navbar1 ul li a:hover{
     padding:1.5rem;
     margin:1rem 0;
     background:#3333;
-    color:#fff;
+    color:black;
     text-transform: none;
     font-size: 1.7rem;
     width:100%;
@@ -301,7 +303,7 @@ header .navbar1 ul li a:hover{
 
 .contact .row .content .title{
     text-transform: uppercase;
-    color:#fff;
+    color:black;
     font-size: 3rem;
     padding-bottom: 2rem;
 }
@@ -310,14 +312,14 @@ header .navbar1 ul li a:hover{
     display: flex;
     align-items: center;
     font-size: 2rem;
-    color:#eee;
+    color:black;
     padding:1rem 0;
     font-weight: normal;
 }
 
 .contact .row .content .info h3 i{
     padding-right: 1rem;
-    color:var(--green);
+    color:green;
 }
 
 .top{
