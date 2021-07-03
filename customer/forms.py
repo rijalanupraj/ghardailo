@@ -1,7 +1,6 @@
 # External Improt
 from customer.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.db import transaction
 from django import forms
 from django.urls import reverse
 
@@ -30,21 +29,6 @@ class CustomerRegistrationForm(UserCreationForm):
         user = User.objects.filter(email=email)
         if user:
             self.add_error('email', 'User with this Email already exists.')
-
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_customer = True
-        user.email = self.cleaned_data.get('email')
-        user.save()
-        customer = Customer.objects.create(user=user)
-        customer.name = self.cleaned_data.get('name')
-        customer.phone = self.cleaned_data.get('phone')
-        customer.province = self.cleaned_data.get('province')
-        customer.city = self.cleaned_data.get('city')
-        customer.street_address = self.cleaned_data.get('street_address')
-        customer.save()
-        return user
 
 
 class LoginForm(AuthenticationForm):
