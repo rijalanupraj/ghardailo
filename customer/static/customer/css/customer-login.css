@@ -83,7 +83,7 @@
 .login-card-footer-text {
   font-size: 16px;
   color: #0d2366;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 @media (max-width: 767px) {
   .login-card-footer-text {
