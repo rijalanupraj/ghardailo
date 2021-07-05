@@ -1,4 +1,5 @@
 # Extrenal Import
+from business.models import Business
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
@@ -13,6 +14,7 @@ from django.views.generic import (
 )
 
 # Internal Import
+from .models import Business
 
 
 class BusinessListPageView(UserPassesTestMixin, ListView):
@@ -30,7 +32,3 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
     def get_queryset(self):
         request = self.request
         return Business.objects.all()
-
-
-== == == =
->>>>>> > master
