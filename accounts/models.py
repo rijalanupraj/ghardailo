@@ -55,6 +55,7 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.is_admin = True
         user.is_staff = True
+        user.is_active = True
 
         # Saving modified superuser to the database
         user.save(using=self._db)
