@@ -9,7 +9,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('customer.urls')),
     path('mybusiness/', include('business.urls')),
-    path('', include('homepage.urls'))
+    path('', include('homepage.urls')),
+    path('services/', include('service.urls')),
+
 ]
 
 # Static & Media Management Files For Debug Mode Only.
