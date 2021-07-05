@@ -7,10 +7,10 @@
 
 {% block main_content %}
 
-<header>
 
+<header>
     <div class="user">
-        <img src="{% static 'business/images/plumber1.jpg' %}" alt="">
+        <img src="{% static 'business/images/anup.jpg' %}" alt="">
         <h3 class="name">Company Name</h3>
         <p class="post">Rating:<em class="str">
             <i class="fas fa-star"></i>
@@ -40,13 +40,16 @@
 
 <!-- home section starts  -->
 
-<section class="home" id="home">
 
+<section class="home" id="home">
+    {% for profile in profiles %}
     <h3>HI THERE !</h3>
-    <h1>THIS'S <span>Company Name</span></h1>
-    <p>Company Short Discription: Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio deserunt aspernatur fugiat minus enim ullam repudiandae sint sed magnam tenetur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, at.
+    <h1>THIS'S <span>{{profile.company_name}}</span></h1>
+    <p>{{profile.intro}}
     </p>
     <a href="#about"><button class="btn">about us <i class="fas fa-user"></i></button></a>
+    {% endfor %}
+
 
 </section>
 
@@ -95,6 +98,7 @@
 </div>
 
 </section>
+
 
 <!-- about section ends -->
 

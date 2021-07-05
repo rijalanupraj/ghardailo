@@ -1,4 +1,5 @@
 # Extrenal Import
+from business.models import Business_Profile
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
@@ -18,5 +19,9 @@ class BusinessRegistartionCreateView(CreateView):
 
 
 def BusinessProfile(request):
-    return render(request, 'business/business-profile.html')
+    profile = Business_Profile.objects.all()
+    context = {
+        'profile': profile
+    }
+    return render(request, 'business/business-profile.html', context)
 

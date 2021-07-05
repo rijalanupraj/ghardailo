@@ -18,6 +18,7 @@ PROVINCE_CHOICES = (
 class Business(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
+    
     logo = models.ImageField(blank=True, null=True)
     cover_picture = models.ImageField(blank=True, null=True)
     district = models.CharField(max_length=100)
@@ -39,3 +40,17 @@ class Business_Service(models.Model):
     def __str__(self):
         name = str(self.business)+"-->"+str(self.service)
         return name
+
+Language_CHOICES = (
+    ('Nepali', 'Nepali'),
+    ('English', 'English'),
+)
+
+class Business_Profile(models.Model):
+    business = models.OneToOneField(Business, on_delete=models.CASCADE)
+    intro = models.TextField()
+    established = models.DateField()
+    founder = models.CharField(max_length=30)
+    moto = models.CharField(max_length=100)
+    language = models.CharField(choices=Language_CHOICES, max_length=100)
+ 
