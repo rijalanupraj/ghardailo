@@ -6,6 +6,7 @@ from .import views
 
 
 urlpatterns = [
-    path('business-profile/', views.BusinessProfile, name='business-profile')
-   
+    path('business-profile/<str:slug>/',
+         views.BusinessProfileView.as_view(), name='business-profile')
+
 ]

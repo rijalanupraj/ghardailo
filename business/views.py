@@ -1,13 +1,21 @@
 
 # Extrenal Import
-from business.models import Business_Profile
+from business.models import Business_Profile, Business
 from django.shortcuts import render
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 # Internal Import
 
-def BusinessProfile(request):
-    profile = Business_Profile.objects.all()
-    context = {
-        'profile': profile
-    }
-    return render(request, 'business/business-profile.html', context)
+# anup, samir, shankahr (people) - listview
+# samir - detail view
 
+
+class BusinessProfileView(DetailView):
+    queryset = Business.objects.all()
+    template_name = "business/business-profile.html"
+    slug_url_kwarg = 'slug'

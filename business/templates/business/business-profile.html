@@ -42,13 +42,11 @@
 
 
 <section class="home" id="home">
-    {% for profile in profiles %}
     <h3>HI THERE !</h3>
-    <h1>THIS'S <span>{{profile.company_name}}</span></h1>
-    <p>{{profile.intro}}
+    <h1>THIS'S <span>{{object.name}}</span></h1>
+    <p>{{object.business_profile.founder}}
     </p>
     <a href="#about"><button class="btn">about us <i class="fas fa-user"></i></button></a>
-    {% endfor %}
 
 
 </section>
