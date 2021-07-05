@@ -55,6 +55,7 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.is_admin = True
         user.is_staff = True
+        user.is_active = True
 
         # Saving modified superuser to the database
         user.save(using=self._db)
@@ -76,7 +77,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # These filed are porvided as default by Django
     username = models.CharField(max_length=30, unique=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

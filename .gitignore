@@ -231,3 +231,5 @@ Thumbs.db
 # For Migration
 migrations/
 .env
+
+

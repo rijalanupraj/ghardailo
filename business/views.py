@@ -11,20 +11,8 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from django.urls import reverse_lazy
 
 # Internal Import
-from django.contrib.auth import get_user_model
-from .forms import BusinessRegistrationForm
-from .models import Business
-User = get_user_model()
-
-
-class BusinessRegistartionCreateView(CreateView):
-    model = User
-    form_class = BusinessRegistrationForm
-    template_name = 'business/business-registration.html'
-    success_url = reverse_lazy('customer-home')
 
 
 class BusinessListPageView(UserPassesTestMixin, ListView):
@@ -42,3 +30,7 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
     def get_queryset(self):
         request = self.request
         return Business.objects.all()
+
+
+== == == =
+>>>>>> > master
