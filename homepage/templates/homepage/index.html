@@ -27,6 +27,9 @@ Homepage
         <div class="col-md-12">
             <div class="card p-4 mt-3">
                 <h3 class="heading mt-2 text-center">Popular services</h3>
+                <div class="col-lg-3 position-relative">
+                    <button class="btn btn-success"><a href="{% url 'Services' %}" class="boxed-btn4">View All</a> </button>
+                </div>
                 <div class="row mt-4 g-1 px-4 mb-5">
                     {% for service in services %}
                     <div class="col-md-3 p-3">
