@@ -72,22 +72,22 @@
     <div class="counter">
 
         <div class="box">
-            <span>10+</span>
+            <span>{{object.business_profile.experience_year}}+</span>
             <h3>years of experience</h3>
         </div>
 
         <div class="box">
-            <span>1000+</span>
+            <span>{{object.business_profile.service_provided}}+</span>
             <h3>service provided</h3>
         </div>
 
         <div class="box">
-            <span>600+</span>
+            <span>{{object.business_profile.happy_customers}}+</span>
             <h3>happy customers</h3>
         </div>
 
         <div class="box">
-            <span>12+</span>
+            <span>{{object.business_profile.Awards_won}}+</span>
             <h3>awards won</h3>
         </div>
 
@@ -105,11 +105,11 @@
 <section class="service" id="service">
 
 <h1 class="heading"> our <span>Sevice</span> </h1>
-{% for service in services %}
+
 <div class="box-container">
 
 </div>
-{% endfor %}
+
 </section>
 
 <!-- service section ends -->
@@ -154,12 +154,11 @@
         <h3 class="title">contact info</h3>
 
         <div class="info">
-            <h3> <i class="fas fa-envelope"></i> companyName@gmail.com </h3>
-            <h3> <i class="fas fa-phone"></i> +977-1111111111 </h3>
-            <h3> <i class="fas fa-phone"></i> +101-11-2221 </h3>
-            <h3> <i class="fas fa-map-marker-alt"></i> Boudha, Kathmandu - 44600. </h3>
+            <h3> <i class="fas fa-envelope"></i>{{object.email}}</h3>
+            <h3> <i class="fas fa-phone"></i> {{object.phone}} </h3>
+            <h3> <i class="fas fa-map-marker-alt"></i>{{object.street_address}}</h3>
         </div>
-
+        
     </div>
 
     <form action="">

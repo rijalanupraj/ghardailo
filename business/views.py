@@ -1,6 +1,6 @@
 
 # Extrenal Import
-from business.models import Business_Profile, Business
+from business.models import Business_Profile, Business 
 from django.shortcuts import render
 from django.views.generic import (
     ListView,

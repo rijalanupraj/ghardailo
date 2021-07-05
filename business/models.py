@@ -1,3 +1,4 @@
+from django.db.models.fields.files import ImageField
 from django.db.models.signals import pre_save
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -29,6 +30,7 @@ class Business(models.Model):
     street_address = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     phone = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
 
     def __str__(self):
         return self.name + " | " + self.user.username
@@ -60,8 +62,14 @@ Language_CHOICES = (
 
 class Business_Profile(models.Model):
     business = models.OneToOneField(Business, on_delete=models.CASCADE)
+    # Business_Service=models.OneToManyField(Business_Service)
     intro = models.TextField()
     established = models.DateField()
     founder = models.CharField(max_length=30)
     moto = models.CharField(max_length=100)
     language = models.CharField(choices=Language_CHOICES, max_length=100)
+    experience_year = models.IntegerField()
+    service_provided = models.IntegerField()
+    happy_customers = models.IntegerField()
+    Awards_won = models.IntegerField()
+    
