@@ -1,5 +1,5 @@
 from django.db.models.fields.files import ImageField
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.db import models
 from django.contrib.auth import get_user_model
 from service.models import *
@@ -36,6 +36,7 @@ class Business(models.Model):
         return self.name + " | " + self.user.username
 
 
+# This is done to create unique slug for the business
 def post_pre_save_receiver(sender, instance, *args, **kwargs):
     instance.slug = unique_slug_generator(instance)
 
@@ -63,13 +64,22 @@ Language_CHOICES = (
 class Business_Profile(models.Model):
     business = models.OneToOneField(Business, on_delete=models.CASCADE)
     # Business_Service=models.OneToManyField(Business_Service)
-    intro = models.TextField()
-    established = models.DateField()
-    founder = models.CharField(max_length=30)
-    moto = models.CharField(max_length=100)
-    language = models.CharField(choices=Language_CHOICES, max_length=100)
-    experience_year = models.IntegerField()
-    service_provided = models.IntegerField()
-    happy_customers = models.IntegerField()
-    Awards_won = models.IntegerField()
-    
+    intro = models.TextField(null=True)
+    established = models.DateField(null=True)
+    founder = models.CharField(max_length=30, null=True)
+    moto = models.CharField(max_length=100, null=True)
+    language = models.CharField(
+        choices=Language_CHOICES, max_length=100, null=True)
+    experience_year = models.IntegerField(null=True)
+    service_provided = models.IntegerField(null=True)
+    happy_customers = models.IntegerField(null=True)
+    Awards_won = models.IntegerField(null=True)
+
+
+def create_business_profile(sender, instance, created, **kwargs):
+    if created:
+        Business_Profile.objects.create(business=instance)
+
+
+# This Creates the business profile once business is created
+post_save.connect(create_business_profile, sender=Business)
