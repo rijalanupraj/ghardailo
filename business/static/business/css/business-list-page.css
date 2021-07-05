@@ -1,6 +1,5 @@
-.ratings i {
-  font-size: 16px;
-  color: red;
+.ratings span {
+  color: orange;
 }
 
 .strike-text {
@@ -11,18 +10,6 @@
 .product-image {
   width: 100%;
 }
-
-.dot {
-  height: 7px;
-  width: 7px;
-  margin-left: 6px;
-  margin-right: 6px;
-  margin-top: 3px;
-  background-color: blue;
-  border-radius: 50%;
-  display: inline-block;
-}
-
 .spec-1 {
   color: #938787;
   font-size: 15px;
@@ -34,4 +21,24 @@ h5 {
 
 .para {
   font-size: 16px;
+}
+
+.profile-image img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.verified {
+  color: blue;
+}
+
+@media screen and (max-width: 768px) {
+  .product-image {
+    display: none;
+  }
 }
