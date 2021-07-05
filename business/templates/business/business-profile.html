@@ -10,8 +10,8 @@
 
 <header>
     <div class="user">
-        <img src="{% static 'business/images/anup.jpg' %}" alt="">
-        <h3 class="name">Company Name</h3>
+        <img src="{{object.logo.url}}" alt="">
+        <h3 class="name">{{object.name}}</h3>
         <p class="post">Rating:<em class="str">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -44,7 +44,7 @@
 <section class="home" id="home">
     <h3>HI THERE !</h3>
     <h1>THIS'S <span>{{object.name}}</span></h1>
-    <p>{{object.business_profile.founder}}
+    <p>{{object.business_profile.intro}}
     </p>
     <a href="#about"><button class="btn">about us <i class="fas fa-user"></i></button></a>
 
@@ -62,11 +62,11 @@
 <div class="row">
 
     <div class="info">
-        <h3> <span> Company Name : </span> What's in Your Mind </h3>
-        <h3> <span> Established : </span> 2000BC </h3>
-        <h3> <span> Founder : </span> Lost </h3>
-        <h3> <span> Moto : </span> Bankrupt Customers </h3>
-        <h3> <span> language : </span> @!#@%!&#* </h3>
+        <h3> <span> Company Name : </span>{{object.name}}</h3>
+        <h3> <span> Established : </span>{{object.business_profile.established}}</h3>
+        <h3> <span> Founder : </span>{{object.business_profile.founder}}</h3>
+        <h3> <span> Moto : </span>{{object.business_profile.moto}}</h3>
+        <h3> <span> language : </span>{{object.business_profile.language}}</h3>
     </div>
 
     <div class="counter">
@@ -105,11 +105,11 @@
 <section class="service" id="service">
 
 <h1 class="heading"> our <span>Sevice</span> </h1>
-
+{% for service in services %}
 <div class="box-container">
 
 </div>
-
+{% endfor %}
 </section>
 
 <!-- service section ends -->
