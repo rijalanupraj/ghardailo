@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'worker',
     'wcb',
     'review',
-
+    'admindashboard',
+    'notification',
     # Extra Dependencies
     'six',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [

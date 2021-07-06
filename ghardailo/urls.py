@@ -5,14 +5,20 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('', include('accounts.urls')),
+    path('', include('homepage.urls')),
+    # path('', include('Customer.urls')),
+    path('a/', include('admindashboard.urls'))
     path('', include('customer.urls')),
     path('', include('accounts.urls')),
     path('mybusiness/', include('business.urls')),
     path('', include('homepage.urls')),
     path('services/', include('service.urls')),
-
 ]
 
 # Static & Media Management Files For Debug Mode Only.
