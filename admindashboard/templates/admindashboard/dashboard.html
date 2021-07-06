@@ -1,0 +1,84 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+{% block additional_head %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}  
+<div class="container-fluid pt-3 ProgressBars" id="Items">
+  <div class="Bar S">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Services</div>
+  </div>  
+  <div class="Bar U">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Users</div>
+  </div>  
+  <div class="Bar B">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Business</div>
+  </div>   
+  <div class="Bar W">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Worker</div>
+  </div>    
+  <div class="Bar G">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Gallery</div>
+  </div>       
+  <div class="Bar C">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Customer</div>
+  </div>  
+  <div class="Bar H">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Hiring</div>
+  </div>  
+  <div class="Bar R">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Reviews</div>
+  </div> 
+  <div class="Bar N">
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span></span></div>
+    </div>
+    <div class="text">Notifications</div>
+  </div>         
+</div> 
+{% endblock %}
+
+{% block additional_body %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js" integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+
+

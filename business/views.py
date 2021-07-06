@@ -1,10 +1,4 @@
-# Extrenal Import
 from business.models import Business
-from django.shortcuts import render, HttpResponse, get_object_or_404
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-    UserPassesTestMixin
-)
 from django.views.generic import (
     ListView,
     DetailView,
@@ -12,9 +6,11 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-
-# Internal Import
-from .models import Business
+from django.shortcuts import render
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin
+)
 
 
 class BusinessListPageView(UserPassesTestMixin, ListView):
@@ -32,3 +28,9 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
     def get_queryset(self):
         request = self.request
         return Business.objects.all()
+
+
+class BusinessProfileView(DetailView):
+    queryset = Business.objects.all()
+    template_name = "business/business-profile.html"
+    slug_url_kwarg = 'slug'

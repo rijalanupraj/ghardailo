@@ -16,3 +16,9 @@ class Business_ServiceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Business_Service, Business_ServiceAdmin)
+
+
+class Business_ProfileAdmin(admin.ModelAdmin):
+    list_display =('business', 'intro', 'established', 'founder', 'moto', 'language')
+
+admin.site.register(Business_Profile, Business_ProfileAdmin)

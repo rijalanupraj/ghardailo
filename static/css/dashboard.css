@@ -1,0 +1,79 @@
+.ProgressBars {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-gap: 25px 0;
+    align-items: center;
+    justify-content: space-around;
+}
+.ProgressBars .Bar {
+    height: 350px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.ProgressBars .Bar .circle{
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+}
+.Bar .circle:hover .box {
+    transform: translate(8%, -112%) scale(1.08);
+}
+.Bar .circle .box {
+    transform: translate(8%,-112%);
+    background-color: white;
+    height: 85%;
+    width: 85%;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+.Bar .circle .box span {
+    transform: translate(-45%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size:  75px;
+    font-weight: 400;
+    font-family: cursive;
+    background: linear-gradient(#fc1f3c, #652efc, #2dfa7c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ProgressBars .Bar .text {    
+    font-size: 45px;
+    font-weight: 400;
+    font-family: cursive;
+    background: linear-gradient(#fc1f3c, #652efc, #2dfa7c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@media screen and (max-width: 1475px) {
+    .ProgressBars {
+        grid-template-columns: 200px 200px 200px;
+    }    
+    .ProgressBars .Bar {
+        height: 200px;
+    }
+    .ProgressBars .Bar .circle{
+        height: 150px;
+        width: 150px;
+    }.Bar .circle .box span {
+        font-size:  45px;
+    }
+    .ProgressBars .Bar .text {    
+        font-size:  30px;
+    }
+}
+@media screen and (max-width: 880px) {
+    .ProgressBars {
+        grid-template-columns: 150px 150px;
+    } 
+}
+@media screen and (max-width: 590px) {
+    .ProgressBars {
+        grid-template-columns: 150px;
+    }    
+}
