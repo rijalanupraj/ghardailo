@@ -10,7 +10,9 @@
 
 <header>
     <div class="user">
+        {% if object.log %}
         <img src="{{object.logo.url}}" alt="">
+        {% endif %}
         <h3 class="name">{{object.name}}</h3>
         <p class="post">Rating:<em class="str">
             <i class="fas fa-star"></i>
@@ -107,7 +109,9 @@
 <h1 class="heading"> our <span>Sevice</span> </h1>
 
 <div class="box-container">
-
+{% for ser in object.business_service_set.all %}
+<p>{{ser.service.name}}</p>
+{% endfor %}
 </div>
 
 </section>

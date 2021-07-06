@@ -7,6 +7,7 @@ Services
 {% block additional_head %}
 
 <link href="{% static 'css/services.css' %}" rel="stylesheet">
+<link href="{% static 'css/service-card.css' %}" rel="stylesheet">
 {% endblock %}
 
 
@@ -17,11 +18,7 @@ Services
             <h3 class="heading mt-2 text-center">Services</h3>
             <div class="row mt-4 g-1 px-4 mb-5">
                 {% for service in services %}
-                <div class="col-md-3 p-3">
-                    <div class="card-inner p-3 d-flex flex-column align-items-center"><i class="fas {{service.icon_text}} fa-5x"></i>
-                        <div class="text-center mg-text"> <span class="mg-text">{{service.name}}</span> </div>
-                    </div>
-                </div>
+                 {% include 'service/snippets/service-card.html' with service=service %}
                 {% endfor %}
             </div>
         </div>
