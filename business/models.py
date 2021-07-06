@@ -4,8 +4,7 @@ from service.models import *
 
 User = get_user_model()
 
-class Business(models.Model):
-  PROVINCE_CHOICES = (
+PROVINCE_CHOICES = (
     ('Province 1', 'Province 1'),
     ('Province 2', 'Province 2'),
     ('Bagmati', 'Bagmati'),
@@ -13,31 +12,30 @@ class Business(models.Model):
     ('Lumbini', 'Lumbini'),
     ('Karnali', 'Karnali'),
     ('Sudhurpachhim', 'Sudhurpachhim'),
-  )
+)
 
-  user = models.OneToOneField(User, on_delete=models.CASCADE)
-  name=models.CharField(max_length=50)
-  logo= models.ImageField(blank=True, null=True)
-  cover_picture= models.ImageField(blank=True, null=True)
-  district= models.CharField(max_length=100)
-  province=models.CharField(choices=PROVINCE_CHOICES, max_length=100)
-  is_business= models.BooleanField(default=False)
-  tole= models.CharField(max_length=100)
-  description= models.TextField()
-  phone= models.CharField(max_length=50)
-  email= models.CharField(max_length=50)
 
-  def __str__(self):
-        return self.name +" | "+ self.user.username
+class Business(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    logo = models.ImageField(blank=True, null=True)
+    cover_picture = models.ImageField(blank=True, null=True)
+    district = models.CharField(max_length=100)
+    province = models.CharField(max_length=100)
+    is_solo = models.BooleanField(default=False)
+    street_address = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    phone = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name + " | " + self.user.username
 
 
 class Business_Service(models.Model):
-  business = models.ForeignKey(Business, on_delete=models.CASCADE)
-  service = models.ForeignKey(Services, on_delete=models.CASCADE)
-  description = models.TextField(max_length=500, blank=True, null=True)
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    service = models.ForeignKey(Services, on_delete=models.CASCADE)
+    description = models.TextField(max_length=500, blank=True, null=True)
 
-  def __str__(self):
-    name = str(self.business)+"-->"+str(self.service)
-    return name
-
-
+    def __str__(self):
+        name = str(self.business)+"-->"+str(self.service)
+        return name

@@ -13,10 +13,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item mx-sm-1">
-          <a class="nav-link selected" href="">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link {{ active_home }}" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item mx-sm-1">
-          <a class="nav-link" href="">Services</a>
+          <a class="nav-link {{ active_service }}" href="{% url 'Services' %}">Services</a>
         </li>
         <li class="nav-item mx-sm-1">
           <a class="nav-link" href="">Gallery</a>
