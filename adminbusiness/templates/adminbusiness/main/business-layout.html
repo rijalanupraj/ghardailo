@@ -6,17 +6,21 @@
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- For Favicon  -->
-    <!-- <link rel="icon" type="image/png" href=""> -->
-
-    <!-- Title Tag -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
         {% block title %}
 
         {% endblock %}
     </title>
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- css -->
+    
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"rel="stylesheet"/>
+    
 
     {% block additional_head %}
 
@@ -26,8 +30,9 @@
 
 <body>
 
-    <!-- For Navbar
-    {% include 'components/customer-navbar.html' %} -->
+    <!-- For Navbar -->
+    {% include 'adminbusiness/main/business-navbar.html' %}
+
 
     <!-- Main Content -->
     <main>
