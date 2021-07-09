@@ -1,40 +1,108 @@
 {% load static %}
-<div class="container-fluid" id="Header">
-  <nav class="navbar navbar-expand-sm">
-    <h1>
-      <img class="img-fluid rounded-circle" src="{% static 'img/navbar/logo.png' %}" id="Logo" />
-      <a class="navbar-brand fw-bold" href="#">Ghar<span>Dailo</span></a>
-    </h1>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<!-- Navbar -->
+<nav class="
+            navbar navbar-expand-lg
+bg-link navbar-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
     </button>
 
+    <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item mx-sm-1">
-          <a class="nav-link {{ active_home }}" href="#">Home <span class="sr-only">(current)</span></a>
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img
+          src="{% static 'img/navbar/ghardailo-text-logo.png' %}"
+          height="40"
+          alt=""
+          loading="lazy"
+        />
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Dashboard</a>
         </li>
-        <li class="nav-item mx-sm-1">
-          <a class="nav-link {{ active_service }}" href="{% url 'Services' %}">Services</a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Team</a>
         </li>
-        <li class="nav-item mx-sm-1">
-          <a class="nav-link" href="">Gallery</a>
-        </li>
-        <li class="nav-item mx-sm-1">
-          <a class="nav-link" href="">About Us</a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Projects</a>
         </li>
       </ul>
-      <div id="UDA">
-        <!-- {% if user.is_authenticated %}                   -->
-        <img class="img-fluid rounded-circle" id="Profile" src="{% static 'img/profile/male.jpg' %}" />
-        <a class="fw-bold" href="" id="Username">Ram Bahudar Shrestha</a>
-        <a class="btn lgo" href="">Logout</a>
-        <!-- {% else %} -->
-        <a href="" class="btn sgu">Sign up</a>
-        <a href="" class="btn lgi">Login</a>
-        <!-- {% endif %} -->
-      </div>
+      <!-- Left links -->
     </div>
-  </nav>
-</div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+
+      <!-- Notifications -->
+      <a
+        class="text-reset me-3 dropdown-toggle hidden-arrow"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fas fa-bell"></i>
+        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="navbarDropdownMenuLink"
+      >
+        <li>
+          <a class="dropdown-item" href="#">Some news</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Another news</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </li>
+      </ul>
+
+      <!-- Avatar -->
+      <a
+        class="dropdown-toggle d-flex align-items-center"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="fa fa-user"></i>
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="navbarDropdownMenuLink"
+      >
+        <li>
+          <a class="dropdown-item" href="#">My profile</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Settings</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
