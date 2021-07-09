@@ -25,8 +25,18 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
     # def handle_no_permission(self):
     #     return redirect('where you want to redirect')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q')
+        if query is not None:
+            context["query"] = query
+        return context
+
     def get_queryset(self):
         request = self.request
+        query = request.GET.get('q', None)
+        if query is not None and query != '':
+            return Business.objects.search(query).active().distinct()
         return Business.objects.all()
 
 
