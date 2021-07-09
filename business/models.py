@@ -30,7 +30,8 @@ class Business(models.Model):
     street_address = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     phone = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
+    is_verified = models.BooleanField()
+    contact_email = models.EmailField(max_length=50)
 
     def __str__(self):
         return self.name + " | " + self.user.username

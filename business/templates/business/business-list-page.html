@@ -6,9 +6,9 @@
 {% endblock %}
 {% block main_content %}
 <div class="container mt-5 mb-5">
+    {% include 'business/snippets/business-advanced-search.html' %}
     <div class="d-flex justify-content-center row">
 
-        {% include 'business/snippets/business-advanced-search.html' %}
         {% for object in object_list  %}
         <div class="col-lg-10 col-md-12 m-1">
             {% comment %} To make code easy to read {% endcomment %}
