@@ -40,7 +40,7 @@ class BusinessQuerySet(models.query.QuerySet):
         query = None
         terms = normalize_query(query_string)
         search_fields = ['name', 'slug', 'business_profile__intro', 'business_profile__founder', 'business_profile__moto',
-                         'business_service__service__name']
+                         'business_service__service__name', 'business_service__service__servicetag__title']
         for term in terms:
             or_query = None  # Query to search for a given term in each field
             for field_name in search_fields:
@@ -130,7 +130,7 @@ class Business_Profile(models.Model):
     experience_year = models.IntegerField(null=True)
     service_provided = models.IntegerField(null=True)
     happy_customers = models.IntegerField(null=True)
-    Awards_won = models.IntegerField(null=True)
+    awards_won = models.IntegerField(null=True)
 
 
 def create_business_profile(sender, instance, created, **kwargs):
