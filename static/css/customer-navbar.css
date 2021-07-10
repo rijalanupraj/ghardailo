@@ -93,7 +93,18 @@
     }
 }
 @media screen and (max-width: 575px) {
+    #Header .nav-link {
+        float: left;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #Header .active {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     #UDA {
+        padding-left: 5px;
+        padding-right: 5px;
         margin-top: 5px;
         display: grid;
         grid-template-columns: 80px;
