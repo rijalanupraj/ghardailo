@@ -36,9 +36,10 @@
       <h6 class="text-success">Writing Something Here</h6>
       <div class="d-flex flex-column mt-4">
         <a href="{% url 'business-profile' obj.slug  %}" class="btn btn-primary btn-sm"
-        type="button">Details</a><button class="btn btn-outline-primary btn-sm mt-2" type="button">
+        type="button">Details</a><a class="btn btn-outline-primary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#request-business{{obj.slug}}" type="button">
           Request
-        </button>
+        </a>
+        {% include 'business/snippets/business-hiring-modal.html' with obj=obj %}
       </div>
     </div>
   </div>

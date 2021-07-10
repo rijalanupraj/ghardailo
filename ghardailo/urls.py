@@ -19,6 +19,7 @@ urlpatterns = [
     path('', include('business.urls')),
     path('', include('homepage.urls')),
     path('services/', include('service.urls')),
+    path('', include('hiring.urls')),
 ]
 
 # Static & Media Management Files For Debug Mode Only.
