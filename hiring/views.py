@@ -13,6 +13,9 @@ from .models import Hiring
 from business.models import Business_Service, Business
 from service.models import Services
 from customer.models import Customer
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class CreateHireView(UserPassesTestMixin, View):
@@ -38,12 +41,11 @@ class CreateHireView(UserPassesTestMixin, View):
             business=business, service=service)
 
         # Getting Customer
-        user = request.user
-
-        customer = Customer.objects.get(user=user)
+        user = User.objects.get(id=request.user.id)
+        customer = user.customer
 
         # Create New Hire
-        # Hiring.objects.create(
-        #     business_service=business_service, customer=customer, message_text=message_text)
+        Hiring.objects.create(
+            business_service=business_service, customer=customer, message=message_text)
 
         return redirect(request.META.get('HTTP_REFERER', 'customer-home'))
