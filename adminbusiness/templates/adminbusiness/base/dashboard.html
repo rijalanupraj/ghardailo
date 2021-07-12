@@ -7,8 +7,22 @@
 <link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block main_content %}  
-<div class="head">ffyegygfyg</div>
+{% block main_content %} 
+<p>dygygggggggggggggggggg</p> 
+<div class="row">
+    <br>
+    <br>
+    <div class="col">
+                <div class="card text-white mb-3" style="max-width:35rem; background-color: #2a2a2a">
+                    <div class="card-header text-center">Service</div>
+                    <div class="card-body">
+                        <h1 class="card-title text-center"></h1>
+                        <h1 class="card-title text-center"><a href="{% url 'Services' %}">{{Service}}</a> </h1>
+
+                    </div>
+                </div>
+            </div>
+</div>
 {% endblock %}
 
 {% block additional_body %}
