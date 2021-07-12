@@ -1,5 +1,9 @@
+from django.contrib import messages
+from .forms import *
+
+# internal input
 from business.models import Business
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from business.models import *
 from gallery.models import *
 from worker.models import *
@@ -43,3 +47,49 @@ def businessDashboard(request):
 
 def editProfile(request):
     return render(request, 'adminbusiness/base/edit-profile.html')
+
+
+def getService(request):
+    service = Services.objects.all()
+
+    context = {
+        'service': service,
+
+    }
+    return render(request, 'adminbusiness/base/show-service.html', context)
+
+def postService(request):
+    if request.method == 'POST':
+        form = ServicesForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Service Added Successfully')
+            return redirect('b/postService')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error adding service')
+            return render(request, 'adminbusiness/base/post-service.html')
+    else:
+        form = ServicesForm()
+
+    context={
+        'form':form
+    }
+
+    return render(request, 'adminbusiness/base/post-service.html', context)
+
+def updateService(request, service_id):
+    instance = Services.objects.get(id=service_id)
+    if request.method == "POST":
+        form = ServicesForm(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('getService')
+    context = {
+        'form': ServicesForm(instance=instance),
+    }
+    return render(request, 'adminbusiness/base/update-service.html', context)
+
+def deleteService(request, service_id):
+    service = Services.objects.get(id=service_id)
+    service.delete()
+    return redirect('getServiceDash')
