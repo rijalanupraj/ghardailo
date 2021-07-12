@@ -1,0 +1,54 @@
+{% extends 'adminbusiness/main/business-layout.html' %}
+{% load static %}
+{% block title %}
+    Service
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet">
+<style>
+    .container{
+        margin-top: 6rem;
+    }
+
+</style>
+{% endblock %}
+
+{% block main_content %} 
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8 mx-auto offset-md-3">
+            <h1 class="text-center">Add New Service</h1>
+            <div class="card mx-auto py-2">
+
+                <form class="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="icon_text">icon_text</label>
+                        <input type="text" class="form-control" id="icon_text" name="icon_text" aria-describedby="icon_text">
+
+                        <label for="name">name</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name">     
+
+                        
+
+                        <label for="description">Description</label>
+                        <textarea type="text" class="form-control" id="description" name="description" aria-describedby="description"></textarea>
+                        <label for="is_active">is_active</label>
+                        <input type="checkbox" class="form-check-input" id="is_active" name="is_active" aria-describedby="is_active" checked>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body %}
+
+{% endblock %}
+
+
