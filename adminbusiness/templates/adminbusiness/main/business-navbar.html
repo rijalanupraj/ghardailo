@@ -2,6 +2,7 @@
 
 {% url 'businessDash' as businessDash_url %}
 {% url 'editProfileBus' as editProfileBus_url %}
+{% url 'getServiceDash' as getService_url %}
 <header>
   <!-- Sidebar -->
   <nav
@@ -32,11 +33,15 @@
         </a>
     
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-chart-line fa-fw me-3"></i
-          ><span>Services</span></a
-          >
+        href="{{getService_url}}"
+        class="list-group-item list-group-item-action py-2 ripple 
+        {% if request.path == getService_url %}active{% endif %}"
+        aria-current="true"
+        >
+       <i class="fas fa-tachometer-alt fa-fw me-3"></i
+         ><span>Services</span>
+     </a>
+
         <a
            href="#"
            class="list-group-item list-group-item-action py-2 ripple"
