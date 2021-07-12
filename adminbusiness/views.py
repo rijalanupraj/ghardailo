@@ -64,7 +64,7 @@ def postService(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Service Added Successfully')
-            return redirect('b/postService')
+            return redirect('getServiceDash')
         else:
             messages.add_message(request, messages.ERROR, 'Error adding service')
             return render(request, 'adminbusiness/base/post-service.html')
@@ -83,7 +83,7 @@ def updateService(request, service_id):
         form = ServicesForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('getService')
+            return redirect('/getService')
     context = {
         'form': ServicesForm(instance=instance),
     }

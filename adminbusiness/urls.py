@@ -9,7 +9,7 @@ urlpatterns = [
     path('getService',views.getService, name="getServiceDash"),
     path('postService',views.postService, name="postServiceDash"),
     path('updateService/<int:service_id>', views.updateService, name="updateServiceDash"),
-    path('deleteService/<int:service_id>', views.deleteService, name="postServiceDash"),
+    path('deleteService/<int:service_id>', views.deleteService, name="deleteServiceDash"),
 
 
  
