@@ -24,6 +24,20 @@ Service
     .form-group {
         margin-bottom: 1rem;
     }
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
 
   
 </style>
@@ -59,8 +73,7 @@ Service
                         <input type="checkbox" class="form-check-input" id="is_active" name="is_active"
                             aria-describedby="is_active" checked>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <!-- <input type="submit" value="Submit"> -->
+                    <input type="submit" value="Submit">
                 </form>
             </div>
         </div>
