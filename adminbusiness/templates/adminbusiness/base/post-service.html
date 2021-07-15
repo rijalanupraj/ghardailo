@@ -1,19 +1,35 @@
 {% extends 'adminbusiness/main/business-layout.html' %}
 {% load static %}
 {% block title %}
-    Service
+Service
 {% endblock %}
 {% block additional_head %}
 <link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet">
 <style>
-    .container{
+    .container {
         margin-top: 6rem;
+
     }
 
+    .card {
+        background-color: #f2f2f2;
+    }
+
+    .form {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+  
 </style>
 {% endblock %}
 
-{% block main_content %} 
+{% block main_content %}
 <div class="container">
     <div class="row">
 
@@ -25,22 +41,26 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="icon_text">icon_text</label>
-                        <input type="text" class="form-control" id="icon_text" name="icon_text" aria-describedby="icon_text">
-                        
+                        <input type="text" class="form-control" id="icon_text" name="icon_text"
+                            aria-describedby="icon_text">
+
                         <label for="color">color</label>
                         <input type="text" class="form-control" id="color" name="color" aria-describedby="color">
 
                         <label for="name">name</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name">     
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
 
-                        
+
 
                         <label for="description">Description</label>
-                        <textarea type="text" class="form-control" id="description" name="description" aria-describedby="description"></textarea>
+                        <textarea type="text" class="form-control" id="description" name="description"
+                            aria-describedby="description"></textarea>
                         <label for="is_active">is_active</label>
-                        <input type="checkbox" class="form-check-input" id="is_active" name="is_active" aria-describedby="is_active" checked>
+                        <input type="checkbox" class="form-check-input" id="is_active" name="is_active"
+                            aria-describedby="is_active" checked>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <!-- <input type="submit" value="Submit"> -->
                 </form>
             </div>
         </div>
@@ -53,5 +73,3 @@
 {% block additional_body %}
 
 {% endblock %}
-
-
