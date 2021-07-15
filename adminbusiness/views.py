@@ -83,7 +83,7 @@ def updateService(request, service_id):
         form = ServicesForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('/getService')
+            return redirect('/b/getService')
     context = {
         'form': ServicesForm(instance=instance),
     }
