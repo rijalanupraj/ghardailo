@@ -22,14 +22,15 @@
                 <a class="btn btn-success btn-bg ml-auto mb-2" style="width: 100%"
                    href="{% url 'postServiceDash' %}">Add New Service</a>
 
-                <table class="table table-responsive table-dark" >
-                    <tr class="bg">
+                <table class="table table-responsive table-white" >
+                    <tr class="btn-danger">
                         <th>#</th>
                         <th>Icon Name</th>
                         <th>Icon Color</th>
                         <th>Service Name</th>
                         <th>Status</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
                     {% for s in service %}
                     <tr>
@@ -40,13 +41,13 @@
                         <td>{{ s.is_active }}</td>
                         <td>{{ s.description }}</td>
 
-                       <td><a href="updateService/{{ service.id }}"
+                       <td><a href="updateService/{{ s.id }}"
                                class="btn btn-primary btn-sm">Edit</a>&nbsp;
                     
-                            <a href="deleteService/{{ service.id }}"
+                            <a href="deleteService/{{ s.id }}"
                                class="btn btn-danger btn-sm"
                                onclick="return confirm('Are you sure want to delete this file?')">
-                                Delete</a></td> -->
+                                Delete</a></td> 
                     </tr>
                     {% endfor %}
                 </table>
