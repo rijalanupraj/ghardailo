@@ -23,7 +23,7 @@
         {% for ser in object.business_service_set.all %}
         <span class="badge rounded-pill bg-info">{{ser.service.name}}</span>
         {% endfor %}
-        
+
       </div>
       <p class="text-justify text-truncate para mb-0">
         {{obj.description}}<br /><br />
@@ -35,10 +35,17 @@
       </div>
       <h6 class="text-success">Writing Something Here</h6>
       <div class="d-flex flex-column mt-4">
-        <a href="{% url 'business-profile' obj.slug  %}" class="btn btn-primary btn-sm"
-        type="button">Details</a><a class="btn btn-outline-primary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#request-business{{obj.slug}}" type="button">
+        <a href="{% url 'business-profile' obj.slug  %}" class="btn btn-primary btn-sm" type="button">Details</a>
+        {% if user.is_authenticated %}
+
+        <a class="btn btn-outline-primary btn-sm mt-2" data-bs-toggle="modal"
+          data-bs-target="#request-business{{obj.slug}}" type="button">
           Request
         </a>
+        {% else %}
+        <a class="btn btn-outline-primary btn-sm mt-2"
+          href="{% url 'customer-login' %}?next={% url 'business-profile' obj.slug %}" type="button">Request</a>
+        {% endif %}
         {% include 'business/snippets/business-hiring-modal.html' with obj=obj %}
       </div>
     </div>
