@@ -45,8 +45,7 @@ def businessDashboard(request):
 
     return render(request, 'adminbusiness/base/dashboard.html', context)
 
-def editProfile(request):
-    return render(request, 'adminbusiness/base/edit-profile.html')
+
 
 
 def getService(request):
@@ -93,4 +92,48 @@ def deleteService(request, service_id):
     service = Business_Service.objects.get(id=service_id)
     service.delete()
     return redirect('getServiceDash')
+
+
+
+
+
+#for profile
+def getProfile(request):
+    profile=Business_Profile.object.all()
+
+    context={
+        'profile':profile
+    }
+    return render(request, 'adminbusiness/base/show-profile.html',context)
+    
+def editProfile(request):
+    if request.method == 'POST':
+        form = BusinessProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Service Added Successfully')
+            return redirect('getProfileDash')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error adding service')
+            return render(request, 'adminbusiness/base/post-profile.html')
+    else:
+        form = BusinessProfileForm()
+
+    context={
+        'form':form
+    }
+
+    return render(request, 'adminbusiness/base/post-profile.html', context)
+
+def updateProfile(request, profile_id):
+    instance = Business_Profile.objects.get(id=profile_id)
+    if request.method == "POST":
+        form = BusinessProfileForm(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/b/getProfile')
+    context = {
+        'form': BusinessProfileForm(instance=instance),
+    }
+    return render(request, 'adminbusiness/base/update-profile.html', context)
 
