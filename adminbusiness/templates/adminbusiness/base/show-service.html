@@ -25,20 +25,13 @@
                 <table class="table table-responsive table-white" >
                     <tr class="btn-danger">
                         <th>#</th>
-                        <th>Icon Name</th>
-                        <th>Icon Color</th>
                         <th>Service Name</th>
-                        <th>Status</th>
                         <th>Description</th>
-                        <th>Action</th>
                     </tr>
-                    {% for s in service %}
+                    {% for s in business_service %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ s.icon_text }}</td>
-                        <td>{{ s.color }}</td>
-                        <td>{{ s.name }}</td>
-                        <td>{{ s.is_active }}</td>
+                        <td>{{ s.service }}</td>
                         <td>{{ s.description }}</td>
 
                        <td><a href="updateService/{{ s.id }}"

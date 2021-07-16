@@ -54,24 +54,14 @@ Service
                 <form class="form" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="icon_text">icon_text</label>
-                        <input type="text" class="form-control" id="icon_text" name="icon_text"
-                            aria-describedby="icon_text">
-
-                        <label for="color">color</label>
-                        <input type="text" class="form-control" id="color" name="color" aria-describedby="color">
-
-                        <label for="name">name</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
-
-
+                        <label for="service_text">Service name</label>
+                        <select class="form-control" id="service_text" name="service_text" >
+                            
+                        </select>
 
                         <label for="description">Description</label>
                         <textarea type="text" class="form-control" id="description" name="description"
                             aria-describedby="description"></textarea>
-                        <label for="is_active">is_active</label>
-                        <input type="checkbox" class="form-check-input" id="is_active" name="is_active"
-                            aria-describedby="is_active" checked>
                     </div>
                     <input type="submit" value="Submit">
                 </form>
