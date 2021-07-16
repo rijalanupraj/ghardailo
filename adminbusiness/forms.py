@@ -34,7 +34,7 @@ class WorkerForm(ModelForm):
 class BusinessServicesForm(ModelForm):
     class Meta:
         model = Business_Service
-        fields = '__all__'
+        fields = ['service', 'description']
 
 class CustomerForm(ModelForm):
     class Meta:
