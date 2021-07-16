@@ -60,7 +60,7 @@ def getService(request):
 
 def postService(request):
     if request.method == 'POST':
-        form = ServicesForm(request.POST, request.FILES)
+        form = BusinessServicesForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Service Added Successfully')
@@ -69,7 +69,7 @@ def postService(request):
             messages.add_message(request, messages.ERROR, 'Error adding service')
             return render(request, 'adminbusiness/base/post-service.html')
     else:
-        form = ServicesForm()
+        form = BusinessServicesForm()
 
     context={
         'form':form
@@ -78,18 +78,19 @@ def postService(request):
     return render(request, 'adminbusiness/base/post-service.html', context)
 
 def updateService(request, service_id):
-    instance = Services.objects.get(id=service_id)
+    instance = Business_Service.objects.get(id=service_id)
     if request.method == "POST":
-        form = ServicesForm(request.POST, request.FILES, instance=instance)
+        form = BusinessServicesForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
             return redirect('/b/getService')
     context = {
-        'form': ServicesForm(instance=instance),
+        'form': BusinessServicesForm(instance=instance),
     }
     return render(request, 'adminbusiness/base/update-service.html', context)
 
 def deleteService(request, service_id):
-    service = Services.objects.get(id=service_id)
+    service = Business_Service.objects.get(id=service_id)
     service.delete()
     return redirect('getServiceDash')
+
