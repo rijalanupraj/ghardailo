@@ -20,6 +20,12 @@ class BusinessForm(ModelForm):
         fields = "__all__"
         exclude = ['user','slug',]
 
+class BusinessProfileForm(ModelForm):
+    class Meta:
+        model = Business_Profile
+        fields = "__all__"
+        exclude = ['business']
+
 class GalleryForm(ModelForm):
     class Meta:
         model = Gallery
