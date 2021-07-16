@@ -11,6 +11,13 @@ urlpatterns = [
     path('updateService/<int:service_id>', views.updateService, name="updateServiceDash"),
     path('deleteService/<int:service_id>', views.deleteService, name="deleteServiceDash"),
 
+    #for profile
+    path('getProfile',views.getProfile, name="getProfileDash"),
+    path('editProfile',views.editProfile, name="editProfileDash"),
+    path('updateProfile/<int:profile_id>', views.updateProfile, name="updateProfileDash"),
+
+
+
 
  
 ]
