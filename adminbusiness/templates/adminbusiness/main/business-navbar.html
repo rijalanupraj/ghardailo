@@ -1,7 +1,7 @@
 {% load static %}
 
 {% url 'businessDash' as businessDash_url %}
-{% url 'editProfileBus' as editProfileBus_url %}
+{% url 'editProfileDash' as editProfileDash_url %}
 {% url 'getServiceDash' as getService_url %}
 <header>
   <!-- Sidebar -->
@@ -23,7 +23,7 @@
             ><span>Dashboard</span>
         </a>
         <a
-           href="{{editProfileBus_url}}"
+           href="{{editProfileDash_url}}"
            class="list-group-item list-group-item-action py-2 ripple 
            {% if request.path == editProfileBus_url %}active{% endif %}"
            aria-current="true"
