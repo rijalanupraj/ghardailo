@@ -1,0 +1,30 @@
+#Change{
+  color: black;
+  border-radius: 5px;
+  position:relative;
+  left: 5px;
+  top:10px;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+  height:30px;
+  color: black;
+  background-color: white;
+}
+
+/* Hover effect */
+
+#Change:hover{
+
+  background-color: blue;
+  color: white;
+    
+}
+
+#profileimage{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid black;
+  overflow: hidden;
+ }
+  

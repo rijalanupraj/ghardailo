@@ -1,0 +1,64 @@
+{% extends 'base/layout.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %}
+Homepage
+{% endblock %}
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'customer/css/customerprofile.css' %}">
+
+{% endblock %}
+{% block main_content %}
+
+
+
+
+
+  
+
+<div  class="container" class="col-md-6 m-auto"> 
+  <h2 class="text-center">Edit your Information </h2>
+  <div class="profile" >
+    <span><img src="" alt="" class="my-5" id="profileimage"> 
+     
+    <input type='file' id="getFile" style="display:none"> 
+    <button id="Change" onclick="document.getElementById('getFile').click()"><i class="fas fa-camera "></i> Change</button></span>
+ 
+    
+    <div class="col-md-6 m-auto">
+    <ul class="nav nav-pills ">
+      <li class="nav-item">
+        <a class="nav-link active" href="#home" role="tab" data-toggle="tab">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact" role="tab" data-toggle="tab">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#profile" role="tab" data-toggle="tab">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" role="tab" data-toggle="tab">Disabled</a>
+      </li>
+    </ul>
+     <br>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ cu_form | bootstrap_horizontal }}
+          <button type="submit" class="btn btn-primary"> Update Information </button>
+
+          
+          
+      </div>
+      <div role="tabpanel" class="tab-pane" id="contact"> this is contact page</div>
+      <div role="tabpanel" class="tab-pane" id="profile"> this is profile page</div>
+      <div role="tabpanel" class="tab-pane" id="about"></div>
+
+
+    </div>
+</div>  
+
+
+{% endblock %}

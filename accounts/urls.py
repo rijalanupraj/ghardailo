@@ -4,7 +4,8 @@ from .views import(
     CustomerRegistartionCreateView,
     CustomerLoginView,
     BusinessRegistartionCreateView,
-    BusinessLoginView
+    BusinessLoginView,
+   
 )
 from django.contrib.auth import views as auth_views
 
@@ -23,6 +24,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('activate/<uidb64>/<token>/',
          views.activate_account, name='email-activate'),
-
+    
 
 ]

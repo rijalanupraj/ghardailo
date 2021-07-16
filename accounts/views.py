@@ -1,11 +1,14 @@
 # External Import
 from django.shortcuts import render, redirect, HttpResponse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 from django.db import transaction
 from django.contrib.auth import login
 from django.contrib import messages
+from customer.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django import forms
 
 # For Email Verification
 from django.utils.http import urlsafe_base64_decode
@@ -106,3 +109,5 @@ def activate_account(request, uidb64, token, backend='accounts.backends.EmailBac
         return redirect('customer-home')
     else:
         return HttpResponse('Activation link is invalid!')
+
+
