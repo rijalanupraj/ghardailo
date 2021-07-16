@@ -27,8 +27,9 @@
                         <th>#</th>
                         <th>Service Name</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
-                    {% for s in business_service %}
+                    {% for s in businessService %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ s.service }}</td>
