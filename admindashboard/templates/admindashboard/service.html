@@ -2,7 +2,7 @@
 {% load static %}
 {% load bootstrap %}
 {% block title %}
-    Admin Dashboard
+    Admin Service
 {% endblock %}
 {% block additional_head %}
     <link href="{% static 'css/admin_service.css' %}" rel="stylesheet" type="text/css" />
@@ -32,7 +32,7 @@
                 </div>
                 <div class="text-center search_btn">
                     <button class="btn me-1 mb-2" type="submit">Search</button>
-                    <a href="/a/service" class="btn" type="submit">Show All</a>
+                    <a href="/a/service" class="btn mb-2" type="submit">Show All</a>
                 </div>
             </form>  
             <div class="dropdown-divider"></div>
@@ -93,7 +93,7 @@
 {% endblock %}
 
 {% block additional_body %}
-    <script src="{% static 'js/admin_service.js' %}"></script>
+    <script src="{% static 'js/numbering.js' %}"></script>
 {% endblock %}
 
 

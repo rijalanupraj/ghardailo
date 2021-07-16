@@ -91,8 +91,18 @@ def service_update(request, service_id):
 
 # <<====================Business====================>>
 def business(request):
-    dictionary = {'business': 'selected'}
+    business = Business.objects.all()
+    business_filter = BusinessFilter(request.GET, queryset=business)
+    business_final = business_filter.qs
+
+    dictionary = {'businesses':business_final,  'business_filter': business_filter, 'business': 'selected'}
     return render(request, 'admindashboard/business.html', dictionary)
+
+def business_view(request, business_id):
+    particular_business = Business.objects.get(id=business_id)
+
+    dictionary = {'business': 'selected'}
+    return render(request, 'admindashboard/business_view.html', dictionary)
 
 # <<====================Customer====================>>
 def customer(request):

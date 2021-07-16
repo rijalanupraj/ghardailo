@@ -18,10 +18,10 @@ PROVINCE_CHOICES = (
 class Business(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    logo = models.ImageField(blank=True, null=True)
-    cover_picture = models.ImageField(blank=True, null=True)
+    logo = models.ImageField(blank=True, null=True, upload_to="images/")
+    cover_picture = models.ImageField(blank=True, null=True, upload_to="images/")
     district = models.CharField(max_length=100)
-    province = models.CharField(max_length=100)
+    province = models.CharField(max_length=100, choices=PROVINCE_CHOICES, null=True)
     is_solo = models.BooleanField(default=False)
     street_address = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)

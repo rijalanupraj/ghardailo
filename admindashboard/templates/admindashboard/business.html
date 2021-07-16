@@ -1,16 +1,58 @@
 {% extends 'base/admin_layout.html' %}
 {% load static %}
 {% block title %}
-    Admin Dashboard
+    Admin Business
 {% endblock %}
 {% block additional_head %}
+    <link href="{% static 'css/admin_business.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
-{% block main_content %}
-
+{% block main_content %}     
+<div class="container-fluid search_box mt-3">
+    <form class="form" method="GET">
+        {{business_filter.form.name}}
+        <button class="btn" type="submit"><span class="fas fa-search"></span></button>
+    </form>
+</div>
+<div class="table-responsive mt-3 me-2">
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">User</th>
+                <th scope="col">Name</th>
+                <th scope="col">Logo</th>
+                <th scope="col">District</th>
+                <th scope="col">Province</th>
+                <th scope="col">Phone</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in businesses %}
+                <tr>
+                    <th scope="row" class="Numbering"></th>
+                    <td>{{i.user}}</td>
+                    <td>{{i.name}}</td>
+                    <td><img class="img-fluid rounded-circle" src="{{i.logo.url}}" /></td>
+                    <td>{{i.district}}</td>
+                    <td>{{i.province}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>
+                        <a href="/a/viewbusiness/{{i.id}}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> 
 {% endblock %}
 
 {% block additional_body %}
+<script>
+    document.getElementsByTagName("input")[0].placeholder="Search Business"
+</script>
+<script src="{% static 'js/numbering.js' %}"></script>
 {% endblock %}
 
 

@@ -21,7 +21,6 @@ class ServicesFilter(django_filters.FilterSet):
 
 class BusinessFilter(django_filters.FilterSet):
     name = CharFilter(field_name='name', lookup_expr='icontains')
-    province = CharFilter(field_name='province', lookup_expr='icontains')
     class Meta:
         model = Business
         fields = ""
