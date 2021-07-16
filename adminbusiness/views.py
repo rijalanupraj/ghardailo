@@ -50,10 +50,10 @@ def editProfile(request):
 
 
 def getService(request):
-    service = Services.objects.all()
+    businessService = Business_Service.objects.all()
 
     context = {
-        'service': service,
+        'businessService': businessService,
 
     }
     return render(request, 'adminbusiness/base/show-service.html', context)
