@@ -2,6 +2,7 @@ nav_height = document.getElementById("Header").offsetHeight
 document.getElementsByClassName('sidebar_nav')[0].style.top = nav_height+'px' 
 
 //Toggling offcanvas opening button
+document.getElementsByTagName("main")[0].style.paddingInlineEnd = "8px"
 offcanvas_check = false
 function hideOp(){
     document.getElementsByTagName("main")[0].style.paddingInlineStart = (document.getElementsByClassName('sidebar_nav')[0].clientWidth+8) + "px"

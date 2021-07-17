@@ -1,0 +1,54 @@
+.profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile .cover_pic {    
+    height: 350px;
+    overflow: hidden;
+    border-radius: 5px;  
+    box-shadow: rgb(0, 0, 0, 50%) 0px 0px 10px;
+}
+.profile .logo {    
+    position: fixed;
+    height: 200px;
+    width: 200px;
+    z-index: 1000; 
+}
+.profile .logo img {   
+    box-shadow: rgb(0, 0, 0, 100%) 0px 0px 10px;
+    border: 5px solid white;
+    height: 200px;
+    width: 200px;
+}
+
+@media screen and (max-width: 1150px) {
+    .profile .cover_pic {    
+        height: 175px;
+    }
+    .profile .logo {    
+        height: 100px;
+        width: 100px;
+    }
+    .profile .logo img {  
+        height: 100px;
+        width: 100px;
+    }
+@media screen and (max-width: 690px) {
+   
+}
+@media screen and (max-width: 500px) {
+    .profile .cover_pic {    
+        height: 87px;
+    }
+    .profile .logo {    
+        height: 50px;
+        width: 50px;
+    }
+    .profile .logo img {  
+        height: 50px;
+        width: 50px;
+    }   
+}

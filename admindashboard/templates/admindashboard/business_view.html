@@ -1,14 +1,22 @@
 {% extends 'base/admin_layout.html' %}
 {% load static %}
 {% block title %}
-    Admin Business
+    Admin Business View
 {% endblock %}
 {% block additional_head %}
+<link href="{% static 'css/admin_business_view.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block main_content %}    
+<div class="profile mt-3"> 
+    <div  class="cover_pic bg-info">
+        <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
+    </div>  
+    <div class="logo">       
+        <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
+    </div>
+</div>
 {% endblock %}
-
 {% block additional_body %}
 {% endblock %}
 

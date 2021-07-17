@@ -59,7 +59,14 @@ def service(request):
         else:
             messages.add_message(request, messages.ERROR, 'Failed to add service, please try again!!!')
             return render(request, 'admindashboard/servie.html', {'form':form, 'service_filter':service_filter}) 
-    dictionary = {'services':service_final, 'service_filter':service_filter, 'form': form, 'BTM':'Add', 'service': 'selected'}
+    dictionary = {
+        'services':service_final, 
+        'service_filter':service_filter, 
+        'form': form, 
+        'BTM':'Add', 
+        'service': 'selected'
+    }
+
     return render(request, 'admindashboard/service.html', dictionary)
 
 def service_delete(request, service_id):
@@ -95,19 +102,37 @@ def business(request):
     business_filter = BusinessFilter(request.GET, queryset=business)
     business_final = business_filter.qs
 
-    dictionary = {'businesses':business_final,  'business_filter': business_filter, 'business': 'selected'}
+    dictionary = {
+        'businesses':business_final,
+        'business_filter': business_filter, 
+        'business': 'selected'
+    }
     return render(request, 'admindashboard/business.html', dictionary)
 
 def business_view(request, business_id):
     particular_business = Business.objects.get(id=business_id)
 
-    dictionary = {'business': 'selected'}
+    dictionary = {
+        'pb':particular_business,
+        'business': 'selected'
+    }
     return render(request, 'admindashboard/business_view.html', dictionary)
 
 # <<====================Customer====================>>
 def customer(request):
-    dictionary = {'customer': 'selected'}
+    customer = Customer.objects.all()
+    customer_filter = CustomerFilter(request.GET, queryset=customer)
+    customer_final = customer_filter.qs
+
+    dictionary = {'customers':customer_final, 'customer_filter':customer_filter, 'customer': 'selected'}
     return render(request, 'admindashboard/customer.html', dictionary)
+
+def customer_view(request, customer_id):
+    particular_customer = Customer.objects.get(id=customer_id)
+
+    dictionary = { 'customer': 'selected'}
+    return render(request, 'admindashboard/customer_view.html', dictionary)
+
 
 # <<====================Activities====================>>
 def activities(request):

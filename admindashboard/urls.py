@@ -16,6 +16,7 @@ urlpatterns = [
 
     # <<====================Customer====================>>
     path('customer', views.customer),
+    path('viewcustomer/<int:customer_id>', views.customer_view),
 
     # <<====================Activities====================>>
     path('activities', views.activities),
