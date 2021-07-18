@@ -9,15 +9,29 @@
 
 {% block main_content %}    
 <div class="profile mt-3"> 
-    <div  class="cover_pic bg-info">
+    <div  class="cover_pic">
         <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
     </div>  
     <div class="logo">       
         <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
     </div>
 </div>
+<div class="navigate m-auto mt-2">
+    <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-images me-2"></span>Gallery</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-user-secret me-2"></span>Workers</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-hands-helping me-2"></span>Hires</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(4)"><span class="fas fa-hand-pointer me-2"></span>WorkerAssignment</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(5)"><span class="fas fa-bell me-2"></span>Notifications</button>
+</div>
 {% endblock %}
 {% block additional_body %}
+<script src="{% static 'JS/admin_business_view.js' %}"></script>
 {% endblock %}
 
 

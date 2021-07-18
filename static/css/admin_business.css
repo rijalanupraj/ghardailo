@@ -39,6 +39,7 @@
     color: white;
 }
 .table-responsive {
+    font-family: cursive;
     border-radius: 5px;
     background-image: linear-gradient(#00cdac, #02aab0 );
 }
