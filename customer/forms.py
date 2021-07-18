@@ -16,7 +16,7 @@ User = get_user_model()
 class CustomerUpdateForm(forms.ModelForm):
     class Meta:
      model=Customer
-     fields= ['name','phone','province','city','street_address']
+     fields= ['name','phone','province','city','street_address','image']
 
  
 

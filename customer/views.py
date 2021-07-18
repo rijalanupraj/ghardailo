@@ -27,10 +27,12 @@ def profileupdate(request):
       cu_form = CustomerUpdateForm
       if request.method== 'POST':
 
-         cu_form = CustomerUpdateForm(request.POST,instance=request.user.customer)
+         cu_form = CustomerUpdateForm(request.POST,request.FILES,instance=request.user.customer)
 
          if cu_form.is_valid():
               cu_form.save()
+              messages.success(request, f' Your Account Has Been Successfully Updated')
+              return redirect('customerprofile')
 
       else:
           
@@ -39,7 +41,7 @@ def profileupdate(request):
       context= {
             'cu_form': cu_form
       }
-      print(request.user.customer.name)
+      
 
       return render(request, 'customer/customerprofile.html', context)
 

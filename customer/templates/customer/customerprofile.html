@@ -15,21 +15,13 @@ Homepage
 
 
 
-  
-
-<div  class="container" class="col-md-6 m-auto"> 
-  <h2 class="text-center">Edit your Information </h2>
-  <div class="profile" >
-    <span><img src="" alt="" class="my-5" id="profileimage"> 
-     
-    <input type='file' id="getFile" style="display:none"> 
-    <button id="Change" onclick="document.getElementById('getFile').click()"><i class="fas fa-camera "></i> Change</button></span>
+  <!-- <input type='file' id="getFile" style="display:none"> 
+    <button id="Change" onclick="document.getElementById('getFile').click()"><i class="fas fa-camera "></i> Change</button></span> -->
  
-    
-    <div class="col-md-6 m-auto">
-    <ul class="nav nav-pills ">
+<div class="container" >
+    <ul class="nav nav-pills justify-content-center">
       <li class="nav-item">
-        <a class="nav-link active" href="#home" role="tab" data-toggle="tab">Home</a>
+        <a class="nav-link active" href="#home" role="tab" data-toggle="tab"> My Profile </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#contact" role="tab" data-toggle="tab">About Us</a>
@@ -41,13 +33,52 @@ Homepage
         <a class="nav-link disabled" href="#" role="tab" data-toggle="tab">Disabled</a>
       </li>
     </ul>
+
      <br>
+     
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="home">
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ cu_form | bootstrap_horizontal }}
-          <button type="submit" class="btn btn-primary"> Update Information </button>
+          <div class="row">
+             <div class="col">
+              <div class="card" style="width: 18rem;">
+                <img class="card-img-top" class="rounded-circle" src="{{ request.user.customer.image.url }}" id="profileimage" >
+                <div class="card-body">
+                  <h3 class="card-title"> About Me </h3>
+                  <p class="card-text">
+                    <h5> <i  class="fas fa-user " ></i> {{request.user.username}}</h5>
+                    <h5> <i class="fas fa-phone-alt"></i> {{request.user.customer.phone}}</h5>
+                    <h5> <i class="fas fa-envelope"></i> {{request.user.email}}</h5>
+                    <h5> <i class="fas fa-map-marker-alt"></i></i> {{request.user.customer.city}}</h5>
+                    
+                    
+                  </p>
+                  <a href="#" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                </div>
+              </div>
+                
+             </div>
+            
+             <div class="col-sm">
+              
+              {{ cu_form | bootstrap_horizontal }}
+             
+              <button type="submit" class="btn btn-primary"> Update Information </button>
+              
+
+             </div>
+            
+            
+          
+     
+          <!-- <input type='file' id="getFile" style="display:none"> 
+            <button id="Change" onclick="document.getElementById('getFile').click()"><i class="fas fa-camera "></i> Change</button></span> -->
+          
+         
+        </div>
+
+       </form>
 
           
           
