@@ -16,7 +16,7 @@
         <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
     </div>
 </div>
-<div class="navigate m-auto mt-2">
+<div class="navigate m-auto mt-5">
     <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
     <div class="Line"></div>
     <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-images me-2"></span>Gallery</button>
@@ -28,6 +28,46 @@
     <button type="button" class="btn find" onclick="navigate(4)"><span class="fas fa-hand-pointer me-2"></span>WorkerAssignment</button>
     <div class="Line"></div>
     <button type="button" class="btn find" onclick="navigate(5)"><span class="fas fa-bell me-2"></span>Notifications</button>
+</div>
+<div class="container-fluid details ms-auto mt-3 p-3">
+    <div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">User:</label> 
+            <p>{{pb.user.username}}</p>               
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Email:</label>
+            <p>{{pb.user.email}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Name:</label>    
+            <p>{{pb.name}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Province:</label>
+            <p>{{pb.province}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">District:</label>    
+            <p>{{pb.district}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Street:</label>
+            <p>{{pb.street_address}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">            
+            <label class="form-label me-1">Solo:</label>    
+            <p>{{pb.is_solo}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Contact:</label>
+            <p>{{pb.phone}}</p>
+        </div>
+    </div>
+    <div class="description mt-2 p-2">
+        <label class="form-label me-1">Description</label>
+        <p>{{pb.description}}</p>
+    </div>
 </div>
 {% endblock %}
 {% block additional_body %}
