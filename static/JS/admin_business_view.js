@@ -1,12 +1,19 @@
 var nav = document.getElementsByClassName("find");
+var navdiv = document.getElementsByClassName("navdiv");
 
 nav[0].style.color="green";
 nav[0].style.backgroundColor="white";
 nav[0].style.borderRadius="30px";
 nav[0].style.boxShadow="rgb(0, 0, 0, 50%) 2px 2px 10px";
 
-var cnp = 0;
+navdiv[1].style.display="none";
+navdiv[2].style.display="none";
+navdiv[3].style.display="none";
+navdiv[4].style.display="none";
+navdiv[5].style.display="none";
+navdiv[6].style.display="none";
 
+var cnp = 0;
 function navigate(nnp) {
     nav[cnp].style.color="white";
     nav[cnp].style.backgroundColor="transparent";
@@ -18,5 +25,29 @@ function navigate(nnp) {
     nav[nnp].style.borderRadius="30px";
     nav[nnp].style.boxShadow="rgb(0, 0, 0, 50%) 2px 2px 10px";
 
+    navdiv[cnp].style.display="none";
+    navdiv[nnp].style.display="block";
+
     cnp=nnp
+}
+
+var service_number = document.getElementsByClassName("Numbering1").length
+for (i=0; i<service_number; i++) {
+    document.getElementsByClassName("Numbering1")[i].innerHTML = i + 1
+}
+var worker_number = document.getElementsByClassName("Numbering2").length
+for (i=0; i<worker_number; i++) {
+    document.getElementsByClassName("Numbering2")[i].innerHTML = i + 1
+}
+var hire_number = document.getElementsByClassName("Numbering3").length
+for (i=0; i<hire_number; i++) {
+    document.getElementsByClassName("Numbering3")[i].innerHTML = i + 1
+}
+var notification_number = document.getElementsByClassName("Numbering4").length
+for (i=0; i<notification_number; i++) {
+    document.getElementsByClassName("Numbering4")[i].innerHTML = i + 1
+}
+var review_number = document.getElementsByClassName("Numbering5").length
+for (i=0; i<review_number; i++) {
+    document.getElementsByClassName("Numbering5")[i].innerHTML = i + 1
 }

@@ -8,7 +8,6 @@ from worker.models import *
 from customer.models import *
 from service.models import *
 from hiring.models import *
-from wcb.models import *
 from review.models import *
 from notification.models import *
 
@@ -111,9 +110,21 @@ def business(request):
 
 def business_view(request, business_id):
     particular_business = Business.objects.get(id=business_id)
+    business_services = Business_Service.objects.all().filter(business=particular_business)
+    business_gallery = Gallery.objects.all().filter(business=particular_business)
+    business_workers = Worker.objects.all().filter(business=particular_business)
+    business_hires = Hiring.objects.all().filter(business=particular_business)
+    business_notifications = Notification.objects.all().filter(business=particular_business)    
+    business_reviews = Review.objects.all().filter(business=particular_business)
 
     dictionary = {
         'pb':particular_business,
+        'services':business_services,
+        'gallery': business_gallery,
+        'workers': business_workers,
+        'hires': business_hires,
+        'notifications': business_notifications,
+        'reviews': business_reviews,
         'business': 'selected'
     }
     return render(request, 'admindashboard/business_view.html', dictionary)

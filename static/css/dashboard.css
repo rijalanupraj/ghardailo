@@ -20,15 +20,18 @@
     border-radius: 50%;
 }
 .Bar .circle:hover .box {
-    transform: translate(8%, -112%) scale(1.08);
+    transform: translate(8%, -109%) scale(1.08);
 }
 .Bar .circle .box {
-    transform: translate(8%,-112%);
+    transform: translate(8%,-109%);
     background-color: white;
     height: 85%;
     width: 85%;
     border-radius: 50%;
     transition: all 0.5s;
+}
+.bar {
+    transform: rotate(-135deg);
 }
 .Bar .circle .box span {
     transform: translate(-45%, -50%);

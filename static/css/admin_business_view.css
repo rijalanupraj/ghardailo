@@ -62,8 +62,9 @@
    box-shadow: none; 
 }
 .details {  
+    font-family: cursive;
     border-radius: 5px;
-    box-shadow: green 0px 0px 10px;
+    box-shadow: #5e2ced 0px 0px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,6 +103,30 @@
 .description label {
     text-decoration: underline;
 }
+.reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive{
+    border-radius: 5px;
+    font-size: 25px;
+    font-family: cursive;
+    box-shadow: #5e2ced 0px 0px 10px;
+    background-image: linear-gradient(#36d1dc , #5b86e5 );
+}
+.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.gallery img {
+    height: 250px;
+}
+.gallery img:hover {
+    transform: scale(1.2);
+    box-shadow: #5e2ced 0px 0px 10px;
+    transition: 0.8s;
+}
+.workers img{
+    height: 150px;
+    width: 150px;    
+}
 @media screen and (max-width: 1150px) {
     .profile {
         margin-bottom: 10px;
@@ -116,6 +141,13 @@
     .profile .logo img {  
         height: 100px;
         width: 100px;
+    }
+    .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive{
+        font-size: 15px;
+    }
+    .workers img{
+        height: 50px;
+        width: 50px;    
     }
 }
 @media screen and (max-width: 500px) {
@@ -134,7 +166,7 @@
         width: 50px;
     }   
 }
-@media screen and (max-width: 1220px) {
+@media screen and (max-width: 1270px) {
     .navigate {
         border-radius: 22px;
         padding-left: 5px;
@@ -159,8 +191,11 @@
     .details p{    
         font-size: 15px; 
     }
+    .gallery img {
+        height: 150px;
+    }
 }
-@media screen and (max-width: 515px) {
+@media screen and (max-width: 600px) {
     .navigate {    
         height: 135px;
         padding-left: 0px;
@@ -169,6 +204,15 @@
 }
 @media screen and (max-width: 470px) {
     .navigate {    
-        height: 180px;
+        height: 200px;
+    }  
+    .details label{    
+        font-size: 10px; 
+    }
+    .details p{    
+        font-size: 10px; 
+    }
+    .gallery img {
+        height: 100px;
     }
 }

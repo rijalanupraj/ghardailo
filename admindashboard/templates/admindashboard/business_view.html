@@ -19,17 +19,19 @@
 <div class="navigate m-auto mt-5">
     <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-images me-2"></span>Gallery</button>
+    <button type="button" class="btn find" onclick="navigate(1)"><span class="fab fa-servicestack me-2"></span>Services</button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-user-secret me-2"></span>Workers</button>
+    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-images me-2"></span>Gallery</button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-hands-helping me-2"></span>Hires</button>
+    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-user-secret me-2"></span>Workers</button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(4)"><span class="fas fa-hand-pointer me-2"></span>WorkerAssignment</button>
+    <button type="button" class="btn find" onclick="navigate(4)"><span class="fas fa-hands-helping me-2"></span>Hires</button>
     <div class="Line"></div>
     <button type="button" class="btn find" onclick="navigate(5)"><span class="fas fa-bell me-2"></span>Notifications</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(6)"><span class="fas fa-search-plus me-2"></span>Reviews</button>
 </div>
-<div class="container-fluid details ms-auto mt-3 p-3">
+<div class="container-fluid details navdiv ms-auto mt-3 p-3">
     <div>
         <div class="me-3 mb-2 pe-2 ps-2">
             <label class="form-label me-1">User:</label> 
@@ -68,6 +70,143 @@
         <label class="form-label me-1">Description</label>
         <p>{{pb.description}}</p>
     </div>
+</div>
+<div class="services navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Logo</th>
+                    <th scope="col">Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in services %}
+                    <tr>
+                        <th scope="row" class="Numbering1"></th>
+                        <td><span class="{{i.service.icon_text}}"></span></td>
+                        <td>{{i.service.name}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+<div class="gallery navdiv mt-3 p-3">
+    {% for i in gallery %}    
+        <img class="img-fluid me-2 mb-3" src="{{i.picture.url}}"/>
+    {% endfor %}
+</div>
+<div class="workers navdiv mt-3 p-3">    
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in workers %}
+                    <tr>
+                        <th scope="row" class="Numbering2"></th>
+                        <td>{{i.name}}</td>
+                        <td><img class="img-fluid rounded-circle" src="{{i.picture.url}}" /></td>
+                        <td>{{i.phone}}</td>
+                        <td>{{i.is_active}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+<div class="hires navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer Phone</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">DateTime</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in hires %}
+                    <tr>
+                        <th scope="row" class="Numbering3"></th>
+                        <td>{{i.customer.name}}</td>
+                        <td>{{i.customer.phone}}</td>
+                        <td><span class="{{i.service.icon_text}}"></span>  {{i.service.name}}</td>
+                        <td>{{i.date_time}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+<div class="notifications navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer Phone</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Read</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in notifications %}
+                    <tr>
+                        <th scope="row" class="Numbering4"></th>
+                        <td>{{i.customer.name}}</td>
+                        <td>{{i.customer.phone}}</td>
+                        <td>{{i.message}}</td>
+                        <td>{{i.read}}</td>
+                        <td>{{i.time}}</td>
+                        <td>{{i.date}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+<div class="reviews navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer Phone</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">DateTime</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in reviews %}
+                    <tr>
+                        <th scope="row" class="Numbering5"></th>
+                        <td>{{i.customer.name}}</td>
+                        <td>{{i.customer.phone}}</td>
+                        <td>{{i.comment}}</td>
+                        <td>{{i.rating}}</td>
+                        <td>{{i.date_time}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
 </div>
 {% endblock %}
 {% block additional_body %}

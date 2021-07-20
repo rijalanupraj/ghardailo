@@ -8,7 +8,6 @@ from worker.models import *
 from customer.models import *
 from service.models import *
 from hiring.models import *
-from wcb.models import *
 from review.models import *
 from notification.models import *
 
@@ -57,13 +56,6 @@ class HiringFilter(django_filters.FilterSet):
     customer = CharFilter(field_name='customer', lookup_expr='exact', queryset=Customer.objects.all())
     class Meta:
         model = Hiring
-        fields = ""
-
-class WCBFilter(django_filters.FilterSet):
-    hiring = CharFilter(field_name='hiring', lookup_expr='exact', queryset=Hiring.objects.all())
-    worker = CharFilter(field_name='worker', lookup_expr='exact', queryset=Worker.objects.all())
-    class Meta:
-        model = WCB
         fields = ""
 
 class ReviewFilter(django_filters.FilterSet):

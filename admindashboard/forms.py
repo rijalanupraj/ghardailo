@@ -5,7 +5,6 @@ from worker.models import *
 from customer.models import *
 from service.models import *
 from hiring.models import *
-from wcb.models import *
 from review.models import *
 from notification.models import *
 
@@ -44,11 +43,6 @@ class CustomerForm(ModelForm):
 class HiringForm(ModelForm):
     class Meta:
         model = Services
-        fields = '__all__'
-
-class WCBForm(ModelForm):
-    class Meta:
-        model = WCB
         fields = '__all__'
 
 class ReviewForm(ModelForm):
