@@ -105,10 +105,12 @@
 }
 .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive{
     border-radius: 5px;
-    font-size: 25px;
+    font-size: 20px;
     font-family: cursive;
-    box-shadow: #5e2ced 0px 0px 10px;
-    background-image: linear-gradient(#36d1dc , #5b86e5 );
+    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 5px;
+}
+.reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead, .services .table-responsive thead, .workers .table-responsive thead{    
+    background-image: linear-gradient(to right, #36d1dc , #5b86e5 );
 }
 .gallery {
     display: flex;
@@ -124,8 +126,8 @@
     transition: 0.8s;
 }
 .workers img{
-    height: 150px;
-    width: 150px;    
+    height: 100px;
+    width: 100px;    
 }
 @media screen and (max-width: 1150px) {
     .profile {

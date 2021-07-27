@@ -1,22 +1,24 @@
 .ProgressBars {
-    display: grid;
-    grid-template-columns: 300px 300px 300px 300px;
-    grid-gap: 25px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 .ProgressBars .Bar {
-    height: 350px;
     border-radius: 5px;
+    padding: 16px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 5px;
 }
 .ProgressBars .Bar .circle{
     position: relative;
-    height: 250px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
 }
 .Bar .circle:hover .box {
@@ -38,37 +40,26 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    font-size:  75px;
+    font-size:  45px;
     font-weight: 400;
     font-family: cursive;
-    background: linear-gradient(#fc1f3c, #652efc, #2dfa7c);
+    background: linear-gradient(to left,#fc1f3c, #652efc, #2dfa7c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .ProgressBars .Bar .text {    
-    font-size: 45px;
+    font-size:  30px;
     font-weight: 400;
+    padding-right: 16px;
     font-family: cursive;
-    background: linear-gradient(#fc1f3c, #652efc, #2dfa7c);
+    background: linear-gradient(to left, #fc1f3c, #652efc, #2dfa7c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 @media screen and (max-width: 1475px) {
     .ProgressBars {
         grid-template-columns: 200px 200px 200px;
-    }    
-    .ProgressBars .Bar {
-        height: 200px;
-    }
-    .ProgressBars .Bar .circle{
-        height: 150px;
-        width: 150px;
-    }.Bar .circle .box span {
-        font-size:  45px;
-    }
-    .ProgressBars .Bar .text {    
-        font-size:  30px;
-    }
+    } 
 }
 @media screen and (max-width: 880px) {
     .ProgressBars {
@@ -78,5 +69,20 @@
 @media screen and (max-width: 590px) {
     .ProgressBars {
         grid-template-columns: 150px;
-    }    
+    }   
+    .ProgressBars .Bar .circle{
+        height: 50px;
+        width: 50px;
+    }.Bar .circle .box span {
+        font-size:  20px;
+    }
+    .ProgressBars .Bar .text {    
+        font-size:  15px;
+    } 
+    .Bar .circle:hover .box {
+        transform: translate(5%, -112%) scale(1.08);
+    }
+    .Bar .circle .box {
+        transform: translate(5%,-112%);
+    }
 }

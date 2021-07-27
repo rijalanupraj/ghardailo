@@ -10,67 +10,67 @@
 {% block main_content %}  
 <div class="container-fluid pt-3 ProgressBars" id="Items">
   <div class="Bar">
+    <div class="text service"><span class="fas fa-tools me-2"></span>Total Services</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{service}}</span></div>
+      <div class="box"><span id="bs">{{service}}</span></div>
     </div>
-    <div class="text">Services</div>
   </div>  
   <div class="Bar">
+    <div class="text"><span class="fas fa-users me-2"></span>Total Users</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{user}}</span></div>
+      <div class="box"><span id="bu">{{user}}</span></div>
     </div>
-    <div class="text">Users</div>
+  </div>      
+  <div class="Bar">
+    <div class="text"><span class="fas fa-user-friends me-2"></span>Total Customer</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bc">{{customer}}</span></div>
+    </div>
   </div>  
   <div class="Bar">
+    <div class="text"><span class="fas fa-user-tie me-2"></span>Total Business</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{business}}</span></div>
+      <div class="box"><span id="bb">{{business}}</span></div>
     </div>
-    <div class="text">Business</div>
   </div>   
   <div class="Bar">
+    <div class="text"><span class="fas fa-user-secret me-2"></span>Total Worker</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{worker}}</span></div>
+      <div class="box"><span id="bw">{{worker}}</span></div>
     </div>
-    <div class="text">Worker</div>
   </div>    
   <div class="Bar">
+    <div class="text"><span class="fas fa-images me-2"></span>Total Pictures</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{gallery}}</span></div>
+      <div class="box"><span id="bg">{{gallery}}</span></div>
     </div>
-    <div class="text">Gallery</div>
-  </div>       
+  </div>   
   <div class="Bar">
+    <div class="text"><span class="fas fa-hands-helping me-2"></span>Total Hires</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{customer}}</span></div>
+      <div class="box"><span id="bh">{{hiring}}</span></div>
     </div>
-    <div class="text">Customer</div>
   </div>  
   <div class="Bar">
+    <div class="text"><span class="fas fa-search-plus me-2"></span>Total Reviews</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{hiring}}</span></div>
+      <div class="box"><span id="br">{{review}}</span></div>
     </div>
-    <div class="text">Hiring</div>
-  </div>  
-  <div class="Bar">
-    <div class="circle">
-      <div class="bar"></div>
-      <div class="box"><span>{{review}}</span></div>
-    </div>
-    <div class="text">Reviews</div>
   </div> 
   <div class="Bar">
+    <div class="text"><span class="fas fa-bell me-2"></span>Total Notifications</div>
     <div class="circle">
       <div class="bar"></div>
-      <div class="box"><span>{{notification}}</span></div>
+      <div class="box"><span id="bn">{{notification}}</span></div>
     </div>
-    <div class="text">Notifications</div>
   </div>         
 </div> 
 {% endblock %}
