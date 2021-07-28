@@ -29,8 +29,8 @@ class Business(models.Model):
     is_solo = models.BooleanField(default=False)
     street_address = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    phone = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
+    phone = models.CharField(max_length=50, null=True)
+    email = models.EmailField(max_length=50, null=True)
 
     def __str__(self):
         return self.name + " | " + self.user.username

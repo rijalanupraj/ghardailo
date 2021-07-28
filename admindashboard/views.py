@@ -113,7 +113,7 @@ def business_view(request, business_id):
     business_services = Business_Service.objects.all().filter(business=particular_business)
     business_gallery = Gallery.objects.all().filter(business=particular_business)
     business_workers = Worker.objects.all().filter(business=particular_business)
-    business_hires = Hiring.objects.all().filter(business=particular_business)
+    business_hires = Hiring.objects.filter(business_service__business=particular_business)
     business_notifications = Notification.objects.all().filter(business=particular_business)    
     business_reviews = Review.objects.all().filter(business=particular_business)
 
