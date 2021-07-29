@@ -10,10 +10,14 @@
 {% block main_content %}    
 <div class="profile mt-3"> 
     <div  class="cover_pic">
+        {% if pb.cover_pciture %}
         <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
+        {% endif %}
     </div>  
     <div class="logo">       
+        {% if pb.logo %}
         <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
+        {% endif %}
     </div>
 </div>
 <div class="navigate m-auto mt-5">

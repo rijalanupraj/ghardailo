@@ -34,7 +34,7 @@
                     <th scope="row" class="Numbering"></th>
                     <td>{{i.user.username}}</td>
                     <td>{{i.name}}</td>
-                    <td><img class="img-fluid rounded-circle" src="{{i.logo.url}}" /></td>
+                    <td>{% if i.logo %}<img class="img-fluid rounded-circle" src="{{i.logo.url}}" />{% endif %}</td>
                     <td>{{i.district}}</td>
                     <td>{{i.province}}</td>
                     <td>{{i.phone}}</td>
