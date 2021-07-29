@@ -14,8 +14,10 @@ from review.models import *
 from notification.models import *
 
 # Create your views here.
+
 def businessDashboard(request):
-    business = Business.objects.all()
+    user=request.user
+    business=Business.objects.get(user=user)
     gallery = Gallery.objects.all()
     business_service = Business_Service.objects.all()
     business_service_count = Business_Service.objects.all().count()
