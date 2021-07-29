@@ -1,0 +1,53 @@
+<div class="col-lg-12 col-md-12">
+  <div class="row p-2 bg-white border rounded">
+    <div class="col-md-4 mt-1">
+      <img class="rounded product-image"
+        src="https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+    </div>
+    <div class="col-md-5 mt-1">
+      <div class="profile-image inline-block">
+        <img class="inline-block" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" />
+      </div>
+      <h5 class="inline-block">
+        {{obj.name}} {% if obj.is_verified %}<span class="material-icons verified"> verified </span>{% endif %}
+      </h5>
+      <div class="d-flex flex-row">
+        4.7
+        <div class="ratings me-2">
+          <span class="material-icons"> star </span><span class="material-icons"> star </span><span
+            class="material-icons"> star </span><span class="material-icons"> star </span>
+        </div>
+        <span>310 Reviews</span>
+      </div>
+      <div class="mt-1 mb-1 spec-1">
+        {% for ser in object.business_service_set.all %}
+        <span class="badge rounded-pill bg-info">{{ser.service.name}}</span>
+        {% endfor %}
+
+      </div>
+      <p class="text-justify text-truncate para mb-0">
+        {{obj.description}}<br /><br />
+      </p>
+    </div>
+    <div class="align-items-center align-content-center col-md-3 border-start mt-1">
+      <div class="d-flex flex-row align-items-center">
+        <span class="material-icons"> room </span> {{obj.district}}, {{obj.province}}
+      </div>
+      <h6 class="text-success">Writing Something Here</h6>
+      <div class="d-flex flex-column mt-4">
+        <a href="{% url 'business-profile' obj.slug  %}" class="btn btn-primary btn-sm" type="button">Details</a>
+        {% if user.is_authenticated %}
+
+        <a class="btn btn-outline-primary btn-sm mt-2" data-bs-toggle="modal"
+          data-bs-target="#request-business{{obj.slug}}" type="button">
+          Request
+        </a>
+        {% else %}
+        <a class="btn btn-outline-primary btn-sm mt-2"
+          href="{% url 'customer-login' %}?next={% url 'business-profile' obj.slug %}" type="button">Request</a>
+        {% endif %}
+        {% include 'business/snippets/business-hiring-modal.html' with obj=obj %}
+      </div>
+    </div>
+  </div>
+</div>
