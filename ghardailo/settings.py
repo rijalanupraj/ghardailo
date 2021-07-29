@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'gallery',
     'hiring',
     'worker',
-    'wcb',
     'review',
     'admindashboard',
     'notification',
