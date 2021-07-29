@@ -1,7 +1,6 @@
 # External Import
 from django.urls import path
 from .import views
-
 # Internal Import
 from .views import(
     BusinessListPageView

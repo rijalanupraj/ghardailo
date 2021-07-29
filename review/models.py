@@ -4,11 +4,15 @@ from customer.models import *
 from business.models import *
 
 class Review(models.Model):
-    business=models.ForeignKey(Business, on_delete=models.CASCADE)
-    customer=models.ForeignKey(Customer, on_delete=models.CASCADE)
-    comment=models.CharField(max_length=200)
-    rating=models.IntegerField(default=0, validators=[MaxLengthValidator(5), MinLengthValidator(0)])
-
-    def __str__(self):
-        name = str(business)+"-->"+str(customer)
-        return name
+    rating_status = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5)
+    )
+    business=models.ForeignKey(Business, on_delete=models.CASCADE, null=True)
+    customer=models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    comment=models.CharField(max_length=200, null=True)
+    rating=models.IntegerField(choices=rating_status, null=True)
+    date_time = models.DateTimeField(auto_now_add=True, null=True)

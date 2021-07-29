@@ -18,6 +18,13 @@ class BusinessForm(ModelForm):
     class Meta:
         model = Business
         fields = "__all__"
+        exclude = ['user','slug',]
+
+class BusinessProfileForm(ModelForm):
+    class Meta:
+        model = Business_Profile
+        fields = "__all__"
+        exclude = ['business']
 
 class GalleryForm(ModelForm):
     class Meta:
@@ -33,7 +40,7 @@ class WorkerForm(ModelForm):
 class BusinessServicesForm(ModelForm):
     class Meta:
         model = Business_Service
-        fields = '__all__'
+        fields = ['service', 'description']
 
 class CustomerForm(ModelForm):
     class Meta:

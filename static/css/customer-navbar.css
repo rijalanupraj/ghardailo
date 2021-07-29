@@ -1,7 +1,7 @@
 #Header {
     /* position: fixed; */
     /* top: 0; */
-    box-shadow: 0px 1px 5px #5f28f5;
+    box-shadow: rgb(0, 0, 0, 25%) 2px 0px 10px;
 }
 
 #Logo {
@@ -26,20 +26,29 @@
     position: relative;
 }
 #Header .nav-link:hover {
-    color: #5e2ced;
+    color: White;
+    background-color: #5e2ced;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 #Header .active {
-    color: #5e2ced;
-    background-color: #d8ccf8;
+    color: White;
+    background-color: #5e2ced;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .navbar-toggler-icon {
     background-image: url("/static/img/navbar/button.png");
+}
+#UDA {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .sgu,
 .lgi,
 .lgo {
     font-family: cursive;
     border-radius: 10px;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .sgu {
     color: #00c99c;
@@ -71,7 +80,6 @@
 #Profile {
     height: 60px;
     width: 60px;
-    position: relative;
 }
 #Username {
     font-family: cursive;
@@ -92,12 +100,27 @@
         display: none;
     }
 }
+@media screen and (max-width: 610px) {
+    #Header .navbar-brand {
+        display: none;
+    }
+}
 @media screen and (max-width: 575px) {
+    #Header .nav-link {
+        float: left;
+        margin-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #Header .active {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     #UDA {
         margin-top: 5px;
-        display: grid;
-        grid-template-columns: 80px;
-        grid-gap: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
     }
     .sgu,
     .lgi,
