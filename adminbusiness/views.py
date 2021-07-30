@@ -51,7 +51,7 @@ def businessDashboard(request):
 
 
 def getService(request):
-    businessService = Business_Service.objects.all()
+    businessService = Business_Service.objects.filter(business=request.user.business)
 
     context = {
         'businessService': businessService,
@@ -61,10 +61,20 @@ def getService(request):
 
 def postService(request):
     if request.method == 'POST':
+
         form = BusinessServicesForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            messages.add_message(request, messages.SUCCESS, 'Service Added Successfully')
+            businessService = Business_Service.objects.filter(business=request.user.business)
+            
+            obj=form.save(commit=False)
+            already_exist=True
+            for ser in businessService:
+                if ser.service==obj.service:
+                    already_exist=False
+            if already_exist:
+                obj.business=request.user.business
+                obj.save()
+                messages.add_message(request, messages.SUCCESS, 'Service Added Successfully') 
             return redirect('getServiceDash')
         else:
             messages.add_message(request, messages.ERROR, 'Error adding service')
@@ -81,12 +91,13 @@ def postService(request):
 def updateService(request, service_id):
     instance = Business_Service.objects.get(id=service_id)
     if request.method == "POST":
-        form = BusinessServicesForm(request.POST, request.FILES, instance=instance)
+        form = BusinessServicesForm1(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
             return redirect('/b/getService')
     context = {
-        'form': BusinessServicesForm(instance=instance),
+        'form': BusinessServicesForm1(instance=instance),
+        'service':instance
     }
     return render(request, 'adminbusiness/base/update-service.html', context)
 
