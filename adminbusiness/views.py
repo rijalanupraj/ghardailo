@@ -112,19 +112,25 @@ def editProfile(request):
     if request.method == 'POST':
         form = BusinessProfileForm(
             request.POST, request.FILES, instance=request.user.business.business_profile)
+        form1 = BusinessProfileForm1(
+            request.POST, request.FILES, instance=request.user.business)
         if form.is_valid():
             form.save()
+            form1.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Service Added Successfully')
-            return redirect('getProfileDash')
+            # return redirect('getProfileDash')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding service')
     else:
         form = BusinessProfileForm(
             instance=request.user.business.business_profile)
+        form1 = BusinessProfileForm1(
+            instance=request.user.business)
     context = {
-        'form': form
+        'form': form,
+        'form1':form1
     }
     return render(request, 'adminbusiness/base/post-profile.html', context)
 
