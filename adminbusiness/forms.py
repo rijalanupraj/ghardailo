@@ -1,3 +1,4 @@
+from django.db.models import fields
 from django.forms import ModelForm
 from business.models import *
 from gallery.models import *
@@ -26,6 +27,13 @@ class BusinessProfileForm(ModelForm):
         fields = "__all__"
         exclude = ['business']
 
+class BusinessProfileForm1(ModelForm):
+    class Meta:
+        model = Business
+        fields = ['contact_email']
+        
+
+
 class GalleryForm(ModelForm):
     class Meta:
         model = Gallery
@@ -40,7 +48,14 @@ class WorkerForm(ModelForm):
 class BusinessServicesForm(ModelForm):
     class Meta:
         model = Business_Service
-        fields = ['service', 'description']
+        fields = '__all__'
+        exclude = ['business']
+
+class BusinessServicesForm1(ModelForm):
+    class Meta:
+        model = Business_Service
+        fields = '__all__'
+        exclude = ['business','service']
 
 class CustomerForm(ModelForm):
     class Meta:
