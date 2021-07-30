@@ -76,15 +76,17 @@ class Business(models.Model):
     is_active = models.BooleanField(default=True)
     name = models.CharField(max_length=50)
     logo = models.ImageField(blank=True, null=True, upload_to="images/")
-    cover_picture = models.ImageField(blank=True, null=True, upload_to="images/")
+    cover_picture = models.ImageField(
+        blank=True, null=True, upload_to="images/")
     slug = models.SlugField(unique=True, blank=True, null=True)
     district = models.CharField(max_length=100)
-    province = models.CharField(max_length=100, choices=PROVINCE_CHOICES, null=True)
+    province = models.CharField(
+        max_length=100, choices=PROVINCE_CHOICES, null=True)
     is_solo = models.BooleanField(default=False)
     street_address = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     phone = models.CharField(max_length=50)
-    is_verified = models.BooleanField()
+    is_verified = models.BooleanField(default=False)
     contact_email = models.EmailField(max_length=50)
 
     objects = BusinessManager()
