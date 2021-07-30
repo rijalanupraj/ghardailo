@@ -1,6 +1,7 @@
 # External Improt
+from django.forms.widgets import Widget
 from customer.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django import forms
 from django.forms import ModelForm
 from .models import Customer
