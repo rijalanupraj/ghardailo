@@ -13,7 +13,7 @@ class ServiceTag(models.Model):
 
 class Services(models.Model):
     icon_text = models.CharField(max_length=100, null=True)
-    color = models.CharField(max_length=100, null=True) 
+    color = models.CharField(max_length=100, null=True, blank=True)
     name = models.CharField(max_length=100, null=False)
     is_active = models.BooleanField(default=True)
     description = models.TextField(blank=True)
