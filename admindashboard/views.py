@@ -57,7 +57,7 @@ def service(request):
             return redirect('/a/service')
         else:
             messages.add_message(request, messages.ERROR, 'Failed to add service, please try again!!!')
-            return render(request, 'admindashboard/servie.html', {'form':form, 'service_filter':service_filter}) 
+            return render(request, 'admindashboard/servie.html', {'services':service_final, 'service_filter':service_filter, 'form': form, 'BTM':'Add', 'service': 'selected'}) 
     dictionary = {
         'services':service_final, 
         'service_filter':service_filter, 
@@ -90,7 +90,7 @@ def service_update(request, service_id):
             return redirect('/a/service')
         else:
             messages.add_message(request, messages.ERROR, 'Failed to update service, please try again!!!')
-            return render(request, 'admindashboard/servie.html', {'form':form, 'service_filter':service_filter}) 
+            return render(request, 'admindashboard/servie.html', {'services':service_final, 'service_filter':service_filter, 'form': form, 'BTM':'Update', 'service': 'selected'}) 
     dictionary = {'services':service_final, 'service_filter':service_filter, 'form': form, 'BTM':'Update', 'service': 'selected'}
     return render(request, 'admindashboard/service.html', dictionary)
 
