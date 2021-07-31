@@ -1,9 +1,9 @@
 from django.urls import path, include
-from . import views 
+from . import views
 
 urlpatterns = [
     # <<====================Dashboard====================>>
-    path('dashboard', views.dashboard),
+    path('dashboard', views.dashboard, name="my-admin-dashboard"),
 
     # <<====================Service====================>>
     path('service', views.service),
