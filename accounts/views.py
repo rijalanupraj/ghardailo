@@ -84,10 +84,34 @@ class CustomerLoginView(auth_views.LoginView):
     form_class = forms.CustomerLoginForm
     template_name = 'customer/customer-login.html'
 
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        if url:
+            return url
+        if(self.request.user.is_customer):
+            return reverse_lazy('customer-home')
+        elif (self.request.user.is_business):
+            return reverse_lazy('businessDash')
+        elif (self.request.user.is_staff):
+            return reverse_lazy('my-admin-dashboard')
+        return super().get_success_url()
+
 
 class BusinessLoginView(auth_views.LoginView):
     form_class = forms.BusinessLoginForm
     template_name = 'business/business-login.html'
+
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        if url:
+            return url
+        if(self.request.user.is_customer):
+            return reverse_lazy('customer-home')
+        elif (self.request.user.is_business):
+            return reverse_lazy('businessDash')
+        elif (self.request.user.is_staff):
+            return reverse_lazy('my-admin-dashboard')
+        return super().get_success_url()
 
 
 def activate_account(request, uidb64, token, backend='accounts.backends.EmailBackend'):
@@ -103,6 +127,13 @@ def activate_account(request, uidb64, token, backend='accounts.backends.EmailBac
         login(request, user, backend='accounts.backends.EmailBackend')
         messages.success(
             request, f'Your account has been activated successfully')
+        # Redirect User to Their Respective Page (Customer/Business/Staff)
+        if(user.is_customer):
+            return redirect('customer-home')
+        elif (user.is_business):
+            return redirect('businessDash')
+        elif (user.is_staff):
+            return redirect('my-admin-dashboard')
         return redirect('customer-home')
     else:
         return HttpResponse('Activation link is invalid!')
