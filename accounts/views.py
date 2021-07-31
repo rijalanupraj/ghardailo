@@ -28,7 +28,6 @@ class CustomerRegistartionCreateView(CreateView):
     form_class = forms.CustomerRegistrationForm
     template_name = 'customer/customer-registration.html'
     success_url = reverse_lazy('customer-home')
-    redirect_authenticated_user = True
 
     @transaction.atomic
     def form_valid(self, form):
@@ -57,7 +56,6 @@ class BusinessRegistartionCreateView(CreateView):
     form_class = forms.BusinessRegistrationForm
     template_name = 'business/business-registration.html'
     success_url = reverse_lazy('customer-home')
-    redirect_authenticated_user = True
 
     @transaction.atomic
     def form_valid(self, form):
