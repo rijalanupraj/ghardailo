@@ -6,6 +6,9 @@ from django.contrib.auth import views as auth_views
 from django.db import transaction
 from django.contrib.auth import login
 from django.contrib import messages
+from django.utils.decorators import method_decorator
+from django.views.decorators.debug import sensitive_post_parameters
+
 
 # For Email Verification
 from django.utils.http import urlsafe_base64_decode
@@ -23,11 +26,29 @@ from business.models import Business
 User = get_user_model()
 
 
-class CustomerRegistartionCreateView(CreateView):
+class CustomerRegistrationCreateView(CreateView):
     model = User
     form_class = forms.CustomerRegistrationForm
     template_name = 'customer/customer-registration.html'
     success_url = reverse_lazy('customer-home')
+
+    @method_decorator(sensitive_post_parameters('password1', 'password2'))
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Check the user is already logged in or not. If already logged in redirect them to specific pages.
+        If not logged in then allow them to register to the site.
+
+        """
+        user = self.request.user
+        if self.request.user.is_authenticated:
+            if(user.is_customer):
+                return redirect('customer-home')
+            elif (user.is_business):
+                return redirect('businessDash')
+            elif (user.is_staff):
+                return redirect('my-admin-dashboard')
+            return redirect('customer-home')
+        return super(CustomerRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
     @transaction.atomic
     def form_valid(self, form):
@@ -51,11 +72,29 @@ class CustomerRegistartionCreateView(CreateView):
         return redirect('customer-login')
 
 
-class BusinessRegistartionCreateView(CreateView):
+class BusinessRegistrationCreateView(CreateView):
     model = User
     form_class = forms.BusinessRegistrationForm
     template_name = 'business/business-registration.html'
     success_url = reverse_lazy('customer-home')
+
+    @method_decorator(sensitive_post_parameters('password1', 'password2'))
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Check the user is already logged in or not. If already logged in redirect them to specific pages.
+        If not logged in then allow them to register to the site.
+
+        """
+        user = self.request.user
+        if self.request.user.is_authenticated:
+            if(user.is_customer):
+                return redirect('customer-home')
+            elif (user.is_business):
+                return redirect('businessDash')
+            elif (user.is_staff):
+                return redirect('my-admin-dashboard')
+            return redirect('customer-home')
+        return super(BusinessRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
     @transaction.atomic
     def form_valid(self, form):
