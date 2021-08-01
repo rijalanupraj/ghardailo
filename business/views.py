@@ -6,7 +6,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
@@ -16,14 +16,20 @@ from django.contrib.auth.mixins import (
 class BusinessListPageView(UserPassesTestMixin, ListView):
     template_name = "business/business-list-page.html"
 
-    # For Future Use
+    # Check if the user can access this page
+    # Declare permission who can access this page
     def test_func(self):
-        # if self.request.user.is_authenticated:
-        #     return not self.request.user.is_staff
+        if self.request.user.is_authenticated:
+            return self.request.user.is_customer
         return True
 
-    # def handle_no_permission(self):
-    #     return redirect('where you want to redirect')
+    # Redirect user to who doesn't have permission to access this page
+    def handle_no_permission(self):
+        if self.request.user.is_business:
+            return redirect('businessDash')
+        elif self.request.user.is_staff:
+            return redirect('my-admin-dashboard')
+        return redirect('home-page')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,7 +46,22 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
         return Business.objects.all()
 
 
-class BusinessProfileView(DetailView):
+class BusinessProfileView(UserPassesTestMixin, DetailView):
     queryset = Business.objects.all()
     template_name = "business/business-profile.html"
     slug_url_kwarg = 'slug'
+
+    # Check if the user can access this page
+    # Declare permission who can access this page
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.is_customer
+        return True
+
+    # Redirect user to who doesn't have permission to access this page
+    def handle_no_permission(self):
+        if self.request.user.is_business:
+            return redirect('businessDash')
+        elif self.request.user.is_staff:
+            return redirect('my-admin-dashboard')
+        return redirect('home-page')
