@@ -1,11 +1,13 @@
 # External Import
 from django.shortcuts import render, redirect, HttpResponse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 from django.db import transaction
 from django.contrib.auth import login
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django import forms
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
 
@@ -23,6 +25,7 @@ from . import utils
 from django.contrib.auth import get_user_model
 from customer.models import Customer
 from business.models import Business
+from customer.models import User
 User = get_user_model()
 
 
@@ -176,3 +179,5 @@ def activate_account(request, uidb64, token, backend='accounts.backends.EmailBac
         return redirect('customer-home')
     else:
         return HttpResponse('Activation link is invalid!')
+
+

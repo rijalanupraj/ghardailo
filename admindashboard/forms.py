@@ -54,3 +54,5 @@ class NotificationForm(ModelForm):
     class Meta:
         model = Notification
         fields = '__all__'
+
+

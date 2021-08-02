@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from PIL import Image
 
 User = get_user_model()
 
@@ -16,6 +17,7 @@ PROVINCE_CHOICES = (
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='customer-profile/media', default='static/Image/default.jpg')
     name = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=15, null=True)
     province = models.CharField(choices=PROVINCE_CHOICES, max_length=50, null=True)
@@ -24,3 +26,5 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name + " | " + self.user.username
+
+
