@@ -6,9 +6,11 @@ from django.contrib.auth import views as auth_views
 from django.db import transaction
 from django.contrib.auth import login
 from django.contrib import messages
-from customer.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
+from django.utils.decorators import method_decorator
+from django.views.decorators.debug import sensitive_post_parameters
+
 
 # For Email Verification
 from django.utils.http import urlsafe_base64_decode
@@ -23,14 +25,33 @@ from . import utils
 from django.contrib.auth import get_user_model
 from customer.models import Customer
 from business.models import Business
+from customer.models import User
 User = get_user_model()
 
 
-class CustomerRegistartionCreateView(CreateView):
+class CustomerRegistrationCreateView(CreateView):
     model = User
     form_class = forms.CustomerRegistrationForm
     template_name = 'customer/customer-registration.html'
     success_url = reverse_lazy('customer-home')
+
+    @method_decorator(sensitive_post_parameters('password1', 'password2'))
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Check the user is already logged in or not. If already logged in redirect them to specific pages.
+        If not logged in then allow them to register to the site.
+
+        """
+        user = self.request.user
+        if self.request.user.is_authenticated:
+            if(user.is_customer):
+                return redirect('customer-home')
+            elif (user.is_business):
+                return redirect('businessDash')
+            elif (user.is_staff):
+                return redirect('my-admin-dashboard')
+            return redirect('customer-home')
+        return super(CustomerRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
     @transaction.atomic
     def form_valid(self, form):
@@ -54,11 +75,29 @@ class CustomerRegistartionCreateView(CreateView):
         return redirect('customer-login')
 
 
-class BusinessRegistartionCreateView(CreateView):
+class BusinessRegistrationCreateView(CreateView):
     model = User
     form_class = forms.BusinessRegistrationForm
     template_name = 'business/business-registration.html'
     success_url = reverse_lazy('customer-home')
+
+    @method_decorator(sensitive_post_parameters('password1', 'password2'))
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Check the user is already logged in or not. If already logged in redirect them to specific pages.
+        If not logged in then allow them to register to the site.
+
+        """
+        user = self.request.user
+        if self.request.user.is_authenticated:
+            if(user.is_customer):
+                return redirect('customer-home')
+            elif (user.is_business):
+                return redirect('businessDash')
+            elif (user.is_staff):
+                return redirect('my-admin-dashboard')
+            return redirect('customer-home')
+        return super(BusinessRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
     @transaction.atomic
     def form_valid(self, form):
@@ -87,10 +126,34 @@ class CustomerLoginView(auth_views.LoginView):
     form_class = forms.CustomerLoginForm
     template_name = 'customer/customer-login.html'
 
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        if url:
+            return url
+        if(self.request.user.is_customer):
+            return reverse_lazy('customer-home')
+        elif (self.request.user.is_business):
+            return reverse_lazy('businessDash')
+        elif (self.request.user.is_staff):
+            return reverse_lazy('my-admin-dashboard')
+        return super().get_success_url()
+
 
 class BusinessLoginView(auth_views.LoginView):
     form_class = forms.BusinessLoginForm
     template_name = 'business/business-login.html'
+
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        if url:
+            return url
+        if(self.request.user.is_customer):
+            return reverse_lazy('customer-home')
+        elif (self.request.user.is_business):
+            return reverse_lazy('businessDash')
+        elif (self.request.user.is_staff):
+            return reverse_lazy('my-admin-dashboard')
+        return super().get_success_url()
 
 
 def activate_account(request, uidb64, token, backend='accounts.backends.EmailBackend'):
@@ -106,6 +169,13 @@ def activate_account(request, uidb64, token, backend='accounts.backends.EmailBac
         login(request, user, backend='accounts.backends.EmailBackend')
         messages.success(
             request, f'Your account has been activated successfully')
+        # Redirect User to Their Respective Page (Customer/Business/Staff)
+        if(user.is_customer):
+            return redirect('customer-home')
+        elif (user.is_business):
+            return redirect('businessDash')
+        elif (user.is_staff):
+            return redirect('my-admin-dashboard')
         return redirect('customer-home')
     else:
         return HttpResponse('Activation link is invalid!')

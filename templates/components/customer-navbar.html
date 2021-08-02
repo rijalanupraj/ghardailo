@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item mx-sm-1">
-          <a class="nav-link {{ active_home }}" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link {{ active_home }}" href="/home">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item mx-sm-1">
           <a class="nav-link {{ active_service }}" href="{% url 'Services' %}">Services</a>
@@ -26,14 +26,11 @@
         </li>
       </ul>
       <div id="UDA">
-        <!-- {% if user.is_authenticated %}                   -->
-        <img class="img-fluid rounded-circle" id="Profile" src="{% static 'img/profile/male.jpg' %}" />
-        <a class="fw-bold" href="" id="Username">Ram Bahudar Shrestha</a>
-        <a class="btn lgo" href="">Logout</a>
-        <!-- {% else %} -->
-        <a href="" class="btn sgu">Sign up</a>
-        <a href="" class="btn lgi">Login</a>
-        <!-- {% endif %} -->
+        <img class="img-fluid rounded-circle mb-2 me-1" id="Profile" src="{% static 'img/profile/male.jpg' %}" />
+        <a class="fw-bold mb-2" href="" id="Username">Ram Bahudar Shrestha</a>        
+        <a class="btn lgo mb-2" href="">Logout</a>
+        <a href="" class="btn sgu mb-2">Sign up</a>
+        <a href="" class="btn lgi mb-2">Login</a>
       </div>
     </div>
   </nav>

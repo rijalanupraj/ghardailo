@@ -1,10 +1,19 @@
+# External Import
 from django.db.models.fields.files import ImageField
 from django.db.models.signals import pre_save, post_save
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models import Q
+import re
+
+# Internal Import
 from service.models import *
 from .utils import unique_slug_generator
 User = get_user_model()
+
+
+def normalize_query(query_string, findterms=re.compile(r'"([^"]+)"|(\S+)').findall, normspace=re.compile(r'\s{2,}').sub):
+    return [normspace('', (t[0] or t[1]).strip()) for t in findterms(query_string)]
 
 
 PROVINCE_CHOICES = (
@@ -18,19 +27,69 @@ PROVINCE_CHOICES = (
 )
 
 
+class BusinessQuerySet(models.query.QuerySet):
+
+    def admin(self):
+        return self.all()
+
+    def active(self):
+        return self.filter(is_active=True).distinct()
+
+    def search(self, query_string):
+
+        query = None
+        terms = normalize_query(query_string)
+        search_fields = ['name', 'slug', 'business_profile__intro', 'business_profile__founder', 'business_profile__moto',
+                         'business_service__service__name', 'business_service__service__servicetag__title']
+        for term in terms:
+            or_query = None  # Query to search for a given term in each field
+            for field_name in search_fields:
+                q = Q(**{"%s__icontains" % field_name: term})
+                if or_query is None:
+                    or_query = q
+                else:
+                    or_query = or_query | q
+            if query is None:
+                query = or_query
+            else:
+                query = query | or_query
+        return self.filter(query)
+
+
+class BusinessManager(models.Manager):
+
+    def get_queryset(self):
+        return BusinessQuerySet(self.model, using=self._db)
+
+    def all(self):
+        return self.get_queryset().active()
+
+    def search(self, query_string):
+        return self.get_queryset().search(query_string)
+
+    def foradmin(self):
+        return self.get_queryset().admin()
+
+
 class Business(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
     name = models.CharField(max_length=50)
-    logo = models.ImageField(blank=True, null=True)
+    logo = models.ImageField(blank=True, null=True, upload_to="images/")
+    cover_picture = models.ImageField(
+        blank=True, null=True, upload_to="images/")
     slug = models.SlugField(unique=True, blank=True, null=True)
-    cover_picture = models.ImageField(blank=True, null=True)
     district = models.CharField(max_length=100)
-    province = models.CharField(max_length=100)
+    province = models.CharField(
+        max_length=100, choices=PROVINCE_CHOICES, null=True)
     is_solo = models.BooleanField(default=False)
     street_address = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     phone = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
+    is_verified = models.BooleanField(default=False)
+    contact_email = models.EmailField(max_length=50)
+
+    objects = BusinessManager()
 
     def __str__(self):
         return self.name + " | " + self.user.username
@@ -73,7 +132,7 @@ class Business_Profile(models.Model):
     experience_year = models.IntegerField(null=True)
     service_provided = models.IntegerField(null=True)
     happy_customers = models.IntegerField(null=True)
-    Awards_won = models.IntegerField(null=True)
+    awards_won = models.IntegerField(null=True)
 
 
 def create_business_profile(sender, instance, created, **kwargs):
