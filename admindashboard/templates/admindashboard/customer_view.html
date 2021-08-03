@@ -4,12 +4,141 @@
     Admin Customer View
 {% endblock %}
 {% block additional_head %}
+<link href="{% static 'css/admin_customer_view.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
-{% block main_content %}    
+{% block main_content %}      
+<div class="profile m-auto mt-3"> 
+    {% if pc.image %}
+    <img class="img-fluid" src="{{pc.image.url}}" alt=""/> 
+    <img class="img-fluid" src="/{{pc.image}}" alt=""/> 
+    {% endif %}
+</div>
+<div class="navigate m-auto mt-3">
+    <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-hands-helping me-2"></span>Hires</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-bell me-2"></span>Notifications</button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-search-plus me-2"></span>Reviews</button>
+</div>
+<div class="container-fluid details navdiv ms-auto mt-3 p-3">
+    <div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">User:</label> 
+            <p>{{pc.user.username}}</p>               
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Email:</label>
+            <p>{{pc.user.email}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Name:</label>    
+            <p>{{pc.name}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Province:</label>
+            <p>{{pc.province}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">City:</label>    
+            <p>{{pc.city}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Street:</label>
+            <p>{{pc.street_address}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Contact:</label>
+            <p>{{pc.phone}}</p>
+        </div>
+    </div>
+</div>
+<div class="hires navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Business Name</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">DateTime</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in hires %}
+                    <tr>
+                        <th scope="row" class="Numbering1"></th>
+                        <td>{{i.business_service.business.name}}</td>
+                        <td><span class="{{i.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                        <td>{{i.status}}</td>
+                        <td>{{i.date_time}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+<div class="notifications navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Business Name</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Read</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in notifications %}
+                    <tr>
+                        <th scope="row" class="Numbering2"></th>
+                        <td>{{i.business.name}}</td>
+                        <td>{{i.message}}</td>
+                        <td>{{i.read}}</td>
+                        <td>{{i.time}}</td>
+                        <td>{{i.date}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+<div class="reviews navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Business Name</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">DateTime</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in reviews %}
+                    <tr>
+                        <th scope="row" class="Numbering3"></th>
+                        <td>{{i.business.name}}</td>
+                        <td>{{i.comment}}</td>
+                        <td>{{i.rating}} </td>
+                        <td>{{i.date_time}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
 {% endblock %}
 
 {% block additional_body %}
+<script src="{% static 'JS/admin_customer_view.js' %}"></script>
 {% endblock %}
 
 
