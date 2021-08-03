@@ -140,8 +140,18 @@ def customer(request):
 
 def customer_view(request, customer_id):
     particular_customer = Customer.objects.get(id=customer_id)
+    
+    customer_hires = Hiring.objects.filter(customer=particular_customer)
+    customer_notifications = Notification.objects.all().filter(customer=particular_customer)    
+    customer_reviews = Review.objects.all().filter(customer=particular_customer)
 
-    dictionary = { 'customer': 'selected'}
+    dictionary = { 
+        'pc': particular_customer,
+        'hires': customer_hires,
+        'notifications': customer_notifications,
+        'reviews': customer_reviews,
+        'customer': 'selected'
+    }
     return render(request, 'admindashboard/customer_view.html', dictionary)
 
 

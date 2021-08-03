@@ -64,7 +64,7 @@
 .details {  
     font-family: cursive;
     border-radius: 5px;
-    box-shadow: #5e2ced 0px 0px 10px;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;

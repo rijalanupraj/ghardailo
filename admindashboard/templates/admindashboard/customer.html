@@ -22,10 +22,11 @@
                 <th scope="col">No.</th>
                 <th scope="col">User</th>
                 <th scope="col">Name</th>
+                <th scope="col">Profile</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Province</th>
                 <th scope="col">City</th>
                 <th scope="col">Street</th>
-                <th scope="col">Phone</th>
                 <th scope="col">View</th>
             </tr>
         </thead>
@@ -35,10 +36,11 @@
                     <th scope="row" class="Numbering"></th>
                     <td>{{i.user.username}}</td>
                     <td>{{i.name}}</td>
+                    <td><img class="img-fluid rounded-circle" src="{{i.image.url}}" alt="" /><img class="img-fluid rounded-circle" src="/{{i.image}}" alt="" /></td>
+                    <td>{{i.phone}}</td>
                     <td>{{i.province}}</td>
                     <td>{{i.city}}</td>
                     <td>{{i.street_address}}</td>
-                    <td>{{i.phone}}</td>
                     <td>
                         <a href="/a/viewcustomer/{{i.id}}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
                     </td>

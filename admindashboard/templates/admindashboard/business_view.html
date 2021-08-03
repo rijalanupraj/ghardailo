@@ -10,7 +10,7 @@
 {% block main_content %}    
 <div class="profile mt-3"> 
     <div  class="cover_pic">
-        {% if pb.cover_pciture %}
+        {% if pb.cover_picture %}
         <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
         {% endif %}
     </div>  
@@ -137,6 +137,7 @@
                     <th scope="col">Customer Name</th>
                     <th scope="col">Customer Phone</th>
                     <th scope="col">Service</th>
+                    <th scope="col">Status</th>
                     <th scope="col">DateTime</th>
                 </tr>
             </thead>
@@ -147,6 +148,7 @@
                         <td>{{i.customer.name}}</td>
                         <td>{{i.customer.phone}}</td>
                         <td><span class="{{i.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                        <td>{{i.status}}</td>
                         <td>{{i.date_time}}</td>
                     </tr>
                 {% endfor %}
@@ -204,7 +206,7 @@
                         <td>{{i.customer.name}}</td>
                         <td>{{i.customer.phone}}</td>
                         <td>{{i.comment}}</td>
-                        <td>{{i.rating}}</td>
+                        <td>{{i.rating}} </td>
                         <td>{{i.date_time}}</td>
                     </tr>
                 {% endfor %}
