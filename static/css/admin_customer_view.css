@@ -30,12 +30,6 @@
     color: white;
     border-radius: 0;
 }
-.navigate button:hover {
-    color: green;
-    background-color: white;
-    border-radius: 30px;
-    box-shadow: rgb(0, 0, 0, 50%) 2px 2px 10px;
-}
 .navigate button:focus {
    box-shadow: none; 
 }
@@ -68,6 +62,18 @@
     font-size: 30px; 
     color: rgb(77, 77, 77);
     text-shadow: rgb(77, 77, 77, 25%) 0px 0px 5px;
+}
+.find {
+    position: relative;
+}
+.counter {
+    position: absolute;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 50%;
+    bottom: 22px;
+    right: 1px;
+    background-color: white;
 }
 .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive{
     border-radius: 5px;
