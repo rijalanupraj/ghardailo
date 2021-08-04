@@ -46,6 +46,24 @@ function navigate(nnp) {
     cnp=nnp
 }
 
+$(".find").hover(function(){
+    $(this).css("color", "green");
+    $(this).css("background-color", "white");
+    $(this).css("border-radius", "30px");
+    $(this).css("box-shadow", "rgb(0, 0, 0, 50%) 2px 2px 10px");
+}, 
+function(){
+    $(this).css("color", "white");
+    $(this).css("background-color", "transparent");
+    $(this).css("border-radius", "0px");
+    $(this).css("box-shadow", "rgb(0, 0, 0, 50%) 0px 0px 0px");
+    
+    nav[cnp].style.color="green";
+    nav[cnp].style.backgroundColor="white";
+    nav[cnp].style.borderRadius="30px";
+    nav[cnp].style.boxShadow="rgb(0, 0, 0, 50%) 2px 2px 10px";
+});
+
 var service_number = document.getElementsByClassName("Numbering1").length
 for (i=0; i<service_number; i++) {
     document.getElementsByClassName("Numbering1")[i].innerHTML = i + 1
