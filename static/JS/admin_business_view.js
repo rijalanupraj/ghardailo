@@ -1,5 +1,6 @@
 var nav = document.getElementsByClassName("find");
 var navdiv = document.getElementsByClassName("navdiv");
+var counter = document.getElementsByClassName("counter");
 
 nav[0].style.color="green";
 nav[0].style.backgroundColor="white";
@@ -12,6 +13,13 @@ navdiv[3].style.display="none";
 navdiv[4].style.display="none";
 navdiv[5].style.display="none";
 navdiv[6].style.display="none";
+
+counter[0].style.display="none";
+counter[1].style.display="none";
+counter[2].style.display="none";
+counter[3].style.display="none";
+counter[4].style.display="none";
+counter[5].style.display="none";
 
 var cnp = 0;
 function navigate(nnp) {
@@ -27,6 +35,13 @@ function navigate(nnp) {
 
     navdiv[cnp].style.display="none";
     navdiv[nnp].style.display="block";
+
+    if (nnp!=0) {        
+        counter[nnp-1].style.display="block";
+    }
+    if (cnp!=0) {        
+        counter[cnp-1].style.display="none";
+    }
 
     cnp=nnp
 }

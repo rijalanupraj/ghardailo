@@ -17,11 +17,11 @@
 <div class="navigate m-auto mt-3">
     <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-hands-helping me-2"></span>Hires</button>
+    <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-hands-helping me-2"></span>Hires<span class="counter">{{hires_count}}</span></button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-bell me-2"></span>Notifications</button>
+    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-bell me-2"></span>Notifications<span class="counter">{{notifications_count}}</span></button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-search-plus me-2"></span>Reviews</button>
+    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-search-plus me-2"></span>Reviews<span class="counter">{{reviews_count}}</span></button>
 </div>
 <div class="container-fluid details navdiv ms-auto mt-3 p-3">
     <div>
@@ -72,8 +72,8 @@
                     <tr>
                         <th scope="row" class="Numbering1"></th>
                         <td>{{i.business_service.business.name}}</td>
-                        <td><span class="{{i.service.icon_text}}"></span>  {{i.business_service.service}}</td>
-                        <td>{{i..get_status_display}}</td>
+                        <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                        <td>{{i.get_status_display}}</td>
                         <td>{{i.date_time}}</td>
                     </tr>
                 {% endfor %}

@@ -23,17 +23,17 @@
 <div class="navigate m-auto mt-5">
     <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-tools me-2"></span>Services</button>
+    <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-tools me-2"></span>Services<span class="counter">{{services_count}}</span></button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-images me-2"></span>Gallery</button>
+    <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-images me-2"></span>Gallery<span class="counter">{{gallery_count}}</span></button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-user-secret me-2"></span>Workers</button>
+    <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-user-secret me-2"></span>Workers<span class="counter">{{workers_count}}</span></button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(4)"><span class="fas fa-hands-helping me-2"></span>Hires</button>
+    <button type="button" class="btn find" onclick="navigate(4)"><span class="fas fa-hands-helping me-2"></span>Hires<span class="counter">{{hires_count}}</span></button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(5)"><span class="fas fa-bell me-2"></span>Notifications</button>
+    <button type="button" class="btn find" onclick="navigate(5)"><span class="fas fa-bell me-2"></span>Notifications<span class="counter">{{notifications_count}}</span></button>
     <div class="Line"></div>
-    <button type="button" class="btn find" onclick="navigate(6)"><span class="fas fa-search-plus me-2"></span>Reviews</button>
+    <button type="button" class="btn find" onclick="navigate(6)"><span class="fas fa-search-plus me-2"></span>Reviews<span class="counter">{{reviews_count}}</span></button>
 </div>
 <div class="container-fluid details navdiv ms-auto mt-3 p-3">
     <div>
@@ -147,7 +147,7 @@
                         <th scope="row" class="Numbering3"></th>
                         <td>{{i.customer.name}}</td>
                         <td>{{i.customer.phone}}</td>
-                        <td><span class="{{i.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                        <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                         <td>{{i.get_status_display}}</td>
                         <td>{{i.date_time}}</td>
                     </tr>
