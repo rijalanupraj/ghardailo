@@ -113,6 +113,7 @@
              <!-- {% if object.logo %}
         <img src="{{object.logo.url}}" alt="">
         {% endif %} -->
+        
             <img
                  src="{{ user.business.logo.url }}"
                  
@@ -129,12 +130,21 @@
                 aria-labelledby="navbarDropdownMenuLink"
                 >
                 <li><a class="dropdown-item">{{user.business.name}}</a></li>  
-              <li><a
+              <li>
+                <a
                 href="{{editBusinessDash_url}}"
                 class="list-group-item list-group-item-action py-2"
                 >
                <span>Edit Profile</span>
              </a></li>
+
+             <li>
+              <a
+              href="{{editBusinessDash_url}}"
+              class="list-group-item list-group-item-action py-2"
+              >
+             <span>Change password</span>
+           </a></li>
               
               <li><a class="dropdown-item" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
             </ul>
