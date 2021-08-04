@@ -15,11 +15,18 @@ class ServicesForm(ModelForm):
         model = Services
         fields = '__all__'
 
+
+
 class BusinessForm(ModelForm):
     class Meta:
         model = Business
         fields = "__all__"
         exclude = ['user','slug',]
+
+class EditBusinessForm(ModelForm):
+    class Meta:
+        model = Business
+        fields = ["name", "logo", "is_solo"]
 
 class BusinessProfileForm(ModelForm):
     class Meta:

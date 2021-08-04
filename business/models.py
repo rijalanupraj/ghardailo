@@ -75,7 +75,7 @@ class Business(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     name = models.CharField(max_length=50)
-    logo = models.ImageField(blank=True, null=True, upload_to="images/")
+    logo = models.ImageField(blank=True, null=True, upload_to="images/", default="business/logo/default.png")
     cover_picture = models.ImageField(
         blank=True, null=True, upload_to="images/")
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -142,3 +142,4 @@ def create_business_profile(sender, instance, created, **kwargs):
 
 # This Creates the business profile once business is created
 post_save.connect(create_business_profile, sender=Business)
+

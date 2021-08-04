@@ -1,8 +1,14 @@
 {% load static %}
 
 {% url 'businessDash' as businessDash_url %}
-{% url 'editProfileDash' as editProfileDash_url %}
+{% url 'editBusinessDash' as editBusinessDash_url %}
+{% url 'editBusinessProfileDash' as editProfileBusinessDash_url %}
 {% url 'getServiceDash' as getService_url %}
+{% url 'changePasswordDash' as changePasswordDash_url %}
+
+
+
+
 <header>
   <!-- Sidebar -->
   <nav
@@ -11,7 +17,6 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-
 
         <a
            href="{{businessDash_url}}"
@@ -22,16 +27,7 @@
           <i class="fas fa-tachometer-alt fa-fw me-3"></i
             ><span>Dashboard</span>
         </a>
-        <a
-           href="{{editProfileDash_url}}"
-           class="list-group-item list-group-item-action py-2 ripple 
-           {% if request.path == editProfileBus_url %}active{% endif %}"
-           aria-current="true"
-           >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i
-            ><span>Edit Profile</span>
-        </a>
-    
+           
         <a
         href="{{getService_url}}"
         class="list-group-item list-group-item-action py-2 ripple 
@@ -60,9 +56,19 @@
            ><i class="fas fa-users fa-fw me-3"></i><span>Workers</span></a
           >
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
+           href="{{editProfileBusinessDash_url}}"
+           class="list-group-item list-group-item-action py-2 ripple
+           {% if request.path == editProfileBusinessDash_url %}active{% endif %}"
            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Edit business Page</span></a
+          >
+
+          <!-- view business page -->
+          <a
+           href="{% url 'business-profile' user.business.slug %}"
+           target="__blank"
+           class="list-group-item list-group-item-action py-2 ripple
+           "
+           ><i class="fas fa-money-bill fa-fw me-3"></i><span>View business Page</span></a
           >
       </div>
     </div>
@@ -106,24 +112,43 @@
              data-mdb-toggle="dropdown"
              aria-expanded="false"
              >
+             <!-- {% if object.logo %}
+        <img src="{{object.logo.url}}" alt="">
+        {% endif %} -->
+        
             <img
-                 src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                 class="rounded-circle"
-                 height="44"
+                 src="{{ user.business.logo.url }}"
+                 
+                 height="40"
+                 width="40"
+                 style="border-radius: 50%;"
                  alt=""
                  loading="lazy"
                  />
-                 
-                 <h5 style="margin-left: 1rem; margin-top: 0.5rem;">{{business.name}}</h5>
                  
           </a>
             <ul
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="navbarDropdownMenuLink"
                 >
-              <li><a class="dropdown-item" href="#">My profile</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+                <li><a class="dropdown-item">{{user.business.name}}</a></li>  
+              <li>
+                <a
+                href="{{editBusinessDash_url}}"
+                class="list-group-item list-group-item-action py-2"
+                >
+               <span>Edit Profile</span>
+             </a></li>
+
+             <li>
+              <a
+              href="{{changePasswordDash_url}}"
+              class="list-group-item list-group-item-action py-2"
+              >
+             <span>Change password</span>
+           </a></li>
+              
+              <li><a class="dropdown-item" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
             </ul>
         </li>
       </ul>

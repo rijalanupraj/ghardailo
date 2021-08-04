@@ -1,5 +1,8 @@
 from django.contrib import messages
 from .forms import *
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 # internal input
 from business.models import Business
@@ -118,8 +121,28 @@ def getProfile(request):
         'profile':profile
     }
     return render(request, 'adminbusiness/base/show-profile.html',context)
-    
-def editProfile(request):
+
+def editBusiness(request):
+    if request.method == 'POST':
+        form = EditBusinessForm(
+            request.POST, request.FILES, instance=request.user.business)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Service Added Successfully')
+            # return redirect('getProfileDash')
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'Error adding service')
+    else:
+        form = EditBusinessForm(
+            instance=request.user.business)
+    context = {
+        'form': form
+    }
+    return render(request, 'adminbusiness/base/edit-business.html', context)
+
+def editBusinessProfile(request):
     if request.method == 'POST':
         form = BusinessProfileForm(
             request.POST, request.FILES, instance=request.user.business.business_profile)
@@ -157,3 +180,19 @@ def updateProfile(request, profile_id):
     }
     return render(request, 'adminbusiness/base/update-profile.html', context)
 
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('changePasswordDash')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'adminbusiness/base/change-password.html', {
+        'form': form
+    })
