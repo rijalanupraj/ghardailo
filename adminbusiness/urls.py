@@ -15,10 +15,7 @@ urlpatterns = [
     path('editBusiness',views.editBusiness, name="editBusinessDash"),
     path('editBusinessProfile',views.editBusinessProfile, name="editBusinessProfileDash"),
     path('updateProfile/<int:profile_id>', views.updateProfile, name="updateProfileDash"),
-    
 
-
-
-
+    path('changePassword', views.change_password, name='changePasswordDash'),
  
 ]
