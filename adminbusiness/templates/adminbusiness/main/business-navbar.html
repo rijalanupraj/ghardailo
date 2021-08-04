@@ -62,14 +62,7 @@
            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Edit business Page</span></a
           >
 
-          <!-- view business page -->
-          <a
-           href="{% url 'business-profile' user.business.slug %}"
-           target="__blank"
-           class="list-group-item list-group-item-action py-2 ripple
-           "
-           ><i class="fas fa-money-bill fa-fw me-3"></i><span>View business Page</span></a
-          >
+          
       </div>
     </div>
   </nav>
@@ -147,6 +140,15 @@
               >
              <span>Change password</span>
            </a></li>
+
+           <!-- view business page -->
+          <a
+          href="{% url 'business-profile' user.business.slug %}"
+          target="__blank"
+          class="list-group-item list-group-item-action py-2
+          "
+          ><span>View business Page</span></a
+         >
               
               <li><a class="dropdown-item" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
             </ul>
