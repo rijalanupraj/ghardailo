@@ -73,7 +73,7 @@
                         <th scope="row" class="Numbering1"></th>
                         <td>{{i.business_service.business.name}}</td>
                         <td><span class="{{i.service.icon_text}}"></span>  {{i.business_service.service}}</td>
-                        <td>{{i.status}}</td>
+                        <td>{{i..get_status_display}}</td>
                         <td>{{i.date_time}}</td>
                     </tr>
                 {% endfor %}
