@@ -118,8 +118,9 @@ def getProfile(request):
         'profile':profile
     }
     return render(request, 'adminbusiness/base/show-profile.html',context)
-    
-def editProfile(request):
+
+
+def editBusinessProfile(request):
     if request.method == 'POST':
         form = BusinessProfileForm(
             request.POST, request.FILES, instance=request.user.business.business_profile)

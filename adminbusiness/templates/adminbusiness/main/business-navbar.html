@@ -1,7 +1,7 @@
 {% load static %}
 
 {% url 'businessDash' as businessDash_url %}
-{% url 'editProfileDash' as editProfileDash_url %}
+{% url 'editBusinessProfileDash' as editProfileBusinessDash_url %}
 {% url 'getServiceDash' as getService_url %}
 <header>
   <!-- Sidebar -->
@@ -23,9 +23,9 @@
             ><span>Dashboard</span>
         </a>
         <a
-           href="{{editProfileDash_url}}"
+           href="#"
            class="list-group-item list-group-item-action py-2 ripple 
-           {% if request.path == editProfileBus_url %}active{% endif %}"
+           "
            aria-current="true"
            >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i
@@ -60,8 +60,9 @@
            ><i class="fas fa-users fa-fw me-3"></i><span>Workers</span></a
           >
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
+           href="{{editProfileBusinessDash_url}}"
+           class="list-group-item list-group-item-action py-2 ripple
+           {% if request.path == editProfileBusinessDash_url %}active{% endif %}"
            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Edit business Page</span></a
           >
       </div>

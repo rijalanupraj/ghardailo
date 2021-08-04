@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('dashboard', views.businessDashboard, name="businessDash"),
-    path('edit-profile', views.editProfile, name="editProfileBus"),
+    # path('edit-profile', views.editProfile, name="editProfileBus"),
 
     # for service
     path('getService',views.getService, name="getServiceDash"),
@@ -13,7 +13,7 @@ urlpatterns = [
 
     #for profile
     path('getProfile',views.getProfile, name="getProfileDash"),
-    path('editProfile',views.editProfile, name="editProfileDash"),
+    path('editBusinessProfile',views.editBusinessProfile, name="editBusinessProfileDash"),
     path('updateProfile/<int:profile_id>', views.updateProfile, name="updateProfileDash"),
 
 

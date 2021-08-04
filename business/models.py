@@ -142,3 +142,4 @@ def create_business_profile(sender, instance, created, **kwargs):
 
 # This Creates the business profile once business is created
 post_save.connect(create_business_profile, sender=Business)
+
