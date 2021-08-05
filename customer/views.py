@@ -1,5 +1,5 @@
 # External Import
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
@@ -9,7 +9,14 @@ from django.db import transaction
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin
+)
+from django.views.generic import (
+    ListView,
+    DeleteView,
+)
 
 # Internal Import
 
@@ -36,7 +43,7 @@ def profileupdate(request):
             cu_form.save()
             messages.success(
                 request, f' Your Account Has Been Successfully Updated')
-            return redirect('customerprofile')
+            return redirect('customer:customerprofile')
 
     else:
 
@@ -71,3 +78,41 @@ def change_password(request):
     return render(request, 'customer/changepassword.html', {
         'form': form
     })
+
+
+class CustomerHiringPageView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    template_name = "customer/customer-hiring-display.html"
+
+    # Check if the user can access this page
+    # Declare permission who can access this page
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.is_customer
+        return False
+
+    def get_queryset(self):
+        return Hiring.objects.filter(
+            customer=self.request.user.customer).order_by('-date_time')
+
+
+class CustomerHiringDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Hiring
+    success_url = reverse_lazy('customer:customer-hiring-page')
+
+    def test_func(self):
+        if self.request.user.is_authenticated and self.request.user.is_customer:
+            self.object = self.get_object()
+            if self.object.customer == self.request.user.customer:
+                return True
+        return False
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Call the delete() method on the fetched object and then redirect to the
+        success URL.
+        """
+        self.object = self.get_object()
+        print(self.object)
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)

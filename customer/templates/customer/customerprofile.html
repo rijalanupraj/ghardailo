@@ -11,45 +11,26 @@ Customer Profile Page
 {% endblock %}
 {% block main_content %}
 
-
-
-
-
-
 <div class="container">
-  <div class="m-4 border border-primary border-3 " class="navs"  > 
-   <ul class="nav nav-pills nav-fill">
-     <li class="nav-item">
-      <a class="nav-link active rounded-0" href="#Myprofile" role="tab" data-bs-toggle="tab"> My Profile </a>
-     </li>
-     <li class="nav-item">
-      <a class="nav-link rounded-0"href="#Hiring" role="tab" data-bs-toggle="tab"> Hirings</a>
-     </li>
-     <li class="nav-item">
-      <a class="nav-link rounded-0" href="#Bookmark" role="tab" data-bs-toggle="tab">Bookmark</a>
-     </li>
-    
-   </ul>
-    
-  </div>
+  {% include 'customer/components/min-nav-profile.html' %}
 
   <br>
 
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active"  class="justify-content-center" id="Myprofile">
+  <div class="">
+    <div class="justify-content-center">
 
-      <h2 style="text-align:center" > <i class="fas fa-user-edit"></i> Edit Your Profile</h2>
-      
-       
-       
+      <h2 style="text-align:center"> <i class="fas fa-user-edit"></i> Edit Your Profile</h2>
+
+
+
       {% for message in messages %}
       <div class="alert alert-primary col-md-4 col-md-offset-4 alert-dismissible fade show " role="alert">
-        <strong>  {{ message }} </strong>
+        <strong> {{ message }} </strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-     {% endfor %}
+      {% endfor %}
 
       <form class="form d-flex" class="mainflexbox" method="POST" enctype="multipart/form-data">
 
@@ -57,33 +38,36 @@ Customer Profile Page
 
 
 
-        <div class="card" style="width: 18rem;" >
-          <img class="card-img-top"  class="rounded-circle" src="{{ request.user.customer.image.url }}" id="profileimage">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" class="rounded-circle" src="{{ request.user.customer.image.url }}"
+            id="profileimage">
           <div class="card-body">
             <input type='file' id="id_image" name="image" accept="image/*" style="color: rgba(0, 0, 0, 0);">
-            <label style="text-align:center" class="input-button" for="id_image" >
+            <label style="text-align:center" class="input-button" for="id_image">
               <i class="fas fa-camera "></i> Change
             </label>
-              
-            
+
+
 
             <h5 class="card-title">About Me</h5>
             <p class="card-text">
-            <h6> <i class="fas fa-user "></i> {{request.user.username}}</h6>
-            <h6> <i class="fas fa-phone-alt"></i> {{request.user.customer.phone}}</h6>
-            <h6> <i class="fas fa-envelope"></i> {{request.user.email}}</h6>
-            <h6> <i class="fas fa-map-marker-alt"></i></i> {{request.user.customer.city}}</h6>
+              <h6> <i class="fas fa-user "></i> {{request.user.username}}</h6>
+              <h6> <i class="fas fa-phone-alt"></i> {{request.user.customer.phone}}</h6>
+              <h6> <i class="fas fa-envelope"></i> {{request.user.email}}</h6>
+              <h6> <i class="fas fa-map-marker-alt"></i></i> {{request.user.customer.city}}</h6>
 
 
             </p>
             <div class="button">
-            <a href="{% url 'change_password'%}"  class="btn btn-dark btn-sm"> <i class="fas fa-key"></i> Change Password</a>
-            
-            <a href="{% url 'logout'%}" class="btn btn-dark btn-sm" class="btn-sm float-right" class="btn btn-primary"> <i class="fas fa-sign-out-alt"></i> Sign Out</a>
-           </div>
+              <a href="{% url 'customer:change_password'%}" class="btn btn-dark btn-sm"> <i class="fas fa-key"></i> Change
+                Password</a>
 
-         
-            
+              <a href="{% url 'logout'%}" class="btn btn-dark btn-sm" class="btn-sm float-right"
+                class="btn btn-primary"> <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </div>
+
+
+
           </div>
         </div>
 
@@ -92,7 +76,7 @@ Customer Profile Page
 
         <div class="form-col" class="col">
           <div class="form-group col-md-6">
-            <label  class="label" for="inputEmail4">Full Name</label>
+            <label class="label" for="inputEmail4">Full Name</label>
             <input type="text" value="{{ request.user.customer.name}}" class="form-control" name="name" id="id_name">
           </div>
           <div class="form-group col-md-6">
@@ -101,21 +85,21 @@ Customer Profile Page
           </div>
 
           <div class="form-group col-md-6">
-            <label  class="label" for="inputAddress">Province</label>
+            <label class="label" for="inputAddress">Province</label>
             <input type="text" value="{{ request.user.customer.province}}" class="form-control" name="province"
               id="id_province">
           </div>
           <div class="form-group col-md-6">
-            <label  class="label" for="inputAddress2">City</label>
+            <label class="label" for="inputAddress2">City</label>
             <input type="text" value="{{ request.user.customer.city}}" class="form-control" name="city" id="id_city">
           </div>
           <div class="form-group col-md-6">
-            <label  class="label" for="inputAddress2">Street Address</label>
+            <label class="label" for="inputAddress2">Street Address</label>
             <input type="text" value="{{ request.user.customer.street_address}}" class="form-control"
               name="street_address" id="id_street_address">
           </div>
           <div class="form-group">
-          <button  type="submit" class="m-4 btn btn-primary"> Update Profile </button>
+            <button type="submit" class="m-4 btn btn-primary"> Update Profile </button>
           </div>
         </div>
       </form>
@@ -123,41 +107,8 @@ Customer Profile Page
     </div>
 
 
-    <div role="tabpanel"  class="tab-pane" id="Hiring"> 
-      <div class="container">
-  <div class="row">
-    <div class="col-12 table-responsive table-striped p-0">
-      <table class="table table-bordered table-head-fixed">
-        <thead>
-          <tr>
-            <th scope="col">S.N</th>
-            <th scope="col">Business</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for hire in customer_hire %}
-          <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{hire.business_service.business.name}} - {{hire.business_service.service.name}}</td>
-            <td>{{hire.get_status_display}}</td>
-            <td>
-            <button type="button" class="btn btn-sm btn-danger">Cancel</button>
-              {% comment %} <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-              <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> {% endcomment %}
-            </td>
-          </tr> 
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="Bookmark"> this is profile page</div>
     
+
 
   </div>
 </div>
