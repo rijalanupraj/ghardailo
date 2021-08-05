@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 # Internal Import
 
 urlpatterns = [
-    path('customer-profile/', views.profileupdate, name="customerprofile"),
+    path('profile/', views.profileupdate, name="customerprofile"),
     path('change-password/', views.change_password, name='change_password'),
     path('hirings/', views.CustomerHiringPageView.as_view(),
          name="customer-hiring-page"),
