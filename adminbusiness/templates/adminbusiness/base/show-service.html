@@ -18,10 +18,12 @@
     <div class="row">
         <div class="col-md-12 offset">
             <h1 class="text-center"> Service </h1>
+            {% include 'adminbusiness/base/service-search.html' %}
             <div class="card py-2 px-2 table-responsive">
+                
                 <a class="btn btn-success btn-bg ml-auto mb-2" style="width: 100%"
                    href="{% url 'postServiceDash' %}">Add New Service</a>
-
+                   
                 <table class="table table-responsive table-white" >
                     <tr class="btn-danger">
                         <th>#</th>

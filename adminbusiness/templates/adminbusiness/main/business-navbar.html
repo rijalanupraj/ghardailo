@@ -7,6 +7,24 @@
 {% url 'changePasswordDash' as changePasswordDash_url %}
 
 
+<style>
+.business-name{
+
+  font-weight: bold;
+  background-color: #1165EF;
+  text-align: center;
+  color: white;
+}
+.business-name:hover{
+  background-color: #1165EF;
+  color: white;
+}
+
+.business-logout:hover{
+  background-color: #D32D27;
+  color:white;
+}
+</style>
 
 
 <header>
@@ -124,7 +142,7 @@
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="navbarDropdownMenuLink"
                 >
-                <li><a class="dropdown-item">{{user.business.name}}</a></li>  
+                <li><a class="dropdown-item business-name"><span>{{user.business.name}}</span></a></li>  
               <li>
                 <a
                 href="{{editBusinessDash_url}}"
@@ -150,7 +168,7 @@
           ><span>View business Page</span></a
          >
               
-              <li><a class="dropdown-item" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
+              <li><a class="dropdown-item business-logout" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
             </ul>
         </li>
       </ul>
