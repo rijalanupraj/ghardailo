@@ -1,0 +1,14 @@
+<div class="row d-flex justify-content-center">
+    <div class="col-md-12">
+        <div class="card p-3 py-4">
+            <form method="GET" action="{% url 'getServiceDash' %}" class="search-form">
+                <div class="row mt-2">
+                    <div class="col-md-9"> <input type="search" name="q" class="form-control" placeholder="What are you searching for?" value="{{query}}"> </div>
+                    <div class="col-md-3"> <button class="btn btn-block" style="background-color: #1165EF; color: white;">Search Service</button> </div>
+                </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
