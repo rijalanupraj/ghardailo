@@ -16,6 +16,8 @@ from hiring.models import *
 from review.models import *
 from notification.models import *
 
+from .filters import *
+
 # Create your views here.
 
 def businessDashboard(request):
@@ -52,12 +54,15 @@ def businessDashboard(request):
 
 
 
-
 def getService(request):
     businessService = Business_Service.objects.filter(business=request.user.business)
-
+    service_filter = ServicesFilter(request.GET, queryset=businessService)
+    service_final = service_filter.qs
     context = {
         'businessService': businessService,
+        'services':service_final,  
+        'service_filter':service_filter, 
+        'form':form
 
     }
     return render(request, 'adminbusiness/base/show-service.html', context)
