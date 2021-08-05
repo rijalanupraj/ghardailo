@@ -38,6 +38,7 @@ def profileupdate(request):
 
         cu_form = CustomerUpdateForm(
             request.POST, request.FILES, instance=request.user.customer)
+        print(cu_form)
 
         if cu_form.is_valid():
             cu_form.save()
