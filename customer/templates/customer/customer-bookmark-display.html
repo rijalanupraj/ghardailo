@@ -24,7 +24,7 @@ Hirings
             {% for bookmark in object_list %}
             <tr>
               <td>{{forloop.counter}}</td>
-              <td>{{bookmark.business.name}}</td>
+              <td><a  class="text-decoration-none text-dark" href="{% url 'business-profile' bookmark.business.slug %}">{{bookmark.business.name}}</a></td>
               <td>
                 <form method="POST" action="{% url 'customer:customer-bookmark-delete-view' bookmark.id %}">
                   {% csrf_token %}<input onclick="return confirm('Are you sure want to Remove this bookmark?')"
