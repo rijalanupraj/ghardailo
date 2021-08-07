@@ -19,6 +19,8 @@ urlpatterns = [
          name="customer-bookmark-page"),
     path('bookmarks/delete/<pk>/', views.CustomerBookmarkDeleteView.as_view(),
          name='customer-bookmark-delete-view'),
+    path('bookmarks/<str:slug>/bookmark-this/',
+         views.business_bookmark_toggle_for_customer, name='customer-bookmark-toggle'),
 
 ]
 

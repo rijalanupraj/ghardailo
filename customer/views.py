@@ -1,6 +1,6 @@
 # External Import
 from bookmark.models import Bookmark
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, HttpResponse
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
@@ -18,6 +18,8 @@ from django.views.generic import (
     ListView,
     DeleteView,
 )
+import json
+from django.contrib.auth.decorators import login_required
 
 # Internal Import
 
@@ -26,6 +28,8 @@ from .forms import CustomerUpdateForm
 from hiring.models import Hiring
 from django.contrib.auth import get_user_model
 from .models import Customer
+from business.models import Business
+from .decorators import customer_only
 from business.models import Business
 
 User = get_user_model()
@@ -155,3 +159,30 @@ class CustomerBookmarkDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delete
         success_url = self.get_success_url()
         self.object.delete()
         return HttpResponseRedirect(success_url)
+
+
+@login_required
+@customer_only
+def business_bookmark_toggle_for_customer(request, slug):
+    if request.user.is_staff:
+        return HttpResponse("Forbidden")
+
+    current_customer = request.user.customer
+    business = Business.objects.get(slug=slug)
+
+    is_bookmarked = False
+    current_bookmark = Bookmark.objects.filter(
+        customer=current_customer, business=business)
+    if current_bookmark:
+        current_bookmark.delete()
+    else:
+        Bookmark.objects.create(
+            customer=current_customer, business=business)
+        is_bookmarked = True
+
+    resp = {
+        "isBookmarked": is_bookmarked,
+    }
+
+    response = json.dumps(resp)
+    return HttpResponse(response, content_type="application/json")
