@@ -9,22 +9,19 @@ User = get_user_model()
 
 # Create your views here.
 
-  
-def bookmark_business(request,id):
-     bookmark = Bookmark.object.get(id=id)
-     business_id = bookmark.business.id
 
-     if business_id.filter(id=request.user.customer.id).exists():
-        business_id.remove(request.user.customer)
-      
-     else:
-       business_id.add(request.user.customer)
+# def bookmark_business(request,id):
+#      bookmark = Bookmark.object.get(id=id)
+#      business_id = bookmark.business.id
 
-    
-     return render(request, 'bookmark/showbookmark.html')
+#      if business_id.filter(id=request.user.customer.id).exists():
+#         business_id.remove(request.user.customer)
+
+#      else:
+#        business_id.add(request.user.customer)
 
 
-#def bookmark_list(request):
+#      return render(request, 'bookmark/showbookmark.html')
 
-    
 
+# #def bookmark_list(request):

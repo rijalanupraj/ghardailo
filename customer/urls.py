@@ -15,6 +15,10 @@ urlpatterns = [
          name="customer-hiring-page"),
     path('hirings/delete/<pk>/', views.CustomerHiringDeleteView.as_view(),
          name='customer-hiring-delete-view'),
+    path('bookmarks/', views.CustomerBusinessBookmarkListView.as_view(),
+         name="customer-bookmark-page"),
+    path('bookmarks/delete/<pk>/', views.CustomerBookmarkDeleteView.as_view(),
+         name='customer-bookmark-delete-view'),
 
 ]
 

@@ -1,4 +1,5 @@
 # External Import
+from bookmark.models import Bookmark
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
@@ -25,6 +26,7 @@ from .forms import CustomerUpdateForm
 from hiring.models import Hiring
 from django.contrib.auth import get_user_model
 from .models import Customer
+from business.models import Business
 
 User = get_user_model()
 
@@ -113,7 +115,43 @@ class CustomerHiringDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVi
         success URL.
         """
         self.object = self.get_object()
-        print(self.object)
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
+
+class CustomerBusinessBookmarkListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    template_name = "customer/customer-bookmark-display.html"
+
+    # Check if the user can access this page
+    # Declare permission who can access this page
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.is_customer
+        return False
+
+    def get_queryset(self):
+        return Bookmark.objects.filter(
+            customer=self.request.user.customer).order_by('-date_time')
+
+
+class CustomerBookmarkDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Bookmark
+    success_url = reverse_lazy('customer:customer-bookmark-page')
+
+    def test_func(self):
+        if self.request.user.is_authenticated and self.request.user.is_customer:
+            self.object = self.get_object()
+            if self.object.customer == self.request.user.customer:
+                return True
+        return False
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Call the delete() method on the fetched object and then redirect to the
+        success URL.
+        """
+        self.object = self.get_object()
         success_url = self.get_success_url()
         self.object.delete()
         return HttpResponseRedirect(success_url)
