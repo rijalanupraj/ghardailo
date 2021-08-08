@@ -1,3 +1,48 @@
+.Registration {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.Customer, .Business, .Admin {
+    font-size:  45px;
+    padding: 15px;
+    padding-left: 5px;
+    padding-right: 65px;
+    font-family: cursive;
+    border-radius: 150px 5px 150px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Customer a, .Business a, .Admin a {    
+    text-decoration: none;
+}
+.Registration .logo{
+    font-size:  90px;
+    text-shadow: rgba(0, 0, 0, 0.20) 15px 15px 10px;
+}
+.Customer {    
+    box-shadow: #9effc3 0px 0px 20px;
+}
+.Business {    
+    box-shadow: #bba2ff 0px 0px 20px;
+}
+.Admin {    
+    box-shadow: #ffa0ad 0px 0px 20px;
+}
+.Customer span {
+    color: #00b646;
+}
+.Business span {
+    color: #3200bd;
+}
+.Admin span {
+    color: #b90019;
+}
 .ProgressBars {
     display: flex;
     flex-direction: row;
@@ -7,7 +52,7 @@
     justify-content: center;
 }
 .ProgressBars .Bar {
-    border-radius: 5px;
+    border-radius: 80px 5px 80px 5px;
     padding: 16px;
     display: flex;
     flex-direction: row;
@@ -55,6 +100,14 @@
     background: linear-gradient(to left, #fc1f3c, #652efc, #2dfa7c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.ProgressBars .Bar .text .logo {    
+    font-size:  80px;
+    text-shadow: rgba(0, 0, 0, 0.20) 15px 15px 10px;
 }
 @media screen and (max-width: 1475px) {
     .ProgressBars {
@@ -66,23 +119,57 @@
         gap: 50px;
     } 
 }
+@media screen and (max-width: 600px) {
+    .Registration {
+        gap: 25px;
+    }
+    .Customer, .Business, .Admin {
+        font-size:  20px;
+        padding-right: 40px;
+    }
+    .Registration .logo{
+        font-size:  30px;
+        text-shadow: rgba(0, 0, 0, 0.20) 8px 8px 10px;
+    }
+}
 @media screen and (max-width: 590px) {
     .ProgressBars {
         gap: 25px;
-    }   
+    }      
+    .ProgressBars .Bar{
+        border-radius: 60px 5px 60px 5px;
+    }
     .ProgressBars .Bar .circle{
-        height: 50px;
-        width: 50px;
-    }.Bar .circle .box span {
+        height: 70px;
+        width: 70px;
+    }
+    .Bar .circle .box span {
         font-size:  20px;
     }
     .ProgressBars .Bar .text {    
         font-size:  15px;
     } 
+    .ProgressBars .Bar .text .logo {    
+        font-size:  30px;
+        text-shadow: rgba(0, 0, 0, 0.20) 8px 8px 10px;
+    }
     .Bar .circle:hover .box {
         transform: translate(5%, -112%) scale(1.08);
     }
     .Bar .circle .box {
         transform: translate(5%,-112%);
+    }
+}
+@media screen and (max-width: 400px) {
+    .Registration {
+        gap: 25px;
+    }
+    .Customer, .Business, .Admin {
+        font-size:  13px;
+        padding-right: 25px;
+    }
+    .Registration .logo{
+        font-size:  20px;
+        text-shadow: rgba(0, 0, 0, 0.20) 5px 5px 10px;
     }
 }

@@ -42,6 +42,20 @@ def dashboard(request):
     }
     return render(request, 'admindashboard/dashboard.html', dictionary)
 
+# <<====================Customer Registration====================>>
+def customer_registration(request):
+    return render(request, 'admindashboard/Customer_Registration.html')
+
+
+# <<====================Business Registration====================>>
+def business_registration(request):
+    return render(request, 'admindashboard/Business_Registration.html')
+
+
+# <<====================Administration Registration====================>>
+def administrator_registration(request):
+    return render(request, 'admindashboard/Administrator_Registration.html')
+
 # <<====================Service====================>>
 def service(request):
     service = Services.objects.all()

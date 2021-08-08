@@ -5,6 +5,15 @@ urlpatterns = [
     # <<====================Dashboard====================>>
     path('dashboard', views.dashboard, name="my-admin-dashboard"),
 
+    # <<====================Customer Registration====================>>
+    path('cr', views.customer_registration),
+
+    # <<====================Business Registration====================>>
+    path('br', views.business_registration),
+
+    # <<====================Administrator Registration====================>>
+    path('ar', views.administrator_registration),
+
     # <<====================Service====================>>
     path('service', views.service),
     path('deleteservice/<int:service_id>', views.service_delete),
