@@ -66,8 +66,9 @@ class BusinessServicesForm1(ModelForm):
 
 class BusinessWorkerForm(ModelForm):
     class Meta:
-        model = Business_Worker
+        model = Worker
         fields = '__all__'
+        exclude= ['business']
   
 
 class CustomerForm(ModelForm):

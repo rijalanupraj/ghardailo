@@ -14,7 +14,7 @@ urlpatterns = [
     path('getWorker',views.getWorker, name="getWorkerDash"),
     path('postWorker',views.postWorker, name="postWorkerDash"),
     path('updateWorker/<int:Worker_id>', views.updateWorker, name="updateWorkerDash"),
-    path('deleteWorker/<int:Worker_id>', views.views.deleteWorker, name="deleteWorkerDash"),
+    path('deleteWorker/<int:Worker_id>', views.deleteWorker, name="deleteWorkerDash"),
 
     #for profile
     path('getProfile',views.getProfile, name="getProfileDash"),

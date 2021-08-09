@@ -204,7 +204,7 @@ def change_password(request):
 
 
 def getWorker(request):
-    businessWorker = Business_Service.objects.all()
+    businessWorker = Worker.objects.all()
     context = {
         'businessWorker': businessWorker,
      
@@ -217,7 +217,7 @@ def postWorker(request):
 
         form = BusinessWorkerForm(request.POST, request.FILES)
         if form.is_valid():
-            businessWorker = Business_Worker.objects.filter(business=request.user.business)
+            businessWorker = Worker.objects.filter(business=request.user.business)
             
             obj=form.save(commit=False)
             already_exist=True
@@ -239,22 +239,22 @@ def postWorker(request):
         'form':form
     }
 
-    return render(request, 'adminbusiness/base/post-service.html', context)
+    return render(request, 'adminbusiness/base/post-worker.html', context)
 
-def updateWorker(request, service_id):
-    instance = Business_Worker.objects.get(id=service_id)
+def updateWorker(request, Worker_id):
+    instance = Worker.objects.get(id=Worker_id)
     if request.method == "POST":
         form = BusinessWorkerForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('/b/getService')
+            return redirect('/b/getWorker')
     context = {
         'form': BusinessWorkerForm(instance=instance),
         'worker':instance
     }
     return render(request, 'adminbusiness/base/update-Worker.html', context)
 
-def deleteWorker(request, service_id):
-    worker = Business_Worker.objects.get(id=service_id)
+def deleteWorker(request, Worker_id):
+    worker = Worker.objects.get(id=Worker_id)
     worker.delete()
     return redirect('getWorkerDash')
