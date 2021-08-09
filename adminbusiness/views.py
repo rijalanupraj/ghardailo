@@ -62,7 +62,7 @@ def getService(request):
         'businessService': businessService,
         'services':service_final,  
         'service_filter':service_filter, 
-        'form':form
+
 
     }
     return render(request, 'adminbusiness/base/show-service.html', context)
