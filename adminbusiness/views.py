@@ -59,8 +59,7 @@ def getService(request):
     service_filter = ServicesFilter(request.GET, queryset=businessService)
     service_final = service_filter.qs
     context = {
-        'businessService': businessService,
-        'services':service_final,  
+        'businessService': service_final,
         'service_filter':service_filter, 
 
 
