@@ -200,3 +200,60 @@ def change_password(request):
     return render(request, 'adminbusiness/base/change-password.html', {
         'form': form
     })
+
+
+def getWorker(request):
+    businessWorker = Worker.objects.all()
+    context = {
+        'businessWorker': businessWorker,
+     
+
+    }
+    return render(request, 'adminbusiness/base/show-worker.html', context)
+
+def postWorker(request):
+    if request.method == 'POST':
+
+        form = BusinessWorkerForm(request.POST, request.FILES)
+        if form.is_valid():
+            businessWorker = Worker.objects.filter(business=request.user.business)
+            
+            obj=form.save(commit=False)
+            already_exist=True
+            for work in businessWorker:
+                if work.worker==obj.worker:
+                    already_exist=False
+            if already_exist:
+                obj.business=request.user.business
+                obj.save()
+                messages.add_message(request, messages.SUCCESS, 'Service Added Successfully') 
+            return redirect('getWorkerDash')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error adding service')
+            return render(request, 'adminbusiness/base/post-worker.html')
+    else:
+        form = BusinessWorkerForm()
+
+    context={
+        'form':form
+    }
+
+    return render(request, 'adminbusiness/base/post-worker.html', context)
+
+def updateWorker(request, Worker_id):
+    instance = Worker.objects.get(id=Worker_id)
+    if request.method == "POST":
+        form = BusinessWorkerForm(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/b/getWorker')
+    context = {
+        'form': BusinessWorkerForm(instance=instance),
+        'worker':instance
+    }
+    return render(request, 'adminbusiness/base/update-Worker.html', context)
+
+def deleteWorker(request, Worker_id):
+    worker = Worker.objects.get(id=Worker_id)
+    worker.delete()
+    return redirect('getWorkerDash')

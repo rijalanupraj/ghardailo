@@ -10,6 +10,12 @@ urlpatterns = [
     path('updateService/<int:service_id>', views.updateService, name="updateServiceDash"),
     path('deleteService/<int:service_id>', views.deleteService, name="deleteServiceDash"),
 
+    # for Worker
+    path('getWorker',views.getWorker, name="getWorkerDash"),
+    path('postWorker',views.postWorker, name="postWorkerDash"),
+    path('updateWorker/<int:Worker_id>', views.updateWorker, name="updateWorkerDash"),
+    path('deleteWorker/<int:Worker_id>', views.deleteWorker, name="deleteWorkerDash"),
+
     #for profile
     path('getProfile',views.getProfile, name="getProfileDash"),
     path('editBusiness',views.editBusiness, name="editBusinessDash"),

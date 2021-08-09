@@ -4,6 +4,7 @@
 {% url 'editBusinessDash' as editBusinessDash_url %}
 {% url 'editBusinessProfileDash' as editProfileBusinessDash_url %}
 {% url 'getServiceDash' as getService_url %}
+{% url 'getWorkerDash' as getWorker_url %}
 {% url 'changePasswordDash' as changePasswordDash_url %}
 
 
@@ -69,8 +70,9 @@
           >
       
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
+           href="{{getWorker_url}}"
+           class="list-group-item list-group-item-action py-2 ripple
+           {% if request.path == getWorker_url %}active{% endif %}"
            ><i class="fas fa-users fa-fw me-3"></i><span>Workers</span></a
           >
         <a
