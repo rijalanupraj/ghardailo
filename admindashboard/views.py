@@ -120,11 +120,17 @@ def business_view(request, business_id):
     dictionary = {
         'pb':particular_business,
         'services':business_services,
+        'services_count':business_services.count(),
         'gallery': business_gallery,
+        'gallery_count': business_gallery.count(),
         'workers': business_workers,
+        'workers_count': business_workers.count(),
         'hires': business_hires,
+        'hires_count': business_hires.count(),
         'notifications': business_notifications,
+        'notifications_count': business_notifications.count(),
         'reviews': business_reviews,
+        'reviews_count': business_reviews.count(),
         'business': 'selected'
     }
     return render(request, 'admindashboard/business_view.html', dictionary)
@@ -148,8 +154,11 @@ def customer_view(request, customer_id):
     dictionary = { 
         'pc': particular_customer,
         'hires': customer_hires,
+        'hires_count': customer_hires.count(),
         'notifications': customer_notifications,
+        'notifications_count': customer_notifications.count(),
         'reviews': customer_reviews,
+        'reviews_count': customer_reviews.count(),
         'customer': 'selected'
     }
     return render(request, 'admindashboard/customer_view.html', dictionary)
