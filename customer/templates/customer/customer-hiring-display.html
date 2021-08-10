@@ -1,0 +1,45 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+{% block title %}
+Hirings
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container">
+  {% include 'customer/components/min-nav-profile.html' %}
+  <div class="m-2">
+    <div class="row">
+      <div class="col-12 table-responsive p-0">
+        <table class="table table-striped table-hover table-bordered table-head-fixed">
+          <thead>
+            <tr>
+              <th scope="col">S.N</th>
+              <th scope="col">Business</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for hire in object_list %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{hire.business_service.business.name}} - {{hire.business_service.service.name}}</td>
+              <td><span class="badge rounded-pill bg-primary">{{hire.get_status_display}}</span></td>
+              <td>
+                <form method="POST" action="{% url 'customer:customer-hiring-delete-view' hire.id %}">
+                  {% csrf_token %}<input onclick="return confirm('Are you sure want to Cancel this hiring?')"
+                    type="submit" class="btn btn-sm btn-danger" value="Cancel">
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content %}

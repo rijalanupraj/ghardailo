@@ -1,3 +1,4 @@
+from bookmark.models import Bookmark
 from business.models import Business
 from django.views.generic import (
     ListView,
@@ -33,9 +34,18 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        customer_bookmarks_business = []
+        if self.request.user.is_authenticated and self.request.user.is_customer:
+            customer_bookmarks = Bookmark.objects.filter(
+                customer=self.request.user.customer).values_list('business', flat=True)
+            customer_bookmarks_business = [Business.objects.get(id=id) for id in
+                                           customer_bookmarks]
+            print(customer_bookmarks_business)
         query = self.request.GET.get('q')
         if query is not None:
             context["query"] = query
+
+        context["customer_bookmarks_business"] = customer_bookmarks_business
         return context
 
     def get_queryset(self):
