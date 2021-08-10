@@ -1,3 +1,4 @@
+from worker.models import Worker
 from business.models import Business
 from django.views.generic import (
     ListView,
@@ -12,6 +13,7 @@ from django.contrib.auth.mixins import (
     UserPassesTestMixin
 )
 
+from worker.models import *
 
 class BusinessListPageView(UserPassesTestMixin, ListView):
     template_name = "business/business-list-page.html"
@@ -65,3 +67,11 @@ class BusinessProfileView(UserPassesTestMixin, DetailView):
         elif self.request.user.is_staff:
             return redirect('my-admin-dashboard')
         return redirect('home-page')
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        slug = self.kwargs['slug']
+        worker=Worker.objects.filter(business__slug=slug)
+        context["Worker"] = worker
+        return context

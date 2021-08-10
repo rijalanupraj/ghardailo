@@ -125,19 +125,11 @@
 <h1 class="heading"> our <span>employee</span> </h1>
 
 <div class="box-container">
-
+    {% for w in Worker %}
     <div class="box">
-        <img src="{% static 'business/images/anup.jpg' %}" alt="">
+        <img src="{{w.picture.url}}" alt="">
     </div>
-    <div class="box">
-        <img src="{% static 'business/images/samir.jpg' %}" alt="">
-    </div>
-    <div class="box">
-        <img src="{% static 'business/images/ranjit1.jpg' %}" alt="">
-    </div>
-    <div class="box">
-        <img src="{% static 'business/images/gauriDon.jpg' %}" alt="">
-    </div>
+   {% endfor %}
 
 </div>
 
