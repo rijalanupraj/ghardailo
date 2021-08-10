@@ -203,7 +203,7 @@ def change_password(request):
 
 
 def getWorker(request):
-    businessWorker = Worker.objects.all()
+    businessWorker = Worker.objects.filter(business=request.user.business)
     context = {
         'businessWorker': businessWorker,
      
@@ -218,15 +218,10 @@ def postWorker(request):
         if form.is_valid():
             businessWorker = Worker.objects.filter(business=request.user.business)
             
-            obj=form.save(commit=False)
-            already_exist=True
-            for work in businessWorker:
-                if work.worker==obj.worker:
-                    already_exist=False
-            if already_exist:
-                obj.business=request.user.business
-                obj.save()
-                messages.add_message(request, messages.SUCCESS, 'Service Added Successfully') 
+            obj=form.save(commit=False) 
+            obj.business=request.user.business
+            obj.save()
+            messages.add_message(request, messages.SUCCESS, 'Service Added Successfully') 
             return redirect('getWorkerDash')
         else:
             messages.add_message(request, messages.ERROR, 'Error adding service')
