@@ -11,7 +11,7 @@
     font-family: cursive;
 }
 .card {
-    border: 1px solid linear-gradient(#5b86e5, #36d1dc);;
+    border: 1px solid linear-gradient(#5b86e5, #36d1dc);
     border-radius: 5px;
     margin-right: 16px;
     box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
