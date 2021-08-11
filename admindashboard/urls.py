@@ -24,7 +24,7 @@ urlpatterns = [
     path('viewbusiness/<int:business_id>', views.business_view),
 
     # <<====================Customer====================>>
-    path('customer', views.customer),
+    path('customer', views.customer, name="my-admin-customer-list-view"),
     path('viewcustomer/<int:customer_id>', views.customer_view),
 
     # <<====================Activities====================>>
