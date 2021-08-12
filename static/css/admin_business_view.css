@@ -25,6 +25,10 @@
     height: 200px;
     width: 200px;
 }
+.profile h1 {
+    font-family: cursive;
+    color: red;
+}
 .navigate {
     font-family: cursive;
     border-radius: 30px;
@@ -97,13 +101,17 @@
 .description label {
     text-decoration: underline;
 }
-.reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive{
+.table-responsive th, .table-responsive td {
+    text-align: center; 
+    vertical-align: middle;
+}
+.reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive, .bookmarks .table-responsive{
     border-radius: 5px;
     font-size: 20px;
     font-family: cursive;
     box-shadow: rgb(0, 0, 0, 25%) 0px 0px 5px;
 }
-.reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead, .services .table-responsive thead, .workers .table-responsive thead{    
+.reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead, .services .table-responsive thead, .workers .table-responsive thead, .bookmarks .table-responsive thead{    
     background-image: linear-gradient(to right, #36d1dc , #5b86e5 );
 }
 .gallery {
@@ -119,7 +127,7 @@
     box-shadow: #5e2ced 0px 0px 10px;
     transition: 0.8s;
 }
-.workers img{
+.hires img, .notifications img, .reviews img, .bookmarks img, .workers img{
     height: 100px;
     width: 100px;    
 }
@@ -150,10 +158,10 @@
         height: 100px;
         width: 100px;
     }
-    .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive{
+    .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive, .bookmarks .table-responsive{
         font-size: 15px;
     }
-    .workers img{
+    .hires img, .notifications img, .reviews img, .bookmarks img, .workers img{
         height: 50px;
         width: 50px;    
     }
@@ -174,7 +182,7 @@
         width: 50px;
     }   
 }
-@media screen and (max-width: 1270px) {
+@media screen and (max-width: 1435px) {
     .navigate {
         border-radius: 22px;
         padding-left: 5px;
@@ -189,7 +197,7 @@
         font-size: 10px;
     }  
 }
-@media screen and (max-width: 885px) {
+@media screen and (max-width: 1005px) {
     .navigate {    
         height: 90px;
     }
@@ -203,7 +211,7 @@
         height: 150px;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 630px) {
     .navigate {    
         height: 135px;
         padding-left: 0px;

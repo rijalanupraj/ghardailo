@@ -36,7 +36,13 @@
                     <th scope="row" class="Numbering"></th>
                     <td>{{i.user.username}}</td>
                     <td>{{i.name}}</td>
-                    <td><img class="img-fluid rounded-circle" src="{{i.image.url}}" alt="" /><img class="img-fluid rounded-circle" src="/{{i.image}}" alt="" /></td>
+                    <td>                         
+                        {% if i.image.url != "/media/static/Image/default.jpg" %}
+                            <img class="img-fluid rounded-circle" src="{{i.image.url}}" alt="" />
+                        {% else %}
+                            <img class="img-fluid rounded-circle" src="/{{i.image}}" alt="" />
+                        {% endif %}
+                    </td>
                     <td>{{i.phone}}</td>
                     <td>{{i.province}}</td>
                     <td>{{i.city}}</td>

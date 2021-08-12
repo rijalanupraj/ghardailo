@@ -9,16 +9,20 @@
 
 {% block main_content %}    
 <div class="profile mt-3"> 
-    <div  class="cover_pic">
-        {% if pb.cover_picture %}
-        <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
-        {% endif %}
-    </div>  
-    <div class="logo">       
-        {% if pb.logo %}
-        <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
-        {% endif %}
-    </div>
+    {% if pb.cover_picture %}
+        <div  class="cover_pic">
+            <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
+        </div>  
+    {% else %}
+        <h1>No any cover picture of this business.</h1>
+    {% endif %}
+    {% if pb.logo %}
+        <div class="logo"> 
+            <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
+        </div>
+    {% else %}
+        <h1>No any logo of this business.</h1>
+    {% endif %}
 </div>
 <div class="navigate m-auto mt-5">
     <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
@@ -34,6 +38,8 @@
     <button type="button" class="btn find" onclick="navigate(5)"><span class="fas fa-bell me-2"></span>Notifications<span class="counter">{{notifications_count}}</span></button>
     <div class="Line"></div>
     <button type="button" class="btn find" onclick="navigate(6)"><span class="fas fa-search-plus me-2"></span>Reviews<span class="counter">{{reviews_count}}</span></button>
+    <div class="Line"></div>
+    <button type="button" class="btn find" onclick="navigate(7)"><span class="fas fa-bookmark me-2"></span>Bookmarks<span class="counter">{{bookmarks_count}}</span></button>
 </div>
 <div class="container-fluid details navdiv ms-auto mt-3 p-3">
     <div>
@@ -68,6 +74,14 @@
         <div class="me-3 mb-2 pe-2 ps-2">
             <label class="form-label me-1">Contact:</label>
             <p>{{pb.phone}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Active:</label>
+            <p>{{pb.is_active}}</p>
+        </div>
+        <div class="me-3 mb-2 pe-2 ps-2">
+            <label class="form-label me-1">Verified:</label>
+            <p>{{pb.is_verified}}</p>
         </div>
     </div>
     <div class="description mt-2 p-2">
@@ -135,7 +149,7 @@
                 <tr>
                     <th scope="col">No.</th>
                     <th scope="col">Customer Name</th>
-                    <th scope="col">Customer Phone</th>
+                    <th scope="col">Customer Profile</th>
                     <th scope="col">Service</th>
                     <th scope="col">Status</th>
                     <th scope="col">DateTime</th>
@@ -146,7 +160,13 @@
                     <tr>
                         <th scope="row" class="Numbering3"></th>
                         <td>{{i.customer.name}}</td>
-                        <td>{{i.customer.phone}}</td>
+                        <td>                          
+                            {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                            {% else %}
+                                <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                            {% endif %}
+                        </td>
                         <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                         <td>{{i.get_status_display}}</td>
                         <td>{{i.date_time}}</td>
@@ -163,7 +183,7 @@
                 <tr>
                     <th scope="col">No.</th>
                     <th scope="col">Customer Name</th>
-                    <th scope="col">Customer Phone</th>
+                    <th scope="col">Customer Profile</th>
                     <th scope="col">Message</th>
                     <th scope="col">Read</th>
                     <th scope="col">Time</th>
@@ -175,7 +195,13 @@
                     <tr>
                         <th scope="row" class="Numbering4"></th>
                         <td>{{i.customer.name}}</td>
-                        <td>{{i.customer.phone}}</td>
+                        <td>                          
+                            {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                            {% else %}
+                                <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                            {% endif %}
+                        </td>
                         <td>{{i.message}}</td>
                         <td>{{i.read}}</td>
                         <td>{{i.time}}</td>
@@ -193,7 +219,7 @@
                 <tr>
                     <th scope="col">No.</th>
                     <th scope="col">Customer Name</th>
-                    <th scope="col">Customer Phone</th>
+                    <th scope="col">Customer Profile</th>
                     <th scope="col">Comment</th>
                     <th scope="col">Rating</th>
                     <th scope="col">DateTime</th>
@@ -204,9 +230,45 @@
                     <tr>
                         <th scope="row" class="Numbering5"></th>
                         <td>{{i.customer.name}}</td>
-                        <td>{{i.customer.phone}}</td>
+                        <td>                            
+                            {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                            {% else %}
+                                <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                            {% endif %}
+                        </td>
                         <td>{{i.comment}}</td>
                         <td>{{i.rating}} </td>
+                        <td>{{i.date_time}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div>
+<div class="bookmarks navdiv mt-3 p-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer Profile</th>
+                    <th scope="col">DateTime</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in bookmarks %}
+                    <tr>
+                        <th scope="row" class="Numbering6"></th>
+                        <td>{{i.customer.name}}</td> 
+                        <td>
+                            {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                            {% else %}
+                                <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                            {% endif %}
+                        </td>
                         <td>{{i.date_time}}</td>
                     </tr>
                 {% endfor %}

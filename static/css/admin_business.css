@@ -43,7 +43,19 @@
     border-radius: 5px;
     background-image: linear-gradient(#00cdac, #02aab0 );
 }
-.table-responsive tbody tr td a{
+.table-responsive th, .table-responsive td {
+    text-align: center; 
+    vertical-align: middle;
+}
+.table-responsive tbody tr td .verified{
+    color: #3ced2c;
+    font-size: 25px;
+}
+.table-responsive tbody tr td .not_verified{
+    color: #ed2c2c;
+    font-size: 25px;
+}
+.table-responsive tbody tr td .edit{
     color: #5e2ced;
     font-size: 25px;
 }

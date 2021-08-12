@@ -21,6 +21,8 @@ urlpatterns = [
 
     # <<====================Business====================>>
     path('business', views.business),
+    path('business_verified/<int:business_id>', views.business_verified),
+    path('business_not_verified/<int:business_id>', views.business_not_verified),
     path('viewbusiness/<int:business_id>', views.business_view),
 
     # <<====================Customer====================>>
