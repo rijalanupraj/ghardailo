@@ -1,3 +1,10 @@
+.background{    
+    background: url('/static/img/dashboard.jpg');
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    min-height: 1300px;
+}
 .Registration {
     display: flex;
     flex-direction: row;
@@ -26,12 +33,15 @@
     text-shadow: rgba(0, 0, 0, 0.20) 15px 15px 10px;
 }
 .Customer {    
+    background-color: white;
     box-shadow: #9effc3 0px 0px 20px;
 }
 .Business {    
+    background-color: white;
     box-shadow: #bba2ff 0px 0px 20px;
 }
-.Admin {    
+.Admin {   
+    background-color: white; 
     box-shadow: #ffa0ad 0px 0px 20px;
 }
 .Customer span {
@@ -58,7 +68,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 50%) 0px 0px 20px;
 }
 .ProgressBars .Bar .circle{
     position: relative;

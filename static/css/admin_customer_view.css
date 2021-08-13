@@ -1,7 +1,19 @@
+.background{    
+    background: url('/static/img/customer_view.jpg');
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    min-height: 880px;
+}
+.back {
+    font-size: 30px;
+    color: #ef629f;
+    text-shadow: black 0px 0px 20px;
+}
 .profile img{
     height: 350px;
     border-radius: 10px;  
-    box-shadow: rgb(0, 0, 0, 50%) 0px 0px 10px;
+    box-shadow: white 0px 0px 20px;
 }
 .navigate {
     font-family: cursive;
@@ -9,7 +21,7 @@
     padding-left: 20px;
     padding-right: 20px;    
     height: 60px;
-    background-color: #5e2ced;
+    background-color: #ef629f;
     box-shadow: rgb(0, 0, 0, 50%) 5px 5px 10px;
 
     display: flex;
@@ -33,36 +45,6 @@
 .navigate button:focus {
    box-shadow: none; 
 }
-.details {  
-    font-family: cursive;
-    border-radius: 5px;
-    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.details div {    
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-.details div div {    
-    border-radius: 5px;
-    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 5px;
-}
-.details label{    
-    font-size: 30px;    
-    font-weight: bold;
-    text-shadow: rgb(0, 0, 0, 25%) 0px 0px 5px;
-}
-.details p{    
-    font-size: 30px; 
-    color: rgb(77, 77, 77);
-    text-shadow: rgb(77, 77, 77, 25%) 0px 0px 5px;
-}
 .find {
     position: relative;
 }
@@ -76,17 +58,22 @@
     background-color: white;
 }
 .table-responsive th, .table-responsive td {
+    color: white;
     text-align: center; 
     vertical-align: middle;
 }
-.reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive , .bookmarks .table-responsive{
+.details .table-responsive, .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive , .bookmarks .table-responsive{
     border-radius: 5px;
     font-size: 20px;
     font-family: cursive;
-    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 5px;
+    background-color: rgb(0, 0, 0, 40%);
+    box-shadow: white 0px 0px 20px;
+}
+.details th {
+    background-color: rgb(0, 0, 0, 50%);    
 }
 .reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead, .bookmarks .table-responsive thead{    
-    background-image: linear-gradient(to right, #36d1dc , #5b86e5 );
+    background-color: rgb(0, 0, 0, 50%);
 }
 .hires img, .notifications img, .reviews img, .bookmarks img{
     height: 100px;
@@ -96,7 +83,7 @@
     .profile img{
         height: 250px;
     }
-    .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive{
+    .details .table-responsive, .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .bookmarks .table-responsive{
         font-size: 15px;
     }
 }
@@ -132,6 +119,9 @@
         height: 90px;
         padding-left: 0px;
         padding-right: 0px;   
+    }
+    .back {
+        font-size: 20px;
     }
 }
 @media screen and (max-width: 470px) { 
