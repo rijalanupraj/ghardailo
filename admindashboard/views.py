@@ -10,6 +10,7 @@ from service.models import *
 from hiring.models import *
 from review.models import *
 from notification.models import *
+from bookmark.models import *
 
 from .forms import *
 from .filters import *
@@ -19,6 +20,7 @@ from .filters import *
 
 def dashboard(request):
     user = User.objects.all().count()
+    admin = User.objects.filter(is_staff=True).all().count()
     service = Services.objects.all().count()
     business = Business.objects.all().count()
     gallery = Gallery.objects.all().count()
@@ -28,9 +30,11 @@ def dashboard(request):
     hiring = Hiring.objects.all().count()
     review = Review.objects.all().count()
     notification = Notification.objects.all().count()
+    bookmark = Bookmark.objects.all().count()
 
     dictionary = {
         'user': user,
+        'admin': admin,
         'service': service,
         'business': business,
         'gallery': gallery,
@@ -40,6 +44,7 @@ def dashboard(request):
         'hiring': hiring,
         'review': review,
         'notification': notification,
+        'bookmark': bookmark,
         'dashboard': 'selected'
     }
     return render(request, 'admindashboard/dashboard.html', dictionary)
@@ -48,12 +53,18 @@ def dashboard(request):
 
 
 def customer_registration(request):
-    return render(request, 'admindashboard/Customer_Registration.html')
+    dictionary = {
+        'dashboard': 'selected'
+    }
+    return render(request, 'admindashboard/Customer_Registration.html', dictionary)
 
 
 # <<====================Business Registration====================>>
 def business_registration(request):
-    return render(request, 'admindashboard/Business_Registration.html')
+    dictionary = {
+        'dashboard': 'selected'
+    }
+    return render(request, 'admindashboard/Business_Registration.html', dictionary)
 
 
 # <<====================Administration Registration====================>>
@@ -72,12 +83,12 @@ def administrator_registration(request):
             return redirect('my-admin-dashboard')
     context = {
         'u_form': u_form,
+        'dashboard': 'selected'
     }
     return render(request, 'admindashboard/Administrator_Registration.html', context)
 
+
 # <<====================Service====================>>
-
-
 def service(request):
     service = Services.objects.all()
     service_filter = ServicesFilter(request.GET, queryset=service)
@@ -152,17 +163,30 @@ def business(request):
     return render(request, 'admindashboard/business.html', dictionary)
 
 
+def business_verified(request, business_id):
+    particular_business = Business.objects.get(id=business_id)
+    particular_business.is_verified = True
+    particular_business.save()
+    return redirect("/a/business")
+
+def business_not_verified(request, business_id):
+    particular_business = Business.objects.get(id=business_id)
+    particular_business.is_verified = False
+    particular_business.save()
+    return redirect("/a/business")
+
 def business_view(request, business_id):
     particular_business = Business.objects.get(id=business_id)
-    business_services = Business_Service.objects.all().filter(
-        business=particular_business)
-    business_gallery = Gallery.objects.all().filter(business=particular_business)
-    business_workers = Worker.objects.all().filter(business=particular_business)
+    business_services = Business_Service.objects.filter(
+        business=particular_business).all()
+    business_gallery = Gallery.objects.filter(business=particular_business).all()
+    business_workers = Worker.objects.filter(business=particular_business).all()
     business_hires = Hiring.objects.filter(
         business_service__business=particular_business)
-    business_notifications = Notification.objects.all().filter(
-        business=particular_business)
-    business_reviews = Review.objects.all().filter(business=particular_business)
+    business_notifications = Notification.objects.filter(
+        business=particular_business).all()
+    business_reviews = Review.objects.filter(business=particular_business).all()
+    business_bookmarks = Bookmark.objects.filter(business=particular_business).all()
 
     dictionary = {
         'pb': particular_business,
@@ -178,6 +202,8 @@ def business_view(request, business_id):
         'notifications_count': business_notifications.count(),
         'reviews': business_reviews,
         'reviews_count': business_reviews.count(),
+        'bookmarks': business_bookmarks,
+        'bookmarks_count': business_bookmarks.count(),
         'business': 'selected'
     }
     return render(request, 'admindashboard/business_view.html', dictionary)
@@ -199,9 +225,10 @@ def customer_view(request, customer_id):
     particular_customer = Customer.objects.get(id=customer_id)
 
     customer_hires = Hiring.objects.filter(customer=particular_customer)
-    customer_notifications = Notification.objects.all().filter(
-        customer=particular_customer)
-    customer_reviews = Review.objects.all().filter(customer=particular_customer)
+    customer_notifications = Notification.objects.filter(
+        customer=particular_customer).all()
+    customer_reviews = Review.objects.filter(customer=particular_customer).all()
+    customer_bookmarks = Bookmark.objects.filter(customer=particular_customer).all()
 
     dictionary = {
         'pc': particular_customer,
@@ -211,6 +238,8 @@ def customer_view(request, customer_id):
         'notifications_count': customer_notifications.count(),
         'reviews': customer_reviews,
         'reviews_count': customer_reviews.count(),
+        'bookmarks': customer_bookmarks,
+        'bookmarks_count': customer_bookmarks.count(),
         'customer': 'selected'
     }
     return render(request, 'admindashboard/customer_view.html', dictionary)

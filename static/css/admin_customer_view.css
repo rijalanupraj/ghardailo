@@ -75,16 +75,23 @@
     right: 1px;
     background-color: white;
 }
-.reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive{
+.table-responsive th, .table-responsive td {
+    text-align: center; 
+    vertical-align: middle;
+}
+.reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive , .bookmarks .table-responsive{
     border-radius: 5px;
     font-size: 20px;
     font-family: cursive;
     box-shadow: rgb(0, 0, 0, 25%) 0px 0px 5px;
 }
-.reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead{    
+.reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead, .bookmarks .table-responsive thead{    
     background-image: linear-gradient(to right, #36d1dc , #5b86e5 );
 }
-
+.hires img, .notifications img, .reviews img, .bookmarks img{
+    height: 100px;
+    width: 100px;    
+}
 @media screen and (max-width: 1150px) {
     .profile img{
         height: 250px;
@@ -93,7 +100,7 @@
         font-size: 15px;
     }
 }
-@media screen and (max-width: 850px) {  
+@media screen and (max-width: 1010px) {  
     .profile img{
         height: 150px;
     }
@@ -115,18 +122,22 @@
     .details p{    
         font-size: 15px; 
     }
-    .gallery img {
-        height: 150px;
+    .hires img, .notifications img, .reviews img, .bookmarks img{
+        height: 50px;
+        width: 50px;    
     }
 }
-@media screen and (max-width: 600px) {  
+@media screen and (max-width: 730px) {  
     .navigate {    
         height: 90px;
         padding-left: 0px;
         padding-right: 0px;   
     }
 }
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 470px) { 
+    .navigate {    
+        height: 135px;
+    }
     .profile img{
         height: 100px;
     }
@@ -135,8 +146,5 @@
     }
     .details p{    
         font-size: 10px; 
-    }
-    .gallery img {
-        height: 100px;
     }
 }
