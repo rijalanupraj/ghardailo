@@ -60,9 +60,7 @@ def getService(request):
     service_final = service_filter.qs
     context = {
         'businessService': service_final,
-        'service_filter':service_filter, 
-
-
+        'service_filter': service_filter, 
     }
     return render(request, 'adminbusiness/base/show-service.html', context)
 

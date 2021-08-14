@@ -6,8 +6,7 @@ from django_filters import BooleanFilter
 from service.models import *
 
 class ServicesFilter(django_filters.FilterSet):
-    
-    class Meta:
+     description = CharFilter(field_name='description', lookup_expr='icontains')
+     class Meta:
         model = Business_Service
-        fields = "__all__"
-        exclude = ['business', 'description']
+        fields = ""
