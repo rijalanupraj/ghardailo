@@ -202,10 +202,12 @@ def change_password(request):
 
 def getWorker(request):
     businessWorker = Worker.objects.filter(business=request.user.business)
+    worker_filter = WorkerFilter(request.GET, queryset=businessWorker)
+    worker_final = worker_filter.qs
+    
     context = {
-        'businessWorker': businessWorker,
-     
-
+        'businessWorker': worker_final,
+        'worker_filter': worker_filter,
     }
     return render(request, 'adminbusiness/base/show-worker.html', context)
 

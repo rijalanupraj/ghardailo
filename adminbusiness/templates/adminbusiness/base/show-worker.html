@@ -19,7 +19,12 @@
         <div class="col-md-12 offset">
             <h1 class="text-center"> Worker </h1>
             <div class="card py-2 px-2 table-responsive">
-                
+                <div class="card card-body"  style="display: inline;">
+                    <form class="form-label" method="get">
+                        {{worker_filter.form.name}}
+                        <button class="btn btn-primary btn-sm" type="sumbit">Search</button>
+                    </form>
+                </div>
                 <a class="btn btn-success btn-bg ml-auto mb-2" style="width: 100%"
                    href="{% url 'postWorkerDash' %}">Add New Worker</a>
                    
