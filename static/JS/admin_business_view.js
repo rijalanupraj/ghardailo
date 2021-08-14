@@ -13,6 +13,7 @@ navdiv[3].style.display="none";
 navdiv[4].style.display="none";
 navdiv[5].style.display="none";
 navdiv[6].style.display="none";
+navdiv[7].style.display="none";
 
 counter[0].style.display="none";
 counter[1].style.display="none";
@@ -20,6 +21,7 @@ counter[2].style.display="none";
 counter[3].style.display="none";
 counter[4].style.display="none";
 counter[5].style.display="none";
+counter[6].style.display="none";
 
 var cnp = 0;
 function navigate(nnp) {
@@ -83,4 +85,8 @@ for (i=0; i<notification_number; i++) {
 var review_number = document.getElementsByClassName("Numbering5").length
 for (i=0; i<review_number; i++) {
     document.getElementsByClassName("Numbering5")[i].innerHTML = i + 1
+}
+var bookmark_number = document.getElementsByClassName("Numbering6").length
+for (i=0; i<bookmark_number; i++) {
+    document.getElementsByClassName("Numbering6")[i].innerHTML = i + 1
 }
