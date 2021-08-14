@@ -10,7 +10,7 @@ function setC1(x) {
     if (x.matches) { 
         options = {
             startAngle: -1.5,
-            size: 50,
+            size: 70,
             value: .75,
             fill: {gradient: ["#fc1f3c", "#652efc", "#2dfa7c"]}
         }

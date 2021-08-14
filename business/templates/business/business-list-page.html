@@ -12,9 +12,13 @@
         {% for object in object_list  %}
         <div class="col-lg-10 col-md-12 m-1">
             {% comment %} To make code easy to read {% endcomment %}
-            {% include 'business/snippets/business-card.html' with obj=object%}
+            {% include 'business/snippets/business-card.html' with obj=object customer_bookmarks=customer_bookmarks_business%}
         </div>
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+
+{% block additional_body %}
+<script src="{% static 'customer/js/customer-bookmark-toggle.js' %}"></script>
 {% endblock %}

@@ -1,87 +1,16 @@
-
-
-
 /* style for profile image circle */
-#profileimage{
-  position: relative;
-  left: 20px;
+#profileimage {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   overflow: hidden;
-  justify-content: center;
- }
+}
 
 /* For hiding default choose file button */
- input[type="file"]{
-
+input[type="file"] {
   display: none;
- }
-
- .input-button{
-   color: blue;
-   background-color: white;
-   border-radius: 10px;
-   font-weight: bold;
-   height: 30px;
-  
-   
-
- }
-
- /* Hover effect */
-
-.input-button:hover{
-
-  background-color:red;
-  color: white;
-  border:2px solid red;
-    
 }
 
-
-
-/* for designing card that display profile details */
-.card{
- 
-
-
-border-radius: 10%;
-border: 5px solid grey;
+#change-image-text {
+  cursor: pointer;
 }
-
-.form-col{
-  flex: 1;
-  margin-left: 50px;
-}
-/* style for form input box */
-.form-control{
-
-  border-radius: 30px;
-  border: 2px solid grey;
-  padding:10px;
-  font-weight: bold;
- 
- 
-  
-}
-
-/* style for form labels */
-.label{
-
-  font-weight: bold;
-  color: red;
-  font-size: 20px;
-  
-}
-
-/* style for nav-link of tabs */
-.nav-link{
-
-  font-weight: bold;
-  
-}
-
-
-
-

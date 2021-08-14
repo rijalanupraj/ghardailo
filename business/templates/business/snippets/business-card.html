@@ -1,4 +1,13 @@
-<div class="col-lg-12 col-md-12">
+<div class="col-lg-12 col-md-12 position-relative">
+  <div class="bookmark-icon position-absolute top-10 end-0">
+    {% if request.user.is_authenticated %}
+
+    <a role="button" class="customer-bookmark-toggle" href="{% url 'customer:customer-bookmark-toggle' obj.slug %}"
+      title="Bookmar">
+      {% if obj in customer_bookmarks_business %}<i class="fa fa-bookmark fa-2x bookmark-icon"></i>{% else %}
+      <i class="far fa-bookmark fa-2x bookmark-icon"></i> {% endif %}</a>
+    {% endif %}
+  </div>
   <div class="row p-2 bg-white border rounded">
     <div class="col-md-4 mt-1">
       <img class="rounded product-image"
@@ -20,7 +29,7 @@
         <span>310 Reviews</span>
       </div>
       <div class="mt-1 mb-1 spec-1">
-        {% for ser in object.business_service_set.all %}
+        {% for ser in obj.business_service_set.all %}
         <span class="badge rounded-pill bg-info">{{ser.service.name}}</span>
         {% endfor %}
 
@@ -30,7 +39,7 @@
       </p>
     </div>
     <div class="align-items-center align-content-center col-md-3 border-start mt-1">
-      <div class="d-flex flex-row align-items-center">
+      <div class="d-flex flex-row align-items-center pe-3">
         <span class="material-icons"> room </span> {{obj.district}}, {{obj.province}}
       </div>
       <h6 class="text-success">Writing Something Here</h6>
