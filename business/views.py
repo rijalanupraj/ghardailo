@@ -1,6 +1,6 @@
 
 from worker.models import Worker
-from bookmark.models import Bookmar
+from bookmark.models import Bookmark
 from business.models import Business
 from django.views.generic import (
     ListView,
