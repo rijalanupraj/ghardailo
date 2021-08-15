@@ -3,7 +3,6 @@
     /* top: 0; */
     box-shadow: rgb(0, 0, 0, 25%) 2px 0px 10px;
 }
-
 #Logo {
     height: 60px;
     width: 60px;
@@ -43,60 +42,85 @@
     flex-direction: row;
     align-items: center;
 }
-.sgu,
-.lgi,
-.lgo {
+#Profile {
+    height: 60px;
+    width: 60px;
+}
+#Username, .sgu, .lgi, .lgo {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     font-family: cursive;
     border-radius: 10px;
+    color: black;
+}
+#Username:hover, .sgu:hover, .lgi:hover, .lgo:hover {
     box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
-.sgu {
-    color: #00c99c;
-    background-color: #d4f6ee;
-    margin-left: 5px;
+#Username {
+    font-size: 18px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+#Username:hover {
+    color: White;
+    background-color: #5e2ced;
 }
 .sgu:hover {
     color: white;
     background-color: #23a455;
 }
-.lgi {
-    color: #5e2ced;
-    background-color: #d8ccf8;
-    margin-left: 5px;
-}
 .lgi:hover {
     color: white;
-    background-color: #5f28f5;
-}
-.lgo {
-    color: #ed2c3c;
-    background-color: #f8ccd0;
-    margin-left: 5px;
+    background-color: #ff6600;
 }
 .lgo:hover {
     color: white;
     background-color: #f52843;
 }
-#Profile {
-    height: 60px;
-    width: 60px;
+.active_login {
+    color: white;
+    background-color: #ff6600;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
-#Username {
-    font-family: cursive;
-    font-size: 18px;
-    color: #5e2ced;
+.active_customer {
+    color: white;
+    background-color: #23a455;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.active_business {
+    color: white;
+    background-color: #23a455;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.dropdown-opener {
+    font-size: 25px;
+}
+.dropdown-content {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    z-index: 1000;
+    top: 75px;
+    right: 5px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 10px;
+}
+.dropdown-content a {
     text-decoration: none;
 }
-@media screen and (max-width: 1100px) {
-    .sgu,
-    .lgi,
-    .lgo {
-        display: none;
-    }
+.dropdown-divider {
+    width: 100%;
 }
-@media screen and (max-width: 900px) {
-    #Profile,
-    #Username {
+@media screen and (max-width: 720px) {
+    #UDA {
         display: none;
     }
 }
@@ -121,19 +145,17 @@
         display: flex;
         flex-direction: column;
         align-items: start;
-    }
-    .sgu,
-    .lgi,
-    .lgo,
-    #Profile,
-    #Username {
-        display: block;
-        margin: 0;
-    }
-    #Profile {
+    }    
+    .dropdown-content {
+        padding: 0px;
         position: static;
-    }
+        border-radius: 0px;
+        box-shadow: none;
+    }    
     #Username {
-        width: 300px;
+        white-space: normal;
+    }
+    .dropdown-divider {
+        display: none;
     }
 }
