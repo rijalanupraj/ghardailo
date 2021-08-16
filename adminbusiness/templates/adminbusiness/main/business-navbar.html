@@ -6,6 +6,7 @@
 {% url 'getServiceDash' as getService_url %}
 {% url 'getWorkerDash' as getWorker_url %}
 {% url 'changePasswordDash' as changePasswordDash_url %}
+{% url 'business-hiring-list' as businessHiringListPage %}
 
 
 <style>
@@ -58,8 +59,8 @@
      </a>
 
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
+           href="{{businessHiringListPage}}"
+           class="list-group-item list-group-item-action py-2 ripple {% if request.path == businessHiringListPage %}active{% endif %}"
            >
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>My Hirings</span>
         </a>
