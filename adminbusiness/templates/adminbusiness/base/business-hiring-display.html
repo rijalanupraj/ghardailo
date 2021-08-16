@@ -24,10 +24,6 @@ Hirings
 
                 <div class="card py-2 px-2 table-responsive">
 
-
-                    <a class="btn btn-success btn-bg ml-auto mb-2" style="width: 100%"
-                        href="{% url 'postServiceDash' %}">Add New Service</a>
-
                     <table class="table table-responsive table-white">
                         <tr class="btn-danger">
                             <th>#</th>
@@ -45,11 +41,9 @@ Hirings
 
                             <td>
                                 {% ifequal hire.get_status_display 'Pending'  %}
-                                <a href="" class="btn btn-primary btn-sm">Accept</a>&nbsp;
+                                <a href="{% url 'approve_business_hiring' hire.id %}" onclick="return confirm('Are you sure want to accept the hire request?')" class="btn btn-primary btn-sm">Accept</a>&nbsp;
 
-                                <a href="" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Are you sure want to delete this file?')">
-                                    Reject</a>
+                                <a href="{% url 'reject_business_hiring' hire.id %}" onclick="return confirm('Are you sure want to reject the hire request?')" class="btn btn-danger btn-sm">Reject</a>
                                 {% endifequal %}
                             </td>
                         </tr>

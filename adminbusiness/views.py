@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.urls.base import reverse_lazy
 from .forms import *
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -292,3 +293,17 @@ class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def get_queryset(self):
         return Hiring.objects.filter(
             business_service__business=self.request.user.business).order_by('-date_time')
+
+
+def approve_business_hiring(request, id):
+    hiring = Hiring.objects.get(id=id)
+    hiring.status = 'AC'
+    hiring.save()
+    return redirect('business-hiring-list')
+
+
+def reject_business_hiring(request, id):
+    hiring = Hiring.objects.get(id=id)
+    hiring.status = 'RJ'
+    hiring.save()
+    return redirect('business-hiring-list')

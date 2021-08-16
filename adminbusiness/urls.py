@@ -33,5 +33,9 @@ urlpatterns = [
     # For Hiring
     path('hirings/', views.BusinessHiringListView.as_view(),
          name='business-hiring-list'),
+    path('hirings/approve/<int:id>', views.approve_business_hiring,
+         name='approve_business_hiring'),
+    path('hirings/reject/<int:id>', views.reject_business_hiring,
+         name='reject_business_hiring'),
 
 ]
