@@ -128,7 +128,7 @@
              <!-- {% if object.logo %}
         <img src="{{object.logo.url}}" alt="">
         {% endif %} -->
-        
+        {% if user.business.logo %} 
             <img
                  src="{{ user.business.logo.url }}"
                  
@@ -138,7 +138,16 @@
                  alt=""
                  loading="lazy"
                  />
-                 
+                 {% else %}
+                 <img
+                 src="https://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?d=identicon"
+                 height="40"
+                 width="40"
+                 style="border-radius: 50%;"
+                 alt=""
+                 loading="lazy"
+                 />
+        {% endif %}
           </a>
             <ul
                 class="dropdown-menu dropdown-menu-end"
