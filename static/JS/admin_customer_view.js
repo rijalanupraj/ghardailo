@@ -4,7 +4,7 @@ var counter = document.getElementsByClassName("counter");
 
 nav[0].style.color="green";
 nav[0].style.backgroundColor="white";
-nav[0].style.borderRadius="30px";
+nav[0].style.borderRadius="50px 5px 50px 5px";
 nav[0].style.boxShadow="rgb(0, 0, 0, 50%) 2px 2px 10px";
 
 navdiv[1].style.display="none";
@@ -26,7 +26,7 @@ function navigate(nnp) {
     
     nav[nnp].style.color="green";
     nav[nnp].style.backgroundColor="white";
-    nav[nnp].style.borderRadius="30px";
+    nav[nnp].style.borderRadius="50px 5px 50px 5px";
     nav[nnp].style.boxShadow="rgb(0, 0, 0, 50%) 2px 2px 10px";
 
     navdiv[cnp].style.display="none";
@@ -46,7 +46,7 @@ function navigate(nnp) {
 $(".find").hover(function(){
         $(this).css("color", "green");
         $(this).css("background-color", "white");
-        $(this).css("border-radius", "30px");
+        $(this).css("border-radius", "50px 5px 50px 5px");
         $(this).css("box-shadow", "rgb(0, 0, 0, 50%) 2px 2px 10px");
     }, 
     function(){
@@ -57,7 +57,7 @@ $(".find").hover(function(){
         
         nav[cnp].style.color="green";
         nav[cnp].style.backgroundColor="white";
-        nav[cnp].style.borderRadius="30px";
+        nav[cnp].style.borderRadius="50px 5px 50px 5px";
         nav[cnp].style.boxShadow="rgb(0, 0, 0, 50%) 2px 2px 10px";
 });
 
