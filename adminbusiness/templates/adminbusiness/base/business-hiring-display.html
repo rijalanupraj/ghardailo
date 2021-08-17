@@ -29,6 +29,7 @@ Hirings
                             <th>#</th>
                             <th>Service Name</th>
                             <th>Customer</th>
+                            <th>Message</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -37,6 +38,7 @@ Hirings
                             <td>{{ forloop.counter }}</td>
                             <td>{{ hire.business_service.service.name }}</td>
                             <td>{{ hire.customer.name }}</td>
+                            <td>{{ hire.message}}</td>
                             <td><span class="badge rounded-pill bg-primary">{{hire.get_status_display}}</span></td>
 
                             <td>
