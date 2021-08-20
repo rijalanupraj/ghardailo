@@ -13,3 +13,7 @@ def Home(request):
         'services': service,
     }
     return render(request, 'homepage/index.html', context)
+
+
+def main_homepage(request):
+    return render(request, 'homepage/home-page.html')
