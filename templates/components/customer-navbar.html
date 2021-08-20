@@ -1,4 +1,9 @@
 {% load static %}
+{% url 'customer-home' as customer_home_page %}
+{% url 'customer-services' as customer_service_page %}
+{% url 'customer-login' as customer_login_page %}
+{% url 'customer-registration' as customer_registration_page %}
+{% url 'business-registration' as business_registration_page %}
 <div class="container-fluid" id="Header">
   <nav class="navbar navbar-expand-sm">
     <h1>
@@ -13,10 +18,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item mx-sm-1">
-          <a class="nav-link {{ active_home }}" href="/home">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link {% if request.path == customer_home_page %}active{% endif %}" href="{{customer_home_page}}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item mx-sm-1">
-          <a class="nav-link {{ active_service }}" href="{% url 'Services' %}">Services</a>
+          <a class="nav-link {% if request.path == customer_service_page %}active{% endif %}" href="{{customer_service_page}}">Services</a>
         </li>
         <li class="nav-item mx-sm-1">
           <a class="nav-link" href="">Gallery</a>
@@ -36,11 +41,11 @@
             <li class="dropdown-divider"></li>
             <a class="mb-1 lgo" href="/logout">Log out</a>
           {% else %}
-            <a class="mb-1 lgi {{ active_login }}" href="/login">Login</a>
+            <a class="mb-1 lgi {% if request.path == customer_login_page %}active{% endif %}" href="{{customer_login_page}}">Login</a>
             <li class="dropdown-divider"></li>
-            <a class="mb-1 sgu {{ active_customer_register }}" href="/register">Sign up for customer</a>
+            <a class="mb-1 sgu {% if request.path == customer_registration_page %}active{% endif %}" href="{{customer_registration_page}}">Sign up for customer</a>
             <li class="dropdown-divider"></li>
-            <a class="sgu {{ active_business_register }}" href="/mybusiness/register/">Sign up for business</a>
+            <a class="sgu {% if request.path == business_registration_page %}active{% endif %}" href="/mybusiness/register/">Sign up for business</a>
           {% endif %}
         </div>
       </div>
