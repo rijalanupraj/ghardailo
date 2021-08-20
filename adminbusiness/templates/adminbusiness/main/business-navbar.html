@@ -4,9 +4,29 @@
 {% url 'editBusinessDash' as editBusinessDash_url %}
 {% url 'editBusinessProfileDash' as editProfileBusinessDash_url %}
 {% url 'getServiceDash' as getService_url %}
+{% url 'getWorkerDash' as getWorker_url %}
 {% url 'changePasswordDash' as changePasswordDash_url %}
+{% url 'business-hiring-list' as businessHiringListPage %}
 
 
+<style>
+.business-name{
+
+  font-weight: bold;
+  background-color: #1165EF;
+  text-align: center;
+  color: white;
+}
+.business-name:hover{
+  background-color: #1165EF;
+  color: white;
+}
+
+.business-logout:hover{
+  background-color: #D32D27;
+  color:white;
+}
+</style>
 
 
 <header>
@@ -39,8 +59,8 @@
      </a>
 
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
+           href="{{businessHiringListPage}}"
+           class="list-group-item list-group-item-action py-2 ripple {% if request.path == businessHiringListPage %}active{% endif %}"
            >
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>My Hirings</span>
         </a>
@@ -51,8 +71,9 @@
           >
       
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
+           href="{{getWorker_url}}"
+           class="list-group-item list-group-item-action py-2 ripple
+           {% if request.path == getWorker_url %}active{% endif %}"
            ><i class="fas fa-users fa-fw me-3"></i><span>Workers</span></a
           >
         <a
@@ -62,14 +83,7 @@
            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Edit business Page</span></a
           >
 
-          <!-- view business page -->
-          <a
-           href="{% url 'business-profile' user.business.slug %}"
-           target="__blank"
-           class="list-group-item list-group-item-action py-2 ripple
-           "
-           ><i class="fas fa-money-bill fa-fw me-3"></i><span>View business Page</span></a
-          >
+          
       </div>
     </div>
   </nav>
@@ -115,7 +129,7 @@
              <!-- {% if object.logo %}
         <img src="{{object.logo.url}}" alt="">
         {% endif %} -->
-        
+        {% if user.business.logo %} 
             <img
                  src="{{ user.business.logo.url }}"
                  
@@ -125,13 +139,22 @@
                  alt=""
                  loading="lazy"
                  />
-                 
+                 {% else %}
+                 <img
+                 src="https://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?d=identicon"
+                 height="40"
+                 width="40"
+                 style="border-radius: 50%;"
+                 alt=""
+                 loading="lazy"
+                 />
+        {% endif %}
           </a>
             <ul
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="navbarDropdownMenuLink"
                 >
-                <li><a class="dropdown-item">{{user.business.name}}</a></li>  
+                <li><a class="dropdown-item business-name"><span>{{user.business.name}}</span></a></li>  
               <li>
                 <a
                 href="{{editBusinessDash_url}}"
@@ -147,8 +170,17 @@
               >
              <span>Change password</span>
            </a></li>
+
+           <!-- view business page -->
+          <a
+          href="{% url 'business-profile' user.business.slug %}"
+          target="__blank"
+          class="list-group-item list-group-item-action py-2
+          "
+          ><span>View business Page</span></a
+         >
               
-              <li><a class="dropdown-item" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
+              <li><a class="dropdown-item business-logout" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
             </ul>
         </li>
       </ul>

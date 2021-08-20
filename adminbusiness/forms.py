@@ -64,6 +64,13 @@ class BusinessServicesForm1(ModelForm):
         fields = '__all__'
         exclude = ['business','service']
 
+class BusinessWorkerForm(ModelForm):
+    class Meta:
+        model = Worker
+        fields = '__all__'
+        exclude= ['business']
+  
+
 class CustomerForm(ModelForm):
     class Meta:
         model = Customer

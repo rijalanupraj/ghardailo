@@ -2,10 +2,10 @@
 {% load bootstrap %}
 {% load static %}
 {% block title %}
-    Edit Business Profile
+Worker
 {% endblock %}
 {% block additional_head %}
-
+<link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet">
 <style>
     .container {
         margin-top: 6rem;
@@ -24,6 +24,7 @@
     }
 
     input[type=submit] {
+        width: 36.5rem;
         background-color: #4CAF50;
         color: white;
         padding: 14px 20px;
@@ -37,23 +38,34 @@
         background-color: #45a049;
     }
 
-  
+    @media only screen and (max-width: 1200px) {
+        input[type=submit] {
+            width: 25rem;
+        }
+        .form{
+            width: auto;
+            margin: auto;
+        }
+    }
 </style>
 {% endblock %}
 
 {% block main_content %}
 <div class="container">
     <div class="row">
+
         <div class="col-md-8 mx-auto offset-md-3">
-            <h1 class="text-center">Edit Business Profile</h1>
+            <h1 class="text-center">Add New Worker</h1>
             <div class="card mx-auto py-2">
+
                 <form class="form" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form | bootstrap_horizontal}}
-                    <input type="submit" class="btn" value="Submit">
+                    <input type="submit" value="Submit">
                 </form>
             </div>
         </div>
+
     </div>
 </div>
 
