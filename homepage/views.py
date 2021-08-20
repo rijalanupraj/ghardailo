@@ -15,6 +15,14 @@ def Home(request):
     return render(request, 'homepage/index.html', context)
 
 
+def main_homepage(request):
+
+    service = Services.objects.filter(is_active=True)[:6]
+    context = {
+        'services': service,
+    }
+    return render(request, 'homepage/home-page.html',context)
+
 
 
 
