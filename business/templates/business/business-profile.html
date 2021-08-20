@@ -3,189 +3,475 @@
 
 {% block additional_head %}
 <link rel="stylesheet" href="{% static 'business/css/business-profile.css' %}">
+<style>
+    #Header{
+        position: absolute;
+    }
+</style>
+
 {% endblock %}
 
 {% block main_content %}
+<div>
+<body data-spy="scroll" data-target="internal-navbar" data-offset="51"></body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="img/profile.jpg" alt="Image">
+            </div>
+            <div class="sidebar-content">
+                <nav class="internal-navbar navbar-expand-md">
+                    <div class="" id="">
+                        <ul class="internal-navbar-nav">
+                            <li class="internal-nav-item">
+                                <a class="internal-nav-link" href="#header">Home<i class="fa fa-home"></i></a>
+                            </li>
+                            <li class="internal-nav-item">
+                                <a class="internal-nav-link" href="#about">About<i class="fa fa-address-card"></i></a>
+                            </li>
+                            <li class="internal-nav-item">
+                                <a class="internal-nav-link" href="#experience">Experience<i class="fa fa-star"></i></a>
+                            </li>
+                            <li class="internal-nav-item">
+                                <a class="internal-nav-link" href="#service">Service<i class="fa fa-tasks"></i></a>
+                            </li>
+                            <li class="internal-nav-item">
+                                <a class="internal-nav-link" href="#portfolio">Portfolio<i class="fa fa-file-archive"></i></a>
+                            </li>
+                            <li class="internal-nav-item">
+                                <a class="internal-nav-link" href="#contact">Contact<i class="fa fa-envelope"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="content">
+            <!-- Header Start -->
+            <div class="header" id="header">
+                <div class="content-inner">
+                    <p>I'm</p>
+                    <h1>Michael Miller</h1>
+                    <h2></h2>
+                    <div class="typed-text">Web Designer, Web Developer, Front End Developer, Apps Developer, Graphic Designer</div>
+                </div>
+            </div>
+            <!-- Header End -->
+            
+            <!-- Large Button Start -->
+            <div class="large-btn">
+                <div class="content-inner">
+                    <a class="btn" href="#"><i class="fa fa-download"></i>Resume</a>
+                    <a class="btn" href="#"><i class="fa fa-hands-helping"></i>Hire Me</a>
+                </div>
+            </div>
+            <!-- Large Button End -->
+            
+            <!-- About Start -->
+            <div class="about" id="about">
+                <div class="content-inner">
+                    <div class="content-header">
+                        <h2>About Me</h2>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 col-lg-5">
+                            <img src="img/about.jpg" alt="Image">
+                        </div>
+                        <div class="col-md-6 col-lg-7">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci. Donec molestie velit id libero blandit, quis suscipit urna suscipit. Donec aliquet erat eu lacinia iaculis. Ut tempor tellus eu sem pharetra feugiat. Proin libero ligula, gravida at porttitor eget.
+                            </p>
+                            <a class="btn" href="#">Hire Me</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="skills">
+                                <div class="skill-name">
+                                    <p>Design</p><p>85%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="skill-name">
+                                    <p>SEO</p><p>95%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="skills">
+                                <div class="skill-name">
+                                    <p>Development</p><p>90%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="skill-name">
+                                    <p>Marketing</p><p>85%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- About End -->
+            
+            <!-- Education Start -->
+            <div class="education" id="education">
+                <div class="content-inner">
+                    <div class="content-header">
+                        <h2>Education</h2>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="edu-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>Master Degree</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="edu-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>Bachelor Degree</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="edu-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>Associate Degree</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="edu-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>High School</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Education Start -->
+            
+            <!-- Experience Start -->
+            <div class="experience" id="experience">
+                <div class="content-inner">
+                    <div class="content-header">
+                        <h2>Experience</h2>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="exp-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>Codex Solution</h3>
+                                <h4>San Francisco, CA</h4>
+                                <h5>Project Manager</h5>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="exp-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>Soft Solution Ltd</h3>
+                                <h4>San Francisco, CA</h4>
+                                <h5>Web Developer</h5>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="exp-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>ABC Soft Ltd</h3>
+                                <h4>San Francisco, CA</h4>
+                                <h5>Web Designer</h5>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="exp-col">
+                                <span>01-Jan-2020 <i>to</i> 31-Dec-2050</span>
+                                <h3>Soft Agency</h3>
+                                <h4>San Francisco, CA</h4>
+                                <h5>Graphic Designer</h5>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Experience Start -->
+            
+            <!-- Service Start -->
+            <div class="service" id="service">
+                <div class="content-inner">
+                    <div class="content-header">
+                        <h2>Service</h2>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="srv-col">
+                                <i class="fa fa-desktop"></i>
+                                <h3>Web Design</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="srv-col">
+                                <i class="fa fa-laptop"></i>
+                                <h3>Web Development</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="srv-col">
+                                <i class="fa fa-search"></i>
+                                <h3>SEO</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="srv-col">
+                                <i class="fa fa-envelope-open-text"></i>
+                                <h3>Digital Marketing</h3>
+                                <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Service Start -->
+            
+            <!-- Portfolio Start -->
+            <div class="portfolio" id="portfolio">
+                <div class="content-inner">
+                    <div class="content-header">
+                        <h2>Portfolio</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul id="portfolio-flters">
+                                <li data-filter="*" class="filter-active">All</li>
+                                <li data-filter=".web-des">Design</li>
+                                <li data-filter=".web-dev">Development</li>
+                                <li data-filter=".dig-mar">Marketing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row portfolio-container">
+                        <div class="col-lg-4 col-md-6 portfolio-item web-des">
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="img/portfolio-1.jpg" class="img-fluid" alt="">
+                                    <a href="img/portfolio-1.jpg" data-lightbox="portfolio" data-title="Project Name" class="link-preview" title="Preview"><i class="fa fa-eye"></i></a>
+                                    <a href="#" class="link-details" title="More Details"><i class="fa fa-link"></i></a>
+                                    <a class="portfolio-title" href="#">Project Name <span>Web Design</span></a>
+                                </figure>
+                            </div>
+                        </div>
 
+                        <div class="col-lg-4 col-md-6 portfolio-item web-des">
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="img/portfolio-2.jpg" class="img-fluid" alt="">
+                                    <a href="img/portfolio-2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Project Name" title="Preview"><i class="fa fa-eye"></i></a>
+                                    <a href="#" class="link-details" title="More Details"><i class="fa fa-link"></i></a>
+                                    <a class="portfolio-title" href="#">Project Name <span>Web Design</span></a>
+                                </figure>
+                            </div>
+                        </div>
 
-<header>
-    <div class="user">
-        {% if object.logo %}
-        <img src="{{object.logo.url}}" alt="">
-        {% endif %}
-        <h3 class="name">{{object.name}}</h3>
-        <p class="post">Rating:<em class="str">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-        </em>
-        </p>
+                        <div class="col-lg-4 col-md-6 portfolio-item web-dev">
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="img/portfolio-3.jpg" class="img-fluid" alt="">
+                                    <a href="img/portfolio-3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Project Name" title="Preview"><i class="fa fa-eye"></i></a>
+                                    <a href="#" class="link-details" title="More Details"><i class="fa fa-link"></i></a>
+                                    <a class="portfolio-title" href="#">Project Name <span>Web Development</span></a>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 portfolio-item web-dev">
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="img/portfolio-4.jpg" class="img-fluid" alt="">
+                                    <a href="img/portfolio-4.jpg" class="link-preview" data-lightbox="portfolio" data-title="Project Name" title="Preview"><i class="fa fa-eye"></i></a>
+                                    <a href="#" class="link-details" title="More Details"><i class="fa fa-link"></i></a>
+                                    <a class="portfolio-title" href="#">Project Name <span>Web Development</span></a>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 portfolio-item dig-mar">
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="img/portfolio-5.jpg" class="img-fluid" alt="">
+                                    <a href="img/portfolio-5.jpg" class="link-preview" data-lightbox="portfolio" data-title="Project Name" title="Preview"><i class="fa fa-eye"></i></a>
+                                    <a href="#" class="link-details" title="More Details"><i class="fa fa-link"></i></a>
+                                    <a class="portfolio-title" href="#">Project Name <span>Digital Marketing</span></a>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 portfolio-item dig-mar">
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="img/portfolio-6.jpg" class="img-fluid" alt="">
+                                    <a href="img/portfolio-6.jpg" class="link-preview" data-lightbox="portfolio" data-title="Project Name" title="Preview"><i class="fa fa-eye"></i></a>
+                                    <a href="#" class="link-details" title="More Details"><i class="fa fa-link"></i></a>
+                                    <a class="portfolio-title" href="#">Project Name <span>Digital Marketing</span></a>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Portfolio Start -->
+            
+            <!-- Review Start -->
+            <div class="review" id="review">
+                <div class="content-inner">
+                    <div class="content-header">
+                        <h2>Review</h2>
+                    </div>
+                    <div class="row align-items-center review-slider">
+                        <div class="col-md-12">
+                            <div class="review-slider-item">
+                                <div class="review-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci. Donec molestie velit id libero blandit, quis suscipit urna suscipit. Donec aliquet erat eu lacinia iaculis. Ut tempor tellus eu sem pharetra feugiat.
+                                    </p>
+                                </div>
+                                <div class="review-img">
+                                    <img src="img/review-1.jpg" alt="Image">
+                                    <div class="review-name">
+                                        <h3>Client Name</h3>
+                                        <p>Profession</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="review-slider-item">
+                                <div class="review-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci. Donec molestie velit id libero blandit, quis suscipit urna suscipit. Donec aliquet erat eu lacinia iaculis. Ut tempor tellus eu sem pharetra feugiat.
+                                    </p>
+                                </div>
+                                <div class="review-img">
+                                    <img src="img/review-2.jpg" alt="Image">
+                                    <div class="review-name">
+                                        <h3>Client Name</h3>
+                                        <p>Profession</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="review-slider-item">
+                                <div class="review-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci. Donec molestie velit id libero blandit, quis suscipit urna suscipit. Donec aliquet erat eu lacinia iaculis. Ut tempor tellus eu sem pharetra feugiat.
+                                    </p>
+                                </div>
+                                <div class="review-img">
+                                    <img src="img/review-3.jpg" alt="Image">
+                                    <div class="review-name">
+                                        <h3>Client Name</h3>
+                                        <p>Profession</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Review End -->
+            
+            <!-- Contact Start -->
+            <div class="contact" id="contact">
+                <div class="content-inner">
+                    <div class="content-header">
+                        <h2>Contact</h2>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="contact-info">
+                                <p><i class="fa fa-user"></i>Michael Miller</p>
+                                <p><i class="fa fa-tag"></i>Web Designer & Developer</p>
+                                <p><i class="fa fa-envelope"></i><a href="mailto:info@example.com">info@example.com</a></p>
+                                <p><i class="fa fa-phone"></i><a href="tel:+1234567890">+123-456-7890</a></p>
+                                <p><i class="fa fa-map-marker"></i>123 Street, Los Angeles, CA, USA</p>
+                                <div class="social">
+                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form">
+                                <form>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <input type="text" class="form-control" placeholder="Your Name" />
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <input type="email" class="form-control" placeholder="Your Email" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Subject" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                                    </div>
+                                    <div><button class="btn" type="submit">Send Message</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact End -->
+            
+            <!-- Footer Start -->
+            <div class="footer">
+                <div class="content-inner">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <p>&copy; Copyright <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Powered by <a href="https://htmlcodex.com">HTML Codex</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Start -->
+        </div>
     </div>
-
-    <nav class="navbar1">
-        <ul>
-            <li><a href="#home">Intro</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#service">service</a></li>
-            <li><a href="#employee">employee</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ul>
-    </nav>
-
-</header>
-
-<!-- header section ends -->
-
-<div id="menu" class="fas fa-bars"></div>
-
-<!-- home section starts  -->
-
-
-<section class="home" id="home">
-    <h3>HI THERE !</h3>
-    <h1>THIS'S <span>{{object.name}}</span></h1>
-    <p>{{object.business_profile.intro}}
-    </p>
-    <a href="#about"><button class="btn">about us <i class="fas fa-user"></i></button></a>
-
-
-</section>
-
-<!-- home section ends -->
-
-<!-- about section starts  -->
-
-<section class="about" id="about">
-
-<h1 class="heading"> <span>about</span> us </h1>
-
-<div class="row">
-
-    <div class="info">
-        <h3> <span> Company Name : </span>{{object.name}}</h3>
-        <h3> <span> Established : </span>{{object.business_profile.established}}</h3>
-        <h3> <span> Founder : </span>{{object.business_profile.founder}}</h3>
-        <h3> <span> Moto : </span>{{object.business_profile.moto}}</h3>
-        <h3> <span> language : </span>{{object.business_profile.language}}</h3>
-    </div>
-
-    <div class="counter">
-
-        <div class="box">
-            <span>{{object.business_profile.experience_year}}+</span>
-            <h3>years of experience</h3>
-        </div>
-
-        <div class="box">
-            <span>{{object.business_profile.service_provided}}+</span>
-            <h3>service provided</h3>
-        </div>
-
-        <div class="box">
-            <span>{{object.business_profile.happy_customers}}+</span>
-            <h3>happy customers</h3>
-        </div>
-
-        <div class="box">
-            <span>{{object.business_profile.Awards_won}}+</span>
-            <h3>awards won</h3>
-        </div>
-
-    </div>
-
 </div>
-
-</section>
-
-
-<!-- about section ends -->
-
-<!-- service section starts  -->
-
-<section class="service" id="service">
-
-<h1 class="heading"> our <span>Sevice</span> </h1>
-
-<div class="box-container">
-{% for ser in object.business_service_set.all %}
-<p>{{ser.service.name}}</p>
-{% endfor %}
-</div>
-
-</section>
-
-<!-- service section ends -->
-
-<!-- employee section starts  -->
-
-<section class="employee" id="employee">
-
-<h1 class="heading"> our <span>employee</span> </h1>
-
-<div class="box-container">
-
-    <div class="box">
-        <img src="{% static 'business/images/anup.jpg' %}" alt="">
-    </div>
-    <div class="box">
-        <img src="{% static 'business/images/samir.jpg' %}" alt="">
-    </div>
-    <div class="box">
-        <img src="{% static 'business/images/ranjit1.jpg' %}" alt="">
-    </div>
-    <div class="box">
-        <img src="{% static 'business/images/gauriDon.jpg' %}" alt="">
-    </div>
-
-</div>
-
-</section>
-
-<!-- employee section ends -->
-
-<!-- contact section starts  -->
-
-<section class="contact" id="contact">
-
-<h1 class="heading"> <span>contact</span> us </h1>
-
-<div class="row">
-
-    <div class="content">
-
-        <h3 class="title">contact info</h3>
-
-        <div class="info">
-            <h3> <i class="fas fa-envelope"></i>{{object.contact_email}}</h3>
-            <h3> <i class="fas fa-phone"></i> {{object.phone}} </h3>
-            <h3> <i class="fas fa-map-marker-alt"></i>{{object.street_address}}</h3>
-        </div>
-        
-    </div>
-
-    <form action="">
-
-        <input type="text" placeholder="name" class="box">
-        <input type="email" placeholder="email" class="box">
-        <input type="text" placeholder="Service Needed" class="box">
-        <textarea name="" id="" cols="30" rows="10" class="box message" placeholder="message"></textarea>
-        <button type="submit" class="btn"> send <i class="fas fa-paper-plane"></i> </button>
-
-    </form>
-
-</div>
-
-</section>
-
-<!-- contact section ends -->
+    
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-<!-- scroll top button  -->
-
-<a href="#home" class="top">
-    <img src="images/scroll-top-img.png" alt="">
-</a>
 
 {% endblock %}
