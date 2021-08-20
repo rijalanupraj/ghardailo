@@ -67,7 +67,9 @@ def getService(request):
     businessService = Business_Service.objects.filter(
         business=request.user.business)
     service_filter = ServicesFilter(request.GET, queryset=businessService)
+    # service_filter1 =  service_filter.bu
     service_final = service_filter.qs
+
     context = {
         'businessService': service_final,
         'service_filter': service_filter,
