@@ -23,7 +23,7 @@ body {
 	vertical-align: middle;
 	color: Black;
 	letter-spacing: 2px;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 900;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -228,12 +228,13 @@ h6 {
   transition: all 0.3s ease-in-out;
   border-radius: 8px;
   z-index: 1;
+  height: 51vh;
 }
 
 #hero .icon-box .title {
   font-weight: 700;
   margin-bottom: 15px;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 #hero .icon-box .title a {
@@ -242,9 +243,10 @@ h6 {
 }
 
 #hero .icon-box .description {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 28px;
   margin-bottom: 0;
+  
 }
 
 #hero .icon-box .icon {
@@ -282,8 +284,8 @@ h6 {
     height: auto;
   }
   #hero h1 {
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 25px;
+    line-height: 30px;
   }
   #hero h2 {
     font-size: 18px;
