@@ -1118,7 +1118,6 @@ section {
   display: block;
   font-size: 13px;
   font-weight: 400;
-  /* color: #aaaaaa; */
   color: blue;
 }
 
@@ -1611,6 +1610,7 @@ section {
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
   color: #2487ce;
+  font-weight: bold;
 }
 
 #footer .footer-newsletter {
