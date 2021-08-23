@@ -24,6 +24,14 @@ def main_homepage(request):
     return render(request, 'homepage/home-page.html',context)
 
 
+def about_us(request):
+
+
+    return render(request, 'homepage/Aboutus.html')
+
+
+
+
 
 
 
