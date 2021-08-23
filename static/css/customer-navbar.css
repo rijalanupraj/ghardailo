@@ -1,101 +1,105 @@
 #Header {
-    /* position: fixed; */
-    /* top: 0; */
-    box-shadow: rgb(0, 0, 0, 25%) 2px 0px 10px;
+  /* position: fixed; */
+  /* top: 0; */
+  box-shadow: rgb(0, 0, 0, 25%) 2px 0px 10px;
 }
 #Logo {
-    height: 60px;
-    width: 60px;
+  height: 60px;
+  width: 60px;
 }
 #Header .navbar-brand {
-    color: #5f28f5;
-    font-size: 32px;
-    font-family: Cursive;
+  color: #5f28f5;
+  font-size: 32px;
+  font-family: Cursive;
 }
 #Header nav h1 span {
-    color: #23a455;
+  color: #23a455;
 }
 #Header .nav-link {
-    color:black;
-    font-size: 16px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    font-family: cursive;
-    border-radius: 10px;
-    position: relative;
+  color: black;
+  font-size: 16px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 10px;
+  position: relative;
 }
 #Header .nav-link:hover {
-    color: White;
-    background-color: #5e2ced;
-    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+  color: White;
+  background-color: #5e2ced;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 #Header .active {
-    color: White;
-    background-color: #5e2ced;
-    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+  color: White;
+  background-color: #5e2ced;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .navbar-toggler-icon {
-    background-image: url("/static/img/navbar/button.png");
+  background-image: url("/static/img/navbar/button.png");
 }
 #UDA {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 #Profile {
-    height: 60px;
-    width: 60px;
+  height: 60px;
+  width: 60px;
 }
-#Username, .sgu, .lgi, .lgo {
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    font-family: cursive;
-    border-radius: 10px;
-    color: black;
+#Username,
+.sgu,
+.lgi,
+.lgo {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  color: black;
 }
-#Username:hover, .sgu:hover, .lgi:hover, .lgo:hover {
-    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+#Username:hover,
+.sgu:hover,
+.lgi:hover,
+.lgo:hover {
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 #Username {
-    font-size: 18px;
-    text-decoration: none;
-    white-space: nowrap;
+  font-size: 18px;
+  text-decoration: none;
+  white-space: nowrap;
 }
 #Username:hover {
-    color: White;
-    background-color: #5e2ced;
+  color: White;
+  background-color: #5e2ced;
 }
 .sgu:hover {
-    color: white;
-    background-color: #23a455;
+  color: white;
+  background-color: #23a455;
 }
 .lgi:hover {
-    color: white;
-    background-color: #ff6600;
+  color: white;
+  background-color: #ff6600;
 }
 .lgo:hover {
-    color: white;
-    background-color: #f52843;
+  color: white;
+  background-color: #f52843;
 }
 .active_login {
-    color: white;
-    background-color: #ff6600;
-    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+  color: white;
+  background-color: #ff6600;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .active_customer {
-    color: white;
-    background-color: #23a455;
-    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+  color: white;
+  background-color: #23a455;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .active_business {
-    color: white;
-    background-color: #23a455;
-    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+  color: white;
+  background-color: #23a455;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .dropdown-opener {
-    font-size: 25px;
+  font-size: 25px;
 }
 .dropdown-content {
     padding-top: 5px;
@@ -114,48 +118,48 @@
     box-shadow: rgb(0, 0, 0, 25%) 0px 0px 10px;
 }
 .dropdown-content a {
-    text-decoration: none;
+  text-decoration: none;
 }
 .dropdown-divider {
-    width: 100%;
+  width: 100%;
 }
 @media screen and (max-width: 720px) {
-    #UDA {
-        display: none;
-    }
+  #UDA {
+    display: none;
+  }
 }
 @media screen and (max-width: 610px) {
-    #Header .navbar-brand {
-        display: none;
-    }
+  #Header .navbar-brand {
+    display: none;
+  }
 }
 @media screen and (max-width: 575px) {
-    #Header .nav-link {
-        float: left;
-        margin-top: 5px;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    #Header .active {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    #UDA {
-        margin-top: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-    }    
-    .dropdown-content {
-        padding: 0px;
-        position: static;
-        border-radius: 0px;
-        box-shadow: none;
-    }    
-    #Username {
-        white-space: normal;
-    }
-    .dropdown-divider {
-        display: none;
-    }
+  #Header .nav-link {
+    float: left;
+    margin-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #Header .active {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #UDA {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  .dropdown-content {
+    padding: 0px;
+    position: static;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+  #Username {
+    white-space: normal;
+  }
+  .dropdown-divider {
+    display: none;
+  }
 }
