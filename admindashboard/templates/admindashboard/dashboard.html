@@ -8,6 +8,16 @@
 {% endblock %}
 
 {% block main_content %}  
+<div class="container-fluid mt-3">
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+        {% endif %}
+    {% endfor %}       
+</div>    
 <div class="container-fluid Registration mt-3">
   <div class="Customer">
     <a href="/a/cr"><span class="fas fa-user logo me-1"></span><span class="fas fa-plus plus"></span></a>    
