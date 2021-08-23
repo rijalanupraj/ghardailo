@@ -1,10 +1,3 @@
-.background{    
-    background: url('/static/img/dashboard.jpg');
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
-    min-height: 1300px;
-}
 .Registration {
     display: flex;
     flex-direction: row;
