@@ -33,7 +33,7 @@ class CustomerRegistrationCreateView(CreateView):
     model = User
     form_class = forms.CustomerRegistrationForm
     template_name = 'customer/customer-registration.html'
-    success_url = reverse_lazy('customer-home')
+    success_url = reverse_lazy('home')
 
     @method_decorator(sensitive_post_parameters('password1', 'password2'))
     def dispatch(self, request, *args, **kwargs):
@@ -45,12 +45,12 @@ class CustomerRegistrationCreateView(CreateView):
         user = self.request.user
         if self.request.user.is_authenticated:
             if(user.is_customer):
-                return redirect('customer-home')
+                return redirect('home')
             elif (user.is_business):
                 return redirect('businessDash')
             elif (user.is_staff):
                 return redirect('my-admin-dashboard')
-            return redirect('customer-home')
+            return redirect('home')
         return super(CustomerRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
     @transaction.atomic
@@ -79,7 +79,7 @@ class BusinessRegistrationCreateView(CreateView):
     model = User
     form_class = forms.BusinessRegistrationForm
     template_name = 'business/business-registration.html'
-    success_url = reverse_lazy('customer-home')
+    success_url = reverse_lazy('home')
 
     @method_decorator(sensitive_post_parameters('password1', 'password2'))
     def dispatch(self, request, *args, **kwargs):
@@ -91,12 +91,12 @@ class BusinessRegistrationCreateView(CreateView):
         user = self.request.user
         if self.request.user.is_authenticated:
             if(user.is_customer):
-                return redirect('customer-home')
+                return redirect('home')
             elif (user.is_business):
                 return redirect('businessDash')
             elif (user.is_staff):
                 return redirect('my-admin-dashboard')
-            return redirect('customer-home')
+            return redirect('home')
         return super(BusinessRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
     @transaction.atomic
@@ -131,7 +131,7 @@ class CustomerLoginView(auth_views.LoginView):
         if url:
             return url
         if(self.request.user.is_customer):
-            return reverse_lazy('customer-home')
+            return reverse_lazy('home')
         elif (self.request.user.is_business):
             return reverse_lazy('businessDash')
         elif (self.request.user.is_staff):
@@ -148,7 +148,7 @@ class BusinessLoginView(auth_views.LoginView):
         if url:
             return url
         if(self.request.user.is_customer):
-            return reverse_lazy('customer-home')
+            return reverse_lazy('home')
         elif (self.request.user.is_business):
             return reverse_lazy('businessDash')
         elif (self.request.user.is_staff):
@@ -171,12 +171,12 @@ def activate_account(request, uidb64, token, backend='accounts.backends.EmailBac
             request, f'Your account has been activated successfully')
         # Redirect User to Their Respective Page (Customer/Business/Staff)
         if(user.is_customer):
-            return redirect('customer-home')
+            return redirect('home')
         elif (user.is_business):
             return redirect('businessDash')
         elif (user.is_staff):
             return redirect('my-admin-dashboard')
-        return redirect('customer-home')
+        return redirect('home')
     else:
         return HttpResponse('Activation link is invalid!')
 
