@@ -1,0 +1,72 @@
+.back {
+    font-size: 30px;
+    color: #fc575e;
+}
+form {
+    border-radius: 5px;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+    background-image: linear-gradient(#fc575e , #90d5ec );
+}
+.form_inputs {       
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+.form_checkboxes {       
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+form label{   
+    font-size: 19px;
+    font-weight: bold;
+}
+form input{   
+    margin-right: 16px;
+    border: 2px solid #fc575e;
+    border-radius: 8px;
+}
+form input[type="text"], form input[type="email"], form input[type="password"] {   
+    width: 300px;
+}
+form input:hover {
+    background-color: #90d5ec;
+}
+form input:focus {
+    border: none;
+    outline: none;
+    background-color: #90d5ec;
+}
+.operation_button {
+    font-size:19px;
+    font-weight: bold;
+    background-color: #73f7a6;
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 20px;
+}
+.operation_button:hover {
+    color: white;
+    background-color: #23a455;
+}
+@media screen and (max-width: 680px) {
+    form label{   
+        font-size: 15px;
+    }
+    .operation_button {
+        font-size:15px;
+    }
+    form input[type="text"], form input[type="email"], form input[type="password"] 
+    {   
+        width: 220px;
+    }
+}
+@media screen and (max-width: 480px) {
+    form input[type="text"], form input[type="email"], form input[type="password"] 
+    {   
+        width: 150px;
+    }
+}

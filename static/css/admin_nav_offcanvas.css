@@ -87,7 +87,6 @@ main{
 }
 .sidebar_nav {
     width: 200px;
-    box-shadow: rgb(0, 0, 0, 25%) 2px 0px 10px;
 }
 .offcanvas-body .navbar-nav .nav-link {
     color: black;

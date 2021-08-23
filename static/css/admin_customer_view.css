@@ -1,19 +1,11 @@
-.background{    
-    background: url('/static/img/customer_view.jpg');
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
-    min-height: 880px;
-}
 .back {
     font-size: 30px;
     color: #ef629f;
-    text-shadow: black 0px 0px 20px;
 }
 .profile img{
     height: 350px;
     border-radius: 10px;  
-    box-shadow: white 0px 0px 20px;
+    box-shadow: rgb(0, 0, 0, 50%) 0px 5px 20px;
 }
 .navigate {
     font-family: cursive;
@@ -66,8 +58,8 @@
     border-radius: 5px;
     font-size: 20px;
     font-family: cursive;
-    background-color: rgb(0, 0, 0, 40%);
-    box-shadow: white 0px 0px 20px;
+    background-image: linear-gradient(to right,#36d1dc , #5b86e5 );
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
 }
 .details th {
     background-color: rgb(0, 0, 0, 50%);    
