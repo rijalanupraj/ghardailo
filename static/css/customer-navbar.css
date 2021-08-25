@@ -88,12 +88,7 @@
   background-color: #ff6600;
   box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
-.active_customer {
-  color: white;
-  background-color: #23a455;
-  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
-}
-.active_business {
+.active_customer, .active_business {
   color: white;
   background-color: #23a455;
   box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
@@ -102,8 +97,8 @@
   font-size: 25px;
 }
 .dropdown-content {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 5px;
     display: flex;

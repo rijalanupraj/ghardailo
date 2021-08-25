@@ -79,7 +79,7 @@ def administrator_registration(request):
             user.set_password(password)
             user.save()
             messages.success(
-                request, f'{user.username} Staff User Created')
+                request, f'{user.username} staff user has been created')
             return redirect('my-admin-dashboard')
     context = {
         'u_form': u_form,

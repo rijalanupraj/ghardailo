@@ -9,7 +9,6 @@
 #Header .navbar-brand {
     color: #4300fc;
     font-size: 32px;
-    font-family: Cursive;
 }
 #Header nav h1 a span {
     color: #008f37;
@@ -25,7 +24,6 @@
     background-image: url("/static/img/navbar/button.png");
 }
 .lgo {
-    font-family: cursive;
     border-radius: 10px;
     color: #ed2c3c;
     background-color: #f8ccd0;
@@ -42,7 +40,6 @@
     position: relative;
 }
 #Username {
-    font-family: cursive;
     font-size: 18px;
     color: #5e2ced;
     text-decoration: none;
@@ -58,6 +55,7 @@
 @media screen and (max-width: 575px) {
     #UDA {
         margin-top: 5px;
+        margin-bottom: 10px;
         display: grid;
         grid-template-columns: 80px;
         grid-gap: 10px 0;
@@ -90,9 +88,7 @@ main{
 }
 .offcanvas-body .navbar-nav .nav-link {
     color: black;
-    font-size: 22px;
-    font-weight: lighter;
-    font-family: cursive;
+    font-size: 20px;
     border-radius: 10px;
 }
 .offcanvas-body .navbar-nav .nav-link:hover {
@@ -110,6 +106,6 @@ main{
         width: 160px;
     }
     .offcanvas-body .navbar-nav .nav-link {
-        font-size: 15px;
+        font-size: 14px;
     }
 }

@@ -41,11 +41,11 @@
             <li class="dropdown-divider"></li>
             <a class="mb-1 lgo" href="/logout">Log out</a>
           {% else %}
-            <a class="mb-1 lgi {% if request.path == customer_login_page %}active{% endif %}" href="{{customer_login_page}}">Login</a>
+            <a class="mb-1 lgi {% if request.path == customer_login_page %}active_login{% endif %}" href="{{customer_login_page}}">Login</a>
             <li class="dropdown-divider"></li>
-            <a class="mb-1 sgu {% if request.path == customer_registration_page %}active{% endif %}" href="{{customer_registration_page}}">Sign up for customer</a>
+            <a class="mb-1 sgu {% if request.path == customer_registration_page %}active_customer{% endif %}" href="{{customer_registration_page}}">Sign up for customer</a>
             <li class="dropdown-divider"></li>
-            <a class="sgu {% if request.path == business_registration_page %}active{% endif %}" href="/mybusiness/register/">Sign up for business</a>
+            <a class="sgu {% if request.path == business_registration_page %}active_business{% endif %}" href="/mybusiness/register/">Sign up for business</a>
           {% endif %}
         </div>
       </div>
