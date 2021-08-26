@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+import random
+import string
+from django.contrib.sites.shortcuts import get_current_site
 
 from django.contrib.auth.models import User
+from django.urls.base import reverse_lazy
 from business.models import *
 from gallery.models import *
 from worker.models import *
@@ -14,6 +18,8 @@ from bookmark.models import *
 
 from .forms import *
 from .filters import *
+from accounts import utils
+
 
 # <<====================Dashboard====================>>
 
@@ -53,18 +59,62 @@ def dashboard(request):
 
 
 def customer_registration(request):
-    dictionary = {
+    u_form = CustomerCreationForm(request.POST or None)
+    if request.method == 'POST':
+        if u_form.is_valid():
+            password = get_random_password(12)
+            user = u_form.save(commit=False)
+            user.is_customer = True
+            user.is_active = True
+            user.set_password(password)
+            user.save()
+            Customer.objects.create(user=user)
+            current_site = get_current_site(request)
+            login = reverse_lazy('login')
+            login_url = f'http://www.{current_site}{login}'
+            subject = "Account Created At GharDailo"
+            message = f'Your Account has been created for GharDailo.\nYour Username: {user.username}\nYour Password: {password}\nDon\'t Share the details with other\nTo Login Visit: {login_url}'
+            utils.send_email_to_user(subject, message, user)
+            messages.success(
+                request, f'{user.username} Customer user has been created')
+            return redirect('my-admin-dashboard')
+    context = {
+        'u_form': u_form,
         'dashboard': 'selected'
+
+
     }
-    return render(request, 'admindashboard/Customer_Registration.html', dictionary)
+    return render(request, 'admindashboard/Customer_Registration.html', context)
 
 
 # <<====================Business Registration====================>>
 def business_registration(request):
-    dictionary = {
+    u_form = CustomerCreationForm(request.POST or None)
+    if request.method == 'POST':
+        if u_form.is_valid():
+            password = get_random_password(12)
+            user = u_form.save(commit=False)
+            user.is_business = True
+            user.is_active = True
+            user.set_password(password)
+            user.save()
+            Business.objects.create(user=user)
+            current_site = get_current_site(request)
+            login = reverse_lazy('login')
+            login_url = f'http://www.{current_site}{login}'
+            subject = "Account Created At GharDailo"
+            message = f'Your Account has been created for GharDailo.\nYour Username: {user.username}\nYour Password: {password}\nDon\'t Share the details with other\nTo Login Visit: {login_url}'
+            utils.send_email_to_user(subject, message, user)
+            messages.success(
+                request, f'{user.username} Business user has been created')
+            return redirect('my-admin-dashboard')
+    context = {
+        'u_form': u_form,
         'dashboard': 'selected'
+
+
     }
-    return render(request, 'admindashboard/Business_Registration.html', dictionary)
+    return render(request, 'admindashboard/Business_Registration.html', context)
 
 
 # <<====================Administration Registration====================>>
@@ -169,24 +219,30 @@ def business_verified(request, business_id):
     particular_business.save()
     return redirect("/a/business")
 
+
 def business_not_verified(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     particular_business.is_verified = False
     particular_business.save()
     return redirect("/a/business")
 
+
 def business_view(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     business_services = Business_Service.objects.filter(
         business=particular_business).all()
-    business_gallery = Gallery.objects.filter(business=particular_business).all()
-    business_workers = Worker.objects.filter(business=particular_business).all()
+    business_gallery = Gallery.objects.filter(
+        business=particular_business).all()
+    business_workers = Worker.objects.filter(
+        business=particular_business).all()
     business_hires = Hiring.objects.filter(
         business_service__business=particular_business)
     business_notifications = Notification.objects.filter(
         business=particular_business).all()
-    business_reviews = Review.objects.filter(business=particular_business).all()
-    business_bookmarks = Bookmark.objects.filter(business=particular_business).all()
+    business_reviews = Review.objects.filter(
+        business=particular_business).all()
+    business_bookmarks = Bookmark.objects.filter(
+        business=particular_business).all()
 
     dictionary = {
         'pb': particular_business,
@@ -227,8 +283,10 @@ def customer_view(request, customer_id):
     customer_hires = Hiring.objects.filter(customer=particular_customer)
     customer_notifications = Notification.objects.filter(
         customer=particular_customer).all()
-    customer_reviews = Review.objects.filter(customer=particular_customer).all()
-    customer_bookmarks = Bookmark.objects.filter(customer=particular_customer).all()
+    customer_reviews = Review.objects.filter(
+        customer=particular_customer).all()
+    customer_bookmarks = Bookmark.objects.filter(
+        customer=particular_customer).all()
 
     dictionary = {
         'pc': particular_customer,
@@ -249,3 +307,10 @@ def customer_view(request, customer_id):
 def activities(request):
     dictionary = {'activities': 'selected'}
     return render(request, 'admindashboard/activities.html', dictionary)
+
+
+def get_random_password(length):
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    password = ''.join(random.choice(letters) for i in range(length))
+    return password

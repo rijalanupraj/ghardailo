@@ -73,3 +73,9 @@ class StaffUserCreationForm(ModelForm):
         model = User
         fields = ('username', 'email', 'password',
                   'is_admin', 'is_superuser')
+
+
+class CustomerCreationForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
