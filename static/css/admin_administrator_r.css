@@ -44,13 +44,11 @@ form input:focus {
 .operation_button {
     font-size:19px;
     font-weight: bold;
-    background-color: #73f7a6;
     border-radius: 10px;
     box-shadow: rgb(0, 0, 0, 25%) 5px 5px 20px;
 }
 .operation_button:hover {
-    color: white;
-    background-color: #23a455;
+    background: linear-gradient(#fc575e , #90d5ec );
 }
 @media screen and (max-width: 680px) {
     form label{   
