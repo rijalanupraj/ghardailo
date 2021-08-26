@@ -172,6 +172,7 @@
            </a></li>
 
            <!-- view business page -->
+           {% if  user.business.slug %}
           <a
           href="{% url 'business-profile' user.business.slug %}"
           target="__blank"
@@ -179,6 +180,7 @@
           "
           ><span>View business Page</span></a
          >
+         {% endif %}
               
               <li><a class="dropdown-item business-logout" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
             </ul>
