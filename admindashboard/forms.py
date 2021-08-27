@@ -50,7 +50,7 @@ class CustomerForm(ModelForm):
 
 class HiringForm(ModelForm):
     class Meta:
-        model = Services
+        model = Hiring
         fields = '__all__'
 
 

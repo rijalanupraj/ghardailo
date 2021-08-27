@@ -12,6 +12,8 @@ from django.views.generic import (
     DeleteView,
 )
 
+from django.contrib.auth.decorators import login_required
+from accounts.auth import *
 
 # internal input
 from business.models import Business
@@ -29,7 +31,8 @@ from .filters import *
 
 # Create your views here.
 
-
+@login_required
+@business_only
 def businessDashboard(request):
     user = request.user
     business = Business.objects.get(user=user)
@@ -62,7 +65,8 @@ def businessDashboard(request):
 
     return render(request, 'adminbusiness/base/dashboard.html', context)
 
-
+@login_required
+@business_only
 def getService(request):
     businessService = Business_Service.objects.filter(
         business=request.user.business)
@@ -76,7 +80,8 @@ def getService(request):
     }
     return render(request, 'adminbusiness/base/show-service.html', context)
 
-
+@login_required
+@business_only
 def postService(request):
     if request.method == 'POST':
 
@@ -109,7 +114,8 @@ def postService(request):
 
     return render(request, 'adminbusiness/base/post-service.html', context)
 
-
+@login_required
+@business_only
 def updateService(request, service_id):
     instance = Business_Service.objects.get(id=service_id)
     if request.method == "POST":
@@ -124,7 +130,8 @@ def updateService(request, service_id):
     }
     return render(request, 'adminbusiness/base/update-service.html', context)
 
-
+@login_required
+@business_only
 def deleteService(request, service_id):
     service = Business_Service.objects.get(id=service_id)
     service.delete()
@@ -132,6 +139,8 @@ def deleteService(request, service_id):
 
 
 # for profile
+@login_required
+@business_only
 def getProfile(request):
     profile = Business_Profile.object.all()
 
@@ -140,7 +149,8 @@ def getProfile(request):
     }
     return render(request, 'adminbusiness/base/show-profile.html', context)
 
-
+@login_required
+@business_only
 def editBusiness(request):
     if request.method == 'POST':
         form = EditBusinessForm(
@@ -161,7 +171,8 @@ def editBusiness(request):
     }
     return render(request, 'adminbusiness/base/edit-business.html', context)
 
-
+@login_required
+@business_only
 def editBusinessProfile(request):
     if request.method == 'POST':
         form = BusinessProfileForm(
@@ -188,7 +199,8 @@ def editBusinessProfile(request):
     }
     return render(request, 'adminbusiness/base/post-profile.html', context)
 
-
+@login_required
+@business_only
 def updateProfile(request, profile_id):
     instance = Business_Profile.objects.get(id=profile_id)
     if request.method == "POST":
@@ -202,7 +214,8 @@ def updateProfile(request, profile_id):
     }
     return render(request, 'adminbusiness/base/update-profile.html', context)
 
-
+@login_required
+@business_only
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -220,7 +233,8 @@ def change_password(request):
         'form': form
     })
 
-
+@login_required
+@business_only
 def getWorker(request):
     businessWorker = Worker.objects.filter(business=request.user.business)
     worker_filter = WorkerFilter(request.GET, queryset=businessWorker)
@@ -232,7 +246,8 @@ def getWorker(request):
     }
     return render(request, 'adminbusiness/base/show-worker.html', context)
 
-
+@login_required
+@business_only
 def postWorker(request):
     if request.method == 'POST':
 
@@ -260,7 +275,8 @@ def postWorker(request):
 
     return render(request, 'adminbusiness/base/post-worker.html', context)
 
-
+@login_required
+@business_only
 def updateWorker(request, Worker_id):
     instance = Worker.objects.get(id=Worker_id)
     if request.method == "POST":
@@ -275,7 +291,8 @@ def updateWorker(request, Worker_id):
     }
     return render(request, 'adminbusiness/base/update-Worker.html', context)
 
-
+@login_required
+@business_only
 def deleteWorker(request, Worker_id):
     worker = Worker.objects.get(id=Worker_id)
     worker.delete()
@@ -296,14 +313,16 @@ class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return Hiring.objects.filter(
             business_service__business=self.request.user.business).order_by('-date_time')
 
-
+@login_required
+@business_only
 def approve_business_hiring(request, id):
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'AC'
     hiring.save()
     return redirect('business-hiring-list')
 
-
+@login_required
+@business_only
 def reject_business_hiring(request, id):
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'RJ'
