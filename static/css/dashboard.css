@@ -11,7 +11,6 @@
     padding: 15px;
     padding-left: 5px;
     padding-right: 65px;
-    font-family: cursive;
     border-radius: 150px 5px 150px 5px;
     display: flex;
     flex-direction: column;
@@ -100,7 +99,6 @@
     font-size:  30px;
     font-weight: 400;
     padding-right: 16px;
-    font-family: cursive;
     background: linear-gradient(to left, #fc1f3c, #652efc, #2dfa7c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

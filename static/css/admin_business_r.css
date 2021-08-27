@@ -1,20 +1,13 @@
 .back {
     font-size: 30px;
-    color: #fc575e;
+    color: #045de9;
 }
 form {
     border-radius: 5px;
     box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
-    background-image: linear-gradient(#fc575e , #90d5ec );
+    background-image: linear-gradient(#045de9 , #09c6f9);
 }
 .form_inputs {       
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
-.form_checkboxes {       
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -27,19 +20,19 @@ form label{
 }
 form input{   
     margin-right: 16px;
-    border: 2px solid #fc575e;
+    border: 2px solid #045de9;
     border-radius: 8px;
 }
 form input[type="text"], form input[type="email"], form input[type="password"] {   
     width: 300px;
 }
 form input:hover {
-    background-color: #90d5ec;
+    background-color: #09c6f9;
 }
 form input:focus {
     border: none;
     outline: none;
-    background-color: #90d5ec;
+    background-color: #09c6f9;
 }
 .operation_button {
     font-size:19px;
@@ -48,14 +41,10 @@ form input:focus {
     box-shadow: rgb(0, 0, 0, 25%) 5px 5px 20px;
 }
 .operation_button:hover {
-    background-color: #fc575e;
+    background-color: #045de9;
 }
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1090px) {
     .form_inputs {      
-        flex-direction: column;
-        justify-content: start;
-    }
-    .form_checkboxes {    
         flex-direction: column;
         justify-content: start;
     }

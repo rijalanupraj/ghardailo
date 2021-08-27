@@ -17,8 +17,12 @@
     padding:0;
 }
 #offcanvas_opener span {
-    color: black;
-    font-size: 32px;
+    color: #5e2ced;
+    font-size: 35px;
+    margin-top: 5px;
+}
+#offcanvas_opener:focus {
+    box-shadow: none;
 }
 .navbar-toggler-icon {
     background-image: url("/static/img/navbar/button.png");

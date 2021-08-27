@@ -22,8 +22,6 @@ from accounts import utils
 
 
 # <<====================Dashboard====================>>
-
-
 def dashboard(request):
     user = User.objects.all().count()
     admin = User.objects.filter(is_staff=True).all().count()
@@ -56,8 +54,6 @@ def dashboard(request):
     return render(request, 'admindashboard/dashboard.html', dictionary)
 
 # <<====================Customer Registration====================>>
-
-
 def customer_registration(request):
     u_form = CustomerCreationForm(request.POST or None)
     if request.method == 'POST':
@@ -126,6 +122,7 @@ def administrator_registration(request):
             password = u_form.cleaned_data['password']
             user = u_form.save(commit=False)
             user.is_staff = True
+            user.is_admin = True
             user.is_active = True
             user.set_password(password)
             user.save()
