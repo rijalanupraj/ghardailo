@@ -4,7 +4,6 @@ from .views import(
     CustomerRegistrationCreateView,
     CustomerLoginView,
     BusinessRegistrationCreateView,
-    BusinessLoginView
 )
 from django.contrib.auth import views as auth_views
 

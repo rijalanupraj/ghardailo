@@ -79,3 +79,11 @@ class CustomerCreationForm(ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email')
+
+
+class BusinessCreationForm(ModelForm):
+    business_name = forms.CharField(max_length=255, required=False)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'business_name')

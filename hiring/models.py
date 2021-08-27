@@ -7,13 +7,13 @@ class Hiring(models.Model):
     PENDING = 'PD'
     ACCEPTED = 'AC'
     REJECTED = 'RJ'
-    ON_PROGRESS = 'OP'
+    CANCEL = 'CP'
     COMPLETED = 'CO'
     HIRE_STATUS = [
         (PENDING, 'Pending'),
         (ACCEPTED, 'Accepted'),
         (REJECTED, 'Rejected'),
-        (ON_PROGRESS, 'On Progress'),
+        (CANCEL, 'Cancel'),
         (COMPLETED, 'Completed'),
     ]
 
