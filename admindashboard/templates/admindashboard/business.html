@@ -48,7 +48,13 @@
                     <td>{{i.province}}</td>
                     <td>{{i.phone}}</td>
                     <td>{{i.is_active}}</td>
-                    <td>{{i.is_verified}}</td>
+                    <td>                        
+                        {% if i.is_verified == False %}
+                        <span class="fas fa-check-circle"></span>
+                        {% else %}
+                        <span class="fas fa-times-circle"></span>
+                        {% endif %}
+                    </td>
                     <td>
                         {% if i.is_verified == False %}
                         <a href="/a/business_verified/{{i.id}}" class="verified" onclick="return confirm('Do you want to make verified this business?')"><span class="fas fa-check-circle"></span></a>
