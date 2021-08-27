@@ -30,3 +30,13 @@ def send_email_verification(current_site, user):
         [user.email],
         fail_silently=False,
     )
+
+
+def send_email_to_user(email_subject, message, user):
+    send_mail(
+        email_subject,
+        message,
+        os.environ.get('EMAIL'),
+        [user.email],
+        fail_silently=False,
+    )
