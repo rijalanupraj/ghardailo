@@ -4,12 +4,26 @@ from django.shortcuts import render
 from service.models import Services
 
 # Create your views here.
-def Home(request):
 
-    service = Services.objects.filter(is_active=True)[:8]
+
+
+def main_homepage(request):
+
+    service = Services.objects.filter(is_active=True)[:6]
     context = {
         'services': service,
-        'active_home':'active'
     }
-    return render(request, 'homepage/index.html', context)
+    return render(request, 'homepage/home-page.html',context)
+
+
+def about_us(request):
+
+
+    return render(request, 'homepage/Aboutus.html')
+
+
+
+
+
+
 

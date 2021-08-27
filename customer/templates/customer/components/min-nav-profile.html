@@ -1,0 +1,22 @@
+{% url 'customer:customerprofile' as userprofile_url %}
+{% url 'customer:customer-hiring-page' as customer_hiring_url %}
+{% url 'customer:customer-bookmark-page' as customer_bookmark_url %}
+<div class="m-4 border border-primary border-3 " class="navs">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == userprofile_url %}active{% endif %} rounded-0"
+        href="{% url 'customer:customerprofile' %}"> My
+        Profile </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == customer_hiring_url %}active{% endif %} rounded-0"
+        href="{% url 'customer:customer-hiring-page' %}">
+        Hirings</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == customer_bookmark_url %}active{% endif %} rounded-0"
+        href="{% url 'customer:customer-bookmark-page' %}">
+        Bookmarks</a>
+    </li>
+  </ul>
+</div>

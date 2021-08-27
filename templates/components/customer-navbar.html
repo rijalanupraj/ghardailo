@@ -1,4 +1,9 @@
 {% load static %}
+{% url 'home' as customer_home_page %}
+{% url 'customer-services' as customer_service_page %}
+{% url 'customer-login' as customer_login_page %}
+{% url 'customer-registration' as customer_registration_page %}
+{% url 'business-registration' as business_registration_page %}
 <div class="container-fluid" id="Header">
   <nav class="navbar navbar-expand-sm">
     <h1>
@@ -13,10 +18,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item mx-sm-1">
-          <a class="nav-link {{ active_home }}" href="{% url 'Home' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link {% if request.path == customer_home_page %}active{% endif %}" href="{{customer_home_page}}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item mx-sm-1">
-          <a class="nav-link {{ active_service }}" href="{% url 'Services' %}">Services</a>
+          <a class="nav-link {% if request.path == customer_service_page %}active{% endif %}" href="{{customer_service_page}}">Services</a>
         </li>
         <li class="nav-item mx-sm-1">
           <a class="nav-link" href="">Gallery</a>
@@ -25,15 +30,24 @@
           <a class="nav-link" href="">About Us</a>
         </li>
       </ul>
-      <div id="UDA">
-        <!-- {% if user.is_authenticated %}                   -->
-        <img class="img-fluid rounded-circle" id="Profile" src="{% static 'img/profile/male.jpg' %}" />
-        <a class="fw-bold" href="" id="Username">Ram Bahudar Shrestha</a>
-        <a class="btn lgo" href="">Logout</a>
-        <!-- {% else %} -->
-        <a href="" class="btn sgu">Sign up</a>
-        <a href="" class="btn lgi">Login</a>
-        <!-- {% endif %} -->
+      <div class="mt-3 me-4" id="UDA">
+        {% if user.is_authenticated %}
+          <img class="img-fluid rounded-circle mb-2 me-1" id="Profile" src="{% static 'img/profile/male.jpg' %}" />
+        {% endif %}
+        <span class="fas fa-caret-down dropdown-opener" onclick="open_dropdown()"></span>
+        <div class="dropdown-content">
+          {% if user.is_authenticated %}
+            <a class="mb-1 fw-bold {{ active_profile }}" href="" id="Username">Ram Bahudar Shrestha</a> 
+            <li class="dropdown-divider"></li>
+            <a class="mb-1 lgo" href="/logout">Log out</a>
+          {% else %}
+            <a class="mb-1 lgi {% if request.path == customer_login_page %}active_login{% endif %}" href="{{customer_login_page}}">Login</a>
+            <li class="dropdown-divider"></li>
+            <a class="mb-1 sgu {% if request.path == customer_registration_page %}active_customer{% endif %}" href="{{customer_registration_page}}">Sign up for customer</a>
+            <li class="dropdown-divider"></li>
+            <a class="sgu {% if request.path == business_registration_page %}active_business{% endif %}" href="/mybusiness/register/">Sign up for business</a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </nav>

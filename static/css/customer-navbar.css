@@ -1,116 +1,160 @@
 #Header {
-    /* position: fixed; */
-    /* top: 0; */
-    box-shadow: 0px 1px 5px #5f28f5;
+  /* position: fixed; */
+  /* top: 0; */
+  box-shadow: rgb(0, 0, 0, 25%) 2px 0px 10px;
 }
-
 #Logo {
-    height: 60px;
-    width: 60px;
+  height: 60px;
+  width: 60px;
 }
 #Header .navbar-brand {
-    color: #5f28f5;
-    font-size: 32px;
-    font-family: Cursive;
+  color: #5f28f5;
+  font-size: 32px;
+  font-family: Cursive;
 }
 #Header nav h1 span {
-    color: #23a455;
+  color: #23a455;
 }
 #Header .nav-link {
-    color: black;
-    font-size: 16px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    border-radius: 10px;
-    position: relative;
+  color: black;
+  font-size: 16px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 10px;
+  position: relative;
 }
 #Header .nav-link:hover {
-    color: #5e2ced;
+  color: White;
+  background-color: #5e2ced;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 #Header .active {
-    color: #5e2ced;
-    background-color: #d8ccf8;
+  color: White;
+  background-color: #5e2ced;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .navbar-toggler-icon {
-    background-image: url("/static/img/navbar/button.png");
+  background-image: url("/static/img/navbar/button.png");
 }
+#UDA {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#Profile {
+  height: 60px;
+  width: 60px;
+}
+#Username,
 .sgu,
 .lgi,
 .lgo {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    border-radius: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  color: black;
 }
-.sgu {
-    color: #00c99c;
-    background-color: #d4f6ee;
-    margin-left: 5px;
-}
-.sgu:hover {
-    color: white;
-    background-color: #23a455;
-}
-.lgi {
-    color: #5e2ced;
-    background-color: #d8ccf8;
-    margin-left: 5px;
-}
-.lgi:hover {
-    color: white;
-    background-color: #5f28f5;
-}
-.lgo {
-    color: #ed2c3c;
-    background-color: #f8ccd0;
-    margin-left: 5px;
-}
+#Username:hover,
+.sgu:hover,
+.lgi:hover,
 .lgo:hover {
-    color: white;
-    background-color: #f52843;
-}
-#Profile {
-    height: 60px;
-    width: 60px;
-    position: relative;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 #Username {
-    font-family: cursive;
-    font-size: 18px;
-    color: #5e2ced;
-    text-decoration: none;
+  font-size: 18px;
+  text-decoration: none;
+  white-space: nowrap;
 }
-@media screen and (max-width: 1100px) {
-    .sgu,
-    .lgi,
-    .lgo {
-        display: none;
-    }
+#Username:hover {
+  color: White;
+  background-color: #5e2ced;
 }
-@media screen and (max-width: 900px) {
-    #Profile,
-    #Username {
-        display: none;
-    }
+.sgu:hover {
+  color: white;
+  background-color: #23a455;
+}
+.lgi:hover {
+  color: white;
+  background-color: #ff6600;
+}
+.lgo:hover {
+  color: white;
+  background-color: #f52843;
+}
+.active_login {
+  color: white;
+  background-color: #ff6600;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.active_customer, .active_business {
+  color: white;
+  background-color: #23a455;
+  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.dropdown-opener {
+  font-size: 25px;
+}
+.dropdown-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    z-index: 1000;
+    top: 75px;
+    right: 5px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 10px;
+}
+.dropdown-content a {
+  text-decoration: none;
+}
+.dropdown-divider {
+  width: 100%;
+}
+@media screen and (max-width: 720px) {
+  #UDA {
+    display: none;
+  }
+}
+@media screen and (max-width: 610px) {
+  #Header .navbar-brand {
+    display: none;
+  }
 }
 @media screen and (max-width: 575px) {
-    #UDA {
-        margin-top: 5px;
-        display: grid;
-        grid-template-columns: 80px;
-        grid-gap: 10px 0;
-    }
-    .sgu,
-    .lgi,
-    .lgo,
-    #Profile,
-    #Username {
-        display: block;
-        margin: 0;
-    }
-    #Profile {
-        position: static;
-    }
-    #Username {
-        width: 300px;
-    }
+  #Header .nav-link {
+    float: left;
+    margin-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #Header .active {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #UDA {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  .dropdown-content {
+    padding: 0px;
+    position: static;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+  #Username {
+    white-space: normal;
+  }
+  .dropdown-divider {
+    display: none;
+  }
 }

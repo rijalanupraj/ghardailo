@@ -1,0 +1,16 @@
+/* style for profile image circle */
+#profileimage {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* For hiding default choose file button */
+input[type="file"] {
+  display: none;
+}
+
+#change-image-text {
+  cursor: pointer;
+}

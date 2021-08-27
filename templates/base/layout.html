@@ -3,9 +3,12 @@
 <html lang="en">
 
 <head>
+    
+    
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 
     <!-- For Favicon  -->
     <!-- <link rel="icon" type="image/png" href=""> -->
@@ -21,6 +24,7 @@
     {% include 'base/base_css.html' %}
 
     <!-- Content for Page Specific header -->
+    <link href="{% static 'css/customer-navbar.css' %}" rel="stylesheet">
     {% block additional_head %}
 
     {% endblock %}
@@ -39,12 +43,14 @@
         {% endblock %}
     </main>
 
+    <div id="preloader"></div>
+    
     <!-- Including all javascript -->
     {% include 'base/base_js.html' %}
 
     <!-- Content for Page Specific Extra content like:javascript -->
     {% block additional_body %}
-
+        <script src="{% static 'JS/customer_navbar.js' %}"></script>
     {% endblock %}
 
 </body>
