@@ -4,6 +4,7 @@
 {% url 'customer-login' as customer_login_page %}
 {% url 'customer-registration' as customer_registration_page %}
 {% url 'business-registration' as business_registration_page %}
+{% url 'about-us' as about_us_page %}
 <div class="container-fluid" id="Header">
   <nav class="navbar navbar-expand-sm">
     <h1>
@@ -27,7 +28,7 @@
           <a class="nav-link" href="">Gallery</a>
         </li>
         <li class="nav-item mx-sm-1">
-          <a class="nav-link" href="">About Us</a>
+          <a class="nav-link {% if request.path == about_us_page %}active{% endif %}" href="">About Us</a>
         </li>
       </ul>
       <div class="mt-3 me-4" id="UDA">
