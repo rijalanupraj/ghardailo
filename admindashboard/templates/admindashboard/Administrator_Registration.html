@@ -13,7 +13,7 @@ Admin Administrator Registration
 <div class="container-fluid d-flex justify-content-center mt-3">
     <form class="p-3" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <h1 class="border-bottom mb-4">Add new staff user</h1>
+        <h1 class="border-bottom text-center mb-4">Add new staff user</h1>
         <div class="form_inputs">
             <div class="mb-3">
                 <label class="form-label">Username:</label>
@@ -30,16 +30,12 @@ Admin Administrator Registration
         </div>
         <div class="form_checkboxes">
             <div class="mb-3">
-                <label class="form-label">Is Admin:</label>
-                {{u_form.is_admin}}
-            </div>
-            <div class="mb-3">
                 <label class="form-label">Is Superuser:</label>
                 {{u_form.is_superuser}}
             </div>
         </div>
         <div class="m-auto text-center">
-            <button class="btn operation_button" type="submit">Create</button>
+            <button class="btn operation_button" type="submit">Add</button>
         </div>
     </form>
 </div>
