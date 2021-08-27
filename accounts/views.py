@@ -72,7 +72,7 @@ class CustomerRegistrationCreateView(CreateView):
         utils.send_email_verification(current_site, user)
         messages.success(
             self.request, f'We have sent you an email, please confirm your email address to complete registration')
-        return redirect('customer-login')
+        return redirect('login')
 
 
 class BusinessRegistrationCreateView(CreateView):
@@ -119,7 +119,7 @@ class BusinessRegistrationCreateView(CreateView):
         utils.send_email_verification(current_site, user)
         messages.success(
             self.request, f'We have sent you an email, please confirm your email address to complete registration')
-        return redirect('business-login')
+        return redirect('login')
 
 
 class CustomerLoginView(auth_views.LoginView):
