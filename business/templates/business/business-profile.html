@@ -43,12 +43,13 @@
 <!-- home section starts  -->
 
 
-<section class="home" id="home">
-    <h3>HI THERE !</h3>
+<section class="home" id="home" style="background: linear-gradient(rgba(26, 25, 25, 0.527),rgba(53, 51, 51, 0.5)) ,  url('/media/{{ object.cover_picture }}') fixed  no-repeat ; background-size: cover; ">
+    <!-- <img src="{{object.cover_picture.url}}" alt=""> -->
+    <h3 >HI THERE !</h3>
     <h1>THIS'S <span>{{object.name}}</span></h1>
     <p>{{object.business_profile.intro}}
     </p>
-    <a href="#about"><button class="btn">about us <i class="fas fa-user"></i></button></a>
+    <a href="#" class="btn btn-primary "> Hire Me <i class="fas fa-user"></i></a>
 
 
 </section>
@@ -114,7 +115,7 @@
       <div class="row">
         {% for ser in object.business_service_set.all %}
         
-          <div class="col-lg-3 col-md-4 col-sm-6 p-3" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3 col-md-3 col-sm-6 p-3" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-blue" style=" border-radius: 20px;">
               <div class="icon">
                 <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +126,7 @@
                 <i class="fas {{ser.service.icon_text}}"></i>
               </div>
               <h4>{{ser.service.name}}</h4>
-              <button class="btn btn-secondary">Hire</button>
+              <button class="btn btn-primary btn-lg ">Hire</button>
             </div>
   
           </div>
