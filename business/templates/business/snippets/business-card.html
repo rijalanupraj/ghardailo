@@ -53,7 +53,7 @@
         </a>
         {% else %}
         <a class="btn btn-outline-primary btn-sm mt-2"
-          href="{% url 'customer-login' %}?next={% url 'business-profile' obj.slug %}" type="button">Request</a>
+          href="{% url 'login' %}?next={% url 'business-profile' obj.slug %}" type="button">Request</a>
         {% endif %}
         {% include 'business/snippets/business-hiring-modal.html' with obj=obj %}
       </div>
