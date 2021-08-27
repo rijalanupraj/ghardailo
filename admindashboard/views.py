@@ -89,7 +89,7 @@ def customer_registration(request):
 
 # <<====================Business Registration====================>>
 def business_registration(request):
-    u_form = CustomerCreationForm(request.POST or None)
+    u_form = BusinessCreationForm(request.POST or None)
     if request.method == 'POST':
         if u_form.is_valid():
             password = get_random_password(12)
@@ -98,7 +98,8 @@ def business_registration(request):
             user.is_active = True
             user.set_password(password)
             user.save()
-            Business.objects.create(user=user)
+            business_name = u_form.cleaned_data.get('business_name')
+            Business.objects.create(user=user, name=business_name)
             current_site = get_current_site(request)
             login = reverse_lazy('login')
             login_url = f'http://www.{current_site}{login}'

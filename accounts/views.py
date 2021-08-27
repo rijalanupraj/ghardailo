@@ -139,23 +139,6 @@ class CustomerLoginView(auth_views.LoginView):
         return super().get_success_url()
 
 
-class BusinessLoginView(auth_views.LoginView):
-    form_class = forms.BusinessLoginForm
-    template_name = 'business/business-login.html'
-
-    def get_success_url(self):
-        url = self.get_redirect_url()
-        if url:
-            return url
-        if(self.request.user.is_customer):
-            return reverse_lazy('home')
-        elif (self.request.user.is_business):
-            return reverse_lazy('businessDash')
-        elif (self.request.user.is_staff):
-            return reverse_lazy('my-admin-dashboard')
-        return super().get_success_url()
-
-
 def activate_account(request, uidb64, token, backend='accounts.backends.EmailBackend'):
     """ Activate Account through email link """
     try:
@@ -179,5 +162,3 @@ def activate_account(request, uidb64, token, backend='accounts.backends.EmailBac
         return redirect('home')
     else:
         return HttpResponse('Activation link is invalid!')
-
-

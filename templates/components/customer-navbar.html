@@ -1,9 +1,11 @@
 {% load static %}
 {% url 'home' as customer_home_page %}
 {% url 'customer-services' as customer_service_page %}
-{% url 'customer-login' as customer_login_page %}
+{% url 'login' as login_page %}
 {% url 'customer-registration' as customer_registration_page %}
 {% url 'business-registration' as business_registration_page %}
+{% url 'about-us' as about_us_page %}
+{% url 'business-list-page' as business_list_page %}
 <div class="container-fluid" id="Header">
   <nav class="navbar navbar-expand-sm">
     <h1>
@@ -24,10 +26,10 @@
           <a class="nav-link {% if request.path == customer_service_page %}active{% endif %}" href="{{customer_service_page}}">Services</a>
         </li>
         <li class="nav-item mx-sm-1">
-          <a class="nav-link" href="">Gallery</a>
+          <a class="nav-link {% if request.path == business_list_page %}active{% endif %}" href="{{business_list_page}}">Business</a>
         </li>
         <li class="nav-item mx-sm-1">
-          <a class="nav-link" href="">About Us</a>
+          <a class="nav-link {% if request.path == about_us_page %}active{% endif %}" href="{{about_us_page}}">About Us</a>
         </li>
       </ul>
       <div class="mt-3 me-4" id="UDA">
@@ -39,9 +41,9 @@
           {% if user.is_authenticated %}
             <a class="mb-1 fw-bold {{ active_profile }}" href="" id="Username">Ram Bahudar Shrestha</a> 
             <li class="dropdown-divider"></li>
-            <a class="mb-1 lgo" href="/logout">Log out</a>
+            <a class="mb-1 lgo" href="{% url 'logout' %}">Log out</a>
           {% else %}
-            <a class="mb-1 lgi {% if request.path == customer_login_page %}active_login{% endif %}" href="{{customer_login_page}}">Login</a>
+            <a class="mb-1 lgi {% if request.path == login_page %}active_login{% endif %}" href="{{login_page}}">Login</a>
             <li class="dropdown-divider"></li>
             <a class="mb-1 sgu {% if request.path == customer_registration_page %}active_customer{% endif %}" href="{{customer_registration_page}}">Sign up for customer</a>
             <li class="dropdown-divider"></li>
