@@ -27,7 +27,7 @@ form label{
 }
 form input{   
     margin-right: 16px;
-    border: 2px solid #fc575e;
+    border: 2px solid black;
     border-radius: 8px;
 }
 form input[type="text"], form input[type="email"], form input[type="password"] {   
@@ -37,7 +37,6 @@ form input:hover {
     background-color: #90d5ec;
 }
 form input:focus {
-    border: none;
     outline: none;
     background-color: #90d5ec;
 }

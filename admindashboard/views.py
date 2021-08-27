@@ -4,6 +4,9 @@ import random
 import string
 from django.contrib.sites.shortcuts import get_current_site
 
+from django.contrib.auth.decorators import login_required
+from accounts.auth import *
+
 from django.contrib.auth.models import User
 from django.urls.base import reverse_lazy
 from business.models import *
@@ -22,6 +25,8 @@ from accounts import utils
 
 
 # <<====================Dashboard====================>>
+@login_required
+@admin_only
 def dashboard(request):
     user = User.objects.all().count()
     admin = User.objects.filter(is_staff=True).all().count()
@@ -54,6 +59,8 @@ def dashboard(request):
     return render(request, 'admindashboard/dashboard.html', dictionary)
 
 # <<====================Customer Registration====================>>
+@login_required
+@admin_only
 def customer_registration(request):
     u_form = CustomerCreationForm(request.POST or None)
     if request.method == 'POST':
@@ -77,13 +84,13 @@ def customer_registration(request):
     context = {
         'u_form': u_form,
         'dashboard': 'selected'
-
-
     }
     return render(request, 'admindashboard/Customer_Registration.html', context)
 
 
 # <<====================Business Registration====================>>
+@login_required
+@admin_only
 def business_registration(request):
     u_form = BusinessCreationForm(request.POST or None)
     if request.method == 'POST':
@@ -108,13 +115,13 @@ def business_registration(request):
     context = {
         'u_form': u_form,
         'dashboard': 'selected'
-
-
     }
     return render(request, 'admindashboard/Business_Registration.html', context)
 
 
 # <<====================Administration Registration====================>>
+@login_required
+@admin_only
 def administrator_registration(request):
     u_form = StaffUserCreationForm(request.POST or None)
     if request.method == 'POST':
@@ -137,6 +144,8 @@ def administrator_registration(request):
 
 
 # <<====================Service====================>>
+@login_required
+@admin_only
 def service(request):
     service = Services.objects.all()
     service_filter = ServicesFilter(request.GET, queryset=service)
@@ -165,6 +174,8 @@ def service(request):
     return render(request, 'admindashboard/service.html', dictionary)
 
 
+@login_required
+@admin_only
 def service_delete(request, service_id):
     service = Services.objects.get(id=service_id)
     service_name = service.name
@@ -174,6 +185,8 @@ def service_delete(request, service_id):
     return redirect('/a/service')
 
 
+@login_required
+@admin_only
 def service_update(request, service_id):
     service = Services.objects.all()
     service_filter = ServicesFilter(request.GET, queryset=service)
@@ -198,6 +211,8 @@ def service_update(request, service_id):
 
 
 # <<====================Business====================>>
+@login_required
+@admin_only
 def business(request):
     business = Business.objects.all()
     business_filter = BusinessFilter(request.GET, queryset=business)
@@ -211,6 +226,8 @@ def business(request):
     return render(request, 'admindashboard/business.html', dictionary)
 
 
+@login_required
+@admin_only
 def business_verified(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     particular_business.is_verified = True
@@ -218,6 +235,8 @@ def business_verified(request, business_id):
     return redirect("/a/business")
 
 
+@login_required
+@admin_only
 def business_not_verified(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     particular_business.is_verified = False
@@ -225,6 +244,8 @@ def business_not_verified(request, business_id):
     return redirect("/a/business")
 
 
+@login_required
+@admin_only
 def business_view(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     business_services = Business_Service.objects.filter(
@@ -263,8 +284,8 @@ def business_view(request, business_id):
     return render(request, 'admindashboard/business_view.html', dictionary)
 
 # <<====================Customer====================>>
-
-
+@login_required
+@admin_only
 def customer(request):
     customer = Customer.objects.all()
     customer_filter = CustomerFilter(request.GET, queryset=customer)
@@ -275,6 +296,8 @@ def customer(request):
     return render(request, 'admindashboard/customer.html', dictionary)
 
 
+@login_required
+@admin_only
 def customer_view(request, customer_id):
     particular_customer = Customer.objects.get(id=customer_id)
 
@@ -301,12 +324,9 @@ def customer_view(request, customer_id):
     return render(request, 'admindashboard/customer_view.html', dictionary)
 
 
-# <<====================Activities====================>>
-def activities(request):
-    dictionary = {'activities': 'selected'}
-    return render(request, 'admindashboard/activities.html', dictionary)
-
-
+# <<====================Ramdom password====================>>
+@login_required
+@admin_only
 def get_random_password(length):
     # choose from all lowercase letter
     letters = string.ascii_lowercase

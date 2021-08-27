@@ -162,6 +162,10 @@
     </div>
 
     <div class="hires navdiv mt-3 p-3">
+        <form class="form m-auto operation_form", method="POST", enctype="multipart/form-data">
+            {% csrf_token %}
+            {{a.status}}
+        </form>
         {% if hires_count > 0 %} 
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -172,6 +176,7 @@
                             <th scope="col">Customer Profile</th>
                             <th scope="col">Service</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Modify Status</th>
                             <th scope="col">DateTime</th>
                         </tr>
                     </thead>
@@ -189,6 +194,9 @@
                                 </td>
                                 <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                                 <td>{{i.get_status_display}}</td>
+                                <td>
+                                    
+                                </td>
                                 <td>{{i.date_time}}</td>
                             </tr>
                         {% endfor %}
