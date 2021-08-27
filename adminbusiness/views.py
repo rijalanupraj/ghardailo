@@ -168,15 +168,15 @@ def editBusinessProfile(request):
             request.POST, request.FILES, instance=request.user.business.business_profile)
         form1 = BusinessProfileForm1(
             request.POST, request.FILES, instance=request.user.business)
-        if form.is_valid():
+        if form.is_valid() and form1.is_valid():
             form.save()
             form1.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'Service Added Successfully')
+                                 'Business Profile Added Successfully')
             # return redirect('getProfileDash')
         else:
             messages.add_message(request, messages.ERROR,
-                                 'Error adding service')
+                                 'Error adding Business Profile')
     else:
         form = BusinessProfileForm(
             instance=request.user.business.business_profile)
