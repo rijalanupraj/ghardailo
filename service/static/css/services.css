@@ -4,16 +4,60 @@
 
   background: #eee;
 } */
-
-.search {
-  width: 50%;
-  margin-bottom: auto;
-  margin-top: 20px;
-  height: 50px;
+.search-result input{
+  width : 450px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50px;
   background-color: #fff;
-  padding: 10px;
   border-radius: 5px;
+  border: 0px;
+} 
+@media screen and (max-width:981px) {
+  .search-result input{
+    width: 350px;
+  }
 }
+@media screen and (max-width:782px) {
+  .search-result input{
+    width: 290px;
+  }
+}
+
+@media screen and (max-width:772px) {
+  .search-result input{
+    width: 250px;
+  }
+}
+
+@media screen and (max-width:681px) {
+  .search-result input{
+    width:250px;
+
+  }
+}
+@media screen and (max-width:581px) {
+  .search-result input{
+    width:150px;
+
+  }
+}
+
+@media screen and (max-width:381px) {
+  .search-result input{
+    width: 100px;
+   
+  }
+}
+
+@media screen and (max-width:282px) {
+  .search-result input{
+    width: 90px;
+   
+  }
+}
+
+
 
 .search-input {
   color: white;
