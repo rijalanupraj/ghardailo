@@ -9,13 +9,20 @@
     {% endif %}
   </div>
   <div class="row p-2 bg-white border rounded">
+    
     <div class="col-md-4 mt-1">
+      <!-- cover image -->
+      {% if obj.cover_picture %} 
       <img class="rounded product-image"
-        src="https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+        src="{{ obj.cover_picture.url }}" />
+      {% endif %}
     </div>
+    
     <div class="col-md-5 mt-1">
       <div class="profile-image inline-block">
-        <img class="inline-block" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" />
+        {% if obj.logo %} 
+        <img class="inline-block" src="{{ obj.logo.url }}" />
+        {% endif %}
       </div>
       <h5 class="inline-block">
         {{obj.name}} {% if obj.is_verified %}<span class="material-icons verified"> verified </span>{% endif %}
