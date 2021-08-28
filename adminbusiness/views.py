@@ -31,6 +31,7 @@ from .filters import *
 
 # Create your views here.
 
+
 @login_required
 @business_only
 def businessDashboard(request):
@@ -65,6 +66,7 @@ def businessDashboard(request):
 
     return render(request, 'adminbusiness/base/dashboard.html', context)
 
+
 @login_required
 @business_only
 def getService(request):
@@ -79,6 +81,7 @@ def getService(request):
         'service_filter': service_filter,
     }
     return render(request, 'adminbusiness/base/show-service.html', context)
+
 
 @login_required
 @business_only
@@ -114,6 +117,7 @@ def postService(request):
 
     return render(request, 'adminbusiness/base/post-service.html', context)
 
+
 @login_required
 @business_only
 def updateService(request, service_id):
@@ -129,6 +133,7 @@ def updateService(request, service_id):
         'service': instance
     }
     return render(request, 'adminbusiness/base/update-service.html', context)
+
 
 @login_required
 @business_only
@@ -148,6 +153,7 @@ def getProfile(request):
         'profile': profile
     }
     return render(request, 'adminbusiness/base/show-profile.html', context)
+
 
 @login_required
 @business_only
@@ -170,6 +176,7 @@ def editBusiness(request):
         'form': form
     }
     return render(request, 'adminbusiness/base/edit-business.html', context)
+
 
 @login_required
 @business_only
@@ -199,6 +206,7 @@ def editBusinessProfile(request):
     }
     return render(request, 'adminbusiness/base/post-profile.html', context)
 
+
 @login_required
 @business_only
 def updateProfile(request, profile_id):
@@ -213,6 +221,7 @@ def updateProfile(request, profile_id):
         'form': BusinessProfileForm(instance=instance),
     }
     return render(request, 'adminbusiness/base/update-profile.html', context)
+
 
 @login_required
 @business_only
@@ -233,6 +242,7 @@ def change_password(request):
         'form': form
     })
 
+
 @login_required
 @business_only
 def getWorker(request):
@@ -245,6 +255,7 @@ def getWorker(request):
         'worker_filter': worker_filter,
     }
     return render(request, 'adminbusiness/base/show-worker.html', context)
+
 
 @login_required
 @business_only
@@ -275,6 +286,7 @@ def postWorker(request):
 
     return render(request, 'adminbusiness/base/post-worker.html', context)
 
+
 @login_required
 @business_only
 def updateWorker(request, Worker_id):
@@ -290,6 +302,7 @@ def updateWorker(request, Worker_id):
         'worker': instance
     }
     return render(request, 'adminbusiness/base/update-Worker.html', context)
+
 
 @login_required
 @business_only
@@ -313,18 +326,32 @@ class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return Hiring.objects.filter(
             business_service__business=self.request.user.business).order_by('-date_time')
 
+
 @login_required
 @business_only
 def approve_business_hiring(request, id):
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'AC'
     hiring.save()
+    customer = hiring.customer
+    business_service = hiring.business_service
+    # Notification Part
+    notification_message = f"approved your hire request for {business_service.service.name} service"
+    Notification.objects.create(
+        to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
     return redirect('business-hiring-list')
+
 
 @login_required
 @business_only
 def reject_business_hiring(request, id):
     hiring = Hiring.objects.get(id=id)
-    hiring.status = 'RJ'
+    hiring.status = 'RE'
     hiring.save()
+    customer = hiring.customer
+    business_service = hiring.business_service
+    # Notification Part
+    notification_message = f"rejected your hire request for {business_service.service.name} service"
+    Notification.objects.create(
+        to_user=customer.user, from_user=request.user, title="Rejected Hire Request", message=notification_message, business_service=business_service)
     return redirect('business-hiring-list')

@@ -9,4 +9,4 @@ def show_notifications(context):
     request_user = context['request'].user
     notifications = Notification.objects.filter(
         to_user=request_user).exclude(has_seen=True).order_by('-datetime')
-    return {'notifications': notifications}
+    return {'notifications': notifications, 'user': request_user}

@@ -122,7 +122,8 @@ class CustomerHiringDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVi
         """
         self.object = self.get_object()
         success_url = self.get_success_url()
-        self.object.delete()
+        self.object.status = 'CA'
+        self.object.save()
         return HttpResponseRedirect(success_url)
 
 

@@ -1,37 +1,38 @@
-<ul class="nav navbar-nav navbar-right mt-4 me-4">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false"><i class="fas fa-bell fa-lg position-relative">
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" style="font-size:0.7rem;">
-                    {{notifications.count}} <span class="visually-hidden">unread messages</span></span>
-            </i></a>
-        <ul class="dropdown-menu notify-drop pull-right">
-            <div class="notify-drop-title">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6">Notifications(<b>{{notifications.count}}</b>)</div>
-                </div>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+        aria-expanded="false"><i class="fas fa-bell fa-lg position-relative">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info"
+                style="font-size:0.7rem;">
+                {{notifications.count}} <span class="visually-hidden">unread messages</span></span>
+        </i></a>
+    <ul class="dropdown-menu notify-drop pull-right">
+        <div class="notify-drop-title">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">Notifications(<b>{{notifications.count}}</b>)</div>
             </div>
-            <!-- end notify title -->
-            <!-- notify content -->
-            <div class="drop-content">
-                {% if notifications %}
-                {% for notification in notifications %}
-                <a href="{% url 'customer:hire-notification-api' notification.pk %}">
+        </div>
+        <!-- end notify title -->
+        <!-- notify content -->
+        <div class="drop-content">
+            {% if notifications %}
+            {% for notification in notifications %}
+            <a href="{% url 'customer:hire-notification-api' notification.pk %}">
                 <div class="notifications-item"> <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
                     <div class="text">
                         <h4>{{notification.title}}</h4>
-                        <p><a href="{% url 'business-profile' notification.from_user.business.slug %}"><b class="text-secondary">{{notification.from_user.business.name}}</b></a> {{notification.message}}</p>
+                        <p><a href="{% url 'business-profile' notification.from_user.business.slug %}"><b
+                                    class="text-secondary">{{notification.from_user.business.name}}</b></a>
+                            {{notification.message}}</p>
                     </div>
                 </div>
-                </a>
-                {% endfor %}
-                {% else %}
-                <p>No Recent Notifications</p>
-                {% endif %}
-            </div>
-            <div class="notify-drop-footer text-center">
-                <a href=""><i class="fa fa-eye"></i> View All</a>
-            </div>
-        </ul>
-    </li>
-</ul>
+            </a>
+            {% endfor %}
+            {% else %}
+            <p>No Recent Notifications</p>
+            {% endif %}
+        </div>
+        <div class="notify-drop-footer text-center">
+            <a href=""><i class="fa fa-eye"></i> View All</a>
+        </div>
+    </ul>
+</li>
