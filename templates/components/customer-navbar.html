@@ -1,3 +1,4 @@
+{% load custom_tags %}
 {% load static %}
 {% url 'home' as customer_home_page %}
 {% url 'customer-services' as customer_service_page %}
@@ -32,7 +33,9 @@
           <a class="nav-link {% if request.path == about_us_page %}active{% endif %}" href="{{about_us_page}}">About Us</a>
         </li>
       </ul>
-      {% include 'components/navbar_notification.html' %}       
+      {% if user.is_authenticated %}
+      {% show_notifications %}    
+      {% endif %}  
       <div class="mt-3 me-4" id="UDA">
         {% if user.is_authenticated %}
           {% if request.user.customer.image.url != "" %}
