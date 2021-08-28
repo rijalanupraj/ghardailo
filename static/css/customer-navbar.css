@@ -192,6 +192,9 @@ main {
   max-height: 280px;
   overflow-y: scroll;
 }
+.navbar-default .dropdown-menu.notify-drop .drop-content a {
+  text-decoration: none;
+}
 .navbar-default .dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-track {
   background-color: #f5f5f5;
 }
@@ -321,4 +324,9 @@ main {
 .notifications-item .text p {
   color: #aaa;
   font-size: 12px;
+}
+.notifications-item .text p a {
+  color: #aaa;
+  font-size: 12px;
+  text-decoration: none;
 }

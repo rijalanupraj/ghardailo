@@ -1,4 +1,6 @@
 # External Import
+from notification.models import Notification
+from django.views.generic.base import View
 from bookmark.models import Bookmark
 from django.shortcuts import render, redirect, HttpResponseRedirect, HttpResponse
 from django.views.generic import CreateView
@@ -186,3 +188,11 @@ def business_bookmark_toggle_for_customer(request, slug):
 
     response = json.dumps(resp)
     return HttpResponse(response, content_type="application/json")
+
+
+class HireNotificationView(View):
+    def get(self, request, notification_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        notification.has_seen = True
+        notification.save()
+        return redirect('customer:customer-hiring-page')
