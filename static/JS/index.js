@@ -7,3 +7,9 @@ if (preloader) {
     preloader.remove();
   });
 }
+/**
+ * Nav Notification
+ */
+$(function () {
+  $('[data-tooltip="tooltip"]').tooltip();
+});
