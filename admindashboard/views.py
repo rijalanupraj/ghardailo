@@ -283,6 +283,27 @@ def business_view(request, business_id):
     }
     return render(request, 'admindashboard/business_view.html', dictionary)
 
+@login_required
+@admin_only
+def change_hire_status1(request, business_id, hire_id):
+    particular_business = Business.objects.get(id=business_id)
+    particular_hire = Hiring.objects.get(id=hire_id)
+    hire_form = HiringForm1(instance=particular_hire)
+    if request.method == "POST":
+        form = HiringForm1(request.POST, instance=particular_hire)        
+        form.save()
+        messages.add_message(request, messages.SUCCESS,
+                                'Hire status has been changed.')
+        return redirect('view-business', business_id)
+
+    dictionary = {
+        'pb': particular_business,
+        'hire': particular_hire,
+        'form': hire_form,
+        'business': 'selected'
+    }
+    return render(request, 'admindashboard/cbhs.html', dictionary)
+
 # <<====================Customer====================>>
 @login_required
 @admin_only
@@ -323,6 +344,26 @@ def customer_view(request, customer_id):
     }
     return render(request, 'admindashboard/customer_view.html', dictionary)
 
+@login_required
+@admin_only
+def change_hire_status2(request, customer_id, hire_id):
+    particular_customer = Customer.objects.get(id=customer_id)
+    particular_hire = Hiring.objects.get(id=hire_id)
+    hire_form = HiringForm1(instance=particular_hire)
+    if request.method == "POST":
+        form = HiringForm1(request.POST, instance=particular_hire)        
+        form.save()
+        messages.add_message(request, messages.SUCCESS,
+                                'Hire status has been changed.')
+        return redirect('view-customer', customer_id)
+
+    dictionary = {
+        'pc': particular_customer,
+        'hire': particular_hire,
+        'form': hire_form,
+        'customer': 'selected'
+    }
+    return render(request, 'admindashboard/cchs.html', dictionary)
 
 # <<====================Ramdom password====================>>
 @login_required

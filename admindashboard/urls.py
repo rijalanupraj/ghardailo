@@ -23,9 +23,11 @@ urlpatterns = [
     path('business', views.business),
     path('business_verified/<int:business_id>', views.business_verified),
     path('business_not_verified/<int:business_id>', views.business_not_verified),
-    path('viewbusiness/<int:business_id>', views.business_view),
+    path('viewbusiness/<int:business_id>', views.business_view, name="view-business"),
+    path('change_hire_status1/<int:business_id>/<int:hire_id>', views.change_hire_status1),
 
     # <<====================Customer====================>>
     path('customer', views.customer, name="my-admin-customer-list-view"),
-    path('viewcustomer/<int:customer_id>', views.customer_view),
+    path('viewcustomer/<int:customer_id>', views.customer_view, name="view-customer"),
+    path('change_hire_status2/<int:customer_id>/<int:hire_id>', views.change_hire_status2),
 ]
