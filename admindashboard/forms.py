@@ -53,6 +53,11 @@ class HiringForm(ModelForm):
         model = Hiring
         fields = '__all__'
 
+class HiringForm1(ModelForm):
+    class Meta:
+        model = Hiring
+        fields = ['status']
+
 
 class ReviewForm(ModelForm):
     class Meta:
