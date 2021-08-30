@@ -16,6 +16,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
+import datetime
 from django.views.generic import (
     ListView,
     DeleteView,
@@ -197,3 +198,26 @@ class HireNotificationView(View):
         notification.has_seen = True
         notification.save()
         return redirect('customer:customer-hiring-page')
+
+
+class AllNotificationPageView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    template_name = "customer/all-notification-page.html"
+
+    # Check if the user can access this page
+    # Declare permission who can access this page
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.is_customer
+        return False
+
+    def get_queryset(self):
+        today = datetime.date.today()
+        return Notification.objects.filter(to_user=self.request.user).exclude(datetime__gt=today).order_by('-datetime')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = datetime.date.today()
+        today_notifications = Notification.objects.filter(
+            to_user=self.request.user).filter(datetime__gt=today).order_by('-datetime')
+        context["today_notifications"] = today_notifications
+        return context
