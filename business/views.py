@@ -17,8 +17,10 @@ from django.contrib.auth.mixins import (
 
 from worker.models import *
 
+
 class BusinessListPageView(UserPassesTestMixin, ListView):
     template_name = "business/business-list-page.html"
+    paginate_by = 10
 
     # Check if the user can access this page
     # Declare permission who can access this page
@@ -83,6 +85,6 @@ class BusinessProfileView(UserPassesTestMixin, DetailView):
 
         context = super().get_context_data(**kwargs)
         slug = self.kwargs['slug']
-        worker=Worker.objects.filter(business__slug=slug)
+        worker = Worker.objects.filter(business__slug=slug)
         context["Worker"] = worker
         return context
