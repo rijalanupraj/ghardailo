@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.urls.base import reverse_lazy
 import random
 import string
+import datetime
 from .forms import *
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -12,10 +13,12 @@ from django.contrib.auth.mixins import (
 from django.views.generic import (
     ListView,
     DeleteView,
+    View
 )
 
 from django.contrib.auth.decorators import login_required
 from accounts.auth import *
+
 from accounts import utils
 from django.contrib.sites.shortcuts import get_current_site
 
@@ -396,3 +399,32 @@ def get_random_password(length):
     letters = string.ascii_lowercase
     password = ''.join(random.choice(letters) for i in range(length))
     return password
+
+class AllNotificationPageView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    template_name = "adminbusiness/main/all-notification-page.html"
+
+    # Check if the user can access this page
+    # Declare permission who can access this page
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.is_business
+        return False
+
+    def get_queryset(self):
+        today = datetime.date.today()
+        return Notification.objects.filter(to_user=self.request.user).exclude(datetime__gt=today).order_by('-datetime')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = datetime.date.today()
+        today_notifications = Notification.objects.filter(
+            to_user=self.request.user).filter(datetime__gt=today).order_by('-datetime')
+        context["today_notifications"] = today_notifications
+        return context
+
+class HireNotificationView(View):
+    def get(self, request, notification_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        notification.has_seen = True
+        notification.save()
+        return redirect('business-hiring-list')
