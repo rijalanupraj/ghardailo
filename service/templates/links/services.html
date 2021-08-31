@@ -6,30 +6,27 @@ Services
 
 {% block additional_head %}
 <link href="{% static 'css/service-page.css' %}" rel="stylesheet">
-<link href="{% static 'css/services.css' %}" rel="stylesheet">
-<link href="{% static 'css/service-card.css' %}" rel="stylesheet">
-<link href="{% static 'css/search-service.css' %}" rel="stylesheet">
 {% endblock %}
 
 
 {% block main_content %}
-<div class="search-form position-relative">
-  <p class="search-place position-absolute top-50 start-50 translate-middle fs-3 text-center">Get all your services at
+<div class="search-form">
+  <p class="search-place fs-3 text-center">Get all your services at
     one place. Search Now!</p>
-  <div class="position-absolute bottom-0 start-50 translate-middle">
-    <div class="row">
+  <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4 search-bar-group">
 
-      <form action="">
-
-        <div class="input-group search-result mb-4">
-          {{service_filter.form.service_name}}
-          <div class="input-group-append">
-            <button id="button-addon5" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-          </div>
+    <form>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button id="button-addon2" type="submit" class="btn btn-link text-warning"><i
+              class="fa fa-search"></i></button>
         </div>
-
-      </form>
-    </div>
+        <input type="search" name="service_name"
+          {% if service_filter.form.service_name.value %}value="{{service_filter.form.service_name.value}}{% endif %}"
+          placeholder="What're you searching for?" aria-describedby="button-addon2"
+          class="form-control border-0 bg-light">
+      </div>
+    </form>
   </div>
 </div>
 <div class="primary">
@@ -40,9 +37,9 @@ Services
     <div class="container" data-aos="fade-up">
       <div class="row">
         {% for service in services %}
-        
-          <div class="col-lg-3 col-md-4 col-sm-6 p-3" data-aos="zoom-in" data-aos-delay="100">
-        <a href="{% url 'business-list-page' %}?q={{service.name}}">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 p-3" data-aos="zoom-in" data-aos-delay="100">
+          <a href="{% url 'business-list-page' %}?q={{service.name}}">
             <div class="icon-box iconbox-blue" style=" border-radius: 20px;">
               <div class="icon">
                 <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -54,8 +51,8 @@ Services
               </div>
               <h4><a href="">{{service.name}}</a></h4>
             </div>
-        </a>
-          </div>
+          </a>
+        </div>
         {% endfor %}
       </div>
     </div>
@@ -68,7 +65,14 @@ Services
 {% endblock %}
 {% block additional_body %}
 <script>
-  document.getElementsByTagName("input")[0].placeholder="Search Now"
-  document.getElementsByTagName("input")[0].style.textAlign="center"
+  {
+    %
+    comment %
+  }
+  document.getElementsByTagName("input")[0].placeholder = "Search Now"
+  document.getElementsByTagName("input")[0].style.textAlign = "center" {
+    %
+    endcomment %
+  }
 </script>
 {% endblock %}
