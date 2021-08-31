@@ -48,11 +48,11 @@
 .table-responsive th {
     background-color: rgb(0, 0, 0, 40%);
 }
-.table-responsive tbody tr td .verified{
+.table-responsive tbody tr td .active, .table-responsive tbody tr td .verified {
     color: #3ced2c;
     font-size: 25px;
 }
-.table-responsive tbody tr td .not_verified{
+.table-responsive tbody tr td .inactive, .table-responsive tbody tr td .not_verified {
     color: #ed2c2c;
     font-size: 25px;
 }

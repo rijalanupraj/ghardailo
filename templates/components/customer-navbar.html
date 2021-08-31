@@ -45,7 +45,7 @@
         <span class="fas fa-caret-down dropdown-opener" onclick="open_dropdown()"></span>
         <div class="dropdown-content">
           {% if user.is_authenticated %}
-            <a class="mb-1 fw-bold {{ active_profile }}" href="" id="Username">{{request.user.username}}</a> 
+            <a class="mb-1 fw-bold {{ active_profile }}" href="{{customerprofile}}" id="Username">{{request.user.username}}</a> 
             <li class="dropdown-divider"></li>
             <a class="mb-1 lgo" href="{% url 'logout' %}">Log out</a>
           {% else %}
