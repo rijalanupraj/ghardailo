@@ -50,7 +50,7 @@ class CreateHireView(UserPassesTestMixin, View):
             business_service=business_service, customer=customer, message=message_text)
 
         # Notification Part
-        notification_message = f"{user.customer.name} requested for service {{service.name}} "
+        notification_message = f"{user.customer.name} requested for service {service.name} "
         Notification.objects.create(
             to_user=business.user, from_user=user, title="Hire Request", message=notification_message, business_service=business_service)
 
