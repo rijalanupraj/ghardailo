@@ -42,9 +42,13 @@
 
 <!-- home section starts  -->
 
-
-<section class="home" id="home" style="background: linear-gradient(rgba(26, 25, 25, 0.527),rgba(53, 51, 51, 0.5)) ,  url('/media/{{ object.cover_picture }}') fixed  no-repeat ; background-size: cover; ">
-    <!-- <img src="{{object.cover_picture.url}}" alt=""> -->
+{% if object.cover_picture %}
+<section class="home" id="home" style="background: linear-gradient(rgba(26, 25, 25, 0.527),rgba(53, 51, 51, 0.5)) ,  
+    url('/media/{{ object.cover_picture }}') fixed  no-repeat ; background-size: cover; ">
+    {% else %}
+    <section class="home" id="home" style="background: linear-gradient(rgba(26, 25, 25, 0.527),rgba(53, 51, 51, 0.5)) ,  
+    url('https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80') fixed  no-repeat ; background-size: cover; ">
+    {% endif %}
     <h3 >HI THERE !</h3>
     <h1>THIS'S <span>{{object.name}}</span></h1>
     <p>{{object.business_profile.intro}}
