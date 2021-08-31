@@ -4,6 +4,9 @@ from customer.models import *
 from django.utils import timezone
 from business.models import Business_Service
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Notification(models.Model):
     to_user = models.ForeignKey(

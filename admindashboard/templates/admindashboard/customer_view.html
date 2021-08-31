@@ -132,18 +132,18 @@
                     {% for i in notifications %}
                         <tr>
                             <td scope="row" class="Numbering2"></td>
-                            <td>{{i.business.name}}</td>
+                            <td>{{i.from_user.business.name}}</td>
                             <td>
-                                {% if i.business.logo %}
-                                    <img class="img-fluid rounded-circle" src="{{i.business.logo.url}}" />
+                                {% if i.from_user.business.logo %}
+                                    <img class="img-fluid rounded-circle" src="{{i.from_user.business.logo.url}}" />
                                 {% else %}
                                     No logo
                                 {% endif %}
                             </td>
-                            <td>{{i.message}}</td>
-                            <td>{{i.read}}</td>
-                            <td>{{i.time}}</td>
-                            <td>{{i.date}}</td>
+                            <td>{{i.title}}</td>
+                                <td>{{i.message}}</td>
+                                <td>{{i.has_seen}}</td>
+                                <td>{{i.datetime}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
