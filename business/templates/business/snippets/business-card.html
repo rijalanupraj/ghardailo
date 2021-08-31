@@ -1,4 +1,4 @@
-<div class="col-lg-12 col-md-12 position-relative">
+<div class="col-lg-12 col-md-12 position-relative business-card">
   <div class="bookmark-icon position-absolute top-10 end-0">
     {% if request.user.is_authenticated %}
 
@@ -47,20 +47,20 @@
     </div>
     <div class="align-items-center align-content-center col-md-3 border-start mt-1">
       <div class="d-flex flex-row align-items-center pe-3">
-        <span class="material-icons"> room </span> {{obj.district}}, {{obj.province}}
+        <i class="fas fa-street-view"></i>&nbsp;{{obj.district}}, {{obj.province}}
       </div>
       <h6 class="text-success">Writing Something Here</h6>
       <div class="d-flex flex-column mt-4">
-        <a href="{% url 'business-profile' obj.slug  %}" class="btn btn-primary btn-sm" type="button">Details</a>
+        <a href="{% url 'business-profile' obj.slug  %}" class="btn btn-secondary btn-sm" type="button"><i class="fas fa-info-circle"></i>&nbsp;Details</a>
         {% if user.is_authenticated %}
 
-        <a class="btn btn-outline-primary btn-sm mt-2" data-bs-toggle="modal"
+        <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal"
           data-bs-target="#request-business{{obj.slug}}" type="button">
-          Request
+          <i class="fas fa-hands-helping"></i>&nbsp;Hire Request
         </a>
         {% else %}
-        <a class="btn btn-outline-primary btn-sm mt-2"
-          href="{% url 'login' %}?next={% url 'business-profile' obj.slug %}" type="button">Request</a>
+        <a class="btn btn-primary btn-sm mt-2"
+          href="{% url 'login' %}?next={% url 'business-profile' obj.slug %}" type="button"><i class="fas fa-hands-helping"></i>&nbsp;Request</a>
         {% endif %}
         {% include 'business/snippets/business-hiring-modal.html' with obj=obj %}
       </div>

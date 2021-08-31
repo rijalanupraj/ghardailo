@@ -69,6 +69,28 @@
     height: 100px;
     width: 100px;    
 }
+.hire_status_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#id_status {    
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+#id_status:hover {    
+    background-color: #36d1dc;
+}
+#id_status:focus {    
+    outline: none;
+}
+.change_status{
+    color: white;
+    border-radius: 8px;
+    background-color: #5b86e5;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
 @media screen and (max-width: 1150px) {
     .profile img{
         height: 250px;
