@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load custom_tags %}
 {% url 'businessDash' as businessDash_url %}
 {% url 'editBusinessDash' as editBusinessDash_url %}
 {% url 'editBusinessProfileDash' as editProfileBusinessDash_url %}
@@ -116,6 +116,8 @@
       
       <!-- Right links -->
       <ul class="navbar-nav ms-auto d-flex flex-row">
+        {% Business_show_notifications %}  
+
         <!-- Avatar -->
         <li class="nav-item dropdown">
           <a
@@ -125,10 +127,7 @@
              role="button"
              data-mdb-toggle="dropdown"
              aria-expanded="false"
-             >
-             <!-- {% if object.logo %}
-        <img src="{{object.logo.url}}" alt="">
-        {% endif %} -->
+             >        
         {% if user.business.logo %} 
             <img
                  src="{{ user.business.logo.url }}"
