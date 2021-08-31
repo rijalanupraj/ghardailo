@@ -69,7 +69,7 @@ class BusinessWorkerForm(ModelForm):
     class Meta:
         model = Worker
         fields = '__all__'
-        exclude= ['business']
+        exclude= ['business','user']
   
 
 class CustomerForm(ModelForm):
