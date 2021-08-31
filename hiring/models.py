@@ -4,10 +4,10 @@ from customer.models import *
 
 
 class Hiring(models.Model):
-    PENDING = 'PD'
+    PENDING = 'PE'
     ACCEPTED = 'AC'
-    REJECTED = 'RJ'
-    CANCEL = 'CP'
+    REJECTED = 'RE'
+    CANCEL = 'CA'
     COMPLETED = 'CO'
     HIRE_STATUS = [
         (PENDING, 'Pending'),
