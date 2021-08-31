@@ -1,3 +1,7 @@
+main {
+  background-color: #f8fbfe;
+}
+
 .ratings span {
   color: orange;
 }
@@ -40,8 +44,8 @@ h5 {
 
 @media screen and (max-width: 768px) {
   .product-image {
-    display: none;
-    /*     height: 270px; */
+    /* display: none; */
+    height: 250px;
   }
 }
 
@@ -63,4 +67,10 @@ h5 {
   font-size: 0.95rem;
   color: #aaa;
   font-style: italic;
+}
+
+.business-card {
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
