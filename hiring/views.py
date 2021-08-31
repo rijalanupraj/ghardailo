@@ -14,6 +14,7 @@ from business.models import Business_Service, Business
 from service.models import Services
 from customer.models import Customer
 from django.contrib.auth import get_user_model
+from notification.models import Notification
 
 User = get_user_model()
 
@@ -47,5 +48,10 @@ class CreateHireView(UserPassesTestMixin, View):
         # Create New Hire
         Hiring.objects.create(
             business_service=business_service, customer=customer, message=message_text)
+
+        # Notification Part
+        notification_message = f"{user.customer.name} requested for service {{service.name}} "
+        Notification.objects.create(
+            to_user=business.user, from_user=user, title="Hire Request", message=notification_message, business_service=business_service)
 
         return redirect(request.META.get('HTTP_REFERER', 'customer-home'))
