@@ -38,4 +38,10 @@ urlpatterns = [
     path('hirings/reject/<int:id>', views.reject_business_hiring,
          name='reject_business_hiring'),
 
+     #for notification
+     path('api/notification/<int:notification_pk>',
+         views.HireNotificationView.as_view(), name='business-hire-notification-api'),
+     path('notifications/', views.AllNotificationPageView.as_view(),
+         name="business-all-notification-page"),
+
 ]
