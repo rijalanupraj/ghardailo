@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.urls.base import reverse_lazy
+import random
+import string
 from .forms import *
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -14,6 +16,8 @@ from django.views.generic import (
 
 from django.contrib.auth.decorators import login_required
 from accounts.auth import *
+from accounts import utils
+from django.contrib.sites.shortcuts import get_current_site
 
 # internal input
 from business.models import Business
@@ -257,34 +261,34 @@ def getWorker(request):
     return render(request, 'adminbusiness/base/show-worker.html', context)
 
 
-@login_required
-@business_only
-def postWorker(request):
-    if request.method == 'POST':
+# @login_required
+# @business_only
+# def postWorker(request):
+#     if request.method == 'POST':
 
-        form = BusinessWorkerForm(request.POST, request.FILES)
-        if form.is_valid():
-            businessWorker = Worker.objects.filter(
-                business=request.user.business)
+#         form = BusinessWorkerForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             businessWorker = Worker.objects.filter(
+#                 business=request.user.business)
 
-            obj = form.save(commit=False)
-            obj.business = request.user.business
-            obj.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 'Service Added Successfully')
-            return redirect('getWorkerDash')
-        else:
-            messages.add_message(request, messages.ERROR,
-                                 'Error adding service')
-            return render(request, 'adminbusiness/base/post-worker.html')
-    else:
-        form = BusinessWorkerForm()
+#             obj = form.save(commit=False)
+#             obj.business = request.user.business
+#             obj.save()
+#             messages.add_message(request, messages.SUCCESS,
+#                                  'Service Added Successfully')
+#             return redirect('getWorkerDash')
+#         else:
+#             messages.add_message(request, messages.ERROR,
+#                                  'Error adding service')
+#             return render(request, 'adminbusiness/base/post-worker.html')
+#     else:
+#         form = BusinessWorkerForm()
 
-    context = {
-        'form': form
-    }
+#     context = {
+#         'form': form
+#     }
 
-    return render(request, 'adminbusiness/base/post-worker.html', context)
+#     return render(request, 'adminbusiness/base/post-worker.html', context)
 
 
 @login_required
@@ -355,3 +359,40 @@ def reject_business_hiring(request, id):
     Notification.objects.create(
         to_user=customer.user, from_user=request.user, title="Rejected Hire Request", message=notification_message, business_service=business_service)
     return redirect('business-hiring-list')
+
+
+# <<====================Worker Registration====================>>
+@login_required
+def Worker_registration(request):
+    u_form = WorkerCreationForm(request.POST or None)
+    if request.method == 'POST':
+        if u_form.is_valid():
+            password = get_random_password(12)
+            user = u_form.save(commit=False)
+            user.is_worker = True
+            user.is_active = True
+            user.set_password(password)
+            user.save()
+            Worker_name = u_form.cleaned_data.get('Worker_name')
+            Worker.objects.create(user=user, name=Worker_name, business=request.user.business)
+            current_site = get_current_site(request)
+            login = reverse_lazy('login')
+            login_url = f'http://www.{current_site}{login}'
+            subject = "Account Created At Your Business"
+            message = f'Your Account has been created for your Business.\nYour Username: {user.username}\nYour Password: {password}\nDon\'t Share the details with other\nTo Login Visit: {login_url}'
+            utils.send_email_to_user(subject, message, user)
+            messages.success(
+                request, f'{user.username} Business Worker has been created')
+            return redirect('postWorkerDash')
+    context = {
+        'u_form': u_form,
+        'dashboard': 'selected'
+    }
+    return render(request, 'adminbusiness/base/post-worker.html', context)
+
+# <<====================Ramdom password====================>>
+def get_random_password(length):
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    password = ''.join(random.choice(letters) for i in range(length))
+    return password
