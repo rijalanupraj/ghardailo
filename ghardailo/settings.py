@@ -22,7 +22,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
-   
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,12 +43,12 @@ INSTALLED_APPS = [
     'notification',
     'adminbusiness',
     'bookmark',
+    'reportuser',
     # Extra Dependencies
     'six',
     'bootstrapform',
 
 ]
-
 
 
 MIDDLEWARE = [
