@@ -7,6 +7,8 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
+from django.contrib import messages
+from django.urls import reverse
 
 # Internal Import
 from .models import Hiring
@@ -49,6 +51,10 @@ class CreateHireView(UserPassesTestMixin, View):
         Hiring.objects.create(
             business_service=business_service, customer=customer, message=message_text)
 
+        slug_of_current_business = request.build_absolute_uri(
+            reverse('business-profile', args=(business.slug, )))
+        messages.success(
+            request, f'You have successfully requested <a href="{slug_of_current_business}">{business.name}</a> for {service} service. Thank You 🙏')
         # Notification Part
         notification_message = f"{user.customer.name} requested for service {service.name} "
         Notification.objects.create(

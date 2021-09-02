@@ -79,7 +79,7 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password Has Updated Successfully')
-            return redirect('customerprofile')
+            return redirect('customer:customerprofile')
         else:
             messages.error(
                 request, 'Invalid Password. Retype Your Password Correctly')
