@@ -44,7 +44,17 @@
             <div class="Line"></div>
             <button type="button" class="btn find" onclick="navigate(7)"><span class="fas fa-bookmark me-2"></span>Bookmarks<span class="counter">{{bookmarks_count}}</span></button>
         </div>
-    </div>
+    </div>    
+    <div class="container-fluid mt-3">
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+            {% endif %}
+        {% endfor %}       
+    </div>    
     <div class="container-fluid details navdiv ms-auto mt-3 p-3">
         <div class="table-responsive">
             <table class="table table-hover">
@@ -162,10 +172,6 @@
     </div>
 
     <div class="hires navdiv mt-3 p-3">
-        <form class="form m-auto operation_form", method="POST", enctype="multipart/form-data">
-            {% csrf_token %}
-            {{a.status}}
-        </form>
         {% if hires_count > 0 %} 
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -194,8 +200,8 @@
                                 </td>
                                 <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                                 <td>{{i.get_status_display}}</td>
-                                <td>
-                                    
+                                <td>                         
+                                    <a href="/a/change_hire_status1/{{pb.id}}/{{i.id}}" class="btn mt-3 change_status" type="submit">Change Status</a>
                                 </td>
                                 <td>{{i.date_time}}</td>
                             </tr>
@@ -226,18 +232,18 @@
                         {% for i in notifications %}
                             <tr>
                                 <td scope="row" class="Numbering4"></td>
-                                <td>{{i.customer.name}}</td>
+                                <td>{{i.from_user.username}}</td>
                                 <td>                          
-                                    {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
-                                        <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                                    {% if i.from_user.customer.image.url != "/media/static/Image/default.jpg" %}
+                                        <img class="img-fluid rounded-circle" src="{{i.from_user.customer.image.url}}" alt="" />
                                     {% else %}
-                                        <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                                        <img class="img-fluid rounded-circle" src="/{{i.from_user.customer.image.url}}" alt="" />
                                     {% endif %}
                                 </td>
+                                <td>{{i.title}}</td>
                                 <td>{{i.message}}</td>
-                                <td>{{i.read}}</td>
-                                <td>{{i.time}}</td>
-                                <td>{{i.date}}</td>
+                                <td>{{i.has_seen}}</td>
+                                <td>{{i.datetime}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

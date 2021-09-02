@@ -74,6 +74,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Adding is_business & is_customer field to identify business and customer
     is_business = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
+    is_worker = models.BooleanField(default=False)
 
     # These filed are porvided as default by Django
     username = models.CharField(max_length=30, unique=True)

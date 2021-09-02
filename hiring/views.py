@@ -16,6 +16,7 @@ from business.models import Business_Service, Business
 from service.models import Services
 from customer.models import Customer
 from django.contrib.auth import get_user_model
+from notification.models import Notification
 
 User = get_user_model()
 
@@ -52,8 +53,11 @@ class CreateHireView(UserPassesTestMixin, View):
 
         slug_of_current_business = request.build_absolute_uri(
             reverse('business-profile', args=(business.slug, )))
-        print(slug_of_current_business)
         messages.success(
             request, f'You have successfully requested <a href="{slug_of_current_business}">{business.name}</a> for {service} service. Thank You 🙏')
+        # Notification Part
+        notification_message = f"{user.customer.name} requested for service {service.name} "
+        Notification.objects.create(
+            to_user=business.user, from_user=user, title="Hire Request", message=notification_message, business_service=business_service)
 
         return redirect(request.META.get('HTTP_REFERER', 'customer-home'))

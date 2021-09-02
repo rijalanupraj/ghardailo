@@ -21,6 +21,10 @@ urlpatterns = [
          name='customer-bookmark-delete-view'),
     path('bookmarks/<str:slug>/add-bookmark/',
          views.business_bookmark_toggle_for_customer, name='customer-bookmark-toggle'),
+    path('api/notification/<int:notification_pk>',
+         views.HireNotificationView.as_view(), name='hire-notification-api'),
+    path('notifications/', views.AllNotificationPageView.as_view(),
+         name="customer-all-notification-page")
 
 ]
 
