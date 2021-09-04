@@ -38,4 +38,18 @@ def main_homepage(request):
 
 def about_us(request):
 
-    return render(request, 'homepage/Aboutus.html')
+    testimonials = Testimonial.objects.filter(is_active=True)[:9]
+    countservice = Services.objects.filter(is_active=True).count()
+    countbusiness = Business.objects.filter(is_active=True).count()
+    countcustomer = Customer.objects.all().count()
+    context = {
+       
+        'testimonials': testimonials,
+        'countservice': countservice,
+        'countbusiness': countbusiness,
+        'countcustomer': countcustomer,
+    }
+
+
+
+    return render(request, 'homepage/Aboutus.html',context)
