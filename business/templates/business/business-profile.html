@@ -224,6 +224,13 @@
     <div class="dropdown-divider"></div>
     {% endfor %}
 </div>
+<div>
+<form method="POST">
+{% csrf_token %}
+{{form.as_p}}
+<button type="submit" class="btn btn-primary">Review</button>
+</form>
+</div>
 
 <!-- scroll top button  -->
 
