@@ -39,8 +39,7 @@ Ghar Dailo
         <div class="row justify-content-center">
           <div class="col-xl-7 col-lg-9 text-center">
             
-              <!-- <h1> <img src="{% static 'homepage/img/portfolio/Logo.png' %}" class="img-fluid" alt="" />GharDailo </h1> 
-             <span><small> <b>A team of professional always ready for most of your daily problems</b> </small></span>  -->
+            
 
              <h1><span class="iconify" data-width="100" data-height="100" data-icon="flat-color-icons:home"></span> GharDailo </h1> 
              <span><small> <b>A team of professional always ready for most of your daily problems</b> </small></span> 
@@ -51,22 +50,34 @@ Ghar Dailo
           
         </div>
         <br>
+
+        {% if request.user.is_authenticated %}
+
        
 
-        <div id="container">
-          <div id="text"></div><div id="cursor"></div>
-        </div>
-        <br>
+      {% else %}
 
-        <div class="text-center">
-          <span><a href="{% url 'business-registration' %}" class="btn-get-started scrollto ms-4 me-4"> Sign Up As Business </a>
-                <a href="{% url 'customer-registration' %}" class="btn-get-started scrollto">Sign Up As Customer </a>
-           </span>
-          </div>
-          <br>
+      <div id="container">
+        <div id="text"></div><div id="cursor"></div>
+      </div>
+      <br>
+
+      <div class="text-center">
+        <span><a href="{% url 'business-registration' %}" class="btn-get-started scrollto ms-4 me-4"> Sign Up As Business </a>
+              <a href="{% url 'customer-registration' %}" class="btn-get-started scrollto">Sign Up As Customer </a>
+         </span>
+        </div>
+
+      {% endif %}
+       
+
+       
 
         
+          
+        
         <div class="row icon-boxes">
+          <h2 class="mb-3 text-center"> <b>Reason To Choose GharDailo</b> </h2>
           <div
             class="col-md-6 col-lg-3 d-flex align-items-stretch mb-3 mb-lg-0"
             data-aos="zoom-in"
@@ -815,13 +826,13 @@ Ghar Dailo
               <h4>Useful Links</h4>
               <ul>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Home</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'home'%}">Home</a>
                 </li>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">About us</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'about-us'%}">About us</a>
                 </li>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Services</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'business-list-page'%}">Get Service</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
@@ -838,22 +849,22 @@ Ghar Dailo
               <h4>Our Services</h4>
               <ul>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Plumbing</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Plumbing</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
-                  <a href="#">Electrician</a>
+                  <a href="{% url 'customer-services'%}">Electrician</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
-                  <a href="#">Photographer</a>
+                  <a href="{% url 'customer-services'%}">Photographer</a>
                 </li>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Carpenter and Furnishing</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Carpenter and Furnishing</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
-                  <a href="#">And Many More</a>
+                  <a href="{% url 'customer-services'%}">View All Servieces</a>
                 </li>
               </ul>
             </div>
