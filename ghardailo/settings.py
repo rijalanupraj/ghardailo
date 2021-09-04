@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'notification',
     'adminbusiness',
     'bookmark',
+    'testimonial',
     # Extra Dependencies
     'six',
     'bootstrapform',
