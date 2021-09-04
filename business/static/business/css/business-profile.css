@@ -329,9 +329,35 @@ header .navbar1 ul li a:hover{
     display: none;
 }
 
-
-
-
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 480px;
+}
+.customer_reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;    
+    font-size: 20px;
+}
+.customer_image  {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+.customer_image img {
+    height: 100px;
+    width: 100px;
+}
+.customer_image .rated {
+   color: #FF9529;
+}
+.customer_image .not_rated {
+    color: #FF9529;
+ }
 /* media queries  */
 
 @media (max-width:1200px){
@@ -371,7 +397,13 @@ header .navbar1 ul li a:hover{
     html{
         font-size: 50%;
     }
- 
+    .customer_image img {
+        height: 50px;
+        width: 50px;
+    }
+    .customer_reviews {
+        font-size: 15px;
+    }
  }
 
 @media (max-width:400px){

@@ -2,6 +2,7 @@
 from worker.models import Worker
 from bookmark.models import Bookmark
 from business.models import Business
+from review.models import Review
 from django.views.generic import (
     ListView,
     DetailView,
@@ -85,5 +86,7 @@ class BusinessProfileView(UserPassesTestMixin, DetailView):
         context = super().get_context_data(**kwargs)
         slug = self.kwargs['slug']
         worker = Worker.objects.filter(business__slug=slug)
-        context["Worker"] = worker
+        context["Worker"] = worker        
+        review = Review.objects.filter(business__slug=slug)
+        context["review"] = review
         return context

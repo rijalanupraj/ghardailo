@@ -158,13 +158,11 @@
     </div>
 
     <form action="">
-
         <input type="text" placeholder="name" class="box">
         <input type="email" placeholder="email" class="box">
         <input type="text" placeholder="Service Needed" class="box">
         <textarea name="" id="" cols="30" rows="10" class="box message" placeholder="message"></textarea>
         <button type="submit" class="btn"> send <i class="fas fa-paper-plane"></i> </button>
-
     </form>
 
 </div>
@@ -173,6 +171,59 @@
 
 <!-- contact section ends -->
 
+<div class="reviews table-responsive">
+    {% for i in review %}
+    <div class="customer_reviews">    
+        <div class="customer_image">
+            <div>
+                {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                    <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                {% else %}
+                    <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                {% endif %}  
+            </div>          
+            <div>
+                <p class="fw-bold">{{i.customer.name}}</p>
+                <p> 
+                    {% if i.rating >= 1 %} 
+                        <span class="fas fa-star rated"></span> 
+                    {% else %}                        
+                        <span class="far fa-star not_rated"></span> 
+                    {% endif %} 
+
+                    {% if i.rating >= 2 %} 
+                        <span class="fas fa-star rated"></span> 
+                    {% else %}                        
+                        <span class="far fa-star not_rated"></span> 
+                    {% endif %} 
+
+                    {% if i.rating >= 3 %} 
+                        <span class="fas fa-star rated"></span> 
+                    {% else %}                        
+                        <span class="far fa-star not_rated"></span> 
+                    {% endif %} 
+
+                    {% if i.rating >= 4 %} 
+                        <span class="fas fa-star rated"></span> 
+                    {% else %}                        
+                        <span class="far fa-star not_rated"></span> 
+                    {% endif %} 
+
+                    {% if i.rating >= 5 %} 
+                        <span class="fas fa-star rated"></span> 
+                    {% else %}                        
+                        <span class="far fa-star not_rated"></span> 
+                    {% endif %} 
+
+                    {{i.created_at}}
+                </p>
+            </div>
+        </div>
+        <p class="customer_comment">{{i.comment}}</p>
+    </div>
+    <div class="dropdown-divider"></div>
+    {% endfor %}
+</div>
 
 <!-- scroll top button  -->
 
