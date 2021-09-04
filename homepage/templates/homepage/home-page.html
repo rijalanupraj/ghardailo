@@ -173,12 +173,7 @@ Ghar Dailo
               class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
             >
               <div class="count-box">
-                <span
-                  data-purecounter-start="0"
-                  data-purecounter-end="65"
-                  data-purecounter-duration="2"
-                  class="purecounter"
-                ></span>
+                <span> {{countcustomer}} </span>
                 <p>Total Users</p>
               </div>
             </div>
@@ -187,12 +182,7 @@ Ghar Dailo
               class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
             >
               <div class="count-box">
-                <span
-                  data-purecounter-start="0"
-                  data-purecounter-end="85"
-                  data-purecounter-duration="2"
-                  class="purecounter"
-                ></span>
+                <span> {{countbusiness}} </span>
                 <p>Total Business Registered</p>
               </div>
             </div>
@@ -201,12 +191,10 @@ Ghar Dailo
               class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
             >
               <div class="count-box">
-                <span
-                  data-purecounter-start="0"
-                  data-purecounter-end="30"
-                  data-purecounter-duration="2"
-                  class="purecounter"
-                ></span>
+               
+                <span> {{countservice}} </span>
+                 
+                
                 <p>Available Services</p>
               </div>
             </div>
@@ -215,12 +203,7 @@ Ghar Dailo
               class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
             >
               <div class="count-box">
-                <span
-                  data-purecounter-start="0"
-                  data-purecounter-end="20"
-                  data-purecounter-duration="2"
-                  class="purecounter"
-                ></span>
+                <span data-purecounter-start="0" data-purecounter-end="65" data-purecounter-duration="2" class="purecounter"></span>
                 <p>Experience</p>
               </div>
             </div>
@@ -358,7 +341,7 @@ Ghar Dailo
             <h2>Testimonials</h2>
           
           </div>
-
+         {% for testimonial in testimonials %}
           <div
             class="testimonials-slider swiper-container"
             data-aos="fade-up"
@@ -369,10 +352,7 @@ Ghar Dailo
                 <div class="testimonial-item">
                   <p>
                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Proin iaculis purus consequat sem cure digni ssim donec
-                    porttitora entum suscipit rhoncus. Accusantium quam,
-                    ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                    risus at semper.
+                    {{testimonial.message}}
                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                   </p>
                   <img
@@ -380,94 +360,13 @@ Ghar Dailo
                     class="testimonial-img"
                     alt=""
                   />
-                  <h3>Saul Goodman</h3>
+                  <h3>{{testimonial.user.customer.name}}</h3>
                   <h4>Ceo &amp; Founder</h4>
                 </div>
               </div>
               <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Export tempor illum tamen malis malis eram quae irure esse
-                    labore quem cillum quid cillum eram malis quorum velit fore
-                    eram velit sunt aliqua noster fugiat irure amet legam anim
-                    culpa.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-2.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Enim nisi quem export duis labore cillum quae magna enim
-                    sint quorum nulla quem veniam duis minim tempor labore quem
-                    eram duis noster aute amet eram fore quis sint minim.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-3.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>Jena Karlis</h3>
-                  <h4>Store Owner</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa
-                    multos export minim fugiat minim velit minim dolor enim duis
-                    veniam ipsum anim magna sunt elit fore quem dolore labore
-                    illum veniam.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-4.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>Matt Brandon</h3>
-                  <h4>Freelancer</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Quis quorum aliqua sint quem legam fore sunt eram irure
-                    aliqua veniam tempor noster veniam enim culpa labore duis
-                    sunt culpa nulla illum cillum fugiat legam esse veniam culpa
-                    fore nisi cillum quid.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-5.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>John Larson</h3>
-                  <h4>Entrepreneur</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
+              {% endfor %}
+             
             </div>
             <div class="swiper-pagination"></div>
           </div>
