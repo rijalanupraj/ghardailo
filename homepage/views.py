@@ -8,6 +8,7 @@ from customer.models import Customer
 
 # Create your views here.
 
+
 def Home(request):
 
     service = Services.objects.filter(is_active=True)[:8]
@@ -16,37 +17,25 @@ def Home(request):
     }
     return render(request, 'homepage/index.html', context)
 
+
 def main_homepage(request):
 
     service = Services.objects.filter(is_active=True)[:6]
-    testimonials= Testimonial.objects.filter(is_active=True)[:9]
-    countservice= Services.objects.filter(is_active=True).count()
-    countbusiness= Business.objects.filter(is_active=True).count()
-    countcustomer= Customer.objects.all().count()
+    testimonials = Testimonial.objects.filter(is_active=True)[:9]
+    countservice = Services.objects.filter(is_active=True).count()
+    countbusiness = Business.objects.filter(is_active=True).count()
+    countcustomer = Customer.objects.all().count()
     context = {
         'services': service,
-        'testimonials':testimonials,
+        'testimonials': testimonials,
         'countservice': countservice,
-        'countbusiness':countbusiness,
-        'countcustomer':countcustomer,
+        'countbusiness': countbusiness,
+        'countcustomer': countcustomer,
     }
-    
-    return render(request, 'homepage/home-page.html',context)
 
+    return render(request, 'homepage/home-page.html', context)
 
 
 def about_us(request):
 
-
     return render(request, 'homepage/Aboutus.html')
-
-
-
-
-
-
-
-
-
-
-

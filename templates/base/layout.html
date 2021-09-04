@@ -42,7 +42,9 @@
 
         {% endblock %}
     </main>
-
+    {% comment %} {% if messages %} {% endcomment %}
+    {% include 'components/display_messages.html' %}
+    {% comment %} {% endif %} {% endcomment %}
     <div id="preloader"></div>
     
     <!-- Including all javascript -->

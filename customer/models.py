@@ -17,14 +17,14 @@ PROVINCE_CHOICES = (
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='customer-profile/media', default='static/Image/default.jpg')
+    image = models.ImageField(
+        upload_to='customer-profile/media', default='static/Image/default.jpg')
     name = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=15, null=True)
-    province = models.CharField(choices=PROVINCE_CHOICES, max_length=50, null=True)
+    province = models.CharField(
+        choices=PROVINCE_CHOICES, max_length=50, null=True)
     city = models.CharField(max_length=50, null=True)
     street_address = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return self.name + " | " + self.user.username
-
-
+        return str(self.name) + " | " + str(self.user.username)
