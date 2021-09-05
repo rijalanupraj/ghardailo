@@ -201,7 +201,8 @@
 <div class="review_form mb-5">
     <form method="POST">
         {% csrf_token %}
-        <div class="star_rating">            
+        <div class="star_rating">    
+            <label class="form-label fw-bold">Rating: </label> 
             <span class="fas fa-star star_rate" onclick="rate(0)"></span>          
             <span class="fas fa-star star_rate" onclick="rate(1)"></span>          
             <span class="fas fa-star star_rate" onclick="rate(2)"></span>          
@@ -210,12 +211,16 @@
         </div>
         {{form.rating}}
         <div class="comment_div">
-            <label class="form-label">Comment:</label> 
+            <label class="form-label fw-bold">Comment:</label> 
             {{form.comment}}
         </div>
         <div>
-            <button type="submit" class="review_button me-3">Edit</button>
-            <button type="button" class="form_closer" onclick="hide_form()">Close</button>
+            {% if customer_review_exist == False %}
+                <button type="submit" class="review_button">Add Review</button>
+            {% else %}
+                <button type="submit" class="review_button me-3">Edit</button>
+                <button type="button" class="form_closer" onclick="hide_form()">Close</button>
+            {% endif %}
         </div>
     </form>
     <div class="dropdown-divider mt-3"></div>    

@@ -2,8 +2,13 @@
     document.getElementById("id_rating").style.display="none";
 
     review_form = document.getElementsByClassName("review_form")[0]
-    comment_editor = document.getElementsByClassName("comment_editor")[0]    
-    review_form.style.display = "none"
+    try {
+        comment_editor = document.getElementsByClassName("comment_editor")[0]  
+        comment_editor.style.display = "none"
+    }
+    catch(err) {
+        
+    }
     function show_form() {
             review_form.style.display = "block"
             comment_editor.style.display = "none"
