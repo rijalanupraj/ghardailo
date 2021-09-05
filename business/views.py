@@ -100,13 +100,16 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
         context["Worker"] = worker
         review = Review.objects.filter(business__slug=slug)
         context["review"] = review
+        current_user_business_review = None   
         if self.request.user.is_authenticated and self.request.user.is_customer:
             try:
-                current_user_business_review = Review.objects.get(
-                    customer=self.request.user.customer, business=self.object)
+                current_user_business_review = Review.objects.get(customer=self.request.user.customer, business=self.object)  
             except Review.DoesNotExist:
-                current_user_business_review = None
+                current_user_business_review = None   
             context["form"] = ReviewForm(instance=current_user_business_review)
+        if current_user_business_review==None:
+            print("Hello")
+            context["customer_review_exist"] = False
         return context
 
     def post(self, request, *args, **kwargs):
@@ -114,18 +117,17 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
             return HttpResponseForbidden()
         self.object = self.get_object()
         form = self.get_form()
-        user_business_review = Review.objects.get(
-            customer=request.user.customer, business=self.object)
         if form.is_valid():
-            if not user_business_review:
+            try:
+                user_business_review = Review.objects.get(customer=request.user.customer, business=self.object)
+                user_business_review.comment = form.cleaned_data.get('comment')
+                user_business_review.rating = form.cleaned_data.get('rating')
+                user_business_review.save()
+            except Review.DoesNotExist:
                 review = form.save(commit=False)
                 review.business = self.object
                 review.customer = self.request.user.customer
                 review.save()
-            else:
-                user_business_review.comment = form.cleaned_data.get('comment')
-                user_business_review.rating = form.cleaned_data.get('rating')
-                user_business_review.save()
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
