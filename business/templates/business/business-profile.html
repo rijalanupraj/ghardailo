@@ -170,66 +170,137 @@
 </section>
 
 <!-- contact section ends -->
+<div class="review_form mb-5">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="star_rating">            
+            <span class="fas fa-star star_rate" onclick="rate(0)"></span>          
+            <span class="fas fa-star star_rate" onclick="rate(1)"></span>          
+            <span class="fas fa-star star_rate" onclick="rate(2)"></span>          
+            <span class="fas fa-star star_rate" onclick="rate(3)"></span>          
+            <span class="fas fa-star star_rate" onclick="rate(4)"></span> 
+        </div>
+        {{form.rating}}
+        <div class="comment_div">
+            <label class="form-label">Comment:</label> 
+            {{form.comment}}
+        </div>
+        <div>
+            <button type="submit" class="review_button me-3">Edit</button>
+            <button type="button" class="form_closer" onclick="hide_form()">Close</button>
+        </div>
+    </form>
+    <div class="dropdown-divider mt-3"></div>    
+</div>
 
 <div class="reviews table-responsive">
     {% for i in review %}
-    <div class="customer_reviews">    
-        <div class="customer_image">
-            <div>
-                {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
-                    <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
-                {% else %}
-                    <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
-                {% endif %}  
-            </div>          
-            <div>
-                <p class="fw-bold">{{i.customer.name}}</p>
-                <p> 
-                    {% if i.rating >= 1 %} 
-                        <span class="fas fa-star rated"></span> 
-                    {% else %}                        
-                        <span class="far fa-star not_rated"></span> 
-                    {% endif %} 
+    {% if i.customer == request.user.customer %}
+        <div class="customer_reviews">    
+            <div class="customer_image">
+                <div>
+                    {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                        <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                    {% else %}
+                        <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                    {% endif %}  
+                </div>          
+                <div>
+                    <p class="fw-bold">{{i.customer.name}}</p>
+                    <p> 
+                        {% if i.rating >= 1 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
 
-                    {% if i.rating >= 2 %} 
-                        <span class="fas fa-star rated"></span> 
-                    {% else %}                        
-                        <span class="far fa-star not_rated"></span> 
-                    {% endif %} 
+                        {% if i.rating >= 2 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
 
-                    {% if i.rating >= 3 %} 
-                        <span class="fas fa-star rated"></span> 
-                    {% else %}                        
-                        <span class="far fa-star not_rated"></span> 
-                    {% endif %} 
+                        {% if i.rating >= 3 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
 
-                    {% if i.rating >= 4 %} 
-                        <span class="fas fa-star rated"></span> 
-                    {% else %}                        
-                        <span class="far fa-star not_rated"></span> 
-                    {% endif %} 
+                        {% if i.rating >= 4 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
 
-                    {% if i.rating >= 5 %} 
-                        <span class="fas fa-star rated"></span> 
-                    {% else %}                        
-                        <span class="far fa-star not_rated"></span> 
-                    {% endif %} 
+                        {% if i.rating >= 5 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
 
-                    {{i.created_at}}
-                </p>
+                        {{i.created_at}}
+                    </p>
+                </div>
             </div>
+            <p class="customer_comment">{{i.comment}}</p>
+            <button type="button" class="comment_editor" onclick="show_form()">Modify</button>
         </div>
-        <p class="customer_comment">{{i.comment}}</p>
-    </div>
-    <div class="dropdown-divider"></div>
+        <div class="dropdown-divider"></div>    
+    {% endif %}
     {% endfor %}
-</div>
-<div>
-<form method="POST">
-{% csrf_token %}
-{{form.as_p}}
-<button type="submit" class="btn btn-primary">Review</button>
-</form>
+    {% for i in review %}
+    {% if i.customer != request.user.customer %}
+        <div class="customer_reviews">    
+            <div class="customer_image">
+                <div>
+                    {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                        <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                    {% else %}
+                        <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                    {% endif %}  
+                </div>          
+                <div>
+                    <p class="fw-bold">{{i.customer.name}}</p>
+                    <p> 
+                        {% if i.rating >= 1 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
+
+                        {% if i.rating >= 2 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
+
+                        {% if i.rating >= 3 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
+
+                        {% if i.rating >= 4 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
+
+                        {% if i.rating >= 5 %} 
+                            <span class="fas fa-star rated"></span> 
+                        {% else %}                        
+                            <span class="far fa-star not_rated"></span> 
+                        {% endif %} 
+
+                        {{i.created_at}}
+                    </p>
+                </div>
+            </div>
+            <p class="customer_comment">{{i.comment}}</p>
+        </div>
+        <div class="dropdown-divider"></div>    
+    {% endif %}
+    {% endfor %}
 </div>
 
 <!-- scroll top button  -->
@@ -238,4 +309,8 @@
     <img src="images/scroll-top-img.png" alt="">
 </a>
 
+{% endblock %}
+
+{% block additional_body %}
+<script src="{% static 'js/business-profile.js' %}"></script>
 {% endblock %}

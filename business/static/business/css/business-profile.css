@@ -49,7 +49,7 @@ section{
 
 .btn{
     padding:.7rem 3rem;
-    background:#333;
+    background:#5e2ced;
     color:#fff;
     cursor: pointer;
     margin-top: 1rem;
@@ -133,7 +133,7 @@ header .navbar1 ul li a{
     display: block;
     padding:0.8rem;
     margin:1rem 0;
-    background:#333;
+    background:#5e2ced;
     color:#fff;
     font-size: 2rem;
     border-radius: 5rem;
@@ -328,20 +328,62 @@ header .navbar1 ul li a:hover{
     z-index: 100;
     display: none;
 }
+.review_form {  
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 20px;
+}
+.review_form form {  
+    display: flex;
+    flex-direction: column;
+    gap: 8px;  
+    align-items: flex-start;
+}
+.comment_div {
+    display: flex;
+    flex-direction: column;
+}
+#id_comment {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px 5px 2px 5px;
+    height: 150px;
+}
+#id_comment:focus{
+    background:#8461e4;
+}
 
+.review_button {    
+    background-color: #008f37;
+    border-radius: 20px;
+    box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+    padding: 3px 20px 3px 20px;
+}
+.form_closer {  
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+    padding: 3px 20px 3px 20px;
+}
 .reviews {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-left: 10%;
-    padding-right: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
     height: 480px;
+}
+.comment_editor {    
+    background-color: orange;
+    border-radius: 20px;
+    box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+    padding: 3px 20px 3px 20px;
 }
 .customer_reviews {
     display: flex;
     flex-direction: column;
-    gap: 8px;    
     font-size: 20px;
+    align-items: flex-start;
 }
 .customer_image  {
     display: flex;
@@ -400,6 +442,16 @@ header .navbar1 ul li a:hover{
     .customer_image img {
         height: 50px;
         width: 50px;
+    }
+    .review_form { 
+        font-size: 10px;
+    }
+    .review_button, .form_closer, .comment_editor {        
+        border-radius: 5px;
+        padding: 3px 10px 3px 10px;
+    }
+    #id_comment {
+        height: 75px;
     }
     .customer_reviews {
         font-size: 15px;

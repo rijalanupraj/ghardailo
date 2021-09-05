@@ -97,6 +97,7 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
         worker = Worker.objects.filter(business__slug=slug)
         context["Worker"] = worker
         review = Review.objects.filter(business__slug=slug)
+        context["review"] = review
         current_user_business_review = Review.objects.get(
             customer=self.request.user.customer, business=self.object)
         context["form"] = ReviewForm(instance=current_user_business_review)
