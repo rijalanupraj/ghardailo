@@ -364,7 +364,9 @@ def approve_business_hiring(request, id):
 @login_required
 @business_only
 def reject_business_hiring(request, id):
+    message = request.POST['message']
     hiring = Hiring.objects.get(id=id)
+    hiring.business_message=message
     hiring.status = 'RE'
     hiring.save()
     customer = hiring.customer
