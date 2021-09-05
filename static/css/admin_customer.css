@@ -55,7 +55,14 @@
 .table-responsive tbody tr td img{
     width: 100px;
 }
-
+.table-responsive tbody tr td .active {
+    color: #3ced2c;
+    font-size: 25px;
+}
+.table-responsive tbody tr td .inactive {
+    color: #ed2c2c;
+    font-size: 25px;
+}
 @media screen and (max-width: 1150px) {
     .search_box input {
         width: 400px;

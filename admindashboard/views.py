@@ -214,7 +214,7 @@ def service_update(request, service_id):
 @login_required
 @admin_only
 def business(request):
-    business = Business.objects.all()
+    business = Business.objects.foradmin()
     business_filter = BusinessFilter(request.GET, queryset=business)
     business_final = business_filter.qs
 
@@ -225,6 +225,22 @@ def business(request):
     }
     return render(request, 'admindashboard/business.html', dictionary)
 
+@login_required
+@admin_only
+def business_active(request, business_id):
+    particular_business = Business.objects.get(id=business_id)
+    particular_business.is_active = True
+    particular_business.save()
+    return redirect("/a/business")
+
+
+@login_required
+@admin_only
+def business_inactive(request, business_id):
+    particular_business = Business.objects.get(id=business_id)
+    particular_business.is_active = False
+    particular_business.save()
+    return redirect("/a/business")
 
 @login_required
 @admin_only
@@ -316,6 +332,22 @@ def customer(request):
                   'customer_filter': customer_filter, 'customer': 'selected'}
     return render(request, 'admindashboard/customer.html', dictionary)
 
+
+@login_required
+@admin_only
+def customer_active(request, customer_id):
+    particular_customer = Customer.objects.get(id=customer_id)
+    particular_customer.is_active = True
+    particular_customer.save()
+    return redirect("/a/customer")
+
+@login_required
+@admin_only
+def customer_inactive(request, customer_id):
+    particular_customer = Customer.objects.get(id=customer_id)
+    particular_customer.is_active = False
+    particular_customer.save()
+    return redirect("/a/customer")
 
 @login_required
 @admin_only

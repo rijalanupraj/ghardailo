@@ -25,6 +25,7 @@ class Customer(models.Model):
         choices=PROVINCE_CHOICES, max_length=50, null=True)
     city = models.CharField(max_length=50, null=True)
     street_address = models.CharField(max_length=200, null=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.name) + " | " + str(self.user.username)

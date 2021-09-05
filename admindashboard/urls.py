@@ -21,6 +21,8 @@ urlpatterns = [
 
     # <<====================Business====================>>
     path('business', views.business),
+    path('business_active/<int:business_id>', views.business_active),
+    path('business_inactive/<int:business_id>', views.business_inactive),
     path('business_verified/<int:business_id>', views.business_verified),
     path('business_not_verified/<int:business_id>', views.business_not_verified),
     path('viewbusiness/<int:business_id>', views.business_view, name="view-business"),
@@ -28,6 +30,8 @@ urlpatterns = [
 
     # <<====================Customer====================>>
     path('customer', views.customer, name="my-admin-customer-list-view"),
+    path('customer_active/<int:customer_id>', views.customer_active),
+    path('customer_inactive/<int:customer_id>', views.customer_inactive),
     path('viewcustomer/<int:customer_id>', views.customer_view, name="view-customer"),
     path('change_hire_status2/<int:customer_id>/<int:hire_id>', views.change_hire_status2),
 ]

@@ -26,6 +26,8 @@
                 <th scope="col">Province</th>
                 <th scope="col">City</th>
                 <th scope="col">Street</th>
+                <th scope="col">Active</th>
+                <th scope="col">Modify Activeness</th>
                 <th scope="col">View</th>
             </tr>
         </thead>
@@ -46,6 +48,20 @@
                     <td>{{i.province}}</td>
                     <td>{{i.city}}</td>
                     <td>{{i.street_address}}</td>
+                    <td>                        
+                        {% if i.is_active == True %}
+                        <span class="fas fa-check-circle"></span>
+                        {% else %}
+                        <span class="fas fa-times-circle"></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if i.is_active == False %}
+                        <a href="/a/customer_active/{{i.id}}" class="active" onclick="return confirm('Do you want activate this customer?')"><span class="fas fa-check-circle"></span></a>
+                        {% else %}
+                        <a href="/a/customer_inactive/{{i.id}}" class="inactive" onclick="return confirm('Do you want inactivate this customer?')"><span class="fas fa-times-circle"></span></a>
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="/a/viewcustomer/{{i.id}}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
                     </td>
