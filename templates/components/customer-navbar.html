@@ -34,9 +34,11 @@
         </li>
       </ul>
       {% if user.is_authenticated %}
+      {% if user.is_customer %}
       <ul class="nav navbar-nav navbar-right mt-4 me-4">
       {% show_notifications %}    
       </ul>
+      {% endif %}  
       {% endif %}  
       <div class="mt-3 me-4" id="UDA">
         {% if user.is_authenticated %}
@@ -51,7 +53,7 @@
         <span class="fas fa-caret-down dropdown-opener" onclick="open_dropdown()"></span>
         <div class="dropdown-content">
           {% if user.is_authenticated %}
-            <a class="mb-1 fw-bold {{ active_profile }}" href="{% url 'customer:customerprofile' %}" id="Username">{{request.user.username}}</a> 
+            <a class="mb-1 fw-bold{% if request.user.is_staff %} disabled{% endif %}{{ active_profile }}" href="{% if request.user.is_customer %}{% url 'customer:customerprofile' %}{% elif request.user.is_business %}{% url 'editBusinessProfileDash' %}{% endif %}" id="Username">{% if request.user.is_customer %}{{request.user.customer.name}}{% elif request.user.is_business %}{{request.user.business.name}}{% else %}{{request.user.username}}{% endif %}</a> 
             <li class="dropdown-divider"></li>
             <a class="mb-1 lgo" href="{% url 'logout' %}">Log out</a>
           {% else %}
