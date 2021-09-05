@@ -1,5 +1,8 @@
 from django.contrib import messages
 from django.urls.base import reverse_lazy
+import random
+import string
+import datetime
 from .forms import *
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -10,10 +13,14 @@ from django.contrib.auth.mixins import (
 from django.views.generic import (
     ListView,
     DeleteView,
+    View
 )
 
 from django.contrib.auth.decorators import login_required
 from accounts.auth import *
+
+from accounts import utils
+from django.contrib.sites.shortcuts import get_current_site
 
 # internal input
 from business.models import Business
@@ -30,6 +37,7 @@ from notification.models import *
 from .filters import *
 
 # Create your views here.
+
 
 @login_required
 @business_only
@@ -65,6 +73,7 @@ def businessDashboard(request):
 
     return render(request, 'adminbusiness/base/dashboard.html', context)
 
+
 @login_required
 @business_only
 def getService(request):
@@ -79,6 +88,7 @@ def getService(request):
         'service_filter': service_filter,
     }
     return render(request, 'adminbusiness/base/show-service.html', context)
+
 
 @login_required
 @business_only
@@ -114,6 +124,7 @@ def postService(request):
 
     return render(request, 'adminbusiness/base/post-service.html', context)
 
+
 @login_required
 @business_only
 def updateService(request, service_id):
@@ -129,6 +140,7 @@ def updateService(request, service_id):
         'service': instance
     }
     return render(request, 'adminbusiness/base/update-service.html', context)
+
 
 @login_required
 @business_only
@@ -148,6 +160,7 @@ def getProfile(request):
         'profile': profile
     }
     return render(request, 'adminbusiness/base/show-profile.html', context)
+
 
 @login_required
 @business_only
@@ -171,6 +184,7 @@ def editBusiness(request):
     }
     return render(request, 'adminbusiness/base/edit-business.html', context)
 
+
 @login_required
 @business_only
 def editBusinessProfile(request):
@@ -179,15 +193,15 @@ def editBusinessProfile(request):
             request.POST, request.FILES, instance=request.user.business.business_profile)
         form1 = BusinessProfileForm1(
             request.POST, request.FILES, instance=request.user.business)
-        if form.is_valid():
+        if form.is_valid() and form1.is_valid():
             form.save()
             form1.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'Service Added Successfully')
+                                 'Business Profile Added Successfully')
             # return redirect('getProfileDash')
         else:
             messages.add_message(request, messages.ERROR,
-                                 'Error adding service')
+                                 'Error adding Business Profile')
     else:
         form = BusinessProfileForm(
             instance=request.user.business.business_profile)
@@ -198,6 +212,7 @@ def editBusinessProfile(request):
         'form1': form1
     }
     return render(request, 'adminbusiness/base/post-profile.html', context)
+
 
 @login_required
 @business_only
@@ -213,6 +228,7 @@ def updateProfile(request, profile_id):
         'form': BusinessProfileForm(instance=instance),
     }
     return render(request, 'adminbusiness/base/update-profile.html', context)
+
 
 @login_required
 @business_only
@@ -233,6 +249,7 @@ def change_password(request):
         'form': form
     })
 
+
 @login_required
 @business_only
 def getWorker(request):
@@ -246,34 +263,36 @@ def getWorker(request):
     }
     return render(request, 'adminbusiness/base/show-worker.html', context)
 
-@login_required
-@business_only
-def postWorker(request):
-    if request.method == 'POST':
 
-        form = BusinessWorkerForm(request.POST, request.FILES)
-        if form.is_valid():
-            businessWorker = Worker.objects.filter(
-                business=request.user.business)
+# @login_required
+# @business_only
+# def postWorker(request):
+#     if request.method == 'POST':
 
-            obj = form.save(commit=False)
-            obj.business = request.user.business
-            obj.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 'Service Added Successfully')
-            return redirect('getWorkerDash')
-        else:
-            messages.add_message(request, messages.ERROR,
-                                 'Error adding service')
-            return render(request, 'adminbusiness/base/post-worker.html')
-    else:
-        form = BusinessWorkerForm()
+#         form = BusinessWorkerForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             businessWorker = Worker.objects.filter(
+#                 business=request.user.business)
 
-    context = {
-        'form': form
-    }
+#             obj = form.save(commit=False)
+#             obj.business = request.user.business
+#             obj.save()
+#             messages.add_message(request, messages.SUCCESS,
+#                                  'Service Added Successfully')
+#             return redirect('getWorkerDash')
+#         else:
+#             messages.add_message(request, messages.ERROR,
+#                                  'Error adding service')
+#             return render(request, 'adminbusiness/base/post-worker.html')
+#     else:
+#         form = BusinessWorkerForm()
 
-    return render(request, 'adminbusiness/base/post-worker.html', context)
+#     context = {
+#         'form': form
+#     }
+
+#     return render(request, 'adminbusiness/base/post-worker.html', context)
+
 
 @login_required
 @business_only
@@ -290,6 +309,7 @@ def updateWorker(request, Worker_id):
         'worker': instance
     }
     return render(request, 'adminbusiness/base/update-Worker.html', context)
+
 
 @login_required
 @business_only
@@ -313,18 +333,118 @@ class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return Hiring.objects.filter(
             business_service__business=self.request.user.business).order_by('-date_time')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        worker = Worker.objects.filter(business=self.request.user.business)
+        context["workers"] = worker
+        return context
+
+
 @login_required
 @business_only
 def approve_business_hiring(request, id):
+    worker_id = request.POST['select-worker']
+    message = request.POST['message']
+    worker=Worker.objects.get(id=worker_id)
+
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'AC'
-    hiring.save()
+    hiring.business_message=message
+    hiring.worker=worker
+    hiring.save() 
+    customer = hiring.customer
+    business_service = hiring.business_service
+    # Notification Part
+    notification_message = f"approved your hire request for {business_service.service.name} service"
+    Notification.objects.create(
+        to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
     return redirect('business-hiring-list')
+
 
 @login_required
 @business_only
 def reject_business_hiring(request, id):
+    message = request.POST['message']
     hiring = Hiring.objects.get(id=id)
-    hiring.status = 'RJ'
+    hiring.business_message=message
+    hiring.status = 'RE'
     hiring.save()
+    customer = hiring.customer
+    business_service = hiring.business_service
+    # Notification Part
+    notification_message = f"rejected your hire request for {business_service.service.name} service"
+    Notification.objects.create(
+        to_user=customer.user, from_user=request.user, title="Rejected Hire Request", message=notification_message, business_service=business_service)
     return redirect('business-hiring-list')
+
+
+# <<====================Worker Registration====================>>
+@login_required
+def Worker_registration(request):
+    u_form = WorkerCreationForm(request.POST or None)
+    if request.method == 'POST':
+        if u_form.is_valid():
+            password = get_random_password(12)
+            user = u_form.save(commit=False)
+            user.is_worker = True
+            user.is_active = True
+            user.set_password(password)
+            user.save()
+            Worker_name = u_form.cleaned_data.get('Worker_name')
+            Worker.objects.create(
+                user=user, name=Worker_name, business=request.user.business)
+            current_site = get_current_site(request)
+            login = reverse_lazy('login')
+            login_url = f'http://www.{current_site}{login}'
+            subject = "Account Created At Your Business"
+            message = f'Your Account has been created for your Business.\nYour Username: {user.username}\nYour Password: {password}\nDon\'t Share the details with other\nTo Login Visit: {login_url}'
+            utils.send_email_to_user(subject, message, user)
+            messages.success(
+                request, f'{user.username} Business Worker has been created')
+            return redirect('postWorkerDash')
+    context = {
+        'u_form': u_form,
+        'dashboard': 'selected'
+    }
+    return render(request, 'adminbusiness/base/post-worker.html', context)
+
+# <<====================Ramdom password====================>>
+
+
+def get_random_password(length):
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    password = ''.join(random.choice(letters) for i in range(length))
+    return password
+
+
+class AllNotificationPageView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    template_name = "adminbusiness/main/all-notification-page.html"
+
+    # Check if the user can access this page
+    # Declare permission who can access this page
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.is_business
+        return False
+
+    def get_queryset(self):
+        today = datetime.date.today()
+        return Notification.objects.filter(to_user=self.request.user).exclude(datetime__gt=today).order_by('-datetime')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = datetime.date.today()
+        today_notifications = Notification.objects.filter(
+            to_user=self.request.user).filter(datetime__gt=today).order_by('-datetime')
+        context["today_notifications"] = today_notifications
+        return context
+
+
+class HireNotificationView(View):
+    def get(self, request, notification_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        notification.has_seen = True
+        notification.save()
+        return redirect('business-hiring-list')
+

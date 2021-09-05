@@ -1,4 +1,6 @@
 # External Import
+from notification.models import Notification
+from django.views.generic.base import View
 from bookmark.models import Bookmark
 from django.shortcuts import render, redirect, HttpResponseRedirect, HttpResponse
 from django.views.generic import CreateView
@@ -14,6 +16,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
+import datetime
 from django.views.generic import (
     ListView,
     DeleteView,
@@ -76,7 +79,7 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password Has Updated Successfully')
-            return redirect('customerprofile')
+            return redirect('customer:customerprofile')
         else:
             messages.error(
                 request, 'Invalid Password. Retype Your Password Correctly')
@@ -120,7 +123,8 @@ class CustomerHiringDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVi
         """
         self.object = self.get_object()
         success_url = self.get_success_url()
-        self.object.delete()
+        self.object.status = 'CA'
+        self.object.save()
         return HttpResponseRedirect(success_url)
 
 
@@ -182,6 +186,64 @@ def business_bookmark_toggle_for_customer(request, slug):
 
     resp = {
         "isBookmarked": is_bookmarked,
+    }
+
+    response = json.dumps(resp)
+    return HttpResponse(response, content_type="application/json")
+
+
+class HireNotificationView(View):
+    def get(self, request, notification_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        notification.has_seen = True
+        notification.save()
+        return redirect('customer:customer-hiring-page')
+
+
+class AllNotificationPageView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    template_name = "customer/all-notification-page.html"
+
+    # Check if the user can access this page
+    # Declare permission who can access this page
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.is_customer
+        return False
+
+    def get_queryset(self):
+        today = datetime.date.today()
+        return Notification.objects.filter(to_user=self.request.user).exclude(datetime__gt=today).order_by('-datetime')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = datetime.date.today()
+        today_notifications = Notification.objects.filter(
+            to_user=self.request.user).filter(datetime__gt=today).order_by('-datetime')
+        context["today_notifications"] = today_notifications
+        return context
+
+
+@login_required
+@customer_only
+def notification_seen_toggle_for_customer(request, id):
+    if request.user.is_staff:
+        return HttpResponse("Forbidden")
+
+    current_customer = request.user.customer
+    notification = Notification.objects.get(id=id)
+
+    if notification.to_user.customer != current_customer:
+        return HttpResponse("Forbidden")
+
+    has_seen = notification.has_seen
+    if has_seen:
+        notification.has_seen = False
+    else:
+        notification.has_seen = True
+    notification.save()
+
+    resp = {
+        "has_seen": notification.has_seen,
     }
 
     response = json.dumps(resp)

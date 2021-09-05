@@ -232,18 +232,18 @@
                         {% for i in notifications %}
                             <tr>
                                 <td scope="row" class="Numbering4"></td>
-                                <td>{{i.customer.name}}</td>
+                                <td>{{i.from_user.username}}</td>
                                 <td>                          
-                                    {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
-                                        <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                                    {% if i.from_user.customer.image.url != "/media/static/Image/default.jpg" %}
+                                        <img class="img-fluid rounded-circle" src="{{i.from_user.customer.image.url}}" alt="" />
                                     {% else %}
-                                        <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                                        <img class="img-fluid rounded-circle" src="/{{i.from_user.customer.image.url}}" alt="" />
                                     {% endif %}
                                 </td>
+                                <td>{{i.title}}</td>
                                 <td>{{i.message}}</td>
-                                <td>{{i.read}}</td>
-                                <td>{{i.time}}</td>
-                                <td>{{i.date}}</td>
+                                <td>{{i.has_seen}}</td>
+                                <td>{{i.datetime}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

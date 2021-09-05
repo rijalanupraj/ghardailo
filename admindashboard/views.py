@@ -273,7 +273,7 @@ def business_view(request, business_id):
     business_hires = Hiring.objects.filter(
         business_service__business=particular_business)
     business_notifications = Notification.objects.filter(
-        business=particular_business).all()
+        to_user=particular_business.user).all()
     business_reviews = Review.objects.filter(
         business=particular_business).all()
     business_bookmarks = Bookmark.objects.filter(
@@ -356,7 +356,7 @@ def customer_view(request, customer_id):
 
     customer_hires = Hiring.objects.filter(customer=particular_customer)
     customer_notifications = Notification.objects.filter(
-        customer=particular_customer).all()
+        to_user=particular_customer.user).all()
     customer_reviews = Review.objects.filter(
         customer=particular_customer).all()
     customer_bookmarks = Bookmark.objects.filter(

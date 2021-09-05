@@ -8,6 +8,7 @@ from service.models import *
 from hiring.models import *
 from review.models import *
 from notification.models import *
+from django import forms
 
 
 class ServicesForm(ModelForm):
@@ -68,7 +69,7 @@ class BusinessWorkerForm(ModelForm):
     class Meta:
         model = Worker
         fields = '__all__'
-        exclude= ['business']
+        exclude= ['business','user']
   
 
 class CustomerForm(ModelForm):
@@ -90,3 +91,9 @@ class NotificationForm(ModelForm):
     class Meta:
         model = Notification
         fields = '__all__'
+
+class WorkerCreationForm(ModelForm):
+    Worker_name = forms.CharField(max_length=255, required=False)
+    class Meta:
+        model = User
+        fields = ('username', 'email','Worker_name')

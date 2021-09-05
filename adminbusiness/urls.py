@@ -14,7 +14,7 @@ urlpatterns = [
 
     # for Worker
     path('getWorker', views.getWorker, name="getWorkerDash"),
-    path('postWorker', views.postWorker, name="postWorkerDash"),
+    path('postWorker', views.Worker_registration, name="postWorkerDash"),
     path('updateWorker/<int:Worker_id>',
          views.updateWorker, name="updateWorkerDash"),
     path('deleteWorker/<int:Worker_id>',
@@ -37,5 +37,11 @@ urlpatterns = [
          name='approve_business_hiring'),
     path('hirings/reject/<int:id>', views.reject_business_hiring,
          name='reject_business_hiring'),
+
+     #for notification
+     path('api/notification/<int:notification_pk>',
+         views.HireNotificationView.as_view(), name='business-hire-notification-api'),
+     path('notifications/', views.AllNotificationPageView.as_view(),
+         name="business-all-notification-page"),
 
 ]
