@@ -49,7 +49,7 @@ class CreateHireView(UserPassesTestMixin, View):
 
         # Create New Hire
         Hiring.objects.create(
-            business_service=business_service, customer=customer, message=message_text)
+            business_service=business_service, customer=customer, customer_message=message_text)
 
         slug_of_current_business = request.build_absolute_uri(
             reverse('business-profile', args=(business.slug, )))
