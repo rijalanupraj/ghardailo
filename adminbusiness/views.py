@@ -333,6 +333,12 @@ class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return Hiring.objects.filter(
             business_service__business=self.request.user.business).order_by('-date_time')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        worker = Worker.objects.filter(business=self.request.user.business)
+        context["workers"] = worker
+        return context
+
 
 @login_required
 @business_only
@@ -377,7 +383,8 @@ def Worker_registration(request):
             user.set_password(password)
             user.save()
             Worker_name = u_form.cleaned_data.get('Worker_name')
-            Worker.objects.create(user=user, name=Worker_name, business=request.user.business)
+            Worker.objects.create(
+                user=user, name=Worker_name, business=request.user.business)
             current_site = get_current_site(request)
             login = reverse_lazy('login')
             login_url = f'http://www.{current_site}{login}'
@@ -394,11 +401,14 @@ def Worker_registration(request):
     return render(request, 'adminbusiness/base/post-worker.html', context)
 
 # <<====================Ramdom password====================>>
+
+
 def get_random_password(length):
     # choose from all lowercase letter
     letters = string.ascii_lowercase
     password = ''.join(random.choice(letters) for i in range(length))
     return password
+
 
 class AllNotificationPageView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     template_name = "adminbusiness/main/all-notification-page.html"
@@ -421,6 +431,7 @@ class AllNotificationPageView(LoginRequiredMixin, UserPassesTestMixin, ListView)
             to_user=self.request.user).filter(datetime__gt=today).order_by('-datetime')
         context["today_notifications"] = today_notifications
         return context
+
 
 class HireNotificationView(View):
     def get(self, request, notification_pk, *args, **kwargs):
