@@ -343,9 +343,15 @@ class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 @login_required
 @business_only
 def approve_business_hiring(request, id):
+    worker_id = request.POST['select-worker']
+    message = request.POST['message']
+    worker=Worker.objects.get(id=worker_id)
+
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'AC'
-    hiring.save()
+    hiring.business_message=message
+    hiring.worker=worker
+    hiring.save() 
     customer = hiring.customer
     business_service = hiring.business_service
     # Notification Part
@@ -439,3 +445,4 @@ class HireNotificationView(View):
         notification.has_seen = True
         notification.save()
         return redirect('business-hiring-list')
+
