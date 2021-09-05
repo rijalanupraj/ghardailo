@@ -38,8 +38,8 @@ from business.models import Business
 User = get_user_model()
 
 
-# @login_required(login_url='/')
-
+@login_required
+@customer_only
 def profileupdate(request):
     cu_form = CustomerUpdateForm
 
@@ -70,8 +70,8 @@ def profileupdate(request):
     return render(request, 'customer/customerprofile.html', context)
 
 
-# For password change
-
+@login_required
+@customer_only
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
