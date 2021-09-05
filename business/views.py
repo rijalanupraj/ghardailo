@@ -81,7 +81,9 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
     def test_func(self):
         if self.request.user.is_authenticated:
             return self.request.user.is_customer
-        return True
+        else:
+            return True
+        return False
 
     # Redirect user to who doesn't have permission to access this page
     def handle_no_permission(self):
@@ -98,9 +100,13 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
         context["Worker"] = worker
         review = Review.objects.filter(business__slug=slug)
         context["review"] = review
-        current_user_business_review = Review.objects.get(
-            customer=self.request.user.customer, business=self.object)
-        context["form"] = ReviewForm(instance=current_user_business_review)
+        if self.request.user.is_authenticated and self.request.user.is_customer:
+            try:
+                current_user_business_review = Review.objects.get(
+                    customer=self.request.user.customer, business=self.object)
+            except Review.DoesNotExist:
+                current_user_business_review = None
+            context["form"] = ReviewForm(instance=current_user_business_review)
         return context
 
     def post(self, request, *args, **kwargs):
