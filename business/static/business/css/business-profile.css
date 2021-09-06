@@ -236,15 +236,15 @@ a {
 /*--------------------------------------------------------------
 # Review CSS
 --------------------------------------------------------------*/
-.review_form {  
+.review_form {
   margin-left: 10%;
   margin-right: 10%;
-  font-size: 20px;
+  font-size: 16px;
 }
-.review_form form {  
+.review_form form {
   display: flex;
   flex-direction: column;
-  gap: 8px;  
+  gap: 8px;
   align-items: flex-start;
 }
 .comment_div {
@@ -257,17 +257,17 @@ a {
   padding: 2px 5px 2px 5px;
   height: 150px;
 }
-#id_comment:focus{
-  background:#8461e4;
+#id_comment:focus {
+  background: #f9f8fd;
 }
 
-.review_button {    
+.review_button {
   background-color: #008f37;
   border-radius: 20px;
   box-shadow: rgb(51, 50, 50) 2px 2px 5px;
   padding: 3px 20px 3px 20px;
 }
-.form_closer {  
+.form_closer {
   background-color: red;
   border-radius: 20px;
   box-shadow: rgb(51, 50, 50) 2px 2px 5px;
@@ -281,7 +281,7 @@ a {
   margin-right: 10%;
   height: 480px;
 }
-.comment_editor {    
+.comment_editor {
   background-color: orange;
   border-radius: 20px;
   box-shadow: rgb(51, 50, 50) 2px 2px 5px;
@@ -290,21 +290,21 @@ a {
 .customer_reviews {
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 16px;
   align-items: flex-start;
 }
-.customer_image  {
+.customer_image {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
 .customer_image img {
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
 }
 .customer_image .rated {
- color: #FF9529;
+  color: #ff9529;
 }
 .customer_image .not_rated {
-  color: #FF9529;
+  color: #ff9529;
 }
