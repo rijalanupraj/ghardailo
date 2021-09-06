@@ -28,12 +28,12 @@
         {{obj.name}} {% if obj.is_verified %}<span class="material-icons verified"> verified </span>{% endif %}
       </h5>
       <div class="d-flex flex-row">
-        4.7
+        {{obj.get_avg_rating}}/5.0
         <div class="ratings me-2">
           <span class="material-icons"> star </span><span class="material-icons"> star </span><span
             class="material-icons"> star </span><span class="material-icons"> star </span>
         </div>
-        <span>310 Reviews</span>
+        <span>{{obj.total_reviews}} Reviews</span>
       </div>
       <div class="mt-1 mb-1 spec-1">
         {% for ser in obj.business_service_set.all %}
