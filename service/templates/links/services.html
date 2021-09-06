@@ -36,6 +36,7 @@ Services
   <section id="services" class="services section-bg mt-2">
     <div class="container" data-aos="fade-up">
       <div class="row">
+        {% if services %}
         {% for service in services %}
 
         <div class="col-lg-3 col-md-4 col-sm-6 p-3" data-aos="zoom-in" data-aos-delay="100">
@@ -54,6 +55,17 @@ Services
           </a>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="col-md-12 text-center mt-2">
+          <img src="{% static 'img/websites/no_search_result_found.png' %}" width="200" height="200">
+          <div class="error-template">
+            <h5>No Service Found</h5>
+            <div class="error-details">
+              Sorry, no service found for the query!
+            </div>
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
   </section>
