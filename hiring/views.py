@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import (
 )
 from django.contrib import messages
 from django.urls import reverse
+import datetime
 
 # Internal Import
 from .models import Hiring
@@ -47,17 +48,46 @@ class CreateHireView(UserPassesTestMixin, View):
         user = User.objects.get(id=request.user.id)
         customer = user.customer
 
-        # Create New Hire
-        Hiring.objects.create(
-            business_service=business_service, customer=customer, customer_message=message_text)
+        previous_hirings = Hiring.objects.filter(
+            business_service=business_service, customer=customer, status__in=('PE', 'AC'))
+        try:
+            same_service = Hiring.objects.filter(
+                business_service__service=service, customer=customer, status__in=('PE', 'AC'))
+        except Hiring.DoesNotExist:
+            same_service = None
 
-        slug_of_current_business = request.build_absolute_uri(
-            reverse('business-profile', args=(business.slug, )))
-        messages.success(
-            request, f'You have successfully requested <a href="{slug_of_current_business}">{business.name}</a> for {service} service. Thank You 🙏')
-        # Notification Part
-        notification_message = f"{user.customer.name} requested for service {service.name} "
-        Notification.objects.create(
-            to_user=business.user, from_user=user, title="Hire Request", message=notification_message, business_service=business_service)
+        customer_pending_hiring_count = Hiring.objects.filter(
+            customer=customer, status__in=('PE', 'AC')).count()
+
+        yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
+        cancelled_in_a_day = Hiring.objects.filter(
+            customer=customer, status='CA', date_time__gt=yesterday).count()
+        slug_of_hiring_page = request.build_absolute_uri(
+            reverse('customer:customer-hiring-page'))
+        if previous_hirings:
+            messages.warning(
+                request, f'You have already hired this service from this business </b>{business.name}</b>. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
+        elif same_service:
+            messages.warning(
+                request, f'You have already hired this service from <b>{same_service[0].business_service.business.name}</b>. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
+        elif customer_pending_hiring_count >= 3:
+            messages.warning(
+                request, f'You have already requested hire <b>{customer_pending_hiring_count}</b> times. You can\'t request more than 3 service at a time.')
+        elif cancelled_in_a_day >= 5:
+            messages.warning(
+                request, f'You have been <b>banned</b> for certain time period as you have canceled more than <b>5 hirings</b> in last 24 hours. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
+        else:
+            # Create New Hire
+            Hiring.objects.create(
+                business_service=business_service, customer=customer, customer_message=message_text)
+
+            slug_of_current_business = request.build_absolute_uri(
+                reverse('business-profile', args=(business.slug, )))
+            messages.success(
+                request, f'You have successfully requested <a href="{slug_of_current_business}">{business.name}</a> for {service} service. Thank You 🙏')
+            # Notification Part
+            notification_message = f"{user.customer.name} requested for service {service.name} "
+            Notification.objects.create(
+                to_user=business.user, from_user=user, title="Hire Request", message=notification_message, business_service=business_service)
 
         return redirect(request.META.get('HTTP_REFERER', 'customer-home'))
