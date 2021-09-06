@@ -5,7 +5,7 @@ from .models import *
 
 class BusinessAdmin(admin.ModelAdmin):
     list_display = ('user', 'name', 'logo', 'cover_picture', 'district',
-                    'province', 'is_solo', 'street_address', 'description', 'phone')
+                    'province', 'is_solo', 'is_active', 'is_verified', 'street_address', 'description', 'phone')
 
 
 admin.site.register(Business, BusinessAdmin)

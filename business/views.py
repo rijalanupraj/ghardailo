@@ -1,21 +1,31 @@
-
-from worker.models import Worker
-from bookmark.models import Bookmark
-from business.models import Business
+# External Import
+import business
 from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
     UpdateView,
-    DeleteView
+    DeleteView,
+    FormView,
 )
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
+from django.views.generic.detail import SingleObjectMixin
+from django.http import HttpResponseForbidden
+from django.urls import reverse
+from django.views.generic.edit import FormMixin
 
+# Internal Import
+from worker.models import Worker
+from bookmark.models import Bookmark
+from business.models import Business
+from review.models import Review
+from hiring.models import Hiring
 from worker.models import *
+from .forms import ReviewForm
 
 
 class BusinessListPageView(UserPassesTestMixin, ListView):
@@ -60,17 +70,20 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
         return Business.objects.all()
 
 
-class BusinessProfileView(UserPassesTestMixin, DetailView):
+class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
     queryset = Business.objects.all()
     template_name = "business/business-profile.html"
     slug_url_kwarg = 'slug'
+    form_class = ReviewForm
 
     # Check if the user can access this page
     # Declare permission who can access this page
     def test_func(self):
         if self.request.user.is_authenticated:
             return self.request.user.is_customer
-        return True
+        else:
+            return True
+        return False
 
     # Redirect user to who doesn't have permission to access this page
     def handle_no_permission(self):
@@ -81,9 +94,50 @@ class BusinessProfileView(UserPassesTestMixin, DetailView):
         return redirect('home-page')
 
     def get_context_data(self, **kwargs):
-
         context = super().get_context_data(**kwargs)
         slug = self.kwargs['slug']
         worker = Worker.objects.filter(business__slug=slug)
         context["Worker"] = worker
+        review = Review.objects.filter(business__slug=slug)
+        context["review"] = review
+        no_of_hiring_completed = Hiring.objects.filter(
+            business_service__business__slug=slug, status='CO').count()
+        context["hiring_completed"] = no_of_hiring_completed
+        current_user_business_review = None
+        if self.request.user.is_authenticated and self.request.user.is_customer:
+            try:
+                current_user_business_review = Review.objects.get(
+                    customer=self.request.user.customer, business=self.object)
+            except Review.DoesNotExist:
+                current_user_business_review = None
+            context["form"] = ReviewForm(instance=current_user_business_review)
+        if current_user_business_review == None:
+            context["customer_review_exist"] = False
         return context
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            try:
+                user_business_review = Review.objects.get(
+                    customer=request.user.customer, business=self.object)
+                user_business_review.comment = form.cleaned_data.get('comment')
+                user_business_review.rating = form.cleaned_data.get('rating')
+                user_business_review.save()
+            except Review.DoesNotExist:
+                review = form.save(commit=False)
+                review.business = self.object
+                review.customer = self.request.user.customer
+                review.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('business-profile', kwargs={'slug': self.object.slug})

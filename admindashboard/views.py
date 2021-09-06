@@ -59,13 +59,16 @@ def dashboard(request):
     return render(request, 'admindashboard/dashboard.html', dictionary)
 
 # <<====================Customer Registration====================>>
+
+
 @login_required
 @admin_only
 def customer_registration(request):
     u_form = CustomerCreationForm(request.POST or None)
     if request.method == 'POST':
         if u_form.is_valid():
-            password = get_random_password(12)
+            letters = string.ascii_lowercase
+            password = ''.join(random.choice(letters) for i in range(12))
             user = u_form.save(commit=False)
             user.is_customer = True
             user.is_active = True
@@ -95,7 +98,8 @@ def business_registration(request):
     u_form = BusinessCreationForm(request.POST or None)
     if request.method == 'POST':
         if u_form.is_valid():
-            password = get_random_password(12)
+            letters = string.ascii_lowercase
+            password = ''.join(random.choice(letters) for i in range(12))
             user = u_form.save(commit=False)
             user.is_business = True
             user.is_active = True
@@ -214,7 +218,7 @@ def service_update(request, service_id):
 @login_required
 @admin_only
 def business(request):
-    business = Business.objects.all()
+    business = Business.objects.foradmin()
     business_filter = BusinessFilter(request.GET, queryset=business)
     business_final = business_filter.qs
 
@@ -224,6 +228,24 @@ def business(request):
         'business': 'selected'
     }
     return render(request, 'admindashboard/business.html', dictionary)
+
+
+@login_required
+@admin_only
+def business_active(request, business_id):
+    particular_business = Business.objects.get(id=business_id)
+    particular_business.is_active = True
+    particular_business.save()
+    return redirect("/a/business")
+
+
+@login_required
+@admin_only
+def business_inactive(request, business_id):
+    particular_business = Business.objects.get(id=business_id)
+    particular_business.is_active = False
+    particular_business.save()
+    return redirect("/a/business")
 
 
 @login_required
@@ -283,6 +305,7 @@ def business_view(request, business_id):
     }
     return render(request, 'admindashboard/business_view.html', dictionary)
 
+
 @login_required
 @admin_only
 def change_hire_status1(request, business_id, hire_id):
@@ -290,10 +313,10 @@ def change_hire_status1(request, business_id, hire_id):
     particular_hire = Hiring.objects.get(id=hire_id)
     hire_form = HiringForm1(instance=particular_hire)
     if request.method == "POST":
-        form = HiringForm1(request.POST, instance=particular_hire)        
+        form = HiringForm1(request.POST, instance=particular_hire)
         form.save()
         messages.add_message(request, messages.SUCCESS,
-                                'Hire status has been changed.')
+                             'Hire status has been changed.')
         return redirect('view-business', business_id)
 
     dictionary = {
@@ -305,6 +328,8 @@ def change_hire_status1(request, business_id, hire_id):
     return render(request, 'admindashboard/cbhs.html', dictionary)
 
 # <<====================Customer====================>>
+
+
 @login_required
 @admin_only
 def customer(request):
@@ -315,6 +340,24 @@ def customer(request):
     dictionary = {'customers': customer_final,
                   'customer_filter': customer_filter, 'customer': 'selected'}
     return render(request, 'admindashboard/customer.html', dictionary)
+
+
+@login_required
+@admin_only
+def customer_active(request, customer_id):
+    particular_customer = Customer.objects.get(id=customer_id)
+    particular_customer.is_active = True
+    particular_customer.save()
+    return redirect("/a/customer")
+
+
+@login_required
+@admin_only
+def customer_inactive(request, customer_id):
+    particular_customer = Customer.objects.get(id=customer_id)
+    particular_customer.is_active = False
+    particular_customer.save()
+    return redirect("/a/customer")
 
 
 @login_required
@@ -344,6 +387,7 @@ def customer_view(request, customer_id):
     }
     return render(request, 'admindashboard/customer_view.html', dictionary)
 
+
 @login_required
 @admin_only
 def change_hire_status2(request, customer_id, hire_id):
@@ -351,10 +395,10 @@ def change_hire_status2(request, customer_id, hire_id):
     particular_hire = Hiring.objects.get(id=hire_id)
     hire_form = HiringForm1(instance=particular_hire)
     if request.method == "POST":
-        form = HiringForm1(request.POST, instance=particular_hire)        
+        form = HiringForm1(request.POST, instance=particular_hire)
         form.save()
         messages.add_message(request, messages.SUCCESS,
-                                'Hire status has been changed.')
+                             'Hire status has been changed.')
         return redirect('view-customer', customer_id)
 
     dictionary = {
@@ -366,10 +410,3 @@ def change_hire_status2(request, customer_id, hire_id):
     return render(request, 'admindashboard/cchs.html', dictionary)
 
 # <<====================Ramdom password====================>>
-@login_required
-@admin_only
-def get_random_password(length):
-    # choose from all lowercase letter
-    letters = string.ascii_lowercase
-    password = ''.join(random.choice(letters) for i in range(length))
-    return password

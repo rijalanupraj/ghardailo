@@ -38,8 +38,8 @@ from business.models import Business
 User = get_user_model()
 
 
-# @login_required(login_url='/')
-
+@login_required
+@customer_only
 def profileupdate(request):
     cu_form = CustomerUpdateForm
 
@@ -70,8 +70,8 @@ def profileupdate(request):
     return render(request, 'customer/customerprofile.html', context)
 
 
-# For password change
-
+@login_required
+@customer_only
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -79,7 +79,7 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password Has Updated Successfully')
-            return redirect('customerprofile')
+            return redirect('customer:customerprofile')
         else:
             messages.error(
                 request, 'Invalid Password. Retype Your Password Correctly')
@@ -221,3 +221,30 @@ class AllNotificationPageView(LoginRequiredMixin, UserPassesTestMixin, ListView)
             to_user=self.request.user).filter(datetime__gt=today).order_by('-datetime')
         context["today_notifications"] = today_notifications
         return context
+
+
+@login_required
+@customer_only
+def notification_seen_toggle_for_customer(request, id):
+    if request.user.is_staff:
+        return HttpResponse("Forbidden")
+
+    current_customer = request.user.customer
+    notification = Notification.objects.get(id=id)
+
+    if notification.to_user.customer != current_customer:
+        return HttpResponse("Forbidden")
+
+    has_seen = notification.has_seen
+    if has_seen:
+        notification.has_seen = False
+    else:
+        notification.has_seen = True
+    notification.save()
+
+    resp = {
+        "has_seen": notification.has_seen,
+    }
+
+    response = json.dumps(resp)
+    return HttpResponse(response, content_type="application/json")

@@ -5,6 +5,9 @@
 Notifications
 {% endblock %}
 
+{% block additional_head %}
+
+{% endblock %}
 {% block main_content %}
 
 <div class="container mt-2">
@@ -18,16 +21,25 @@ Notifications
                     {% for object in today_notifications %}
                     <div class="p-3 d-flex align-items-center bg-light border-bottom">
                         <div class="dropdown-list-image mr-3">
-                            {% comment %} <img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                alt="" /> {% endcomment %}
+                            <img class="rounded-circle" src="{{object.from_user.business.logo.url}}" width="50"
+                                height="50" alt="" />
                         </div>
-                        <div class="font-weight-bold me-3">
-                            <div class="fw-bold">{{object.title}}</div>
-                            <div class="small fw-normal text-break">{{object.message}}</div>
-                            <div class="text-muted pt-1 fst-italic" style="font-size:11px">{{object.datetime|timesince}} ago</div>
+                        <div class="row font-weight-bold me-3">
+                            <div class="col-md-12 fw-bold">{{object.title}}</div>
+                            <div class="col-md-8 small fw-normal text-break"><a
+                                    href="{% url 'business-profile' object.from_user.business.slug %}">{{object.from_user.business.name}}</a>
+                                {{object.message}}</div>
+                            <div class="col-md-4">
+                                <a href="{% url 'customer:customer-notification-toggle' object.id %}"
+                                    class="customer-notification-toggle">
+                                    <i class="{% if object.has_seen %}far{% else %}fas{% endif %} fa-dot-circle fa-lg"></i>
+                                </a>
+                            </div>
+                            <div class="text-muted pt-1 fst-italic" style="font-size:11px">{{object.datetime|timesince}}
+                                ago</div>
                         </div>
-                            
-                        
+
+
                     </div>
                     {% endfor %}
                 </div>
@@ -40,14 +52,25 @@ Notifications
                     {% for object in object_list %}
                     <div class="p-3 d-flex align-items-center bg-light border-bottom">
                         <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="{{object.from_user.business.logo.url}}" width="50"
+                                height="50" alt="" />
                         </div>
-                        <div class="font-weight-bold me-3">
-                            <div class="fw-bold">{{object.title}}</div>
-                            <div class="small fw-normal text-break">{{object.message}}</div>
-                            <div class="text-muted pt-1 fst-italic" style="font-size:11px">{{object.datetime|timesince}} ago</div>
+                        <div class="row font-weight-bold me-3">
+                            <div class="col-md-12 fw-bold">{{object.title}}</div>
+                            <div class="col-md-8 small fw-normal text-break"><a
+                                    href="{% url 'business-profile' object.from_user.business.slug %}">{{object.from_user.business.name}}</a>
+                                {{object.message}}</div>
+                            <div class="col-md-4">
+                                <a href="{% url 'customer:customer-notification-toggle' object.id %}"
+                                    class="customer-notification-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% if object.has_seen %}Mark As Unread{% else %}Mark As Read{% endif %}">
+                                    <i class="{% if object.has_seen %}far{% else %}fas{% endif %} fa-dot-circle fa-lg"></i>
+                                </a>
+                            </div>
+                            <div class="text-muted pt-1 fst-italic" style="font-size:11px">{{object.datetime|timesince}}
+                                ago</div>
                         </div>
-                            
-                        
+
+
                     </div>
                     {% endfor %}
                 </div>
@@ -57,3 +80,31 @@ Notifications
 </div>
 
 {% endblock main_content %}
+
+{% block additional_body %}
+<script>
+    $(document).ready(function () {
+        $(".customer-notification-toggle").click(function (e) {
+            e.preventDefault();
+            var href = this.href;
+            seenButton = $(this).children("i");
+            var tooltipMessage = "Mark As Unread";
+            var current_tag = this;
+            $.ajax({
+                url: href,
+                success: function (response) {
+                    if (response["has_seen"]) {
+                        seenButton.removeClass("fas");
+                        seenButton.addClass("far");
+                    } else {
+                        seenButton.removeClass("far");
+                        seenButton.addClass("fas");
+                        tooltipMessage = "Mark As Read";
+                    }
+                $(current_tag).attr('title', tooltipMessage);
+                },
+            });
+        });
+    });
+</script>
+{% endblock %}

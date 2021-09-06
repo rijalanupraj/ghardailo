@@ -7,6 +7,9 @@
 {% url 'getWorkerDash' as getWorker_url %}
 {% url 'changePasswordDash' as changePasswordDash_url %}
 {% url 'business-hiring-list' as businessHiringListPage %}
+{% url 'business-all-notification-page' as businessNotificationPage_url %}
+
+
 
 
 <style>
@@ -64,12 +67,7 @@
            >
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>My Hirings</span>
         </a>
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-envelope fa-fw me-3"></i><span>Mails</span></a
-          >
-      
+        
         <a
            href="{{getWorker_url}}"
            class="list-group-item list-group-item-action py-2 ripple
@@ -82,7 +80,13 @@
            {% if request.path == editProfileBusinessDash_url %}active{% endif %}"
            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Edit business Page</span></a
           >
-
+        <a
+          href="{{businessNotificationPage_url}}"
+          class="list-group-item list-group-item-action py-2 ripple
+          {% if request.path == businessNotificationPage_url %}active{% endif %}"
+          ><i class="fas fa-envelope fa-fw me-3"></i><span>Notification</span></a
+         >
+     
           
       </div>
     </div>

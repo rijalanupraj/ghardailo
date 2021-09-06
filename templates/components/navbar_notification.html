@@ -8,7 +8,7 @@
     <ul class="dropdown-menu notify-drop pull-right">
         <div class="notify-drop-title">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6">Notifications(<b>{{notifications.count}}</b>)</div>
+                <div class="col-md-12 col-sm-12 col-xs-12">New Notifications(<b>{{notifications.count}}</b>)</div>
             </div>
         </div>
         <!-- end notify title -->
@@ -28,7 +28,7 @@
             </a>
             {% endfor %}
             {% else %}
-            <p>No Recent Notifications</p>
+            <p class="text-center">No Unread Notifications</p>
             {% endif %}
         </div>
         <div class="notify-drop-footer text-center">

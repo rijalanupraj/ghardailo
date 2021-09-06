@@ -9,6 +9,7 @@ import re
 # Internal Import
 from service.models import *
 from .utils import unique_slug_generator
+from review.models import Review
 User = get_user_model()
 
 
@@ -75,7 +76,8 @@ class Business(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     name = models.CharField(max_length=50)
-    logo = models.ImageField(blank=True, null=True, upload_to="images/", default="business/logo/default.png")
+    logo = models.ImageField(
+        blank=True, null=True, upload_to="images/", default="business/logo/default.png")
     cover_picture = models.ImageField(
         blank=True, null=True, upload_to="images/")
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -94,8 +96,24 @@ class Business(models.Model):
     def __str__(self):
         return self.name + " | " + self.user.username
 
+    def get_avg_rating(self):
+        reviews = Review.objects.filter(business=self)
+        count = len(reviews)
+        if count == 0:
+            return 0
+        sum = 0
+        for rvw in reviews:
+            sum += rvw.rating
+        return (sum/count)
+
+    def total_reviews(self):
+        reviews = Review.objects.filter(business=self)
+        count = len(reviews)
+        return count
 
 # This is done to create unique slug for the business
+
+
 def post_pre_save_receiver(sender, instance, *args, **kwargs):
     instance.slug = unique_slug_generator(instance)
 
@@ -142,4 +160,3 @@ def create_business_profile(sender, instance, created, **kwargs):
 
 # This Creates the business profile once business is created
 post_save.connect(create_business_profile, sender=Business)
-

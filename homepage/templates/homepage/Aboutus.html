@@ -39,8 +39,7 @@ Ghar Dailo
         <div class="row justify-content-center">
           <div class="col-xl-7 col-lg-9 text-center">
             
-              <!-- <h1> <img src="{% static 'homepage/img/portfolio/Logo.png' %}" class="img-fluid" alt="" />GharDailo </h1> 
-             <span><small> <b>A team of professional always ready for most of your daily problems</b> </small></span>  -->
+            
 
              <h1><span class="iconify" data-width="100" data-height="100" data-icon="flat-color-icons:home"></span> GharDailo </h1> 
              <span><small> <b>A team of professional always ready for most of your daily problems</b> </small></span> 
@@ -51,22 +50,34 @@ Ghar Dailo
           
         </div>
         <br>
+
+        {% if request.user.is_authenticated %}
+
        
 
-        <div id="container">
-          <div id="text"></div><div id="cursor"></div>
-        </div>
-        <br>
+      {% else %}
 
-        <div class="text-center">
-          <span><a href="{% url 'business-registration' %}" class="btn-get-started scrollto ms-4 me-4"> Sign Up As Business </a>
-                <a href="{% url 'customer-registration' %}" class="btn-get-started scrollto">Sign Up As Customer </a>
-           </span>
-          </div>
-          <br>
+      <div id="container">
+        <div id="text"></div><div id="cursor"></div>
+      </div>
+      <br>
+
+      <div class="text-center">
+        <span><a href="{% url 'business-registration' %}" class="btn-get-started scrollto ms-4 me-4"> Sign Up As Business </a>
+              <a href="{% url 'customer-registration' %}" class="btn-get-started scrollto">Sign Up As Customer </a>
+         </span>
+        </div>
+
+      {% endif %}
+       
+
+       
 
         
+          
+        
         <div class="row icon-boxes">
+          <h2 class="mb-3 text-center"> <b>Reason To Choose GharDailo</b> </h2>
           <div
             class="col-md-6 col-lg-3 d-flex align-items-stretch mb-3 mb-lg-0"
             data-aos="zoom-in"
@@ -164,7 +175,6 @@ Ghar Dailo
       </section>
       <!-- End About Section -->
 
-      <!-- ======= Counts Section ======= -->
       <section id="counts" class="counts section-bg">
         <div class="container">
           <div class="row justify-content-end">
@@ -172,9 +182,9 @@ Ghar Dailo
               class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
             >
               <div class="count-box">
-                <span
+               <span
                   data-purecounter-start="0"
-                  data-purecounter-end="65"
+                  data-purecounter-end="{{countcustomer}}"
                   data-purecounter-duration="2"
                   class="purecounter"
                 ></span>
@@ -188,7 +198,7 @@ Ghar Dailo
               <div class="count-box">
                 <span
                   data-purecounter-start="0"
-                  data-purecounter-end="85"
+                  data-purecounter-end="{{countbusiness}}"
                   data-purecounter-duration="2"
                   class="purecounter"
                 ></span>
@@ -202,7 +212,7 @@ Ghar Dailo
               <div class="count-box">
                 <span
                   data-purecounter-start="0"
-                  data-purecounter-end="30"
+                  data-purecounter-end="{{countservice}}"
                   data-purecounter-duration="2"
                   class="purecounter"
                 ></span>
@@ -214,19 +224,13 @@ Ghar Dailo
               class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
             >
               <div class="count-box">
-                <span
-                  data-purecounter-start="0"
-                  data-purecounter-end="20"
-                  data-purecounter-duration="2"
-                  class="purecounter"
-                ></span>
+                <span data-purecounter-start="0" data-purecounter-end="65" data-purecounter-duration="2" class="purecounter"></span>
                 <p>Experience</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- End Counts Section -->
 
       <!-- ======= About Video Section ======= -->
       <section id="about-video" class="about-video">
@@ -351,27 +355,25 @@ Ghar Dailo
       <!-- End Clients Section -->
 
       <!-- ======= Testimonials Section ======= -->
+      {% if testimonials %}
       <section id="testimonials" class="testimonials">
         <div class="container" data-aos="fade-up">
           <div class="section-title">
             <h2>Testimonials</h2>
           
           </div>
-
           <div
             class="testimonials-slider swiper-container"
             data-aos="fade-up"
             data-aos-delay="100"
           >
             <div class="swiper-wrapper">
+         {% for testimonial in testimonials %}
               <div class="swiper-slide">
                 <div class="testimonial-item">
                   <p>
                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Proin iaculis purus consequat sem cure digni ssim donec
-                    porttitora entum suscipit rhoncus. Accusantium quam,
-                    ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                    risus at semper.
+                    {{testimonial.message}}
                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                   </p>
                   <img
@@ -379,99 +381,27 @@ Ghar Dailo
                     class="testimonial-img"
                     alt=""
                   />
-                  <h3>Saul Goodman</h3>
+                  <h3>
+                  {% if testimonial.user.is_customer %}
+                  {{testimonial.user.customer.name}}
+                  {% elif testimonial.user.is_business %}
+                  {{testimonial.user.business.name}}
+                  {% elif testimonial.user.is_staff %}
+                  Anonymous
+                  {% endif %}
+                  </h3>
                   <h4>Ceo &amp; Founder</h4>
                 </div>
               </div>
               <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Export tempor illum tamen malis malis eram quae irure esse
-                    labore quem cillum quid cillum eram malis quorum velit fore
-                    eram velit sunt aliqua noster fugiat irure amet legam anim
-                    culpa.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-2.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Enim nisi quem export duis labore cillum quae magna enim
-                    sint quorum nulla quem veniam duis minim tempor labore quem
-                    eram duis noster aute amet eram fore quis sint minim.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-3.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>Jena Karlis</h3>
-                  <h4>Store Owner</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa
-                    multos export minim fugiat minim velit minim dolor enim duis
-                    veniam ipsum anim magna sunt elit fore quem dolore labore
-                    illum veniam.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-4.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>Matt Brandon</h3>
-                  <h4>Freelancer</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Quis quorum aliqua sint quem legam fore sunt eram irure
-                    aliqua veniam tempor noster veniam enim culpa labore duis
-                    sunt culpa nulla illum cillum fugiat legam esse veniam culpa
-                    fore nisi cillum quid.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                  <img
-                    src="{% static 'homepage/img/testimonials/testimonials-5.jpg' %}"
-                    class="testimonial-img"
-                    alt=""
-                  />
-                  <h3>John Larson</h3>
-                  <h4>Entrepreneur</h4>
-                </div>
-              </div>
-              <!-- End testimonial item -->
+              {% endfor %}
+             
             </div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
       </section>
+      {% endif %}
       <!-- End Testimonials Section -->
 
      
@@ -896,13 +826,13 @@ Ghar Dailo
               <h4>Useful Links</h4>
               <ul>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Home</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'home'%}">Home</a>
                 </li>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">About us</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'about-us'%}">About us</a>
                 </li>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Services</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'business-list-page'%}">Get Service</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
@@ -919,22 +849,22 @@ Ghar Dailo
               <h4>Our Services</h4>
               <ul>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Plumbing</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Plumbing</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
-                  <a href="#">Electrician</a>
+                  <a href="{% url 'customer-services'%}">Electrician</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
-                  <a href="#">Photographer</a>
+                  <a href="{% url 'customer-services'%}">Photographer</a>
                 </li>
                 <li>
-                  <i class="bx bx-chevron-right"></i> <a href="#">Carpenter and Furnishing</a>
+                  <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Carpenter and Furnishing</a>
                 </li>
                 <li>
                   <i class="bx bx-chevron-right"></i>
-                  <a href="#">And Many More</a>
+                  <a href="{% url 'customer-services'%}">View All Servieces</a>
                 </li>
               </ul>
             </div>
