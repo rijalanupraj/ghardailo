@@ -236,3 +236,75 @@ a {
 /*--------------------------------------------------------------
 # Review CSS
 --------------------------------------------------------------*/
+.review_form {  
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 20px;
+}
+.review_form form {  
+  display: flex;
+  flex-direction: column;
+  gap: 8px;  
+  align-items: flex-start;
+}
+.comment_div {
+  display: flex;
+  flex-direction: column;
+}
+#id_comment {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 2px 5px 2px 5px;
+  height: 150px;
+}
+#id_comment:focus{
+  background:#8461e4;
+}
+
+.review_button {    
+  background-color: #008f37;
+  border-radius: 20px;
+  box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+  padding: 3px 20px 3px 20px;
+}
+.form_closer {  
+  background-color: red;
+  border-radius: 20px;
+  box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+  padding: 3px 20px 3px 20px;
+}
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 480px;
+}
+.comment_editor {    
+  background-color: orange;
+  border-radius: 20px;
+  box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+  padding: 3px 20px 3px 20px;
+}
+.customer_reviews {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  align-items: flex-start;
+}
+.customer_image  {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.customer_image img {
+  height: 100px;
+  width: 100px;
+}
+.customer_image .rated {
+ color: #FF9529;
+}
+.customer_image .not_rated {
+  color: #FF9529;
+}
