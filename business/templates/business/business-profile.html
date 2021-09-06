@@ -78,13 +78,13 @@
                                 <li class="nav-item"><a class="nav-link active" href="#business-services-tab"
                                         data-bs-toggle="tab"><i class="fas fa-people-carry"></i></i>
                                         Services</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#business-about-tab" data-bs-toggle="tab"><i
-                                            class="fa fa-user"></i> About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#business-about-tab"
+                                        data-bs-toggle="tab"><i class="fa fa-user"></i> About</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#user-activities" data-bs-toggle="tab"><i
                                             class="fa fa-laptop"></i>
                                         Activities</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#business-reviews-tab" data-bs-toggle="tab"><i
-                                            class="fa fa-envelope"></i>Reviews</a>
+                                <li class="nav-item"><a class="nav-link" href="#business-reviews-tab"
+                                        data-bs-toggle="tab"><i class="fa fa-envelope"></i>Reviews</a>
                                 </li>
                             </ul>
                             <!-- End nav tab -->
@@ -112,10 +112,23 @@
                                                         <i class="fas {{ser.service.icon_text}}"></i>
                                                     </div>
                                                     <h4>{{ser.service.name}}</h4>
-                                                    <button class="btn btn-secondary btn-sm">Request</button>
+                                                    <p>{{ser.description|truncatechars:20}}</p>
+                                                    {% if user.is_authenticated %}
+                                                    <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal"
+                                                        data-bs-target="#request-business{{ser.id}}" type="button">
+                                                        <i class="fas fa-hands-helping"></i>&nbsp;Hire Request
+                                                    </a>
+                                                    {% else %}
+                                                    <a class="btn btn-primary btn-sm mt-2"
+                                                        href="{% url 'login' %}?next={% url 'business-profile' object.slug %}"
+                                                        type="button"><i
+                                                            class="fas fa-hands-helping"></i>&nbsp;Request</a>
+                                                    {% endif %}
+
                                                 </div>
 
                                             </div>
+                                            {% include 'business/snippets/business-profile-page-hiring-modal.html' with obj=object service=ser %}
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -129,8 +142,24 @@
                                         <p>
                                             {{object.description}}
                                         </p>
+                                        <p>
+                                            <strong>Moto</strong>: {{object.business_profile.moto}}
+                                        </p>
                                         <hr>
                                         <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <h5><strong>More</strong> Info</h5>
+                                                <p><b>Established:</b> {{object.business_profile.established}}</p>
+                                                <p><b>Founder:</b> {{object.business_profile.founder}}</p>
+                                                <p><b>Language:</b> {{object.business_profile.language}}</p>
+                                                <p><b>Experience:</b> {{object.business_profile.experience_year}}+</p>
+                                                <p><b>Service Provided:</b>
+                                                    {{object.business_profile.service_provided}}+</p>
+                                                <p><b>Happy Customers:</b> {{object.business_profile.happy_customers}}+
+                                                </p>
+                                                <p><b>Awards Own:</b> {{object.business_profile.Awards_won}}+</p>
+                                            </div>
                                             <div class="col-sm-6">
                                                 <h5><strong>CONTACT</strong> ME</h5>
                                                 <address>
@@ -147,14 +176,17 @@
                                                     <a href="http://r209.com">http://r209.com</a>
                                                 </address>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <h5><strong>MY</strong> SKILLS</h5>
-                                                <p>UI Design</p>
-                                                <p>Clean and Modern Web Design</p>
-                                                <p>PHP and MySQL Programming</p>
-                                                <p>Vector Design</p>
-                                            </div>
                                         </div><!-- End div .row -->
+                                        <!--Worker Row Starts-->
+                                        <hr>
+                                        <div class="row">
+                                            <h5>Workers</h5>
+                                            <div class="col">
+                                                {% for worker in workers %}
+                                                {{worker.name}}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
                                     </div><!-- End div .user-profile-content -->
                                 </div><!-- End div .tab-pane -->
                                 <!-- End Tab about -->
@@ -171,7 +203,7 @@
                                 <!-- Tab user messages -->
                                 <div class="tab-pane animated fadeInRight" id="business-reviews-tab">
                                     <div class="scroll-user-widget">
-                                    {% if request.user.is_authenticated and request.user.is_customer %}
+                                        {% if request.user.is_authenticated and request.user.is_customer %}
                                         <div class="review_form mb-5">
                                             <form method="POST">
                                                 {% csrf_token %}

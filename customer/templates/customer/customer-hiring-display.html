@@ -28,7 +28,7 @@ Hirings
               <td>{{hire.business_service.business.name}} - {{hire.business_service.service.name}}</td>
               <td><span class="badge rounded-pill bg-primary">{{hire.get_status_display}}</span></td>
               <td>
-              {% ifequal hire.get_status_display 'PENDING' %}
+              {% ifequal hire.get_status_display 'Pending' %}
                 <form method="POST" action="{% url 'customer:customer-hiring-delete-view' hire.id %}">
                   {% csrf_token %}<input onclick="return confirm('Are you sure want to Cancel this hiring?')"
                     type="submit" class="btn btn-sm btn-danger" value="Cancel">
