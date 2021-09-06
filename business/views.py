@@ -1,4 +1,5 @@
 # External Import
+from customer.models import Customer
 import business
 from django.views.generic import (
     ListView,
@@ -7,6 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
     FormView,
+    View,
 )
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import (
@@ -14,9 +16,11 @@ from django.contrib.auth.mixins import (
     UserPassesTestMixin
 )
 from django.views.generic.detail import SingleObjectMixin
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, request
 from django.urls import reverse
 from django.views.generic.edit import FormMixin
+from django.contrib import messages
+
 
 # Internal Import
 from worker.models import Worker
@@ -26,6 +30,7 @@ from review.models import Review
 from hiring.models import Hiring
 from worker.models import *
 from .forms import ReviewForm
+from reportuser.models import ReportUser
 
 
 class BusinessListPageView(UserPassesTestMixin, ListView):
@@ -141,3 +146,36 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
 
     def get_success_url(self):
         return reverse('business-profile', kwargs={'slug': self.object.slug})
+
+
+class BusinessReportingView(UserPassesTestMixin, View):
+
+    def test_func(self):
+        if not self.request.user.is_authenticated and not self.request.user.is_staff:
+            return False
+        return True
+
+    def post(self, request):
+        business_slug = request.POST['business-slug']
+        reported_text = request.POST['reported-text']
+
+        # Get Business
+        reported_user = Business.objects.get(slug=business_slug).user
+        reported_by = request.user
+
+        # Check whether user has reported earlier
+        previous_report = ReportUser.objects.filter(
+            suspicious_user=reported_user, reported_by=reported_by, status='PE')
+
+        if previous_report:
+            messages.warning(
+                request, f'You have already reported this business. Our Team in working on your report. We will inform you soon. Sorry For Your Inconvenience 🙏')
+        else:
+            # Create Reporting
+            ReportUser.objects.create(
+                suspicious_user=reported_user, reported_by=reported_by, reported_message=reported_text)
+
+            messages.success(
+                request, f'You have successfully reported {reported_user.business.name}. We will check your report soon. Sorry For Your Inconvenience 🙏')
+
+        return redirect(request.META.get('HTTP_REFERER', 'customer-home'))
