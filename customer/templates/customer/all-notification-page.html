@@ -21,9 +21,14 @@ Notifications
                     {% if today_notifications %}
                     {% for object in today_notifications %}
                     <div class="p-3 d-flex align-items-center bg-light border-bottom">
-                        <div class="dropdown-list-image mr-3">
+                        <div class="dropdown-list-image me-3">
+                        {% if object.from_user.business.logo %}
                             <img class="rounded-circle" src="{{object.from_user.business.logo.url}}" width="50"
                                 height="50" alt="" />
+                        {% else %}
+                            <img class="rounded-circle" src="{% static 'business/images/profile/building_company.png' %}" width="50"
+                                height="50" alt="" />
+                        {% endif %}
                         </div>
                         <div class="row font-weight-bold me-3">
                             <div class="col-md-12 fw-bold">{{object.title}}</div>

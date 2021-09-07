@@ -26,6 +26,7 @@ from django.views.generic import (
 from hiring.models import *
 from accounts.auth import worker_only
 from django.contrib.auth.decorators import login_required
+from notification.models import Notification
 
 
 @login_required
@@ -119,10 +120,9 @@ def complete_worker_hiring(request, id):
         hiring.save()
         customer = hiring.customer
         business_service = hiring.business_service
-        # # Notification Part
-        # notification_message = f"approved your hire request for {business_service.service.name} service"
-        # Notification.objects.create(
-        #     to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
+        notification_message = f"marked your hiring as complete for {business_service.service.name} service"
+        Notification.objects.create(
+            to_user=customer.user, from_user=business_service.business.user, title="Hiring Completed", message=notification_message, business_service=business_service)
         return redirect('worker:worker-hiring-list')
     else:
         raise Http404()

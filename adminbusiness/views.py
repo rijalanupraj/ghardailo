@@ -372,9 +372,9 @@ def complete_business_hiring(request, id):
     customer = hiring.customer
     business_service = hiring.business_service
     # Notification Part
-    notification_message = f"Complete your hire request for {business_service.service.name} service"
+    notification_message = f"marked your hiring as complete for {business_service.service.name} service"
     Notification.objects.create(
-        to_user=customer.user, from_user=request.user, title="Completed Hire Request", message=notification_message, business_service=business_service)
+        to_user=customer.user, from_user=request.user, title="Hiring Completed", message=notification_message, business_service=business_service)
     return redirect('adminbusiness:business-hiring-list')
 
 
