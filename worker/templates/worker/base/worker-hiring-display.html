@@ -46,7 +46,7 @@ Hirings
                             
                             <td>
                                 {% ifequal hire.get_status_display 'Accepted'  %}
-                                <a class="btn btn-primary" href="{% url 'complete_worker_hiring' hire.id %}">Complete</a>
+                                <a class="btn btn-primary" href="{% url 'worker:complete-worker-hiring' hire.id %}">Complete</a>
                                  
                                 {% endifequal %}
                             </td>

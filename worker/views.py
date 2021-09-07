@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .forms import WorkerProfileForm
 from django.contrib import messages
 from .models import *
@@ -24,26 +24,26 @@ from django.views.generic import (
 
 from hiring.models import *
 
+
 def workerDashboard(request):
     hiring_completed = Hiring.objects.filter(
-            worker=request.user.worker, status='CO').count()
-    
-    hiring_onhold = Hiring.objects.filter(
-            worker=request.user.worker, status='AC').count()
+        worker=request.user.worker, status='CO').count()
 
+    hiring_onhold = Hiring.objects.filter(
+        worker=request.user.worker, status='AC').count()
 
     context = {
-        'hiring_completed':hiring_completed,
-        'hiring_onhold':hiring_onhold,
+        'hiring_completed': hiring_completed,
+        'hiring_onhold': hiring_onhold,
     }
     return render(request, 'worker/base/worker-dashboard.html', context)
-    
-    
+
+
 def getProfile(request, worker_id):
     profile = Worker.objects.get(id=worker_id)
 
     context = {
-        'profile':profile,
+        'profile': profile,
     }
     return render(request, 'worker/main/wprofile.html', context)
 
@@ -76,6 +76,7 @@ def getProfile(request, worker_id):
 
 #     return render(request, 'customer/customerprofile.html', context)
 
+
 class WorkerHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     template_name = "worker/base/worker-hiring-display.html"
 
@@ -94,17 +95,19 @@ class WorkerHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context = super().get_context_data(**kwargs)
         return context
 
+
 def complete_worker_hiring(request, id):
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'CO'
-    hiring.save() 
+    hiring.save()
     customer = hiring.customer
     business_service = hiring.business_service
     # # Notification Part
     # notification_message = f"approved your hire request for {business_service.service.name} service"
     # Notification.objects.create(
     #     to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
-    return redirect('WorkerHiringdash')
+    return redirect('worker:worker-hiring-list')
+
 
 def change_password(request):
     if request.method == 'POST':
@@ -122,6 +125,8 @@ def change_password(request):
     return render(request, 'worker/base/change-password.html', {
         'form': form
     })
+    return redirect('worker:worker-dashboard')
+
 
 def editWorker(request):
     if request.method == 'POST':
@@ -131,7 +136,7 @@ def editWorker(request):
             form.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Service Added Successfully')
-            # return redirect('getProfileDash')
+            return redirect('worker:worker-dashboard')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding service')

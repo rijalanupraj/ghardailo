@@ -142,6 +142,8 @@ class CustomerLoginView(auth_views.LoginView):
             return reverse_lazy('home')
         elif (self.request.user.is_business):
             return reverse_lazy('businessDash')
+        elif (self.request.user.is_worker):
+            return reverse_lazy('worker:worker-dashboard')
         elif (self.request.user.is_staff):
             return reverse_lazy('my-admin-dashboard')
         return super().get_success_url()

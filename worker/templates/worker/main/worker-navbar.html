@@ -1,10 +1,10 @@
 {% load static %}
 {% load custom_tags %}
-{% url 'workerDashboard' as workerDashboard_url %}
-{% url 'WorkerHiringdash' as WorkerHiringdash_url %}
-{% url 'changePasswordDash' as changePasswordDash_url %}
-{% url 'editProfileDash' as editProfileDash_url %}
-{% url 'workerProfile' as workerProfile_url %}
+{% url 'worker:worker-dashboard' as workerDashboard_url %}
+{% url 'worker:worker-hiring-list' as WorkerHiringdash_url %}
+{% url 'worker:change-password' as changePasswordDash_url %}
+{% url 'worker:edit-profile' as editProfileDash_url %}
+{% url 'worker:worker-profile' as workerProfile_url %}
 
 
 
@@ -140,7 +140,7 @@
            </a></li>
            
            <a
-          href="{% url 'workerProfile' user.worker.id %}"
+          href="{% url 'worker:worker-profile' user.worker.id %}"
           target="__blank"
           class="list-group-item list-group-item-action py-2
           "
