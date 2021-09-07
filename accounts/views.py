@@ -211,8 +211,8 @@ def password_reset_request(request):
                     return HttpResponse('Invalid Header')
             messages.success(request, f'Check Your Email For Password Reset')
             return redirect('login')
-
-    password_reset_form = PasswordResetForm()
+    else:
+        password_reset_form = PasswordResetForm()
     context = {
         'password_reset_form': password_reset_form,
     }
