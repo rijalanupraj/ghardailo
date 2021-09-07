@@ -45,16 +45,20 @@ def businessDashboard(request):
     user = request.user
     business = Business.objects.get(user=user)
     gallery = Gallery.objects.all()
-    business_service = Business_Service.objects.all()
-    business_service_count = Business_Service.objects.all().count()
-    worker = Worker.objects.all()
-    worker_count = Worker.objects.all().count()
-    customer = Customer.objects.all()
-    customer_count = Customer.objects.all().count()
+    business_service = Business_Service.objects.filter(
+        business=user.business)
+    business_service_count = Business_Service.objects.filter(
+        business=user.business).count()
+    worker = Worker.objects.filter(business=user.business)
+    worker_count = Worker.objects.filter(business=user.business).count()
+    customer = Hiring.objects.filter(business_service__business=user.business)
+    customer_count = Hiring.objects.filter(
+        business_service__business=user.business).count()
     hiring = Hiring.objects.all()
-    hiring_count = Hiring.objects.all().count()
-    review = Review.objects.all()
-    review_count = Review.objects.all().count()
+    hiring_count = Hiring.objects.filter(
+        business_service__business=user.business).count()
+    review = Review.objects.filter(business=user.business)
+    review_count = Review.objects.filter(business=user.business).count()
 
     context = {
         'business': business,
@@ -110,7 +114,7 @@ def postService(request):
                 obj.save()
                 messages.add_message(
                     request, messages.SUCCESS, 'Service Added Successfully')
-            return redirect('getServiceDash')
+            return redirect('adminbusiness:get-service-dash')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding service')
@@ -134,7 +138,7 @@ def updateService(request, service_id):
             request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('/b/getService')
+            return redirect('adminbusiness:get-service-dash')
     context = {
         'form': BusinessServicesForm1(instance=instance),
         'service': instance
@@ -147,7 +151,7 @@ def updateService(request, service_id):
 def deleteService(request, service_id):
     service = Business_Service.objects.get(id=service_id)
     service.delete()
-    return redirect('getServiceDash')
+    return redirect('adminbusiness:get-service-dash')
 
 
 # for profile
@@ -172,7 +176,7 @@ def editBusiness(request):
             form.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Service Added Successfully')
-            # return redirect('getProfileDash')
+            return redirect('adminbusiness:get-profile-dash')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding service')
@@ -198,7 +202,7 @@ def editBusinessProfile(request):
             form1.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Business Profile Added Successfully')
-            # return redirect('getProfileDash')
+            return redirect('adminbusiness:get-profile-dash')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding Business Profile')
@@ -223,7 +227,7 @@ def updateProfile(request, profile_id):
             request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('/b/getProfile')
+            return redirect('adminbusiness:get-profile-dash')
     context = {
         'form': BusinessProfileForm(instance=instance),
     }
@@ -240,7 +244,7 @@ def change_password(request):
             update_session_auth_hash(request, user)  # Important!
             messages.success(
                 request, 'Your password was successfully updated!')
-            return redirect('changePasswordDash')
+            return redirect('adminbusiness:change-password-dash')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
@@ -303,7 +307,7 @@ def updateWorker(request, Worker_id):
             request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('/b/getWorker')
+            return redirect('adminbusiness:get-worker-dash')
     context = {
         'form': BusinessWorkerForm(instance=instance),
         'worker': instance
@@ -316,7 +320,7 @@ def updateWorker(request, Worker_id):
 def deleteWorker(request, Worker_id):
     worker = Worker.objects.get(id=Worker_id)
     worker.delete()
-    return redirect('getWorkerDash')
+    return redirect('adminbusiness:get-worker-dash')
 
 
 class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
@@ -345,32 +349,33 @@ class BusinessHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 def approve_business_hiring(request, id):
     worker_id = request.POST['select-worker']
     message = request.POST['message']
-    worker=Worker.objects.get(id=worker_id)
+    worker = Worker.objects.get(id=worker_id)
 
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'AC'
-    hiring.business_message=message
-    hiring.worker=worker
-    hiring.save() 
+    hiring.business_message = message
+    hiring.worker = worker
+    hiring.save()
     customer = hiring.customer
     business_service = hiring.business_service
     # Notification Part
     notification_message = f"approved your hire request for {business_service.service.name} service"
     Notification.objects.create(
         to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
-    return redirect('business-hiring-list')
+    return redirect('adminbusiness:business-hiring-list')
+
 
 def complete_business_hiring(request, id):
     hiring = Hiring.objects.get(id=id)
     hiring.status = 'CO'
-    hiring.save() 
+    hiring.save()
     customer = hiring.customer
     business_service = hiring.business_service
     # Notification Part
     notification_message = f"Complete your hire request for {business_service.service.name} service"
     Notification.objects.create(
         to_user=customer.user, from_user=request.user, title="Completed Hire Request", message=notification_message, business_service=business_service)
-    return redirect('business-hiring-list')
+    return redirect('adminbusiness:business-hiring-list')
 
 
 @login_required
@@ -378,7 +383,7 @@ def complete_business_hiring(request, id):
 def reject_business_hiring(request, id):
     message = request.POST['message']
     hiring = Hiring.objects.get(id=id)
-    hiring.business_message=message
+    hiring.business_message = message
     hiring.status = 'RE'
     hiring.save()
     customer = hiring.customer
@@ -387,7 +392,7 @@ def reject_business_hiring(request, id):
     notification_message = f"rejected your hire request for {business_service.service.name} service"
     Notification.objects.create(
         to_user=customer.user, from_user=request.user, title="Rejected Hire Request", message=notification_message, business_service=business_service)
-    return redirect('business-hiring-list')
+    return redirect('adminbusiness:business-hiring-list')
 
 
 # <<====================Worker Registration====================>>
@@ -413,7 +418,7 @@ def Worker_registration(request):
             utils.send_email_to_user(subject, message, user)
             messages.success(
                 request, f'{user.username} Business Worker has been created')
-            return redirect('postWorkerDash')
+            return redirect('adminbusiness:post-worker-dash')
     context = {
         'u_form': u_form,
         'dashboard': 'selected'
@@ -458,5 +463,4 @@ class HireNotificationView(View):
         notification = Notification.objects.get(pk=notification_pk)
         notification.has_seen = True
         notification.save()
-        return redirect('business-hiring-list')
-
+        return redirect('adminbusiness:business-hiring-list')

@@ -141,7 +141,7 @@ class CustomerLoginView(auth_views.LoginView):
         if(self.request.user.is_customer):
             return reverse_lazy('home')
         elif (self.request.user.is_business):
-            return reverse_lazy('businessDash')
+            return reverse_lazy('adminbusiness:business-dash')
         elif (self.request.user.is_worker):
             return reverse_lazy('worker:worker-dashboard')
         elif (self.request.user.is_staff):

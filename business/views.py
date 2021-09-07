@@ -47,7 +47,7 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
     # Redirect user to who doesn't have permission to access this page
     def handle_no_permission(self):
         if self.request.user.is_business:
-            return redirect('businessDash')
+            return redirect('adminbusiness:business-dash')
         elif self.request.user.is_staff:
             return redirect('my-admin-dashboard')
         return redirect('home-page')
@@ -93,7 +93,7 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
     # Redirect user to who doesn't have permission to access this page
     def handle_no_permission(self):
         if self.request.user.is_business:
-            return redirect('businessDash')
+            return redirect('adminbusiness:business-dash')
         elif self.request.user.is_staff:
             return redirect('my-admin-dashboard')
         return redirect('home-page')

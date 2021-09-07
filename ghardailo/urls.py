@@ -14,15 +14,15 @@ urlpatterns = [
     path('', include('homepage.urls')),
     # path('', include('Customer.urls')),
     path('a/', include('admindashboard.urls')),
-    path('b/', include('adminbusiness.urls')),
+    path('mybusiness/', include('adminbusiness.urls')),
     path('', include('customer.urls')),
     path('', include('accounts.urls')),
     path('', include('business.urls')),
     path('', include('homepage.urls')),
     path('services/', include('service.urls')),
     path('', include('hiring.urls')),
-    path('w/', include('worker.urls')),
-    
+    path('worker/', include('worker.urls')),
+
 ]
 
 # Static & Media Management Files For Debug Mode Only.

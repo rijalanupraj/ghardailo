@@ -55,8 +55,8 @@
           {% if user.is_authenticated %}
             <a class="mb-1 fw-bold{% if request.user.is_staff %} disabled{% endif %}{{ active_profile }}" 
             href="{% if request.user.is_customer %}{% url 'customer:customerprofile' %}
-            {% elif request.user.is_business %}{% url 'editBusinessProfileDash' %}
-            {% elif request.user.is_worker %}{% url 'workerDashboard' %}{% endif %}" id="Username">
+            {% elif request.user.is_business %}{% url 'adminbusiness:edit-business-profile-dash' %}
+            {% elif request.user.is_worker %}{% url 'worker:worker-dashboard' %}{% endif %}" id="Username">
             {% if request.user.is_customer %}{{request.user.customer.name}}
             {% elif request.user.is_business %}{{request.user.business.name}}
             {% elif request.user.is_worker %}{{request.user.worker.name}}{% else %}

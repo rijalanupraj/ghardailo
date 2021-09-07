@@ -26,7 +26,7 @@
                     </form>
                 </div>
                 <a class="btn btn-success btn-bg ml-auto mb-2" style="width: 100%"
-                   href="{% url 'postWorkerDash' %}">Add New Worker</a>
+                   href="{% url 'adminbusiness:post-worker-dash' %}">Add New Worker</a>
                    
                 <table class="table table-responsive table-white" >
                     <tr class="btn-danger">
@@ -45,10 +45,10 @@
                         <td>{{ w.is_active }}</td>
                         <td>{{ w.phone }}</td>
 
-                       <td><a href="updateWorker/{{ w.id }}"
+                       <td><a href="{% url 'adminbusiness:update-worker-dash' w.id %}"
                                class="btn btn-primary btn-sm">Edit</a>&nbsp;
                     
-                            <a href="deleteWorker/{{ w.id }}"
+                            <a href="{% url 'adminbusiness:delete-worker-dash' w.id %}"
                                class="btn btn-danger btn-sm"
                                onclick="return confirm('Are you sure want to delete this file?')">
                                 Delete</a></td> 

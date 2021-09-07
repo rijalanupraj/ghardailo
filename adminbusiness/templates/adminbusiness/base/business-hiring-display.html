@@ -62,7 +62,7 @@ Hirings
                                 
                                 {% endifequal %}
                                 {% ifequal hire.get_status_display 'Accepted'  %}
-                                <a class="btn btn-primary" href="{% url 'complete_business_hiring' hire.id %}" onclick="return confirm('Are you sure you want to complete this hiring?')">Complete</a>
+                                <a class="btn btn-primary" href="{% url 'adminbusiness:complete-business-hiring' hire.id %}" onclick="return confirm('Are you sure you want to complete this hiring?')">Complete</a>
                                  
                                 {% endifequal %}
                             </td>

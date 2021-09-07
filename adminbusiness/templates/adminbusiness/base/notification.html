@@ -21,9 +21,9 @@
         >
     {% for noti in limit_notifications %}
     
-      <li><a class="dropdown-item" href="{% url 'business-hire-notification-api' noti.id %}">{{noti.message}}</a></li>
+      <li><a class="dropdown-item" href="{% url 'adminbusiness:business-hire-notification-api' noti.id %}">{{noti.message}}</a></li>
     {% endfor %}
-    <a class="text-center" href="{% url 'business-all-notification-page' %}"><p>View More</p></a>
+    <a class="text-center" href="{% url 'adminbusiness:business-all-notification-page' %}"><p>View More</p></a>
     </ul>
     
   </li>
