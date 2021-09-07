@@ -13,14 +13,13 @@
             style="background:url('/media/{{ object.cover_picture }}')fixed no-repeat;background-size: cover ;">
             {% else %}
             <div class="profile-banner"
-                style="background:url('https://www.dochipo.com/wp-content/uploads/2020/01/feature-image.png')fixed no-repeat;background-size: cover ">
+                style="background:url('/static/business/images/profile/empty_placeholder.jpg')fixed no-repeat;background-size: cover ">
                 {% endif %}
                 <div class="col-sm-3 avatar-container">
                     {% if object.logo %}
                     <img src="{{object.logo.url}}" class="rounded-circle profile-avatar" alt="User avatar">
                     {% else %}
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT52CmBftb6qQ9q-Iep12W88tyA63IKjJXvhA&usqp=CAU"
-                        class="rounded-circle profile-avatar" alt="User avatar">
+                    <img src="{% static 'business/images/profile/building_company.png' %}" class="rounded-circle profile-avatar" alt="User avatar">
                     {% endif %}
                 </div>
                 <div class="col-sm-12 profile-actions text-end pe-2">
