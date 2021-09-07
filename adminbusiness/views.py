@@ -358,6 +358,18 @@ def approve_business_hiring(request, id):
     hiring.save()
     customer = hiring.customer
     business_service = hiring.business_service
+    service = business_service.service
+
+    customer_same_service_hirings = Hiring.objects.filter(
+        customer=customer, business_service__service=service, status__in=('PE',))
+    for h in customer_same_service_hirings:
+        if h != hiring:
+            h.status = 'LA'
+            h.save()
+            notification_message = f"{business_service.business.name} hijacked your hiring for {service} service of {customer.name} customer. The hire status is marked as Late."
+            Notification.objects.create(
+                to_user=h.business_service.business.user, from_user=h.customer.user, title="Hijacked Hire Request", message=notification_message, business_service=business_service)
+
     # Notification Part
     notification_message = f"approved your hire request for {business_service.service.name} service"
     Notification.objects.create(

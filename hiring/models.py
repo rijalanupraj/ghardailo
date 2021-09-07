@@ -10,18 +10,21 @@ class Hiring(models.Model):
     REJECTED = 'RE'
     CANCEL = 'CA'
     COMPLETED = 'CO'
+    LATE = 'LA'
     HIRE_STATUS = [
         (PENDING, 'Pending'),
         (ACCEPTED, 'Accepted'),
         (REJECTED, 'Rejected'),
         (CANCEL, 'Cancel'),
         (COMPLETED, 'Completed'),
+        (LATE, 'Late'),
     ]
 
     business_service = models.ForeignKey(
         Business_Service, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    worker = models.ForeignKey(Worker, on_delete=models.CASCADE, null=True, blank=True)
+    worker = models.ForeignKey(
+        Worker, on_delete=models.CASCADE, null=True, blank=True)
     date_time = models.DateTimeField(auto_now_add=True)
     customer_message = models.TextField(null=True)
     business_message = models.TextField(null=True)
