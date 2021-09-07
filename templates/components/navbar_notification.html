@@ -20,8 +20,7 @@
                 <div class="notifications-item"> <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
                     <div class="text">
                         <h4>{{notification.title}}</h4>
-                        <p><a href="{% url 'business-profile' notification.from_user.business.slug %}"><b
-                                    class="text-secondary">{{notification.from_user.business.name}}</b></a>
+                        <p><b class="text-secondary">{{notification.from_user.business.name}}</b>
                             {{notification.message}}</p>
                     </div>
                 </div>

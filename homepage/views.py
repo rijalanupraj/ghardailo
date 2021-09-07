@@ -5,7 +5,7 @@ from django.shortcuts import render
 # Internal Improt
 from service.models import Services
 from customer.models import Customer
-
+from hiring.models import Hiring
 # Create your views here.
 
 
@@ -25,12 +25,14 @@ def main_homepage(request):
     countservice = Services.objects.filter(is_active=True).count()
     countbusiness = Business.objects.filter(is_active=True).count()
     countcustomer = Customer.objects.all().count()
+    hiring_completed = Hiring.objects.filter(status='CO').count()
     context = {
         'services': service,
         'testimonials': testimonials,
         'countservice': countservice,
         'countbusiness': countbusiness,
         'countcustomer': countcustomer,
+        'hiring_completed': hiring_completed,
     }
 
     return render(request, 'homepage/home-page.html', context)
@@ -43,13 +45,11 @@ def about_us(request):
     countbusiness = Business.objects.filter(is_active=True).count()
     countcustomer = Customer.objects.all().count()
     context = {
-       
+
         'testimonials': testimonials,
         'countservice': countservice,
         'countbusiness': countbusiness,
         'countcustomer': countcustomer,
     }
 
-
-
-    return render(request, 'homepage/Aboutus.html',context)
+    return render(request, 'homepage/Aboutus.html', context)
