@@ -5,30 +5,30 @@ urlpatterns = [
     path('dashboard', views.businessDashboard, name="business-dash"),
 
     # for service
-    path('getService', views.getService, name="get-service-dash"),
-    path('postService', views.postService, name="post-service-dash"),
-    path('updateService/<int:service_id>',
+    path('show-service', views.getService, name="get-service-dash"),
+    path('new-service', views.postService, name="post-service-dash"),
+    path('update-service/<int:service_id>',
          views.updateService, name="update-service-dash"),
-    path('deleteService/<int:service_id>',
+    path('delete-service/<int:service_id>',
          views.deleteService, name="delete-service-dash"),
 
     # for Worker
-    path('getWorker', views.getWorker, name="get-worker-dash"),
-    path('postWorker', views.Worker_registration, name="post-worker-dash"),
-    path('updateWorker/<int:Worker_id>',
+    path('show-workers', views.getWorker, name="get-worker-dash"),
+    path('create-worker', views.Worker_registration, name="post-worker-dash"),
+    path('update-worker/<int:Worker_id>',
          views.updateWorker, name="update-worker-dash"),
-    path('deleteWorker/<int:Worker_id>',
+    path('delete-worker/<int:Worker_id>',
          views.deleteWorker, name="delete-worker-dash"),
 
     # for profile
-    path('getProfile', views.getProfile, name="get-profile-dash"),
-    path('editBusiness', views.editBusiness, name="edit-business-dash"),
-    path('editBusinessProfile', views.editBusinessProfile,
+    path('show-profile', views.getProfile, name="get-profile-dash"),
+    path('edit-business', views.editBusiness, name="edit-business-dash"),
+    path('edit-business-profile', views.editBusinessProfile,
          name="edit-business-profile-dash"),
-    path('updateProfile/<int:profile_id>',
+    path('update-profile/<int:profile_id>',
          views.updateProfile, name="update-profile-dash"),
 
-    path('changePassword', views.change_password, name='change-password-dash'),
+    path('change-password', views.change_password, name='change-password-dash'),
 
     # For Hiring
     path('hirings/', views.BusinessHiringListView.as_view(),
