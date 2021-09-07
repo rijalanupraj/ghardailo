@@ -27,7 +27,7 @@ class BusinessForm(ModelForm):
 class EditBusinessForm(ModelForm):
     class Meta:
         model = Business
-        fields = ["name", "logo", "is_solo"]
+        fields = ["name", "logo","cover_picture", "is_solo"]
 
 class BusinessProfileForm(ModelForm):
     class Meta:

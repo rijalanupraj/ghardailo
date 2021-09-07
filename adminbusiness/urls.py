@@ -35,6 +35,8 @@ urlpatterns = [
          name='business-hiring-list'),
     path('hirings/approve/<int:id>', views.approve_business_hiring,
          name='approve_business_hiring'),
+     path('hirings/complete/<int:id>', views.complete_business_hiring,
+         name='complete_business_hiring'),
     path('hirings/reject/<int:id>', views.reject_business_hiring,
          name='reject_business_hiring'),
 
