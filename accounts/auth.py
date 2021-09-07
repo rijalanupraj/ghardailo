@@ -45,5 +45,12 @@ def customer_only(view_function):
         if request.user.is_staff:
             return redirect('admindashboard:my-admin-dashboard')
         else:
-            return redirect('businessDash')
+            return redirect('adminbusiness:business-dash')
+    return wrapper_function
+
+
+def worker_only(view_function):
+    def wrapper_function(request, *args, **kwargs):
+        if request.user.is_worker:
+            return view_function(request, *args, **kwargs)
     return wrapper_function

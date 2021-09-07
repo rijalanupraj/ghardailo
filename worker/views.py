@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render, redirect
 from .forms import WorkerProfileForm
 from django.contrib import messages
@@ -23,8 +24,12 @@ from django.views.generic import (
 )
 
 from hiring.models import *
+from accounts.auth import worker_only
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
+@worker_only
 def workerDashboard(request):
     hiring_completed = Hiring.objects.filter(
         worker=request.user.worker, status='CO').count()
@@ -39,11 +44,17 @@ def workerDashboard(request):
     return render(request, 'worker/base/worker-dashboard.html', context)
 
 
-def getProfile(request, worker_id):
-    profile = Worker.objects.get(id=worker_id)
-
+@login_required
+def getProfile(request, slug):
+    profile = Worker.objects.get(slug=slug)
+    hiring_completed = hiring_completed = Hiring.objects.filter(
+        worker=profile, status='CO').count()
+    hiring_on_progress = Hiring.objects.filter(
+        worker=profile, status='AC').count()
     context = {
         'profile': profile,
+        'hiring_completed': hiring_completed,
+        'hiring_on_progress': hiring_on_progress,
     }
     return render(request, 'worker/main/wprofile.html', context)
 
@@ -96,19 +107,29 @@ class WorkerHiringListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return context
 
 
+@login_required
+@worker_only
 def complete_worker_hiring(request, id):
-    hiring = Hiring.objects.get(id=id)
-    hiring.status = 'CO'
-    hiring.save()
-    customer = hiring.customer
-    business_service = hiring.business_service
-    # # Notification Part
-    # notification_message = f"approved your hire request for {business_service.service.name} service"
-    # Notification.objects.create(
-    #     to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
-    return redirect('worker:worker-hiring-list')
+    try:
+        hiring = Hiring.objects.get(id=id)
+    except Hiring.DoesNotExist:
+        hiring = None
+    if hiring and hiring.worker == request.user.worker:
+        hiring.status = 'CO'
+        hiring.save()
+        customer = hiring.customer
+        business_service = hiring.business_service
+        # # Notification Part
+        # notification_message = f"approved your hire request for {business_service.service.name} service"
+        # Notification.objects.create(
+        #     to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
+        return redirect('worker:worker-hiring-list')
+    else:
+        raise Http404()
 
 
+@login_required
+@worker_only
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -117,7 +138,7 @@ def change_password(request):
             update_session_auth_hash(request, user)  # Important!
             messages.success(
                 request, 'Your password was successfully updated!')
-            return redirect('changePasswordDash')
+            return redirect('adminbusiness:change-password-dash')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
@@ -128,6 +149,8 @@ def change_password(request):
     return redirect('worker:worker-dashboard')
 
 
+@login_required
+@worker_only
 def editWorker(request):
     if request.method == 'POST':
         form = EditWorkerForm(
