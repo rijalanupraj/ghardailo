@@ -53,7 +53,14 @@
         <span class="fas fa-caret-down dropdown-opener" onclick="open_dropdown()"></span>
         <div class="dropdown-content">
           {% if user.is_authenticated %}
-            <a class="mb-1 fw-bold{% if request.user.is_staff %} disabled{% endif %}{{ active_profile }}" href="{% if request.user.is_customer %}{% url 'customer:customerprofile' %}{% elif request.user.is_business %}{% url 'editBusinessProfileDash' %}{% endif %}" id="Username">{% if request.user.is_customer %}{{request.user.customer.name}}{% elif request.user.is_business %}{{request.user.business.name}}{% else %}{{request.user.username}}{% endif %}</a> 
+            <a class="mb-1 fw-bold{% if request.user.is_staff %} disabled{% endif %}{{ active_profile }}" 
+            href="{% if request.user.is_customer %}{% url 'customer:customerprofile' %}
+            {% elif request.user.is_business %}{% url 'editBusinessProfileDash' %}
+            {% elif request.user.is_worker %}{% url 'workerDashboard' %}{% endif %}" id="Username">
+            {% if request.user.is_customer %}{{request.user.customer.name}}
+            {% elif request.user.is_business %}{{request.user.business.name}}
+            {% elif request.user.is_worker %}{{request.user.worker.name}}{% else %}
+            {{request.user.username}}{% endif %}</a> 
             <li class="dropdown-divider"></li>
             <a class="mb-1 lgo" href="{% url 'logout' %}">Log out</a>
           {% else %}
