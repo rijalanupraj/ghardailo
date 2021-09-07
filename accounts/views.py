@@ -138,6 +138,16 @@ class CustomerLoginView(auth_views.LoginView):
             return reverse_lazy('my-admin-dashboard')
         return super().get_success_url()
 
+    def get(self, request, *args, **kwargs):
+        """Handle GET requests"""
+        next = ""
+        if request.GET:
+            next = request.GET['next']
+            if next:
+                messages.info(
+                    self.request, f'To perfrom the action you should login in first. You will be redirected to the previous page after you login.')
+        return self.render_to_response(self.get_context_data())
+
 
 def activate_account(request, uidb64, token, backend='accounts.backends.EmailBackend'):
     """ Activate Account through email link """
