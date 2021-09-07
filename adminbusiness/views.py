@@ -360,6 +360,18 @@ def approve_business_hiring(request, id):
         to_user=customer.user, from_user=request.user, title="Approved Hire Request", message=notification_message, business_service=business_service)
     return redirect('business-hiring-list')
 
+def complete_business_hiring(request, id):
+    hiring = Hiring.objects.get(id=id)
+    hiring.status = 'CO'
+    hiring.save() 
+    customer = hiring.customer
+    business_service = hiring.business_service
+    # Notification Part
+    notification_message = f"Complete your hire request for {business_service.service.name} service"
+    Notification.objects.create(
+        to_user=customer.user, from_user=request.user, title="Completed Hire Request", message=notification_message, business_service=business_service)
+    return redirect('business-hiring-list')
+
 
 @login_required
 @business_only
