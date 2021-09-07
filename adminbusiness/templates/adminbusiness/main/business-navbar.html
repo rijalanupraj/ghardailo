@@ -177,7 +177,7 @@
            <!-- view business page -->
            {% if  user.business.slug %}
           <a
-          href="{% url 'business-profile' user.business.slug %}"
+          href="{% url 'business:business-profile' user.business.slug %}"
           target="__blank"
           class="list-group-item list-group-item-action py-2
           "

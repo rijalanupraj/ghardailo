@@ -28,7 +28,7 @@ Notifications
                         <div class="row font-weight-bold me-3">
                             <div class="col-md-12 fw-bold">{{object.title}}</div>
                             <div class="col-md-8 small fw-normal text-break"><a
-                                    href="{% url 'business-profile' object.from_user.business.slug %}">{{object.from_user.business.name}}</a>
+                                    href="{% url 'business:business-profile' object.from_user.business.slug %}">{{object.from_user.business.name}}</a>
                                 {{object.message}}</div>
                             <div class="col-md-4">
                                 <a href="{% url 'customer:customer-notification-toggle' object.id %}"

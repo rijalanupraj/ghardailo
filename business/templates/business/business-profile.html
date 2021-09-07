@@ -32,7 +32,7 @@
                     </a>
                     {% else %}
                     <a class="btn mb-1 btn-danger btn-sm"
-                        href="{% url 'login' %}?next={% url 'business-profile' object.slug %}" type="button"><i
+                        href="{% url 'login' %}?next={% url 'business:business-profile' object.slug %}" type="button"><i
                             class="fas fa-flag"></i>&nbsp;Report
                         Business</a>
                     {% endif %}

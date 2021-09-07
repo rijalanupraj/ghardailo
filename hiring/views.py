@@ -85,7 +85,7 @@ class CreateHireView(UserPassesTestMixin, View):
                 business_service=business_service, customer=customer, customer_message=message_text)
 
             slug_of_current_business = request.build_absolute_uri(
-                reverse('business-profile', args=(business.slug, )))
+                reverse('business:business-profile', args=(business.slug, )))
             messages.success(
                 request, f'You have successfully requested <a href="{slug_of_current_business}">{business.name}</a> for {service} service. Thank You 🙏')
             # Notification Part

@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{% url 'hire-business-service' %}" method="POST" >
+                <form action="{% url 'hiring:hire-business-service' %}" method="POST" >
                 {% csrf_token %}
                     <input name="business-id" type="hidden" value="{{obj.id}}">
                     {% comment %} <div class="mb-3">

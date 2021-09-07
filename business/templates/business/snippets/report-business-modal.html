@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{% url 'user-report-business' %}" method="POST">
+                <form action="{% url 'business:user-report-business' %}" method="POST">
                     {% csrf_token %}
                     <input name="business-slug" type="hidden" value="{{object.slug}}">
                     <div class="mb-3 text-start">

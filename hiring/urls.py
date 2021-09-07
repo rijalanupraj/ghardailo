@@ -5,3 +5,5 @@ from django.urls import path
 urlpatterns = [
     path('hire/', CreateHireView.as_view(), name='hire-business-service')
 ]
+
+app_name = 'hiring'

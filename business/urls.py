@@ -15,3 +15,5 @@ urlpatterns = [
     path('api/report-business/', BusinessReportingView.as_view(),
          name='user-report-business')
 ]
+
+app_name = 'business'

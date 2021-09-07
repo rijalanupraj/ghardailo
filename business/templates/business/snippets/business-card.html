@@ -54,7 +54,7 @@
       </div>
       <h6 class="text-success">Writing Something Here</h6>
       <div class="d-flex flex-column mt-4">
-        <a href="{% url 'business-profile' obj.slug  %}" class="btn btn-secondary btn-sm" type="button"><i
+        <a href="{% url 'business:business-profile' obj.slug  %}" class="btn btn-secondary btn-sm" type="button"><i
             class="fas fa-info-circle"></i>&nbsp;Details</a>
         {% if user.is_authenticated %}
 
@@ -63,7 +63,7 @@
           <i class="fas fa-hands-helping"></i>&nbsp;Hire Request
         </a>
         {% else %}
-        <a class="btn btn-primary btn-sm mt-2" href="{% url 'login' %}?next={% url 'business-profile' obj.slug %}"
+        <a class="btn btn-primary btn-sm mt-2" href="{% url 'login' %}?next={% url 'business:business-profile' obj.slug %}"
           type="button"><i class="fas fa-hands-helping"></i>&nbsp;Request</a>
         {% endif %}
         {% include 'business/snippets/business-hiring-modal.html' with obj=obj %}
