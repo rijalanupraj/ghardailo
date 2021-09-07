@@ -55,6 +55,9 @@ class CreateHireView(UserPassesTestMixin, View):
                 business_service__service=service, customer=customer, status__in=('PE', 'AC'))
         except Hiring.DoesNotExist:
             same_service = None
+        no_of_same_service = 0
+        if same_service:
+            no_of_same_service = same_service.count()
 
         customer_pending_hiring_count = Hiring.objects.filter(
             customer=customer, status__in=('PE', 'AC')).count()
@@ -67,9 +70,9 @@ class CreateHireView(UserPassesTestMixin, View):
         if previous_hirings:
             messages.warning(
                 request, f'You have already hired this service from this business </b>{business.name}</b>. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
-        elif same_service:
+        elif no_of_same_service >= 3:
             messages.warning(
-                request, f'You have already hired this service from <b>{same_service[0].business_service.business.name}</b>. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
+                request, f'You have already hired the same service {service.name} more than 3 times. Wait from the business to response. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
         elif customer_pending_hiring_count >= 3:
             messages.warning(
                 request, f'You have already requested hire <b>{customer_pending_hiring_count}</b> times. You can\'t request more than 3 service at a time.')
