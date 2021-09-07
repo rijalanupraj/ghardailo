@@ -70,9 +70,9 @@ class CreateHireView(UserPassesTestMixin, View):
         if previous_hirings:
             messages.warning(
                 request, f'You have already hired this service from this business </b>{business.name}</b>. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
-        elif no_of_same_service >= 3:
+        elif no_of_same_service >= 10:
             messages.warning(
-                request, f'You have already hired the same service {service.name} more than 3 times. Wait from the business to response. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
+                request, f'You have already hired the same service {service.name} more than 10 times. Wait from the business to response. Check your hiring status <a href="{slug_of_hiring_page}">here</a>.')
         elif customer_pending_hiring_count >= 3:
             messages.warning(
                 request, f'You have already requested hire <b>{customer_pending_hiring_count}</b> times. You can\'t request more than 3 service at a time.')
