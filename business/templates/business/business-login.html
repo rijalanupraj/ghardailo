@@ -1,6 +1,9 @@
 {% extends 'base/layout.html' %}
 {% load static %}
 {% load class_tag_filter %}
+{% block title %}
+
+{% encblock %}
 {% block additional_head %}
 <link rel="stylesheet" href="{% static 'customer/css/customer-login.css' %}">
 {% endblock %}

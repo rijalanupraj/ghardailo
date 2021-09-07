@@ -32,7 +32,7 @@
                 {{form.password|addclass:'form-control'|addplaceholder:'Password'}}
               </div>
 
-              {% for error in form.new_password1.errors %}
+              {% for error in form.non_field_errors %}
               <div class="alert alert-danger">
                 {{ error|escape }}
               </div>
@@ -41,7 +41,8 @@
             </form>
             <a href="{% url 'password-reset-request' %}" class="forgot-password-link">Forgot password?</a>
             <p class="login-card-footer-text">Don't have an account? <a href="{% url 'customer-registration' %}"
-                class="text-reset">Register here</a></p>
+                class="text-reset">Customer Registeration</a> </p><p><a href="{% url 'business-registration' %}"
+                class="text-reset">Business Registeration</a></p>
             <nav class="login-card-footer-nav">
               <a href="#!">Terms of use.</a>
               <a href="#!">Privacy policy</a>

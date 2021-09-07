@@ -108,3 +108,76 @@ h5 {
   font-weight: 900;
   color: #f8ce0b;
 }
+
+/*--------------------------------------------------------------
+# Search Form And Search Background Image
+--------------------------------------------------------------*/
+.search-place {
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px black;
+  position: absolute;
+  bottom: 110px;
+  left: 25%;
+  width: 50%;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.search-form {
+  position: relative;
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+    url(../images/delivery.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 30vh;
+}
+
+.search-bar-group {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    min-height: 30vh;
+  }
+  .search-bar-group {
+    left: 15%;
+    width: 70%;
+  }
+  .search-place {
+    left: 15%;
+    width: 70%;
+    bottom: 100px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .search-bar-group {
+    left: 10%;
+    width: 80%;
+  }
+  .search-place {
+    left: 10%;
+    width: 80%;
+    bottom: 100px;
+  }
+}

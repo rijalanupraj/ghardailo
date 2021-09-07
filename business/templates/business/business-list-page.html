@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="{% static 'business/css/business-list-page.css' %}">
 {% endblock %}
 {% block main_content %}
-<div class="container pt-5 pb-5">
     {% include 'business/snippets/business-advanced-search.html' %}
+<div class="container pt-5 pb-5">
     <div class="d-flex justify-content-center row">
         {% if object_list %}
         {% for object in object_list  %}

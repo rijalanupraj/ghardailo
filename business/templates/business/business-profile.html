@@ -15,11 +15,12 @@
             <div class="profile-banner"
                 style="background:url('/static/business/images/profile/empty_placeholder.jpg')fixed no-repeat;background-size: cover ">
                 {% endif %}
-                <div class="col-sm-3 avatar-container">
+                <div class="col-md-3 avatar-container">
                     {% if object.logo %}
                     <img src="{{object.logo.url}}" class="rounded-circle profile-avatar" alt="User avatar">
                     {% else %}
-                    <img src="{% static 'business/images/profile/building_company.png' %}" class="rounded-circle profile-avatar" alt="User avatar">
+                    <img src="{% static 'business/images/profile/building_company.png' %}"
+                        class="rounded-circle profile-avatar" alt="User avatar">
                     {% endif %}
                 </div>
                 <div class="col-sm-12 profile-actions text-end pe-2">
@@ -36,8 +37,14 @@
                         Business</a>
                     {% endif %}
                     {% include 'business/snippets/report-business-modal.html' with obj=object service=ser %}
-                    <button type="button" class="btn mb-1 btn-primary btn-sm"><i class="fa fa-envelope"></i> Send
-                        Message</button>
+                    {% if request.user.is_authenticated %}
+
+                    <a role="button" class="customer-bookmark-toggle"
+                        href="{% url 'customer:customer-bookmark-toggle' object.slug %}" title="Bookmark">
+                        {% if is_bookmarked %}<i
+                            class="fa fa-bookmark fa-2x bookmark-icon"></i>{% else %}
+                        <i class="far fa-bookmark fa-2x bookmark-icon"></i> {% endif %}</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="content">
@@ -77,11 +84,11 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <button type="button" class="btn btn-primary btn-sm btn-block"><i
-                                                class="fa fa-envelope"></i> Send Message</button>
+                                                class="fa fa-envelope"></i> Something</button>
                                     </div>
                                     <div class="col-lg-6">
                                         <button type="button" class="btn btn-info btn-sm btn-block"><i
-                                                class="fa fa-user"></i> Add as friend</button>
+                                                class="fa fa-user"></i>Something</button>
                                     </div>
                                 </div>
                             </div><!-- End div .user-button -->
@@ -380,5 +387,6 @@
 
         {% block additional_body %}
         <script src="{% static 'js/business-profile.js' %}"></script>
+        <script src="{% static 'customer/js/customer-bookmark-toggle.js' %}"></script>
         <script src="{% static 'business/js/decimal-to-star-display.js' %}"></script>
         {% endblock %}

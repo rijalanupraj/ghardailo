@@ -1,6 +1,11 @@
 {% extends 'base/layout.html' %}
 {% load static %}
 {% load class_tag_filter %}
+
+{% block title %}
+Customer Registration
+{% endblock %}
+
 {% block additional_head %}
 <link rel="stylesheet" href="{% static 'customer/css/customer-registration.css' %}">
 {% endblock %}
@@ -19,7 +24,7 @@
                 src="https://imgr.search.brave.com/movByOJFG-Md0eCficaFtW-hLHIbaAlPplMeAEzRQqw/fit/474/225/no/1/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC51/TDBwT0NDNXhnZ0JI/eHFDamlTSXFnSGFI/YSZwaWQ9QXBp"
                 alt="logo" class="logo">
             </div>
-            <p class="login-card-description">Register To Ghar Dailo</p>
+            <p class="login-card-description">Customer Registration</p>
             <form method="POST">
               {% csrf_token %}
               <div>
@@ -99,8 +104,11 @@
               {% endfor %}
               <button name="login" id="login" class="btn btn-block login-btn mb-4" value="Register">Register</button>
             </form>
+            <p><a href="{% url 'business-registration' %}"
+                class="text-reset">Business Registeration</a></p>
             <p class="login-card-footer-text">Already have an account? <a href="{% url 'login' %}"
                 class="text-reset">Login Here</a></p>
+
             <nav class="login-card-footer-nav">
               <a href="#!">Terms of use.</a>
               <a href="#!">Privacy policy</a>

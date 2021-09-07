@@ -22,6 +22,8 @@ a {
 
 .profile-avatar {
   width: 200px;
+  height: 200px;
+  object-fit: cover;
   position: relative;
   margin: 0px auto;
   margin-top: 196px;
@@ -341,4 +343,13 @@ a {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: #f8ce0b;
+}
+
+/* 
+*-----------------------------------
+* Bookmark
+*-----------------------------------
+ */
+.bookmark-icon {
+  color: #0b2ef8;
 }
