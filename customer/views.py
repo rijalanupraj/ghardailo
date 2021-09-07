@@ -188,6 +188,12 @@ def business_bookmark_toggle_for_customer(request, slug):
         "isBookmarked": is_bookmarked,
     }
 
+    if is_bookmarked:
+        status = 'added to your bookmarks'
+    else:
+        status = 'removed from your bookmarks'
+    messages.success(request, f'{business.name} business is {status}')
+
     response = json.dumps(resp)
     return HttpResponse(response, content_type="application/json")
 

@@ -109,15 +109,27 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
             business_service__business__slug=slug, status='CO').count()
         context["hiring_completed"] = no_of_hiring_completed
         current_user_business_review = None
+        is_bookmarked = False
         if self.request.user.is_authenticated and self.request.user.is_customer:
             try:
                 current_user_business_review = Review.objects.get(
                     customer=self.request.user.customer, business=self.object)
             except Review.DoesNotExist:
                 current_user_business_review = None
+
+            try:
+                current_user_bookmarked = Bookmark.objects.get(
+                    customer=self.request.user.customer, business=self.object)
+            except Bookmark.DoesNotExist:
+                current_user_bookmarked = None
+
+            if current_user_bookmarked:
+                is_bookmarked = True
+
             context["form"] = ReviewForm(instance=current_user_business_review)
         if current_user_business_review == None:
             context["customer_review_exist"] = False
+        context["is_bookmarked"] = is_bookmarked
         return context
 
     def post(self, request, *args, **kwargs):
