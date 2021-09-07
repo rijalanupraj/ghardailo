@@ -57,13 +57,13 @@
                     </td>
                     <td>
                         {% if i.is_active == False %}
-                        <a href="/a/customer_active/{{i.id}}" class="active" onclick="return confirm('Do you want activate this customer?')"><span class="fas fa-check-circle"></span></a>
+                        <a href="{% url 'admindashboard:make-customer-active' i.id %}" class="active" onclick="return confirm('Do you want activate this customer?')"><span class="fas fa-check-circle"></span></a>
                         {% else %}
-                        <a href="/a/customer_inactive/{{i.id}}" class="inactive" onclick="return confirm('Do you want inactivate this customer?')"><span class="fas fa-times-circle"></span></a>
+                        <a href="{% url 'admindashboard:make-customer-inactive' i.id %}" class="inactive" onclick="return confirm('Do you want inactivate this customer?')"><span class="fas fa-times-circle"></span></a>
                         {% endif %}
                     </td>
                     <td>
-                        <a href="/a/viewcustomer/{{i.id}}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
+                        <a href="{% url 'admindashboard:my-admin-customer-list-view' %}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
                     </td>
                 </tr>
             {% endfor %}

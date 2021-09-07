@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block main_content %}   
-<a href="/a/dashboard"><span class="fas fa-arrow-left back mt-2"></span></a>
+<a href="{% url 'admindashboard:my-admin-dashboard' %}"><span class="fas fa-arrow-left back mt-2"></span></a>
 <div class="container-fluid d-flex justify-content-center mt-3">
     <form class="p-3" method="POST" enctype="multipart/form-data">
         {% csrf_token %}

@@ -9,7 +9,7 @@
 
 {% block main_content %}   
 <div class="container-fluid mt-3">
-    <a href="/a/business"><span class="fas fa-arrow-left back mt-2"></span></a>
+    <a href="{% url 'admindashboard:show-all-business' %}"><span class="fas fa-arrow-left back mt-2"></span></a>
     <div class="profile mt-2 mb-5"> 
         {% if pb.cover_picture %}
             <div  class="cover_pic">
@@ -201,7 +201,7 @@
                                 <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                                 <td>{{i.get_status_display}}</td>
                                 <td>                         
-                                    <a href="/a/change_hire_status1/{{pb.id}}/{{i.id}}" class="btn mt-3 change_status" type="submit">Change Status</a>
+                                    <a href="{% url 'change-hire-status' pb.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
                                 </td>
                                 <td>{{i.date_time}}</td>
                             </tr>

@@ -83,7 +83,7 @@ def customer_registration(request):
             utils.send_email_to_user(subject, message, user)
             messages.success(
                 request, f'{user.username} Customer user has been created')
-            return redirect('my-admin-dashboard')
+            return redirect('admindashboard:my-admin-dashboard')
     context = {
         'u_form': u_form,
         'dashboard': 'selected'
@@ -115,7 +115,7 @@ def business_registration(request):
             utils.send_email_to_user(subject, message, user)
             messages.success(
                 request, f'{user.username} Business user has been created')
-            return redirect('my-admin-dashboard')
+            return redirect('admindashboard:my-admin-dashboard')
     context = {
         'u_form': u_form,
         'dashboard': 'selected'
@@ -139,7 +139,7 @@ def administrator_registration(request):
             user.save()
             messages.success(
                 request, f'{user.username} staff user has been created')
-            return redirect('my-admin-dashboard')
+            return redirect('admindashboard:my-admin-dashboard')
     context = {
         'u_form': u_form,
         'dashboard': 'selected'
@@ -162,7 +162,7 @@ def service(request):
             form.save()
             messages.add_message(request, messages.SUCCESS,
                                  'New service has been added to GharDailo.')
-            return redirect('/a/service')
+            return redirect('admindashboard:service-list')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Failed to add service, please try again!!!')
@@ -186,7 +186,7 @@ def service_delete(request, service_id):
     service.delete()
     messages.add_message(request, messages.SUCCESS, "'" +
                          service_name + "'"+' service has been removed.')
-    return redirect('/a/service')
+    return redirect('admindashboard:service-list')
 
 
 @login_required
@@ -204,7 +204,7 @@ def service_update(request, service_id):
             form.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Service has been updated.')
-            return redirect('/a/service')
+            return redirect('admindashboard:service-list')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Failed to update service, please try again!!!')
@@ -236,7 +236,7 @@ def business_active(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     particular_business.is_active = True
     particular_business.save()
-    return redirect("/a/business")
+    return redirect("admindashboard:show-all-business")
 
 
 @login_required
@@ -245,7 +245,7 @@ def business_inactive(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     particular_business.is_active = False
     particular_business.save()
-    return redirect("/a/business")
+    return redirect("admindashboard:show-all-business")
 
 
 @login_required
@@ -254,7 +254,7 @@ def business_verified(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     particular_business.is_verified = True
     particular_business.save()
-    return redirect("/a/business")
+    return redirect("admindashboard:show-all-business")
 
 
 @login_required
@@ -263,7 +263,7 @@ def business_not_verified(request, business_id):
     particular_business = Business.objects.get(id=business_id)
     particular_business.is_verified = False
     particular_business.save()
-    return redirect("/a/business")
+    return redirect("admindashboard:show-all-business")
 
 
 @login_required
@@ -317,7 +317,7 @@ def change_hire_status1(request, business_id, hire_id):
         form.save()
         messages.add_message(request, messages.SUCCESS,
                              'Hire status has been changed.')
-        return redirect('view-business', business_id)
+        return redirect('admindashboard:view-business', business_id)
 
     dictionary = {
         'pb': particular_business,
@@ -348,7 +348,7 @@ def customer_active(request, customer_id):
     particular_customer = Customer.objects.get(id=customer_id)
     particular_customer.is_active = True
     particular_customer.save()
-    return redirect("/a/customer")
+    return redirect("admindashboard:my-admin-customer-list-view")
 
 
 @login_required
@@ -357,7 +357,7 @@ def customer_inactive(request, customer_id):
     particular_customer = Customer.objects.get(id=customer_id)
     particular_customer.is_active = False
     particular_customer.save()
-    return redirect("/a/customer")
+    return redirect("admindashboard:my-admin-customer-list-view")
 
 
 @login_required
@@ -399,7 +399,7 @@ def change_hire_status2(request, customer_id, hire_id):
         form.save()
         messages.add_message(request, messages.SUCCESS,
                              'Hire status has been changed.')
-        return redirect('view-customer', customer_id)
+        return redirect('admindashboard:view-customer', customer_id)
 
     dictionary = {
         'pc': particular_customer,

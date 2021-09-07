@@ -55,9 +55,11 @@ class CustomerRegistrationCreateView(CreateView):
             if(user.is_customer):
                 return redirect('home')
             elif (user.is_business):
-                return redirect('businessDash')
+                return redirect('adminbusiness:business-dash')
+            elif (user.is_worker):
+                return reverse_lazy('worker:worker-dashboard')
             elif (user.is_staff):
-                return redirect('my-admin-dashboard')
+                return redirect('admindashboard:my-admin-dashboard')
             return redirect('home')
         return super(CustomerRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
@@ -101,9 +103,11 @@ class BusinessRegistrationCreateView(CreateView):
             if(user.is_customer):
                 return redirect('home')
             elif (user.is_business):
-                return redirect('businessDash')
+                return redirect('admindashboard-business-dash')
+            elif (user.is_worker):
+                return reverse_lazy('worker:worker-dashboard')
             elif (user.is_staff):
-                return redirect('my-admin-dashboard')
+                return redirect('admindashboard:my-admin-dashboard')
             return redirect('home')
         return super(BusinessRegistrationCreateView, self).dispatch(request, *args, **kwargs)
 
@@ -145,7 +149,7 @@ class CustomerLoginView(auth_views.LoginView):
         elif (self.request.user.is_worker):
             return reverse_lazy('worker:worker-dashboard')
         elif (self.request.user.is_staff):
-            return reverse_lazy('my-admin-dashboard')
+            return reverse_lazy('admindashboard:my-admin-dashboard')
         return super().get_success_url()
 
     def get(self, request, *args, **kwargs):
@@ -176,9 +180,11 @@ def activate_account(request, uidb64, token, backend='accounts.backends.EmailBac
         if(user.is_customer):
             return redirect('home')
         elif (user.is_business):
-            return redirect('businessDash')
+            return redirect('adminbusiness:business-dash')
+        elif (user.is_worker):
+            return reverse_lazy('worker:worker-dashboard')
         elif (user.is_staff):
-            return redirect('my-admin-dashboard')
+            return redirect('admindashboard:my-admin-dashboard')
         return redirect('home')
     else:
         return HttpResponse('Activation link is invalid!')

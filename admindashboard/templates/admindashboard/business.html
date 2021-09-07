@@ -57,9 +57,9 @@
                     </td>
                     <td>
                         {% if i.is_active == False %}
-                        <a href="/a/business_active/{{i.id}}" class="active" onclick="return confirm('Do you want activate this business?')"><span class="fas fa-check-circle"></span></a>
+                        <a href="{% url 'admindashboard:make-business-active' i.id %}" class="active" onclick="return confirm('Do you want activate this business?')"><span class="fas fa-check-circle"></span></a>
                         {% else %}
-                        <a href="/a/business_inactive/{{i.id}}" class="inactive" onclick="return confirm('Do you want inactivate this business?')"><span class="fas fa-times-circle"></span></a>
+                        <a href="{% url 'admindashboard:make-business-inactive' i.id %}" class="inactive" onclick="return confirm('Do you want inactivate this business?')"><span class="fas fa-times-circle"></span></a>
                         {% endif %}
                     </td>
                     <td>                        
@@ -71,13 +71,13 @@
                     </td>
                     <td>
                         {% if i.is_verified == False %}
-                        <a href="/a/business_verified/{{i.id}}" class="verified" onclick="return confirm('Do you want to make verified this business?')"><span class="fas fa-check-circle"></span></a>
+                        <a href="{% url 'admindashboard:verify-business' i.id %}" class="verified" onclick="return confirm('Do you want to make verified this business?')"><span class="fas fa-check-circle"></span></a>
                         {% else %}
-                        <a href="/a/business_not_verified/{{i.id}}" class="not_verified" onclick="return confirm('Do you want to make unverified of this business?')"><span class="fas fa-times-circle"></span></a>
+                        <a href="{% url 'admindashboard:unverify-business' i.id %}" class="not_verified" onclick="return confirm('Do you want to make unverified of this business?')"><span class="fas fa-times-circle"></span></a>
                         {% endif %}
                     </td>
                     <td>
-                        <a href="/a/viewbusiness/{{i.id}}" class="edit"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
+                        <a href="{% url 'admindashboard:view-business' i.id %}" class="edit"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
                     </td>
                 </tr>
             {% endfor %}

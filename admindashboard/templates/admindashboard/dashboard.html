@@ -20,16 +20,16 @@
 </div>    
 <div class="container-fluid Registration mt-3">
   <div class="Customer">
-    <a href="/a/cr"><span class="fas fa-user logo me-1"></span><span class="fas fa-plus plus"></span></a>    
-    <a href="/a/cr"><span>Add new Customer</span></a>
+    <a href="{% url 'admindashboard:customer-registration' %}"><span class="fas fa-user logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:customer-registration' %}"><span>Add new Customer</span></a>
   </div>
   <div class="Business">
-    <a href="/a/br"><span class="fas fa-user-tie logo me-1"></span><span class="fas fa-plus plus"></span></a>    
-    <a href="/a/br"><span>Add new Business</span></a>
+    <a href="{% url 'admindashboard:business-registration' %}"><span class="fas fa-user-tie logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:business-registration' %}"><span>Add new Business</span></a>
   </div>
   <div class="Admin">
-    <a href="/a/ar"><span class="fas fa-user-cog logo me-1"></span><span class="fas fa-plus plus"></span></a>    
-    <a href="/a/ar"><span>Add new Administrator</span></a>
+    <a href="{% url 'admindashboard:staff-registration' %}"><span class="fas fa-user-cog logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:staff-registration' %}"><span>Add new Administrator</span></a>
   </div>
 </div>
 <div class="container-fluid mt-5 ProgressBars" id="Items">

@@ -49,7 +49,7 @@ class BusinessListPageView(UserPassesTestMixin, ListView):
         if self.request.user.is_business:
             return redirect('adminbusiness:business-dash')
         elif self.request.user.is_staff:
-            return redirect('my-admin-dashboard')
+            return redirect('admindashboard:my-admin-dashboard')
         return redirect('home-page')
 
     def get_context_data(self, **kwargs):
@@ -95,7 +95,7 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
         if self.request.user.is_business:
             return redirect('adminbusiness:business-dash')
         elif self.request.user.is_staff:
-            return redirect('my-admin-dashboard')
+            return redirect('admindashboard:my-admin-dashboard')
         return redirect('home-page')
 
     def get_context_data(self, **kwargs):
