@@ -52,13 +52,20 @@
                                     <h5>{{object.name}} {% if object.is_verified %}<span class="material-icons verified"
                                             style="color:blue"> verified </span>{% endif %}</h5>
                                 </li>
+
+                                <li class="list-group-item">
+                                    <div class="overall-rating-display">
+                                        <div class="stars-outer">
+                                            <div class="stars-inner"></div>
+                                        </div>
+                                        <span
+                                            class="rating-decimal badge rounded-pill bg-info text-dark">{{object.get_avg_rating}}</span>
+
+                                    </div>
+                                </li>
                                 <li class="list-group-item">
                                     Followers
                                     <span class="badge rounded-pill bg-secondary">1,245</span>
-                                </li>
-                                <li class="list-group-item">
-                                    Avg Rating
-                                    <span class="badge rounded-pill bg-secondary">{{object.get_avg_rating}}/5.0</span>
                                 </li>
                                 <li class="list-group-item">
                                     Hiring Completed
@@ -374,4 +381,5 @@
 
         {% block additional_body %}
         <script src="{% static 'js/business-profile.js' %}"></script>
+        <script src="{% static 'business/js/decimal-to-star-display.js' %}"></script>
         {% endblock %}

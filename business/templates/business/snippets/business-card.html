@@ -26,11 +26,11 @@
       <h5 class="inline-block">
         {{obj.name}} {% if obj.is_verified %}<span class="material-icons verified"> verified </span>{% endif %}
       </h5>
-      <div class="rating-section">
-        <span class="rating-decimal">{{obj.get_avg_rating}}</span>
+      <div class="overall-rating-display">
         <div class="stars-outer">
           <div class="stars-inner"></div>
         </div>
+        <span class="rating-decimal badge rounded-pill bg-light text-dark">{{obj.get_avg_rating}}</span>
         <span> of {{obj.total_reviews}} Reviews</span>
       </div>
       <div class="mt-1 mb-1 spec-1">

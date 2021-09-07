@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  allBusinessRatingsClass = document.querySelectorAll(".rating-section");
+  allBusinessRatingsClass = document.querySelectorAll(".overall-rating-display");
   for (var i = 0; i < allBusinessRatingsClass.length; i++) {
     var ratingDecimalClass = allBusinessRatingsClass[i].querySelector(".rating-decimal");
     var ratingInnerStart = allBusinessRatingsClass[i].querySelector(".stars-inner");
