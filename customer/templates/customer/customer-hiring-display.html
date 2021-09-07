@@ -34,7 +34,7 @@ a {
             {% for hire in object_list %}
             <tr>
               <td>{{forloop.counter}}</td>
-              <td><a class="text-dark" href="{% url 'business-profile' hire.business_service.business.slug %}">{{hire.business_service.business.name}}</a> - <span class="fw-light">{{hire.business_service.service.name}}</span></td>
+              <td><a class="text-dark" href="{% url 'business:business-profile' hire.business_service.business.slug %}">{{hire.business_service.business.name}}</a> - <span class="fw-light">{{hire.business_service.service.name}}</span></td>
               <td><span class="badge rounded-pill bg-primary">{{hire.get_status_display}}</span></td>
               <td>
               {% ifequal hire.get_status_display 'Pending' %}
