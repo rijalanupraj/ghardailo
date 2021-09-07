@@ -50,3 +50,25 @@
     transform: rotate(360deg);
   }
 }
+
+/*--------------------------------------------------------------
+# Back To Top
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: none;
+  background-color: #87c1ea;
+  color: white;
+}
+
+.back-to-top:hover {
+  background-color: #2199f0;
+  color: rgb(2, 0, 0);
+}
+
+.back-to-top:focus {
+  outline: none;
+  box-shadow: none;
+}
