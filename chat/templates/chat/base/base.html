@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Toy Chat Application">
+    <title>{% block title %}Welcome{% endblock %} | Guillermo's ChatApp</title>
+
+    <link rel="stylesheet" href="{% static 'chat/css/bootstrap.min.css' %}">
+    <!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<!-- Popper JS for ToolTip & Pop Overs  -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="{% static 'chat/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'chat/css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'chat/css/font-awesome.min.css' %}"/>
+
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+
+{% include 'chat/base/header.html' %}
+
+{% block main %}
+{% endblock %}
+
+</body>
+</html>
