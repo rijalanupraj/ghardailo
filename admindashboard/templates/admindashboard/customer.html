@@ -63,7 +63,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{% url 'admindashboard:my-admin-customer-list-view' %}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
+                        <a href="{% url 'admindashboard:view-customer' i.id %}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
                     </td>
                 </tr>
             {% endfor %}
