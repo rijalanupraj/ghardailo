@@ -32,7 +32,7 @@
             </div>
             <div class="text-center search_btn">
                 <button class="btn me-1 mb-2" type="submit">Search</button>
-                <a href="/a/service" class="btn mb-2" type="submit">Show All</a>
+                <a href="/myadmin/service" class="btn mb-2" type="submit">Show All</a>
             </div>
         </form>  
         <div class="dropdown-divider"></div>
@@ -87,8 +87,8 @@
                         <td>{{i.is_active}}</td>
                         <td>{{i.description}}</td>
                         <td>
-                            <a href="/a/updateservice/{{i.id}}"><span class="fas fa-pen-alt ms-3 me-3 mb-3 edit"></span></a>
-                            <a href="/a/deleteservice/{{i.id}}"  onclick="return confirm('Are you sure about removing this service?')"><span class="fas fa-trash remove"></span></a>
+                            <a href="/myadmin/update-service/{{i.id}}"><span class="fas fa-pen-alt ms-3 me-3 mb-3 edit"></span></a>
+                            <a href="/myadmin/delete-service/{{i.id}}"  onclick="return confirm('Are you sure about removing this service?')"><span class="fas fa-trash remove"></span></a>
                         </td>
                     </tr>
                 {% endfor %}

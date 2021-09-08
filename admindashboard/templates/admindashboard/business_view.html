@@ -201,7 +201,7 @@
                                 <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                                 <td>{{i.get_status_display}}</td>
                                 <td>                         
-                                    <a href="{% url 'change-hire-status' pb.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
+                                    <a href="{% url 'admindashboard:change-hire-status' pb.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
                                 </td>
                                 <td>{{i.date_time}}</td>
                             </tr>
@@ -280,8 +280,38 @@
                                     {% endif %}
                                 </td>
                                 <td>{{i.comment}}</td>
-                                <td>{{i.rating}} </td>
-                                <td>{{i.date_time}}</td>
+                                <td>
+                                    {% if i.rating >= 1 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 2 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 3 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 4 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 5 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+                                 </td>
+                                <td>{{i.created_at}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
