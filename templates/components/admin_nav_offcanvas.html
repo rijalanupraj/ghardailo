@@ -37,11 +37,15 @@
                 </a></li>
                 <li class="dropdown-divider"></li>
                 <li><a href="{% url 'admindashboard:show-all-business' %}" class="nav-link {{business}} px-2">
-                    <span class="fas fa-briefcase me-2"></span> <span>Businesses</span>
+                    <span class="fas fa-user-tie me-2"></span> <span>Businesses</span>
                 </a></li>
                 <li class="dropdown-divider"></li>
                 <li><a href="{% url 'admindashboard:my-admin-customer-list-view' %}" class="nav-link {{customer}} px-2">
-                    <span class="fas fa-users me-2"></span> <span>Customers</span>
+                    <span class="fas fa-user-friends me-2"></span> <span>Customers</span>
+                </a></li> 
+                <li class="dropdown-divider"></li>
+                <li><a href="{% url 'admindashboard:report-user' %}" class="nav-link {{report}} px-2">
+                    <span class="fas fa-exclamation-circle me-2"></span> <span>Reports</span>
                 </a></li> 
                 <li class="dropdown-divider"></li>
             </ul>

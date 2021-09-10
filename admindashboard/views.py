@@ -18,6 +18,7 @@ from hiring.models import *
 from review.models import *
 from notification.models import *
 from bookmark.models import *
+from reportuser.models import *
 
 from .forms import *
 from .filters import *
@@ -409,4 +410,18 @@ def change_hire_status2(request, customer_id, hire_id):
     }
     return render(request, 'admindashboard/cchs.html', dictionary)
 
-# <<====================Ramdom password====================>>
+# <<====================Report====================>>
+
+@login_required
+@admin_only
+def reportUser(request):
+    reportUser = ReportUser.objects.all()
+    reportUser_filter = ReportUserFilter(request.GET, queryset=reportUser)
+    reportUser_final = reportUser_filter.qs
+
+    dictionary = {
+        'reportUser': reportUser_final,
+        'reportUser_filter': reportUser_filter,
+        'report': 'selected'
+    }
+    return render(request, 'admindashboard/report.html', dictionary)

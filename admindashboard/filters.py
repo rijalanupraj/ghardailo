@@ -1,3 +1,4 @@
+from reportuser.models import ReportUser
 import django_filters
 from django_filters import CharFilter
 from django_filters import BooleanFilter
@@ -10,6 +11,7 @@ from service.models import *
 from hiring.models import *
 from review.models import *
 from notification.models import *
+from reportuser.models import *
 
 class ServicesFilter(django_filters.FilterSet):
     name = CharFilter(field_name='name', lookup_expr='icontains')
@@ -71,3 +73,8 @@ class NotificationFilter(django_filters.FilterSet):
     class Meta:
         model = Notification
         fields = ""
+
+class ReportUserFilter(django_filters.FilterSet):
+    class Meta:
+        model = ReportUser
+        fields = ['suspicious_user', 'reported_by']
