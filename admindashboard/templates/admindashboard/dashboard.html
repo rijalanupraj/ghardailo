@@ -20,7 +20,7 @@
 </div>    
 <div class="container-fluid Registration mt-3">
   <div class="Customer">
-    <a href="{% url 'admindashboard:customer-registration' %}"><span class="fas fa-user logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:customer-registration' %}"><span class="fas fa-user-friends logo me-1"></span><span class="fas fa-plus plus"></span></a>    
     <a href="{% url 'admindashboard:customer-registration' %}"><span>Add new Customer</span></a>
   </div>
   <div class="Business">
@@ -28,88 +28,95 @@
     <a href="{% url 'admindashboard:business-registration' %}"><span>Add new Business</span></a>
   </div>
   <div class="Admin">
-    <a href="{% url 'admindashboard:staff-registration' %}"><span class="fas fa-user-cog logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:staff-registration' %}"><span class="fas fa-user-secret logo me-1"></span><span class="fas fa-plus plus"></span></a>    
     <a href="{% url 'admindashboard:staff-registration' %}"><span>Add new Administrator</span></a>
   </div>
 </div>
 <div class="container-fluid mt-5 ProgressBars" id="Items">
   <div class="Bar">
-    <div class="text service"><span class="fas fa-tools me-2 logo"></span>Total Services</div>
+    <div class="text service"><span class="fas fa-tools me-2 logo"></span>Services</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bs">{{service}}</span></div>
     </div>
   </div>  
   <div class="Bar">
-    <div class="text"><span class="fas fa-users me-2 logo"></span>Total Users</div>
+    <div class="text"><span class="fas fa-users me-2 logo"></span>Users</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bu">{{user}}</span></div>
     </div>
   </div>       
   <div class="Bar">
-    <div class="text"><span class="fas fa-user-secret me-2 logo"></span>Total Admins</div>
+    <div class="text"><span class="fas fa-user-secret me-2 logo"></span>administrators</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bc">{{admin}}</span></div>
     </div>
   </div>  
   <div class="Bar">
-    <div class="text"><span class="fas fa-user-friends me-2 logo"></span>Total Customers</div>
+    <div class="text"><span class="fas fa-user-friends me-2 logo"></span>Customers</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bc">{{customer}}</span></div>
     </div>
   </div>  
   <div class="Bar">
-    <div class="text"><span class="fas fa-user-tie me-2 logo"></span>Total Businesses</div>
+    <div class="text"><span class="fas fa-user-tie me-2 logo"></span>Businesses</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bb">{{business}}</span></div>
     </div>
   </div>   
   <div class="Bar">
-    <div class="text"><span class="fas fa-user me-2 logo"></span>Total Workers</div>
+    <div class="text"><span class="fas fa-user me-2 logo"></span>Workers</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bw">{{worker}}</span></div>
     </div>
   </div>    
   <div class="Bar">
-    <div class="text"><span class="fas fa-images me-2 logo"></span>Total Pictures</div>
+    <div class="text"><span class="fas fa-images me-2 logo"></span>Pictures</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bg">{{gallery}}</span></div>
     </div>
   </div>   
   <div class="Bar">
-    <div class="text"><span class="fas fa-hands-helping me-2 logo"></span>Total Hires</div>
+    <div class="text"><span class="fas fa-hands-helping me-2 logo"></span>Hires</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bh">{{hiring}}</span></div>
     </div>
   </div>  
   <div class="Bar">
-    <div class="text"><span class="fas fa-search-plus me-2 logo"></span>Total Reviews</div>
+    <div class="text"><span class="fas fa-search-plus me-2 logo"></span>Reviews</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="br">{{review}}</span></div>
     </div>
   </div> 
   <div class="Bar">
-    <div class="text"><span class="fas fa-bell me-2 logo"></span>Total Notifications</div>
+    <div class="text"><span class="fas fa-bell me-2 logo"></span>Notifications</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bn">{{notification}}</span></div>
     </div>
   </div>       
   <div class="Bar">
-    <div class="text"><span class="fas fa-bookmark me-2 logo"></span>Total Bookmarks</div>
+    <div class="text"><span class="fas fa-bookmark me-2 logo"></span>Bookmarks</div>
     <div class="circle">
       <div class="bar"></div>
       <div class="box"><span id="bn">{{bookmark}}</span></div>
     </div>
-  </div>          
+  </div>         
+  <div class="Bar">
+    <div class="text"><span class="fas fa-exclamation-circle me-2 logo"></span>Reports</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bn">{{report}}</span></div>
+    </div>
+  </div>   
 </div> 
 {% endblock %}
 
