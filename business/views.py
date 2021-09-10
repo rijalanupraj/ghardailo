@@ -161,7 +161,7 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('business-profile', kwargs={'slug': self.object.slug})
+        return reverse('business:business-profile', kwargs={'slug': self.object.slug})
 
 
 class BusinessReportingView(UserPassesTestMixin, View):
