@@ -77,172 +77,188 @@
         </div> 
     </div>
     <div class="hires navdiv mt-3 p-3">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Business Name</th>
-                        <th scope="col">Business Profile</th>
-                        <th scope="col">Service</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Modify Status</th>
-                        <th scope="col">DateTime</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in hires %}
+        {% if hires_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td scope="row" class="Numbering1"></td>
-                            <td>{{i.business_service.business.name}}</td>
-                            <td>
-                                {% if i.business_service.business.logo %}
-                                    <img class="img-fluid rounded-circle" src="{{i.business_service.business.logo.url}}" />
-                                {% else %}
-                                    No logo
-                                {% endif %}
-                            </td>
-                            <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
-                            <td>{{i.get_status_display}}</td>
-                            <td>                                                         
-                                <a href="{% url 'admindashboard:change-hire-status-2' pc.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
-                            </td>
-                            <td>{{i.date_time}}</td>
+                            <th scope="col">No.</th>
+                            <th scope="col">Business Name</th>
+                            <th scope="col">Business Profile</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Modify Status</th>
+                            <th scope="col">DateTime</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div> 
+                    </thead>
+                    <tbody>
+                        {% for i in hires %}
+                            <tr>
+                                <td scope="row" class="Numbering1"></td>
+                                <td>{{i.business_service.business.name}}</td>
+                                <td>
+                                    {% if i.business_service.business.logo %}
+                                        <img class="img-fluid rounded-circle" src="{{i.business_service.business.logo.url}}" />
+                                    {% else %}
+                                        No logo
+                                    {% endif %}
+                                </td>
+                                <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                                <td>{{i.get_status_display}}</td>
+                                <td>                                                         
+                                    <a href="{% url 'admindashboard:change-hire-status-2' pc.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
+                                </td>
+                                <td>{{i.date_time}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This Customer hasn't hired any business yet.</div></div>
+        {% endif %}
     </div>
     <div class="notifications navdiv mt-3 p-3">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Business Name</th>
-                        <th scope="col">Business Profile</th>
-                        <th scope="col">Message</th>
-                        <th scope="col">Read</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in notifications %}
+        {% if notifications_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td scope="row" class="Numbering2"></td>
-                            <td>{{i.from_user.business.name}}</td>
-                            <td>
-                                {% if i.from_user.business.logo %}
-                                    <img class="img-fluid rounded-circle" src="{{i.from_user.business.logo.url}}" />
-                                {% else %}
-                                    No logo
-                                {% endif %}
-                            </td>
-                            <td>{{i.title}}</td>
-                                <td>{{i.message}}</td>
-                                <td>{{i.has_seen}}</td>
-                                <td>{{i.datetime}}</td>
+                            <th scope="col">No.</th>
+                            <th scope="col">Business Name</th>
+                            <th scope="col">Business Profile</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Read</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Date</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div> 
+                    </thead>
+                    <tbody>
+                        {% for i in notifications %}
+                            <tr>
+                                <td scope="row" class="Numbering2"></td>
+                                <td>{{i.from_user.business.name}}</td>
+                                <td>
+                                    {% if i.from_user.business.logo %}
+                                        <img class="img-fluid rounded-circle" src="{{i.from_user.business.logo.url}}" />
+                                    {% else %}
+                                        No logo
+                                    {% endif %}
+                                </td>
+                                <td>{{i.title}}</td>
+                                    <td>{{i.message}}</td>
+                                    <td>{{i.has_seen}}</td>
+                                    <td>{{i.datetime}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This customer hasn't got any messages to from businesses.</div></div>
+        {% endif %}
     </div>
     <div class="reviews navdiv mt-3 p-3">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Business Name</th>
-                        <th scope="col">Business Profile</th>
-                        <th scope="col">Comment</th>
-                        <th scope="col">Rating</th>
-                        <th scope="col">DateTime</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in reviews %}
+        {% if reviews_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td scope="row" class="Numbering3"></td>
-                            <td>{{i.business.name}}</td>
-                            <td>
-                                {% if i.business.logo %}
-                                    <img class="img-fluid rounded-circle" src="{{i.business.logo.url}}" />
-                                {% else %}
-                                    No logo
-                                {% endif %}
-                            </td>
-                            <td>{{i.comment}}</td>
-                            <td>
-                                {% if i.rating >= 1 %}
-                                <span class="fas fa-star"></span>
-                                {% else %}
-                                <span class="far fa-star"></span>
-                                {% endif %}
-
-                                {% if i.rating >= 2 %}
-                                <span class="fas fa-star"></span>
-                                {% else %}
-                                <span class="far fa-star"></span>
-                                {% endif %}
-
-                                {% if i.rating >= 3 %}
-                                <span class="fas fa-star"></span>
-                                {% else %}
-                                <span class="far fa-star"></span>
-                                {% endif %}
-
-                                {% if i.rating >= 4 %}
-                                <span class="fas fa-star"></span>
-                                {% else %}
-                                <span class="far fa-star"></span>
-                                {% endif %}
-
-                                {% if i.rating >= 5 %}
-                                <span class="fas fa-star"></span>
-                                {% else %}
-                                <span class="far fa-star"></span>
-                                {% endif %}
-                             </td>
-                            <td>{{i.created_at}}</td>
+                            <th scope="col">No.</th>
+                            <th scope="col">Business Name</th>
+                            <th scope="col">Business Profile</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">DateTime</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div> 
+                    </thead>
+                    <tbody>
+                        {% for i in reviews %}
+                            <tr>
+                                <td scope="row" class="Numbering3"></td>
+                                <td>{{i.business.name}}</td>
+                                <td>
+                                    {% if i.business.logo %}
+                                        <img class="img-fluid rounded-circle" src="{{i.business.logo.url}}" />
+                                    {% else %}
+                                        No logo
+                                    {% endif %}
+                                </td>
+                                <td>{{i.comment}}</td>
+                                <td>
+                                    {% if i.rating >= 1 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 2 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 3 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 4 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 5 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+                                </td>
+                                <td>{{i.created_at}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This Customer hasn't reviewed any business yet.</div></div>
+        {% endif %}
     </div>
     <div class="bookmarks navdiv mt-3 p-3">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Business Name</th>
-                        <th scope="col">Business Profile</th>
-                        <th scope="col">DateTime</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in bookmarks %}
+        {% if bookmarks_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td scope="row" class="Numbering4"></td>
-                            <td>{{i.business.name}}</td>
-                            <td>
-                                {% if i.business.logo %}
-                                    <img class="img-fluid rounded-circle" src="{{i.business.logo.url}}" />
-                                {% else %}
-                                    No logo
-                                {% endif %}
-                            </td>
-                            <td>{{i.date_time}}</td>
+                            <th scope="col">No.</th>
+                            <th scope="col">Business Name</th>
+                            <th scope="col">Business Profile</th>
+                            <th scope="col">DateTime</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div> 
+                    </thead>
+                    <tbody>
+                        {% for i in bookmarks %}
+                            <tr>
+                                <td scope="row" class="Numbering4"></td>
+                                <td>{{i.business.name}}</td>
+                                <td>
+                                    {% if i.business.logo %}
+                                        <img class="img-fluid rounded-circle" src="{{i.business.logo.url}}" />
+                                    {% else %}
+                                        No logo
+                                    {% endif %}
+                                </td>
+                                <td>{{i.date_time}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This Customer hasn't bookmarked any business yet.</div></div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

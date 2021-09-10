@@ -32,7 +32,7 @@ def dashboard(request):
     user = User.objects.all().count()
     admin = User.objects.filter(is_staff=True).all().count()
     service = Services.objects.all().count()
-    business = Business.objects.all().count()
+    business = Business.objects.foradmin().count()
     gallery = Gallery.objects.all().count()
     business_service = Business_Service.objects.all().count()
     worker = Worker.objects.all().count()
@@ -41,6 +41,7 @@ def dashboard(request):
     review = Review.objects.all().count()
     notification = Notification.objects.all().count()
     bookmark = Bookmark.objects.all().count()
+    report = ReportUser.objects.all().count()
 
     dictionary = {
         'user': user,
@@ -55,6 +56,7 @@ def dashboard(request):
         'review': review,
         'notification': notification,
         'bookmark': bookmark,
+        'report':report,
         'dashboard': 'selected'
     }
     return render(request, 'admindashboard/dashboard.html', dictionary)
@@ -339,7 +341,9 @@ def customer(request):
     customer_final = customer_filter.qs
 
     dictionary = {'customers': customer_final,
-                  'customer_filter': customer_filter, 'customer': 'selected'}
+                  'customer_filter': customer_filter, 
+                  'customer': 'selected'
+                  }
     return render(request, 'admindashboard/customer.html', dictionary)
 
 
