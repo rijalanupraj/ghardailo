@@ -1,13 +1,23 @@
 {% extends 'base/admin_layout.html' %}
 {% load static %}
 {% block title %}
-    Admin Business
+    Admin Report
 {% endblock %}
 {% block additional_head %}
     <link href="{% static 'css/admin_report.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block main_content %}   
+<div class="container-fluid mt-3">
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+        {% endif %}
+    {% endfor %}       
+</div>    
 <div class="search_box mt-3">
     <form class="form" method="GET">
         {{reportUser_filter.form}}
@@ -32,7 +42,10 @@
                     <td scope="row" class="Numbering"></td>
                     <td>{{i.suspicious_user.username}}</td>
                     <td>{{i.reported_by.username}}</td>
-                    <td>{{i.get_status_display}}</td>
+                    <td class="status">
+                        {{i.get_status_display}}                                                    
+                        <a href="{% url 'admindashboard:change-reportUSer-status' i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
+                    </td>
                     <td>{{i.reported_message}}</td>
                     <td>{{i.replied_message}}</td>
                 </tr>

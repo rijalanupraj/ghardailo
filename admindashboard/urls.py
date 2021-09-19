@@ -51,7 +51,9 @@ urlpatterns = [
          views.change_hire_status2, name='change-hire-status-2'),
 
      # <<====================Customer====================>>
-     path('report', views.reportUser, name="report-user")
+     path('report', views.reportUser, name="report-user"),
+    path('change_reportUSer_status/<int:reportUser_id>',
+         views.change_reportUSer_status, name='change-reportUSer-status'),
 ]
 
 app_name = 'admindashboard'

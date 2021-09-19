@@ -8,6 +8,7 @@ from service.models import *
 from hiring.models import *
 from review.models import *
 from notification.models import *
+from reportuser.models import *
 from accounts.models import User
 from django import forms
 
@@ -92,3 +93,10 @@ class BusinessCreationForm(ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'business_name')
+
+
+class ReportUserForm(ModelForm):
+    class Meta:
+        model = ReportUser
+        fields = ['status']
+

@@ -429,3 +429,22 @@ def reportUser(request):
         'report': 'selected'
     }
     return render(request, 'admindashboard/report.html', dictionary)
+
+@login_required
+@admin_only
+def change_reportUSer_status(request, reportUser_id):  
+    particular_reportUser = ReportUser.objects.get(id=reportUser_id)
+    reportUser_form = ReportUserForm(instance=particular_reportUser)
+    if request.method == "POST":
+        form = ReportUserForm(request.POST, instance=particular_reportUser)
+        form.save()
+        messages.add_message(request, messages.SUCCESS,
+                             'Report status has been changed.')
+        return redirect('admindashboard:report-user')
+
+    dictionary = {
+        'reportUser': particular_reportUser,
+        'form':reportUser_form,
+        'report': 'selected'
+    }
+    return render(request, 'admindashboard/crus.html', dictionary)
