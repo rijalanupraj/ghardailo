@@ -3,6 +3,7 @@
 
 {% block additional_head %}
 <link rel="stylesheet" href="{% static 'business/css/business-profile.css' %}">
+<link rel="stylesheet" href="{% static 'business/css/business-gallery.css' %}">
 {% endblock %}
 
 {% block main_content %}
@@ -101,11 +102,11 @@
                                         Services</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#business-about-tab"
                                         data-bs-toggle="tab"><i class="fa fa-user"></i> About</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#user-activities" data-bs-toggle="tab"><i
-                                            class="fa fa-laptop"></i>
-                                        Activities</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#business-gallery"
+                                        data-bs-toggle="tab"><i class="fa fa-laptop"></i>
+                                        Gallery</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#business-reviews-tab"
-                                        data-bs-toggle="tab"><i class="fa fa-envelope"></i>Reviews</a>
+                                        data-bs-toggle="tab"><i class="fa fa-envelope"></i> Reviews</a>
                                 </li>
                             </ul>
                             <!-- End nav tab -->
@@ -198,25 +199,37 @@
                                                 </address>
                                             </div>
                                         </div><!-- End div .row -->
-                                        <!--Worker Row Starts-->
                                         <hr>
-                                        <div class="row">
-                                            <h5>Workers</h5>
-                                            <div class="col">
-                                                {% for worker in workers %}
-                                                {{worker.name}}
-                                                {% endfor %}
-                                            </div>
-                                        </div>
                                     </div><!-- End div .user-profile-content -->
                                 </div><!-- End div .tab-pane -->
                                 <!-- End Tab about -->
 
 
                                 <!-- Tab user activities -->
-                                <div class="tab-pane animated fadeInRight" id="user-activities">
+                                <div class="tab-pane animated fadeInRight" id="business-gallery">
                                     <div class="scroll-user-widget">
-                                        This is Activities
+                                        <!-- ======= Portfolio Section ======= -->
+                                        <section id="portfolio" class="portfolio">
+                                            <div class="container" data-aos="fade-up">
+                                                <div class="section-title">
+
+                                                </div>
+                                                <div class="row portfolio-container">
+                                                {% for bimage in business_gallery %}
+                                                    <div class="col-lg-4 col-md-6 portfolio-item">
+                                                        <div class="portfolio-wrap">
+                                                            <img src="{{bimage.picture.url}}"
+                                                                class="img-fluid" alt="" />
+                                                            <div class="portfolio-info">
+                                                                <h4>{{bimage.title}}</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!-- End Portfolio Section -->
                                     </div><!-- End div .scroll-user-widget -->
                                 </div><!-- End div .tab-pane -->
                                 <!-- End Tab user activities -->

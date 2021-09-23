@@ -1,4 +1,5 @@
 # External Import
+from gallery.models import Gallery
 from customer.models import Customer
 import business
 from django.views.generic import (
@@ -109,6 +110,8 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
         context["Worker"] = worker
         review = Review.objects.filter(business__slug=slug)
         context["review"] = review
+        business_gallery = Gallery.objects.filter(business__slug=slug)
+        context["business_gallery"] = business_gallery
         no_of_hiring_completed = Hiring.objects.filter(
             business_service__business__slug=slug, status='CO').count()
         context["hiring_completed"] = no_of_hiring_completed
