@@ -288,11 +288,9 @@ Ghar Dailo
                 {% if testimonial.user.is_customer %}
                 {{testimonial.user.customer.name}}
                 <img src="{{ testimonial.user.customer.image.url }}" class="testimonial-img" alt="" />
-                <h4 class="text-center"> Our Customers </h4>
                 {% elif testimonial.user.is_business %}
                 {{testimonial.user.business.name}}
                 <img src="{{ testimonial.user.business.logo.url }}" class="testimonial-img" alt="" />
-                <h4> Our Service Providers </h4>
                 {% elif testimonial.user.is_staff %}
                 Anonymous
                 <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt=""/>
