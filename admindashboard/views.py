@@ -437,9 +437,18 @@ def change_reportUSer_status(request, reportUser_id):
     reportUser_form = ReportUserForm(instance=particular_reportUser)
     if request.method == "POST":
         form = ReportUserForm(request.POST, instance=particular_reportUser)
-        form.save()
-        messages.add_message(request, messages.SUCCESS,
-                             'Report status has been changed.')
+        report = form.save(commit=False)
+        if report.status == "BA":
+            business = report.suspicious_user.business
+            business.is_active = False
+            business.save()
+            report.save()
+            messages.add_message(request, messages.SUCCESS,
+                                'Report status has been changed.')
+        else:
+            report.save()
+            messages.add_message(request, messages.SUCCESS,
+                                'Report status has been changed.')
         return redirect('admindashboard:report-user')
 
     dictionary = {

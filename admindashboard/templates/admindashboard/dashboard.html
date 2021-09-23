@@ -36,10 +36,12 @@
   <div class="Bar">
     <div class="text service"><span class="fas fa-tools me-2 logo"></span>Services</div>
     <div class="circle">
-      <div class="bar"></div>
-      <div class="box"><span id="bs">{{service}}</span></div>
+      <a href="{% url 'admindashboard:service-list' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bs">{{service}}</span></div>
+      </a> 
     </div>
-  </div>  
+  </div>
   <div class="Bar">
     <div class="text"><span class="fas fa-users me-2 logo"></span>Users</div>
     <div class="circle">
@@ -57,15 +59,19 @@
   <div class="Bar">
     <div class="text"><span class="fas fa-user-friends me-2 logo"></span>Customers</div>
     <div class="circle">
-      <div class="bar"></div>
-      <div class="box"><span id="bc">{{customer}}</span></div>
+      <a href="{% url 'admindashboard:my-admin-customer-list-view' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bc">{{customer}}</span></div>
+      </a>
     </div>
   </div>  
   <div class="Bar">
     <div class="text"><span class="fas fa-user-tie me-2 logo"></span>Businesses</div>
     <div class="circle">
-      <div class="bar"></div>
-      <div class="box"><span id="bb">{{business}}</span></div>
+      <a href="{% url 'admindashboard:show-all-business' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bb">{{business}}</span></div>
+      </a>
     </div>
   </div>   
   <div class="Bar">
@@ -113,8 +119,10 @@
   <div class="Bar">
     <div class="text"><span class="fas fa-exclamation-circle me-2 logo"></span>Reports</div>
     <div class="circle">
-      <div class="bar"></div>
-      <div class="box"><span id="bn">{{report}}</span></div>
+      <a href="{% url 'admindashboard:report-user' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bn">{{report}}</span></div>
+      </a>
     </div>
   </div>   
 </div> 

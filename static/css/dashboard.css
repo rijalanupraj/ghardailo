@@ -90,7 +90,6 @@
     left: 50%;
     font-size:  45px;
     font-weight: 400;
-    font-family: cursive;
     background: linear-gradient(to left,#fc1f3c, #652efc, #2dfa7c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
