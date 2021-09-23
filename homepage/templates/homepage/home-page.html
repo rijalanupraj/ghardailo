@@ -283,20 +283,28 @@ Ghar Dailo
                 {{testimonial.message}}
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-                
+
               <h3>
                 {% if testimonial.user.is_customer %}
                 {{testimonial.user.customer.name}}
+                {% if testimonial.user.customer.image %}
                 <img src="{{ testimonial.user.customer.image.url }}" class="testimonial-img" alt="" />
+                {% else %}
+                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+                {% endif %}
                 {% elif testimonial.user.is_business %}
                 {{testimonial.user.business.name}}
+                {% if testimonial.user.business.logo %}
                 <img src="{{ testimonial.user.business.logo.url }}" class="testimonial-img" alt="" />
+                {% else %}
+                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+                {% endif %}
                 {% elif testimonial.user.is_staff %}
                 Anonymous
-                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt=""/>
-                
+                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+
                 {% endif %}
-              
+
             </div>
           </div>
           <!-- End testimonial item -->
@@ -352,7 +360,9 @@ Ghar Dailo
       <div class="text-center">
         <h3>Join Us Now</h3>
         <p>
-          A solid online presence is crucial to the success of every professional and business in this fast-paced, convenience-focused digital age. By limiting membership to just top-rated businesses, GharDailo adds legitimacy to all the businesses.
+          A solid online presence is crucial to the success of every professional and business in this fast-paced,
+          convenience-focused digital age. By limiting membership to just top-rated businesses, GharDailo adds
+          legitimacy to all the businesses.
         </p>
         <a class="cta-btn" href="{% url 'customer-registration' %}">Register Now</a>
       </div>
