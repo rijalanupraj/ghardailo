@@ -141,7 +141,7 @@
                                                     </a>
                                                     {% else %}
                                                     <a class="btn btn-primary btn-sm mt-2"
-                                                        href="{% url 'login' %}?next={% url 'business-profile' object.slug %}"
+                                                        href="{% url 'login' %}?next={% url 'business:business-profile' object.slug %}"
                                                         type="button"><i
                                                             class="fas fa-hands-helping"></i>&nbsp;Request</a>
                                                     {% endif %}

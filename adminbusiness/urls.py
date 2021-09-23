@@ -21,7 +21,7 @@ urlpatterns = [
          views.deleteWorker, name="delete-worker-dash"),
 
     # for profile
-    path('show-profile', views.getProfile, name="get-profile-dash"),
+    # path('show-profile', views.getProfile, name="get-profile-dash"),
     path('edit-business', views.editBusiness, name="edit-business-dash"),
     path('edit-business-profile', views.editBusinessProfile,
          name="edit-business-profile-dash"),

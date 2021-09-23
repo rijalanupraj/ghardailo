@@ -158,7 +158,7 @@ def deleteService(request, service_id):
 @login_required
 @business_only
 def getProfile(request):
-    profile = Business_Profile.object.all()
+    profile = Business_Profile.objects.filter(business=request.user.business)
 
     context = {
         'profile': profile
@@ -176,7 +176,8 @@ def editBusiness(request):
             form.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Service Added Successfully')
-            return redirect('adminbusiness:get-profile-dash')
+            return redirect('adminbusiness:edit-business-dash')
+
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding service')
@@ -202,7 +203,8 @@ def editBusinessProfile(request):
             form1.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Business Profile Added Successfully')
-            return redirect('adminbusiness:get-profile-dash')
+            return redirect('adminbusiness:edit-business-profile-dash')
+
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding Business Profile')
@@ -227,7 +229,7 @@ def updateProfile(request, profile_id):
             request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('adminbusiness:get-profile-dash')
+            return redirect('adminbusiness:edit-business-profile-dash')
     context = {
         'form': BusinessProfileForm(instance=instance),
     }
@@ -244,7 +246,7 @@ def change_password(request):
             update_session_auth_hash(request, user)  # Important!
             messages.success(
                 request, 'Your password was successfully updated!')
-            return redirect('adminbusiness:change-password-dash')
+            return redirect('adminbusiness:business-dash')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
