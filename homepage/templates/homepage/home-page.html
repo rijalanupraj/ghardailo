@@ -283,17 +283,26 @@ Ghar Dailo
                 {{testimonial.message}}
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="{% static 'homepage/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="" />
+                 <!-- <img
+                 src="{% static 'homepage/img/testimonials/testimonials-1.jpg' %}"
+                 class="testimonial-img"
+                 alt=""
+                /> -->
               <h3>
                 {% if testimonial.user.is_customer %}
                 {{testimonial.user.customer.name}}
+                <img src="{{ testimonial.user.customer.image.url }}" class="testimonial-img" alt="" />
+                <h4> Our Customers </h4>
                 {% elif testimonial.user.is_business %}
                 {{testimonial.user.business.name}}
+                <img src="{{ testimonial.user.business.logo.url }}" class="testimonial-img" alt="" />
+                <h4> Our Service Providers </h4>
                 {% elif testimonial.user.is_staff %}
                 Anonymous
+                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt=""/>
+                
                 {% endif %}
-              </h3>
-              <h4>Ceo &amp; Founder</h4>
+              
             </div>
           </div>
           <!-- End testimonial item -->
