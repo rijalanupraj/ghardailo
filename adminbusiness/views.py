@@ -478,3 +478,64 @@ class HireNotificationView(View):
         notification.has_seen = True
         notification.save()
         return redirect('adminbusiness:business-hiring-list')
+
+
+# for gallery
+@login_required
+@business_only
+def getGallery(request):
+    businessGallery = Gallery.objects.filter(business=request.user.business)
+    context = {
+        'businessGallery': businessGallery,
+    }
+    return render(request, 'adminbusiness/base/show-gallery.html', context)
+
+
+@login_required
+@business_only
+def postGallery(request):
+    if request.method == 'POST':
+        
+        form = BusinessGalleryForm(request.POST, request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.business=request.user.business
+            obj.save()
+            return redirect('adminbusiness:get-gallery-dash')
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'Error adding gallery')
+            return render(request, 'adminbusiness/base/post-gallery.html')
+    else:
+        form = BusinessGalleryForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'adminbusiness/base/post-gallery.html', context)
+
+
+@login_required
+@business_only
+def updateGallery(request, gallery_id):
+    instance = Gallery.objects.get(id=gallery_id)
+    if request.method == "POST":
+        form = BusinessGalleryForm(
+            request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('adminbusiness:get-gallery-dash')
+    context = {
+        'form': BusinessGalleryForm(instance=instance),
+        'instance': instance
+    }
+    return render(request, 'adminbusiness/base/update-gallery.html', context)
+
+
+@login_required
+@business_only
+def deleteGallery(request, gallery_id):
+    gallery = Gallery.objects.get(id=gallery_id)
+    gallery.delete()
+    return redirect( 'adminbusiness:get-gallery-dash')
+
+
