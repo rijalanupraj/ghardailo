@@ -45,10 +45,10 @@
                         <td>{{ s.service }}</td>
                         <td>{{ s.description }}</td>
 
-                       <td><a href="updateService/{{ s.id }}"
+                       <td><a href="{% url 'adminbusiness:update-service-dash' s.id %}"
                                class="btn btn-primary btn-sm">Edit</a>&nbsp;
                     
-                            <a href="deleteService/{{ s.id }}"
+                            <a href="{% url 'adminbusiness:delete-service-dash' s.id %}"
                                class="btn btn-danger btn-sm"
                                onclick="return confirm('Are you sure want to delete this file?')">
                                 Delete</a></td> 

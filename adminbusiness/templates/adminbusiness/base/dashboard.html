@@ -89,81 +89,6 @@
     </div>
   </div>
 
-<!--Section: Sales Performance KPIs-->
-<section class="mb-4">
-  <div class="card">
-    <div class="card-header text-center py-3">
-      <h5 class="mb-0 text-center">
-        <strong>Customer Performance</strong>
-      </h5>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-hover text-nowrap">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Customers</th>
-              <th scope="col">Hire Request</th>
-              <th scope="col">Reviews</th>
-
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Total</th>
-              <td>{{customer_count}}</td>
-              <td>{{hiring_count}}</td>
-              <td>{{350}}</td>
-            </tr>
-            <tr>
-              <th scope="row">Percentage change</th>
-              <td>
-                <span class="text-danger">
-                  <i class="fas fa-caret-down me-1"></i
-                    ><span>-48.8%%</span>
-                </span>
-              </td>
-              <td>
-                <span class="text-success">
-                  <i class="fas fa-caret-up me-1"></i><span>14.0%</span>
-                </span>
-              </td>
-              <td>
-                <span class="">
-                  <i class="fas me-1"></i><span>46</span>
-                </span>
-              </td>
-              
-            </tr>
-            <tr>
-              <th scope="row">Absolute change</th>
-              <td>
-                <span class="text-danger">
-                  <i class="fas fa-caret-down me-1"></i
-                    ><span>-17,654</span>
-                </span>
-              </td>
-              <td>
-                <span class="text-success">
-                  <i class="fas fa-caret-up me-1"></i><span>28</span>
-                </span>
-              </td>
-              <td>
-                <span class="text-success">
-                  <i class="fas fa-caret-up me-1"></i><span>111</span>
-                </span>
-              </td>
-              
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- for review -->
 <section>
     <div class="row">
@@ -180,7 +105,7 @@
                 </div>
               </div>
               <div class="align-self-center">
-                <h1>0</h1>
+                <h1>{{review_count}}</h1>
                 <!-- <h2 class="h1 mb-0">La review banaya paxi yaha dynamic banau hai</h2> -->
               </div>
             </div>

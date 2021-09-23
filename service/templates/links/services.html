@@ -50,7 +50,7 @@ Services
                 </svg>
                 <i class="fas {{service.icon_text}}"></i>
               </div>
-              <h4><a href="">{{service.name}}</a></h4>
+              <h4><a href="{% url 'business:business-list-page' %}?q={{service.name}}">{{service.name}}</a></h4>
             </div>
           </a>
         </div>
