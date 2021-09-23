@@ -46,6 +46,14 @@ urlpatterns = [
     path('notifications/', views.AllNotificationPageView.as_view(),
          name="business-all-notification-page"),
 
+     # for gallery
+    path('show-gallery', views.getGallery, name="get-gallery-dash"),
+    path('add-gallery', views.postGallery, name="post-gallery-dash"),
+    path('update-gallery/<int:gallery_id>',
+         views.updateGallery, name="update-gallery-dash"),
+    path('delete-gallery/<int:gallery_id>',
+         views.deleteService, name="delete-gallery-dash"),
+
 ]
 
 app_name = 'adminbusiness'

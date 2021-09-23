@@ -8,6 +8,7 @@
 {% url 'adminbusiness:change-password-dash' as changePasswordDash_url %}
 {% url 'adminbusiness:business-hiring-list' as businessHiringListPage %}
 {% url 'adminbusiness:business-all-notification-page' as businessNotificationPage_url %}
+{% url 'adminbusiness:get-gallery-dash' as getgallery_url %}
 
 
 
@@ -57,7 +58,7 @@
         {% if request.path == getService_url %}active{% endif %}"
         aria-current="true"
         >
-       <i class="fas fa-tachometer-alt fa-fw me-3"></i
+       <i class="fas fa-anchor fa-fw me-3"></i
          ><span>Services</span>
      </a>
 
@@ -74,6 +75,14 @@
            {% if request.path == getWorker_url %}active{% endif %}"
            ><i class="fas fa-users fa-fw me-3"></i><span>Workers</span></a
           >
+
+          <a
+           href="{{getgallery_url}}"
+           class="list-group-item list-group-item-action py-2 ripple
+           {% if request.path == getgallery_url %}active{% endif %}"
+           ><i class="fas fa-camera-retro fa-fw me-3"></i><span>Gallery</span></a
+          >
+
         <a
            href="{{editProfileBusinessDash_url}}"
            class="list-group-item list-group-item-action py-2 ripple

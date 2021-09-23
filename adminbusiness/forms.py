@@ -97,3 +97,9 @@ class WorkerCreationForm(ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email','Worker_name')
+
+class BusinessGalleryForm(ModelForm):
+    class Meta:
+        model = Gallery
+        fields = '__all__'
+        exclude= ['business']
