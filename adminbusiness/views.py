@@ -114,6 +114,9 @@ def postService(request):
                 obj.save()
                 messages.add_message(
                     request, messages.SUCCESS, 'Service Added Successfully')
+            else:
+                messages.add_message(request, messages.ERROR,
+                                     'The Service Already Exist')
             return redirect('adminbusiness:get-service-dash')
         else:
             messages.add_message(request, messages.ERROR,
@@ -202,7 +205,7 @@ def editBusinessProfile(request):
             form.save()
             form1.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'Business Profile Added Successfully')
+                                 'Business Profile Edited Successfully')
             return redirect('adminbusiness:edit-business-profile-dash')
 
         else:
@@ -495,17 +498,16 @@ def getGallery(request):
 @business_only
 def postGallery(request):
     if request.method == 'POST':
-        
+
         form = BusinessGalleryForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.business=request.user.business
+            obj.business = request.user.business
             obj.save()
             return redirect('adminbusiness:get-gallery-dash')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error adding gallery')
-            return render(request, 'adminbusiness/base/post-gallery.html')
     else:
         form = BusinessGalleryForm()
     context = {
@@ -536,6 +538,4 @@ def updateGallery(request, gallery_id):
 def deleteGallery(request, gallery_id):
     gallery = Gallery.objects.get(id=gallery_id)
     gallery.delete()
-    return redirect( 'adminbusiness:get-gallery-dash')
-
-
+    return redirect('adminbusiness:get-gallery-dash')
