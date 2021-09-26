@@ -77,9 +77,9 @@ class Business(models.Model):
     is_active = models.BooleanField(default=True)
     name = models.CharField(max_length=50)
     logo = models.ImageField(
-        blank=True, null=True, upload_to="images/", default="business/logo/default.jpg")
+        blank=True, null=True, upload_to="business/logo/", default="business/logo/default/default.png")
     cover_picture = models.ImageField(
-        blank=True, null=True, upload_to="images/", default="business/cover/default.jpg")
+        blank=True, null=True, upload_to="business/cover/", default="business/cover/default/default.jpg")
     slug = models.SlugField(unique=True, blank=True, null=True)
     district = models.CharField(max_length=100)
     province = models.CharField(

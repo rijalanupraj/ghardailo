@@ -12,7 +12,8 @@ class Worker(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=50, )
-    picture = models.FileField(upload_to='img/worker')
+    picture = models.FileField(
+        upload_to='worker/', default='worker/default/default.png')
     phone = models.CharField(max_length=10, validators=[
                              validators.MinLengthValidator(10)])
     is_active = models.BooleanField(default=True)
