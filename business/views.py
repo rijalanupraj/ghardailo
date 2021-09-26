@@ -137,6 +137,17 @@ class BusinessProfileView(UserPassesTestMixin, FormMixin, DetailView):
         if current_user_business_review == None:
             context["customer_review_exist"] = False
         context["is_bookmarked"] = is_bookmarked
+
+        customer_has_hired = False
+        # Knowing if the user have hire this business or not
+        if self.request.user.is_authenticated:
+            user = User.objects.get(id=self.request.user.id)
+            customer = user.customer
+            current_customer_hiring = Hiring.objects.filter(
+                business_service__business__slug=slug, customer=customer, status__in=('AC'))
+            if current_customer_hiring:
+                customer_has_hired = True
+        context['customer_has_hired'] = customer_has_hired
         return context
 
     def post(self, request, *args, **kwargs):

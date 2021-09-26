@@ -175,19 +175,15 @@
                                                 <p><b>Established:</b> {{object.business_profile.established}}</p>
                                                 <p><b>Founder:</b> {{object.business_profile.founder}}</p>
                                                 <p><b>Language:</b> {{object.business_profile.language}}</p>
-                                                <p><b>Experience:</b> {{object.business_profile.experience_year}}+</p>
-                                                <p><b>Service Provided:</b>
-                                                    {{object.business_profile.service_provided}}+</p>
-                                                <p><b>Happy Customers:</b> {{object.business_profile.happy_customers}}+
-                                                </p>
-                                                <p><b>Awards Own:</b> {{object.business_profile.Awards_won}}+</p>
+                                                <p><b>Adress:</b> {{object.district}}, {{object.province}} </p>
+                                                <p><b>Street Adress:</b> {{object.street_address}}</p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <h5><strong>CONTACT</strong> ME</h5>
                                                 <address>
                                                     <strong>Phone</strong><br>
-                                                    <abbr title="Phone">{{object.phone}}</abbr>
-                                                </address>
+                                                    <abbr title="Phone">{% if request.user.is_authenticated %}{% if customer_has_hired %}{{object.phone}}{% else %}Hire this business to see{% endif %}{% else %}<a href="{% url 'customer-registration' %}">Login To See</a>{% endif %}</abbr>
+                                                </address> 
                                                 <address>
                                                     <strong>Email</strong><br>
                                                     <a
@@ -195,7 +191,7 @@
                                                 </address>
                                                 <address>
                                                     <strong>Website</strong><br>
-                                                    <a href="http://r209.com">http://r209.com</a>
+                                                    <a href=""></a>
                                                 </address>
                                             </div>
                                         </div><!-- End div .row -->
