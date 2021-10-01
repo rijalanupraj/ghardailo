@@ -178,12 +178,12 @@ def editBusiness(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'Service Added Successfully')
+                                 'Business Edited Successfully')
             return redirect('adminbusiness:edit-business-dash')
 
         else:
             messages.add_message(request, messages.ERROR,
-                                 'Error adding service')
+                                 'Error Editing Business')
     else:
         form = EditBusinessForm(
             instance=request.user.business)
