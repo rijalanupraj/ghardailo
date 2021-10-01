@@ -87,14 +87,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ghardailo.wsgi.application'
 
 # SQL Lite Database
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# MySQL Database
 """
+# MySQL Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -108,8 +109,6 @@ DATABASES = {
         }
     }
 }
-"""
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
