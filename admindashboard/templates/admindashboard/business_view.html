@@ -120,7 +120,7 @@
                         {% for i in services %}
                             <tr>
                                 <td scope="row" class="Numbering1"></td>
-                                <td><span class="{{i.service.icon_text}}"></span></td>
+                                <td><span class="fas {{i.service.icon_text}}"></span></td>
                                 <td>{{i.service.name}}</td>
                             </tr>
                         {% endfor %}
@@ -198,7 +198,7 @@
                                         <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
                                     {% endif %}
                                 </td>
-                                <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                                <td><span class="fas {{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                                 <td>{{i.get_status_display}}</td>
                                 <td>                         
                                     <a href="{% url 'admindashboard:change-hire-status' pb.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
@@ -222,17 +222,17 @@
                             <th scope="col">No.</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Customer Profile</th>
+                            <th scope="col">Title</th>
                             <th scope="col">Message</th>
                             <th scope="col">Read</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">DateTime</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for i in notifications %}
                             <tr>
                                 <td scope="row" class="Numbering4"></td>
-                                <td>{{i.from_user.username}}</td>
+                                <td>{{i.from_user.customer.name}}</td>
                                 <td>                          
                                     {% if i.from_user.customer.image.url != "/media/static/Image/default.jpg" %}
                                         <img class="img-fluid rounded-circle" src="{{i.from_user.customer.image.url}}" alt="" />
