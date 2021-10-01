@@ -104,7 +104,8 @@ class Business(models.Model):
         sum = 0
         for rvw in reviews:
             sum += rvw.rating
-        return (sum/count)
+        avg = sum/count
+        return round(avg, 1)
 
     def total_reviews(self):
         reviews = Review.objects.filter(business=self)
