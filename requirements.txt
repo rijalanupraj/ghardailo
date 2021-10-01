@@ -4,3 +4,4 @@ django-bootstrap-form==3.4
 django_filter==2.4.0
 six==1.16.0
 python-dotenv==0.18.0
+mysqlclient

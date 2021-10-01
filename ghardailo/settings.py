@@ -86,13 +86,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ghardailo.wsgi.application'
 
-# Database
+# SQL Lite Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# MySQL Database
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ghardailo',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode = 'STRICT_TRANS_TABLES'"
+        }
+    }
+}
+"""
+
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
