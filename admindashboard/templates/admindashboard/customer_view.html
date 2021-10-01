@@ -103,7 +103,7 @@
                                         No logo
                                     {% endif %}
                                 </td>
-                                <td><span class="{{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                                <td><span class="fas {{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
                                 <td>{{i.get_status_display}}</td>
                                 <td>                                                         
                                     <a href="{% url 'admindashboard:change-hire-status-2' pc.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
@@ -127,20 +127,20 @@
                             <th scope="col">No.</th>
                             <th scope="col">Business Name</th>
                             <th scope="col">Business Profile</th>
+                            <th scope="col">Title</th>
                             <th scope="col">Message</th>
                             <th scope="col">Read</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">DateTime</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for i in notifications %}
                             <tr>
                                 <td scope="row" class="Numbering2"></td>
-                                <td>{{i.from_user.business.name}}</td>
+                                <td>{{i.to_user.business.name}}</td>
                                 <td>
-                                    {% if i.from_user.business.logo %}
-                                        <img class="img-fluid rounded-circle" src="{{i.from_user.business.logo.url}}" />
+                                    {% if i.to_user.business.logo %}
+                                        <img class="img-fluid rounded-circle" src="{{i.to_user.business.logo.url}}" />
                                     {% else %}
                                         No logo
                                     {% endif %}

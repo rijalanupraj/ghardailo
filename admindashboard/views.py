@@ -372,7 +372,7 @@ def customer_view(request, customer_id):
 
     customer_hires = Hiring.objects.filter(customer=particular_customer)
     customer_notifications = Notification.objects.filter(
-        to_user=particular_customer.user).all()
+        from_user=particular_customer.user).all()
     customer_reviews = Review.objects.filter(
         customer=particular_customer).all()
     customer_bookmarks = Bookmark.objects.filter(
