@@ -3,6 +3,8 @@
 
 A door-to-door service that links business to customers.
 
+[![IMAGE ALT TEXT HERE](./extras/image/thumbnail.jpg)](https://youtu.be/8fYqkH_Zc6Y)
+Video URL : [Short Presentation](https://youtu.be/8fYqkH_Zc6Y)
 ## Run Locally
 
 Clone the project
